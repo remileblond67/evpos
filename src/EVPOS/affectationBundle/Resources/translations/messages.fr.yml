@@ -1,0 +1,61 @@
+'Application courante': 'Application courante'
+'Site de suivi et d''aide à la planification du projet MOCA.': 'Site de suivi et d''aide à la planification du projet MOCA de l''Eurométropole de Strasbourg.'
+'Organisation des données': 'Organisation des données'
+app:
+    slogan: Site de suivi et d'aide à la planification du projet MOCA de l'Eurométropole de Strasbourg
+    etat: Etat actuel de l'application
+
+applications:
+    liste: Liste des applications
+    listeUsage: Liste des applications utilisées
+
+application:
+    code: Code de l'application
+    nom: Nom de l'application
+    desc: Description de l'application
+    nature: Nature de l'application
+    listeUo: Liste des UO
+    dispoMoca: Disponible dans MOCA ?
+    utils: Utilisateurs de l'application
+    usage: Usage de l'application
+    accès: Accès à l'application
+    utilisation: Utilisation de l'application
+    validation: Besoin de l'application validé
+
+uo:
+    code: Code de l'UO
+    nom: Nom de l'UO
+    migMoca: À migrer dans MOCA ?
+    avancementMigMoca: Avancement de la migration MOCA
+
+service:
+    code: Code du Service
+    nom: Nom du service
+    liste: Liste des services
+
+direction:
+    code: Code de la Direction
+    nom: Nom de la Direction
+    liste: Liste des Directions
+
+utilisateur:
+    matricule: Matricule de l'utilisateur
+    nom: Nom de l'utilisateur
+    liste: Liste des utilisateurs
+    infoAnnuaire: Informations issues de l'annuaire
+
+poste:
+    listeUsage: Liste des postes utilisés
+
+imprimante:
+    listeUsage: Liste des imprimantes utilisées
+
+nexthink:
+    import: Importer l'usage depuis Nexthink
+
+suapp:
+    info: Information issues de SUAPP
+
+xml:
+    export: Exporter en XML
+    import: Importer du XML

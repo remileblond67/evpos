@@ -1,22 +1,22 @@
 {% extends "EVPOSaffectationBundle::layout.html.twig" %}
-{% block title%}Liste des services{% endblock%}
+{% block title%}{{ 'service.liste'|trans }}{% endblock%}
 
 {% block content %}
 <div class="row">
     <div class="col-lg-10">
-        <h4>Liste des services</h4>
+        <h4>{{ 'service.liste'|trans }}</h4>
     </div>
     <div class="col-lg-2">
-        <a href="" class="btn btn-sm btn-default">Export XML</a>
+        <a href="" class="btn btn-sm btn-default">{{ 'xml.export'|trans }}</a>
     </div>
 </div>
     <ul>
         <table class="table table-striped table-bordered table-hover dataTable no-footer">
             <thead>
                 <tr>
-                    <td class="row">Code service</td>
-                    <td class="row">Nom</td>
-                    <td class="row">Direction</td>
+                    <td class="row">{{ 'service.code'|trans }}</td>
+                    <td class="row">{{ 'service.nom'|trans }}</td>
+                    <td class="row">{{ 'direction.nom'|trans }}</td>
                 </tr>
             </thead>
             <tbody>

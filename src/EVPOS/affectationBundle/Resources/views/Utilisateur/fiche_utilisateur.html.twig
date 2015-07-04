@@ -6,18 +6,18 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Informations annuaire</h3>
+      <h3 class="panel-title">{{ 'utilisateur.infoAnnuaire'|trans }}</h3>
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-3"><h4>Matricule</h4>{{util.matUtil}}</div>
-            <div class="col-lg-3"><h4>Nom</h4>{{util.prenomUtil}} {{util.nomUtil}}</div>
+            <div class="col-lg-3"><h4>{{ 'utilisateur.matricule'|trans }}</h4>{{util.matUtil}}</div>
+            <div class="col-lg-3"><h4>{{ 'utilisateur.nom'|trans }}</h4>{{util.prenomUtil}} {{util.nomUtil}}</div>
             <div class="col-lg-3">
-                <h4>Service</h4>
+                <h4>{{ 'service.nom'|trans }}</h4>
                 <a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">{{util.serviceUtil.libService}}</a>
             </div>
             <div class="col-lg-3">
-                <h4>Direction</h4>
+                <h4>{{ 'direction.nom'|trans }}</h4>
                 {{util.serviceUtil.direction.libDirection }}
             </div>
         </div>
@@ -26,20 +26,20 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Applications utilisées</h3>
+        <h3 class="panel-title">{{ 'applications.listeUsage'|trans }}</h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-bordered table-hover dataTable no-footer">
             <thead>
                 <tr>
-                    <td class="row" rowspan="2">Code Appli</td>
-                    <td class="row" rowspan="2">Libellé</td>
-                    <td class="row" colspan="3">Utilisation de l'application</td>
+                    <td class="row" rowspan="2">{{ 'application.code'|trans }}</td>
+                    <td class="row" rowspan="2">{{ 'application.nom'|trans }}</td>
+                    <td class="row" colspan="3">{{ 'application.usage'|trans }}</td>
                 </tr>
                 <tr>
-                    <td class="row">Accès</td>
-                    <td class="row">Usage</td>
-                    <td class="row">Validation</td>
+                    <td class="row">{{ 'application.accès'|trans }}</td>
+                    <td class="row">{{ 'application.utilisation'|trans }}</td>
+                    <td class="row">{{ 'application.validation'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +57,7 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Postes utilisés</h3>
+        <h3 class="panel-title">{{ 'poste.listeUsage'|trans }}</h3>
     </div>
     <div class="panel-body">
 
@@ -66,7 +66,7 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Imprimantes utilisées</h3>
+        <h3 class="panel-title">{{ 'imprimante.listeUsage'|trans }}</h3>
     </div>
     <div class="panel-body">
 
