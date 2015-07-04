@@ -1,0 +1,33 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Liste des directions{% endblock%}
+
+{% block content %}
+<h4>Liste des directions</h4>
+    <ul>
+
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <td class="row">Code direction</td>
+                    <td class="row">Nom</td>
+                    <td class="row">Services</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for direction in listeDirection %}
+                <tr class="gradeA odd">
+                    <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': direction.codeDirection})}}">{{ direction.codeDirection }}</a></td>
+                    <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': direction.codeDirection})}}">{{direction.libDirection }}</a></td>
+                    <td class="">
+                        <ul>
+                            {% for service in direction.listeServices %}
+                            <li><a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">{{service.libService }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </ul>
+{%endblock%}

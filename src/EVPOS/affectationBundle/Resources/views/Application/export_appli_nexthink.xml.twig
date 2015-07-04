@@ -1,0 +1,86 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Export applications pour Nexthink{% endblock%}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Règles de définition des applications dans Nexthink</h3>
+        <h4>Script XML à intégrer dans Nexthink</h4>
+        <p>Séctionner le script XML ci-dessous et l'importer dans Nexthink, dans "Categories".</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10">
+        <textarea name="" id="" cols="100" rows="50">
+<?xml version="1.0" encoding="utf-16"?>
+<Category SyntaxVersion="1">
+  <Name>EMS - Code appli</Name>
+  <Type>binary</Type>
+  <Extra SyntaxVersion="1">
+    <MinPrivileges>ANONYMOUS</MinPrivileges>
+    <Description />
+  </Extra>
+  <Keywords>
+    {% include "EVPOSaffectationBundle:Application:socle.xml.twig" %}
+    {% for appli in listeAppli %}
+    <Keyword>
+      <Name>{{appli.codeAppli}}</Name>
+      <Rank>{{loop.index}}</Rank>
+      <Selector>
+          select binary where
+              binary.paths like "d:/appl/winapp32/{{appli.codeAppli}}/*"
+              OR binary.paths like "d:/appl/winappl/{{appli.codeAppli}}/*"
+              {% for uo in appli.listeUo %}
+              OR binary.paths like "d:/appl/winapp32/{{uo.codeUo}}/*"
+              OR binary.paths like "d:/appl/winappl/{{uo.codeUo}}/*"
+              {% endfor %}
+      </Selector>
+      <AutotagRules SyntaxVersion="1" DataModelVersion="8">
+        <Conditions>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"d:/appl/winapp32/{{appli.codeAppli}}/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"d:/appl/winappl/{{appli.codeAppli}}/*"</Value>
+          </ObjectCondition>
+
+          {% for uo in appli.listeUo %}
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"d:/appl/winapp32/{{uo.codeUo}}/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"d:/appl/winappl/{{uo.codeUo}}/*"</Value>
+          </ObjectCondition>
+          {% endfor %}
+
+        </Conditions>
+
+        <LogicalExpression>1 OR 2
+        {% if appli.listeUo|length > 0 %}
+            {% for n in 1..(appli.listeUo|length) %}
+             OR {{n+2}} OR {{n+3}}
+            {% endfor %}
+        {% endif %}
+        </LogicalExpression>
+      </AutotagRules>
+    </Keyword>
+    {% endfor %}
+  </Keywords>
+</Category>
+        </textarea>
+    </div>
+</div>
+{% endblock %}

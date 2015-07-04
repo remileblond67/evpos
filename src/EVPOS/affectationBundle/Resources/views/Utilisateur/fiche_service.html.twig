@@ -1,0 +1,79 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Service {{service.codeService}}{% endblock%}
+
+{% block content %}
+
+<h2>Service {{service.codeService}}</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Informations annuaire</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-4"><h4>Code service</h4>{{service.codeService}}</div>
+            <div class="col-lg-4"><h4>Nom service</h4>{{service.libService}}</div>
+            <div class="col-lg-4">
+                <h4>Direction</h4>
+                <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Applications utilisées</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <td class="row">Code Appli</td>
+                    <td class="row">Libellé</td>
+                    <td class="row">Nombre d'accès</td>
+                    <td class="row">Nombre d'utilisateur</td>
+                    <td class="row">Nombre validé</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="gradeA odd"></td>
+                    <td class="gradeA odd"></td>
+                    <td class="gradeA odd"></td>
+                    <td class="gradeA odd"></td>
+                    <td class="gradeA odd"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Liste des utilisateurs</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+           <thead>
+               <tr>
+                   <td class="row">Matricule</td>
+                   <td class="row">Nom</td>
+                   <td class="row">Ensemble cohérent</td>
+               </tr>
+           </thead>
+            <tbody>
+               {% for util in service.listeUtilisateurs %}
+                <tr class="gradeA odd">
+                    <td><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a></td>
+                    <td>{{util.nomUtil}} {{util.prenomUtil}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{%endblock%}

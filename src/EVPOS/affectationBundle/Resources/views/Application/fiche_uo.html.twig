@@ -1,0 +1,46 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}UO {{uo.codeUo}}{% endblock%}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <h2>UO {{uo.codeUo}} (application <a href="{{path('evpos_ficheAppli', {'codeAppli': uo.appli.codeAppli})}}">{{uo.appli.codeAppli}}</a>)</h2>
+    </div>
+    <div class="col-lg-6">
+        <a href="" class="btn btn-lg btn-default">Importer usage Nexthink</a>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Informations SUAPP</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-2"><h4>Code appli</h4><a href="{{path('evpos_ficheAppli', {'codeAppli': uo.appli.codeAppli})}}">{{uo.appli.codeAppli}}</a></div>
+            <div class="col-lg-2"><h4>Code UO</h4>{{uo.codeUo}}</div>
+            <div class="col-lg-8"><h4>Libellé UO</h4>{{uo.nomUo}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Utilisateurs de l'UO</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <td class="row">Code service</td>
+                    <td class="row">Nom</td>
+                    <td class="row">Direction</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

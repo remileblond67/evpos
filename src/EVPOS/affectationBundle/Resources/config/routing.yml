@@ -1,0 +1,73 @@
+login:
+    pattern:   /login
+    defaults:  { _controller: EVPOSUserBundle:Security:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout
+
+evpos_accueil:
+    path:     /
+    defaults: { _controller: EVPOSaffectationBundle:Default:index }
+
+evpos_indicateurs:
+    path:     /indicateurs
+    defaults: { _controller: EVPOSaffectationBundle:Default:indicateurs }
+
+evpos_listeAppli:
+    path:   /liste_appli
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppli }
+
+evpos_listeAppliXml:
+    path:   /liste_appli_xml
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliXml }
+
+evpos_ficheAppli:
+    path:  /fiche_appli_{codeAppli}
+    defaults: { _controller: EVPOSaffectationBundle:Application:ficheAppli }
+
+evpos_listeUo:
+    path:   /liste_uo
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeUo }
+
+evpos_ficheUo:
+    path:   /fiche_uo_{codeUo}
+    defaults: { _controller: EVPOSaffectationBundle:Application:ficheUo }
+
+evpos_exportUoNexthink:
+    path:  /regle_tag_uo_ntk
+    defaults: { _controller: EVPOSaffectationBundle:Application:exportUoNexthink }
+
+evpos_exportAppliNexthink:
+    path:  /regle_tag_appli_ntk
+    defaults: { _controller: EVPOSaffectationBundle:Application:exportAppliNexthink }
+
+evpos_listeUtil:
+    path:   /liste_util
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeUtilisateur }
+
+evpos_ficheUtil:
+    path:  /fiche_util_{matUtil}
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:ficheUtilisateur }
+
+evpos_listeService:
+    path:   /liste_service
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeService }
+
+evpos_ficheService:
+    path: /fiche_service_{codeService}
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:ficheService }
+
+evpos_listeDirection:
+    path: /liste_direction
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeDirection }
+
+evpos_ficheDirection:
+    path: /fiche_direction_{codeDirection}
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:ficheDirection }
+
+evpos_listeEc:
+    path:   /liste_ec
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }

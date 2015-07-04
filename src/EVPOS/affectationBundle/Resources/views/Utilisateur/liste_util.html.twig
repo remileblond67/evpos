@@ -1,0 +1,27 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Liste des utilisateurs{% endblock%}
+
+{% block content %}
+<h4>Liste des utilisateurs</h4>
+    <ul>
+
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <td class="row">Matricule</td>
+                    <td class="row">Nom</td>
+                    <td class="row">Service</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for util in listeUtil %}
+                <tr class="gradeA odd">
+                    <td class=""><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil }}</a></td>
+                    <td class="">{{util.prenomUtil }} {{util.nomUtil }}</td>
+                    <td class=""><a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">{{util.serviceUtil.libService }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </ul>
+{%endblock%}

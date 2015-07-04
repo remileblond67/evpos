@@ -1,0 +1,11 @@
+evpos_user:
+    resource: "@EVPOSUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+evpo_saffectation:
+    resource: "@EVPOSaffectationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

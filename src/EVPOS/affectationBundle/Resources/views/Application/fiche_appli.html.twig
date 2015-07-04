@@ -1,0 +1,75 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Application {{appli.codeAppli}}{% endblock%}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2>Applications {{appli.codeAppli}}</h2>
+    </div>
+    <div class="col-lg-6">
+        <a class="btn btn-lg btn-default">Importer usage Nexthink</a>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Informations SUAPP</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-2"><h4>Code appli</h4>{{appli.codeAppli}}</div>
+            <div class="col-lg-4"><h4>Nom appli</h4>{{appli.nomAppli}}</div>
+            <div class="col-lg-6"><h4>Description appli</h4>{{appli.descAppli}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">UO de l'application</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <td class="row sorting_asc">Code UO</td>
+                    <td class="row">Nom UO</td>
+                    <td class="row">A migrer dans MOCA</td>
+                    <td class="row">Avancement migration MOCA</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for uo in appli.listeUo %}
+                <tr class="gradeA odd">
+                    <td class=""><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a></td>
+                    <td class="">{{uo.nomUO}}</td>
+                    <td>{{ uo.migMocaLong }}</td>
+                    <td class="">{{uo.avancementMoca}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Utilisateurs de l'application</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <td class="row">Code service</td>
+                    <td class="row">Nom</td>
+                    <td class="row">Direction</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{%endblock%}

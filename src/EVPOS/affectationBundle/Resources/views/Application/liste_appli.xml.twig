@@ -1,0 +1,21 @@
+<listeAppli>
+{% for appli in listeAppli %}
+<appli>
+    <codeAppli>{{appli.codeAppli}}</codeAppli>
+    <nomAppli>{{appli.nomAppli}}</nomAppli>
+    <descAppli>{{appli.descAppli}}</descAppli>
+    <dispoMoca>{{appli.dispoMoca}}</dispoMoca>
+    <natAppli>{{appli.natAppli}}</natAppli>
+    <listeUo>
+    {% for uo in appli.listeUo %}
+        <uo>
+            <codeUo>{{uo.codeUO }}</codeUo>
+            <nomUo>{{ uo.nomUo }}</nomUo>
+            <migMoca>{{uo.migMoca}}</migMoca>
+            <avancementMoca>{{uo.avancementMoca}}</avancementMoca>
+        </uo>
+    {% endfor %}
+    </listeUo>
+</appli>
+{% endfor %}
+</listeAppli>

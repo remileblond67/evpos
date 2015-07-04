@@ -1,0 +1,142 @@
+    <Keyword>
+      <Name>Socle</Name>
+      <Rank>0</Rank>
+      <Selector>select binary where binary.paths like "%ProgramFiles%/utilitaires système/*" OR binary.paths like "c:/Windows/*" OR binary.paths like "%ProgramFiles%/common files/microsoft shared/*" OR binary.paths like "%ProgramFiles%/fichiers communs/microsoft shared/*" OR binary.paths like "%System%/*" OR binary.paths like "%ProgramFiles%/sophos/*" OR binary.paths like "%ProgramFiles%/symantec/*"</Selector>
+      <AutotagRules SyntaxVersion="1" DataModelVersion="8">
+        <Conditions>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/utilitaires système/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"c:/Windows/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/common files/microsoft shared/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/fichiers communs/microsoft shared/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%System%/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/sophos/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/symantec/*"</Value>
+          </ObjectCondition>
+                    <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>application_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"googleupdate.exe"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>application_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"uphclean.exe"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/citrix/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/utilitaires systeme/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>application_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"googlecrashhandler.exe"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>application_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"iexplore.exe"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>application_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"outlook.exe"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>product_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"Microsoft Windows  Operating System"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>product_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"Système d'exploitation Microsoft Windows"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/microsoft office/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>product_name</Field>
+            <Comparer>=</Comparer>
+            <Value>"Firefox"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>product_name</Field>
+            <Comparer>~=</Comparer>
+            <Value>"Microsoft Office"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>product_name</Field>
+            <Comparer>~=</Comparer>
+            <Value>"Google Chrome"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/windows media encoder/*"</Value>
+          </ObjectCondition>
+          <ObjectCondition IsTemplate="false">
+            <Object>binary</Object>
+            <Field>paths</Field>
+            <Comparer>like</Comparer>
+            <Value>"%ProgramFiles%/utilitaires developpement/*"</Value>
+          </ObjectCondition>
+        </Conditions>
+        <LogicalExpression>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR OR 14 OR 15 OR 16 OR 17 OR 18 OR 19 OR 20 OR 21 OR 22</LogicalExpression>
+      </AutotagRules>
+    </Keyword>
