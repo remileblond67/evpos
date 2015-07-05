@@ -2,12 +2,23 @@
 'Site de suivi et d''aide à la planification du projet MOCA.': 'Site de suivi et d''aide à la planification du projet MOCA de l''Eurométropole de Strasbourg.'
 'Organisation des données': 'Organisation des données'
 app:
+    name: Suivi MOCA
     slogan: Site de suivi et d'aide à la planification du projet MOCA de l'Eurométropole de Strasbourg
     etat: Etat actuel de l'application
+    home: Retour à l'accueil
+    update: Mise à jour
+
+user:
+    connect: Se connecter
+    connected: connecté
+    disconnected: Non connecté
+    disconnect: Se déconnecter
 
 applications:
     liste: Liste des applications
     listeUsage: Liste des applications utilisées
+    patrimoine: Patrimoine applicatif
+    listeAppliUo: Liste des applications / UO
 
 application:
     code: Code de l'application
@@ -52,9 +63,15 @@ imprimante:
 
 nexthink:
     import: Importer l'usage depuis Nexthink
+    exportAppli: Export des applications
+    exportUo: Export des UO
 
 suapp:
     info: Information issues de SUAPP
+    update: Mise à jour à partir de SUAPP
+
+baza:
+    update: Mise à jour à partir de BAZA
 
 xml:
     export: Exporter en XML
