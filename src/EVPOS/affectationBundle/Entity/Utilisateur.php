@@ -39,7 +39,11 @@ class Utilisateur
     */
     private $serviceUtil;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesAppli", mappedBy="utilAcces")
+     */
+    private $listeAcces;
+    
     /**
      * Set matUtil
      *
@@ -109,36 +113,43 @@ class Utilisateur
         return $this->serviceUtil;
     }
 
+
+
+
+
+
+ 
+
     /**
-     * Add listeAccesUo
+     * Add listeAcces
      *
-     * @param \EVPOS\affectationBundle\Entity\AccesUo $listeAccesUo
+     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
      * @return Utilisateur
      */
-    public function addListeAccesUo(\EVPOS\affectationBundle\Entity\AccesUo $listeAccesUo)
+    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
     {
-        $this->listeAccesUo[] = $listeAccesUo;
+        $this->listeAcces[] = $listeAcces;
 
         return $this;
     }
 
     /**
-     * Remove listeAccesUo
+     * Remove listeAcces
      *
-     * @param \EVPOS\affectationBundle\Entity\AccesUo $listeAccesUo
+     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
      */
-    public function removeListeAccesUo(\EVPOS\affectationBundle\Entity\AccesUo $listeAccesUo)
+    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
     {
-        $this->listeAccesUo->removeElement($listeAccesUo);
+        $this->listeAcces->removeElement($listeAcces);
     }
 
     /**
-     * Get listeAccesUo
+     * Get listeAcces
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListeAccesUo()
+    public function getListeAcces()
     {
-        return $this->listeAccesUo;
+        return $this->listeAcces;
     }
 }

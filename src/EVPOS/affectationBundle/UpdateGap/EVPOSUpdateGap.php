@@ -3,6 +3,7 @@ namespace EVPOS\affectationBundle\UpdateGap;
 
 use EVPOS\affectationBundle\Entity\Utilisateur;
 use EVPOS\affectationBundle\Entity\Application;
+use EVPOS\affectationBundle\Entity\AccesAppli;
 
 class EVPOSUpdateGap {
     
@@ -43,9 +44,21 @@ class EVPOSUpdateGap {
             
             if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtilisateur) &&
                     $em->getRepository('EVPOSaffectationBundle:Application')->isApplication($codeApplication)) {
-                $newUtilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtilisateur);
-                $newApplication = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeApplication);
+                $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtilisateur);
+                $application = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeApplication);
+                
+                $newAcces = new AccesAppli();
+                $newAcces->setAppliAcces($application);
+                $newAcces->setUtilAcces($utilisateur);
+                $newAcces->setSourceImport("GAP");
+                
+                $em->persist($newAcces);
+                
+                if ($nb%100) $em->flush();
+                
+                $nb++;
             }
+            $em->flush();
         }
         oci_free_statement($csr);
     }

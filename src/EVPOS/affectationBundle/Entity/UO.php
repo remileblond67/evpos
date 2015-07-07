@@ -13,10 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class UO
 {
-    public function __construct() {
-        $this->listeAcces = new ArrayCollection() ;
-    }
-
     /**
     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeUO")
     * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false)
@@ -51,7 +47,6 @@ class UO
      * @ORM\Column(name="avancement_moca", type="string", length=50, nullable=true)
      */
     private $avancementMoca;
-
 
     /**
      * Set codeUo

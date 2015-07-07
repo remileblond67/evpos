@@ -94,7 +94,7 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des utilisateurs à partir de BAZA
      */
     public function importUtilisateurs() {
-        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null";
+        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
@@ -122,14 +122,16 @@ class EVPOSUpdateBaza {
             $em->persist($newUtilisateur);
             
             // Commit tous les 100 enregistrements
-            // if (($nb%100)==0)
-                // $em->flush();
+            if (($nb%100)==0)
+                $em->flush();
                 
             $nb++;
         }
         $em->flush();
         
         oci_free_statement($csr);
+        
+        return "OK";
     }
     
     public function importAcces() {

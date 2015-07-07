@@ -16,7 +16,7 @@ class Application
 {
     public function __construct()
     {
-        $this->listeUO = new ArrayCollection();
+        
     }
 
     /**
@@ -59,6 +59,11 @@ class Application
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\UO", mappedBy="appli")
      */
     private $listeUO;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesAppli", mappedBy="appliAcces")
+     */
+    private $listeAcces;
 
     /**
      * Set codeAppli
@@ -236,5 +241,43 @@ class Application
     public function getDispoMoca()
     {
         return $this->dispoMoca;
+    }
+
+
+
+
+ 
+
+    /**
+     * Add listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
+     * @return Application
+     */
+    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
+    {
+        $this->listeAcces[] = $listeAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
+     */
+    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
+    {
+        $this->listeAcces->removeElement($listeAcces);
+    }
+
+    /**
+     * Get listeAcces
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeAcces()
+    {
+        return $this->listeAcces;
     }
 }

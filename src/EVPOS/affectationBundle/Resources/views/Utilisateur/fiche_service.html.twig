@@ -66,7 +66,7 @@
                {% for util in service.listeUtilisateurs %}
                 <tr class="gradeA odd">
                     <td><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a></td>
-                    <td>{{util.nomUtil}} {{util.prenomUtil}}</td>
+                    <td>{{util.nomUtil}}</td>
                     <td></td>
                 </tr>
                 {% endfor %}

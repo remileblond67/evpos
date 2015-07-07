@@ -40,7 +40,7 @@ class ApplicationRepository extends EntityRepository
     }
 
     /**
-     * Retourne l'application correspondant au code appli passÃ© en paramÃ¨tre
+     * Retourne l'application correspondant au code appli passé en paramètre
      */
     public function getApplication($codeAppli) {
         $query = $this->createQueryBuilder('a')
@@ -53,7 +53,7 @@ class ApplicationRepository extends EntityRepository
     }
     
     /**
-     * Teste si l'application dont le code est passÃ© en parametre existe
+     * Teste si l'application dont le code est passé en parametre existe
      */
     public function isApplication($codeAppli) {
         $nbAppli = $this->createQueryBuilder('a')
@@ -74,7 +74,7 @@ class ApplicationRepository extends EntityRepository
 
     /**
      * Retourne le nombre d'application par nature (AS/AI)
-     * UtilisÃ© pour les indicateurs d'avancement
+     * Utilisé pour les indicateurs d'avancement
      */
     public function getNbAppliNat() {
         $query = $this->createQueryBuilder('a')
@@ -86,3 +86,4 @@ class ApplicationRepository extends EntityRepository
         return $query->getResult();
     }
 }
+
