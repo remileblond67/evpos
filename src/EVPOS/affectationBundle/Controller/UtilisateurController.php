@@ -69,9 +69,9 @@ class UtilisateurController extends Controller
     }
     
     /**
-     * Mise à jour des informations provenant de BAZA (directions, services et utilisateurs)
+     * Mise à jour des informations provenant de BAZA (directions et services)
      */
-    public function majBAZAAction() {
+    public function majBazaDirServAction() {
         $updateBaza = $this->container->get('evpos_affectation.update_baza');
         
         $updateBaza->importDirections();
@@ -79,4 +79,25 @@ class UtilisateurController extends Controller
         
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
     }
+    
+    /**
+     * Mise à jour des informations provenant de BAZA (utilisateurs)
+     */
+    public function majBazaUtilAction() {
+        $updateBaza = $this->container->get('evpos_affectation.update_baza');
+        
+        $updateBaza->importUtilisateurs();
+        
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
+    }    
+    
+    /**
+     * Import des accès depuis GAP
+     */
+    public function importAccesAction() {
+        $updateGap = $this->container->get('evpos_affectation.update_gap');
+        $updateGap->importAcces();
+    }
+    
+    
 }

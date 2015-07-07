@@ -63,15 +63,17 @@ imprimante:
 
 nexthink:
     import: Importer l'usage depuis Nexthink
-    exportAppli: Export des applications
-    exportUo: Export des UO
+    exportAppli: Export des applications dans Nexthink
+    exportUo: Export des UO dans Nexthink
 
 suapp:
     info: Information issues de SUAPP
     update: Mise à jour à partir de SUAPP
 
 baza:
-    update: Mise à jour à partir de BAZA
+    updateDS: Mise à jour directions et services
+    updateUtil: Mise à jour utilisateurs
+    importAcces: Import des accès depuis GAP
 
 xml:
     export: Exporter en XML

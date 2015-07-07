@@ -17,8 +17,14 @@
                 {% for util in listeUtil %}
                 <tr class="gradeA odd">
                     <td class=""><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil }}</a></td>
-                    <td class="">{{util.prenomUtil }} {{util.nomUtil }}</td>
-                    <td class=""><a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">{{util.serviceUtil.libService }}</a></td>
+                    <td class="">{{util.nomUtil }}</td>
+                    <td class="">
+                        {% if util.serviceUtil %}
+                        <a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">
+                            {{util.serviceUtil.libService }}
+                        </a>
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

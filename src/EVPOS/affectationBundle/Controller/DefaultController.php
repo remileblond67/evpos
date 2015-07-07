@@ -18,6 +18,13 @@ class DefaultController extends Controller
             ->getRepository('EVPOSaffectationBundle:Application')
             ->getNbAppliNat()
         ;
-        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli));
+        
+        $nbUtil = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Utilisateur')
+            ->getNbUtilisateurs()
+        ;
+        
+        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil));
     }
 }

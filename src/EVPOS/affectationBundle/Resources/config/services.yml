@@ -9,3 +9,7 @@ services:
     evpos_affectation.update_baza:
         class: EVPOS\affectationBundle\UpdateBaza\EVPOSUpdateBaza
         arguments: [@doctrine]
+        
+    evpos_affectation.update_gap:
+        class: EVPOS\affectationBundle\UpdateGap\EVPOSUpdateGap
+        arguments: [@doctrine]

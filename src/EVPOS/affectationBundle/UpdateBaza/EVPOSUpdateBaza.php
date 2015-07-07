@@ -1,9 +1,9 @@
 <?php
-
 namespace EVPOS\affectationBundle\UpdateBaza;
 
 use EVPOS\affectationBundle\Entity\Direction;
 use EVPOS\affectationBundle\Entity\Service;
+use EVPOS\affectationBundle\Entity\Utilisateur;
 
 class EVPOSUpdateBaza {
     
@@ -88,5 +88,51 @@ class EVPOSUpdateBaza {
         $em->flush();
         
         oci_free_statement($csr);
+    }
+    
+    /**
+     * Mise à jour de la liste des utilisateurs à partir de BAZA
+     */
+    public function importUtilisateurs() {
+        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null";
+        
+        $csr = oci_parse ( $this->ORA , $requeteBaza) ;
+        oci_execute ($csr) ;
+        $em = $this->doctrine->getManager();
+        $nb = 0;
+         
+        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+            $matUtil = $row["MATRICULE"];
+            $nomUtil = utf8_encode($row["NOM"]);
+            // $prenomUtil = utf8_encode($row["PRENOM"]);
+            $codeService = utf8_encode($row["CODE_SERVICE"]);
+            
+            if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil))
+                $newUtilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
+            else
+                $newUtilisateur = new Utilisateur();
+                
+            if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService))
+                $newUtilisateur->setServiceUtil($em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService));
+                
+            $newUtilisateur->setMatUtil($matUtil);
+            $newUtilisateur->setNomUtil($nomUtil);
+            // $newUtilisateur->setPrenomUtil($prenomUtil);
+            
+            $em->persist($newUtilisateur);
+            
+            // Commit tous les 100 enregistrements
+            // if (($nb%100)==0)
+                // $em->flush();
+                
+            $nb++;
+        }
+        $em->flush();
+        
+        oci_free_statement($csr);
+    }
+    
+    public function importAcces() {
+        
     }
 }

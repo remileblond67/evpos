@@ -60,29 +60,33 @@
                             <li><a href="{{ path('evpos_listeDirection') }}">{{'direction.liste'|trans}}</a>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{path('evpos_updateFromBAZA') }}">{{'baza.update'|trans}}</a></li>
+                            <li><a href="{{path('evpos_updateDirServFromBAZA') }}">{{'baza.updateDS'|trans}}</a></li>
+                            <li><a href="{{path('evpos_updateUtilFromBAZA') }}">{{'baza.updateUtil'|trans}}</a></li>
                         </ul>
                     </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{path('evpos_importAcces')}}">{{'baza.importAcces'|trans}}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="">{{'nexthink.import'|trans}}</a></li>
+                        </ul>
+                    </li>
+                    
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Regroupements <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('evpos_listeEc') }}">Ensembles cohérents</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Nexthink <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('evpos_exportAppliNexthink') }}">{{'nexthink.exportAppli'|trans}}</a>
                             </li>
                             <li><a href="{{ path('evpos_exportUoNexthink') }}">{{'nexthink.exportUo'|trans}}</a>
                             </li>
-                            {% if is_granted('ROLE_MAJ') %}
                             <li role="separator" class="divider"></li>
-                            <li><a href="">{{'nexthink.import'|trans}}</a></li>
-                            {% endif %}
+                            <li><a href="{{ path('evpos_listeEc') }}">Ensembles cohérents</a>
+                            </li>
                         </ul>
                     </li>
+                    
                     <li><a href="{{ path('evpos_indicateurs') }}">Indicateurs</a>
                     </li>
                 </ul>

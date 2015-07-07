@@ -4,6 +4,7 @@ namespace EVPOS\affectationBundle\Entity;
 
 use EVPOS\affectationBundle\Entity\Sercice;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Utilisateur
@@ -20,7 +21,7 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="mat_util", type="string", length=10, nullable=false)
+     * @ORM\Column(name="mat_util", type="string", length=30, nullable=false)
      * @ORM\Id
      */
     private $matUtil;
@@ -31,13 +32,6 @@ class Utilisateur
      * @ORM\Column(name="nom_util", type="string", length=255)
      */
     private $nomUtil;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom_util", type="string", length=255, nullable=true)
-     */
-    private $prenomUtil;
 
     /**
     * @ORM\ManyToOne(targetEntity="Service", inversedBy="listeUtilisateurs")
@@ -113,29 +107,6 @@ class Utilisateur
     public function getServiceUtil()
     {
         return $this->serviceUtil;
-    }
-
-    /**
-     * Set prenomUtil
-     *
-     * @param string $prenomUtil
-     * @return Utilisateur
-     */
-    public function setPrenomUtil($prenomUtil)
-    {
-        $this->prenomUtil = $prenomUtil;
-
-        return $this;
-    }
-
-    /**
-     * Get prenomUtil
-     *
-     * @return string
-     */
-    public function getPrenomUtil()
-    {
-        return $this->prenomUtil;
     }
 
     /**

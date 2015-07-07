@@ -32,7 +32,15 @@ class EVPOSUpdateSuapp {
      */
     public function importAppliSuapp() {
 		// Récupération de la liste des applications dans SUAPP
-		$requeteSUAPP = "select code_appli code, nom_appli nom, desc_appli description, nat_appli nature, dispo_moca disponible from app_application where (date_cloture is null or date_cloture < '1/6/2015') and nat_appli in ('AS', 'AI')";
+		$requeteSUAPP = "SELECT distinct  a.code_appli code,
+         a.nom_appli nom,
+         a.desc_appli description,
+         a.nat_appli nature,
+         a.dispo_moca disponible
+  FROM   app_application a, app_module m
+ WHERE   (date_cloture IS NULL OR date_cloture < '1/6/2015')
+         AND nat_appli IN ('AS', 'AI')
+         and a.code_appli = m.code_appli and (m.mig_moca is null or m.mig_moca = 'o')";
         
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
         

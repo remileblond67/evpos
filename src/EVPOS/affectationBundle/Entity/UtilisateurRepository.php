@@ -19,7 +19,7 @@ class UtilisateurRepository extends EntityRepository
         $query = $this->createQueryBuilder('u')
             ->leftJoin('u.serviceUtil', 's')
             ->addSelect('s')
-            ->orderBy('u.matUtil')
+            ->orderBy('u.nomUtil')
             ->getQuery()
         ;
 
@@ -45,5 +45,38 @@ class UtilisateurRepository extends EntityRepository
     public function importBAZA() {
         $requeteBaza = "select matricule, nom, prenom, code_service from baz_agent where date_sortie is null";
         return true;
+    }
+    
+    /**
+     * Teste si l'utilisateur dont le matricule est passé en parametre existe
+     */
+    public function isUtilisateur($matUtil) {
+        $nbUtil = $this->createQueryBuilder('u')
+            ->select('count(u.matUtil)')
+            ->setParameter('code', $matUtil)
+            ->where('u.matUtil = :code')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        if ($nbUtil >= 1)
+            $retour = true;
+        else 
+            $retour = false;
+            
+        return $retour;
+    }
+
+    /**
+     * Retourne le nombre d'utilisateurs
+     * Utilisé pour les indicateurs d'avancement
+     */
+    public function getNbUtilisateurs() {
+        $query = $this->createQueryBuilder('u')
+            ->select('count(u.matUtil) nb')
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
     }
 }
