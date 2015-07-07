@@ -4,6 +4,7 @@ namespace EVPOS\affectationBundle\Entity;
 
 use EVPOS\affectationBundle\Entity\Utilisateur;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Service

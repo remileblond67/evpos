@@ -67,6 +67,10 @@ evpos_ficheService:
 evpos_listeDirection:
     path: /liste_direction
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeDirection }
+ 
+evpos_updateFromBAZA:
+    path: /update_from_baza
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:majBAZA } 
 
 evpos_ficheDirection:
     path: /fiche_direction_{codeDirection}

@@ -39,11 +39,22 @@ class ServiceRepository extends EntityRepository
     }
 
     /**
-     * Import des données depuis BAZA
+     * Teste si le service dont le code est passé en parametre existe
      */
-    public function importBaza() {
-        $requeteBaza = "select code_direction, lib_long_direction, mat_criu from baz_direction";
-
-        return true;
+    public function isService($codeService) {
+        $nbService = $this->createQueryBuilder('s')
+            ->select('count(s.codeService)')
+            ->setParameter('code', $codeService)
+            ->where('s.codeService = :code')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        if ($nbService >= 1)
+            $retour = true;
+        else 
+            $retour = false;
+            
+        return $retour;
     }
 }

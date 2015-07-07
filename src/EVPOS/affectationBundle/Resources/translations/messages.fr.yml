@@ -40,14 +40,14 @@ uo:
     avancementMigMoca: Avancement de la migration MOCA
 
 service:
-    code: Code du Service
+    code: Code du service
     nom: Nom du service
     liste: Liste des services
 
 direction:
-    code: Code de la Direction
-    nom: Nom de la Direction
-    liste: Liste des Directions
+    code: Code de la direction
+    nom: Nom de la direction
+    liste: Liste des directions
 
 utilisateur:
     matricule: Matricule de l'utilisateur

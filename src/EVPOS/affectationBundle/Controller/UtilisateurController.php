@@ -67,4 +67,16 @@ class UtilisateurController extends Controller
     {
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
     }
+    
+    /**
+     * Mise à jour des informations provenant de BAZA (directions, services et utilisateurs)
+     */
+    public function majBAZAAction() {
+        $updateBaza = $this->container->get('evpos_affectation.update_baza');
+        
+        $updateBaza->importDirections();
+        $updateBaza->importServices();
+        
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
+    }
 }

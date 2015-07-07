@@ -2,3 +2,10 @@ services:
 #    evpo_saffectation.example:
 #        class: EVPOS\affectationBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    evpos_affectation.update_suapp:
+        class: EVPOS\affectationBundle\UpdateSuapp\EVPOSUpdateSuapp
+        arguments: [@doctrine]
+
+    evpos_affectation.update_baza:
+        class: EVPOS\affectationBundle\UpdateBaza\EVPOSUpdateBaza
+        arguments: [@doctrine]

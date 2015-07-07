@@ -52,7 +52,8 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        #driver:   pdo_mysql
+        driver:   oci8
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -78,3 +79,14 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+# ----------------------------------------------------------------------------
+# Configuration spécifique nécessaire pour le support des dates dans Oracle
+# (Pas nécessaire pour mysql)
+services:
+    listener:
+        class: Doctrine\DBAL\Event\Listeners\OracleSessionInit 
+        tags:
+            - { name: doctrine.event_listener, event: postConnect }
+# ----------------------------------------------------------------------------

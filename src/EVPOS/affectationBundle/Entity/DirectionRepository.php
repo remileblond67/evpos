@@ -61,4 +61,24 @@ class DirectionRepository extends EntityRepository
 
         return true;
     }
+    
+    /**
+     * Vérifie si la direction existe
+     */
+    public function isDirection($codeDirection) {
+        $nbDirection = $this->createQueryBuilder('d')
+            ->select('count(d.codeDirection)')
+            ->setParameter('code', $codeDirection)
+            ->where('d.codeDirection = :code')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        if ($nbDirection >= 1)
+            $retour = true;
+        else 
+            $retour = false;
+            
+        return $retour;
+    }
 }
