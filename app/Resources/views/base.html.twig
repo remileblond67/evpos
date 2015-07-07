@@ -47,7 +47,7 @@
                             </li>
                             {% if is_granted('ROLE_MAJ') %}
                             <li role="separator" class="divider"></li>
-                            <li><a href="">{{ 'suapp.update'|trans }}</a>
+                            <li><a href="{{ path('evpos_updateFromSUAPP') }}">{{ 'suapp.update'|trans }}</a>
                             </li>
                             {% endif %}
                         </ul>

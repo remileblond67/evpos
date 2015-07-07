@@ -4,6 +4,7 @@ namespace EVPOS\affectationBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * ApplicationRepository
  *
@@ -50,7 +51,26 @@ class ApplicationRepository extends EntityRepository
 
         return $query->getSingleResult();
     }
-
+    
+    /**
+     * Teste si l'application dont le code est passé en parametre existe
+     */
+    public function isApplication($codeAppli) {
+        $nbAppli = $this->createQueryBuilder('a')
+            ->select('count(a.codeAppli)')
+            ->setParameter('code', $codeAppli)
+            ->where('a.codeAppli = :code')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        if ($nbAppli >= 1)
+            $retour = true;
+        else 
+            $retour = false;
+            
+        return $retour;
+    }
 
     /**
      * Retourne le nombre d'application par nature (AS/AI)
@@ -64,14 +84,5 @@ class ApplicationRepository extends EntityRepository
         ;
 
         return $query->getResult();
-    }
-
-    /**
-     * Mise à jour des données à partir de SUAPP
-     */
-    public function majSUAPP() {
-        $requeteSUAPP = "select code_appli, nom_appli, nat_appli, dispo_moca from app_application where (date_cloture is null or date_cloture < '1/6/2015')";
-
-        return true;
     }
 }

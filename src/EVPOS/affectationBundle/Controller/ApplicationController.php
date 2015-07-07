@@ -55,13 +55,13 @@ class ApplicationController extends Controller
      * Affichage de la fiche d'une application dont le code est passé en paramètre
      */
     public function ficheAppliAction($codeAppli) {
-        $listeAppli = $this->getDoctrine()
+        $appli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
             ->getApplication($codeAppli)
         ;
 
-        return $this->render('EVPOSaffectationBundle:Application:fiche_appli.html.twig', array('appli' => $listeAppli));
+        return $this->render('EVPOSaffectationBundle:Application:fiche_appli.html.twig', array('appli' => $appli));
     }
 
     /**
@@ -91,5 +91,15 @@ class ApplicationController extends Controller
 
         return $this->render('EVPOSaffectationBundle:Application:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));
     }
+	
+	/**
+	 * Mise à jour de la liste des applications à partir de SUAPP
+	 */
+	 public function majSuappAction() {
+		$updateSuapp = $this->container->get('evpos_affectation.update_suapp');
+        $message = $updateSuapp->importAppliSuapp() . $updateSuapp->importUoSuapp() ;
+        
+		return $this->render('EVPOSaffectationBundle:Application:update_suapp.html.twig', array('message' => $message)); 
+	 }
 }
 

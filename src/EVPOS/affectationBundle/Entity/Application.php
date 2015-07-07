@@ -4,6 +4,7 @@ namespace EVPOS\affectationBundle\Entity;
 
 use EVPOS\affectationBundle\Entity\UO;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Application
@@ -13,7 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Application
 {
-
     public function __construct()
     {
         $this->listeUO = new ArrayCollection();
@@ -47,7 +47,6 @@ class Application
      * @ORM\Column(name="dispo_moca", type="boolean", nullable=true)
      */
     private $dispoMoca;
-
 
     /**
      * @var string
@@ -192,6 +191,7 @@ class Application
      * @return string
      */
     public function getNatAppliLong() {
+        $libNat="Autre";
         switch($this->natAppli) {
             case "AS":
                 $libNat = "Appli service";

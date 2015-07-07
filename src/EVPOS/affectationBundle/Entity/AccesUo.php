@@ -31,21 +31,18 @@ class AccesUo
      * @var \DateTime
      *
      * @ORM\Column(name="dateAcces", type="datetime")
-     * @Assert\DateTime()
      */
     private $dateAcces;
 
     /**
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumn(name="mat_util", referencedColumnName="mat_util", nullable=false)
-     * @Assert\Length(min=5, message="Le matricule utilisateur doit faire au moins {{limit}} caractères")
      */
     private $matUtil;
 
     /**
      * @ORM\ManyToOne(targetEntity="UO")
      * @ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo", nullable=false)
-     * @Assert\Length(min=2, message="Le code UO doit faire au moins {{limit}} caractères")
      */
     private $codeUo;
 

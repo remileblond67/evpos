@@ -44,4 +44,24 @@ class UORepository extends EntityRepository
         $requeteSUAPP = "select id_module, code_appli, lib_module, translate(mig_moca, 'on', '10') mig_moca from app_module";
         return true;
     }
+    
+    /**
+     * Teste si l'UO dont le code est passé en parametre existe
+     */
+    public function isUo($codeUo) {
+        $nbUo = $this->createQueryBuilder('u')
+            ->select('count(u.codeUo)')
+            ->setParameter('code', $codeUo)
+            ->where('u.codeUo = :code')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        if ($nbUo >= 1)
+            $retour = true;
+        else 
+            $retour = false;
+            
+        return $retour;
+    }
 }

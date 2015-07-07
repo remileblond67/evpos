@@ -44,6 +44,10 @@ evpos_exportAppliNexthink:
     path:  /regle_tag_appli_ntk
     defaults: { _controller: EVPOSaffectationBundle:Application:exportAppliNexthink }
 
+evpos_updateFromSUAPP:
+    path: /update_from_suapp
+    defaults: { _controller: EVPOSaffectationBundle:Application:majSUAPP }
+
 evpos_listeUtil:
     path:   /liste_util
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeUtilisateur }
@@ -71,3 +75,4 @@ evpos_ficheDirection:
 evpos_listeEc:
     path:   /liste_ec
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }
+
