@@ -18,6 +18,7 @@
                 <td class="row">{{ 'application.nature'|trans }}</td>
                 <td class="row">{{ 'application.listeUo'|trans }}</td>
                 <td class="row">{{ 'application.dispoMoca'|trans }}</td>
+                <td class="row">{{ 'application.nbUtil'|trans }}</td>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
                     </ul>
                 </td>
                 <td>{{appli.dispoMocaLong}}</td>
+                <td>{{appli.listeAcces| length}}</td>
             </tr>
             {% endfor %}
         </tbody>

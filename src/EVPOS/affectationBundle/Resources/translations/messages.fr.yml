@@ -32,6 +32,7 @@ application:
     accès: Accès à l'application
     utilisation: Utilisation de l'application
     validation: Besoin de l'application validé
+    nbUtil: Nombre d'utilisateurs
 
 uo:
     code: Code de l'UO

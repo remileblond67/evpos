@@ -11,7 +11,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-3"><h4>{{ 'utilisateur.matricule'|trans }}</h4>{{util.matUtil}}</div>
-            <div class="col-lg-3"><h4>{{ 'utilisateur.nom'|trans }}</h4>{{util.prenomUtil}} {{util.nomUtil}}</div>
+            <div class="col-lg-3"><h4>{{ 'utilisateur.nom'|trans }}</h4>{{util.nomUtil}}</div>
             <div class="col-lg-3">
                 <h4>{{ 'service.nom'|trans }}</h4>
                 <a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">{{util.serviceUtil.libService}}</a>
