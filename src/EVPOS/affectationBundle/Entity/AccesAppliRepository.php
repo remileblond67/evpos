@@ -12,4 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class AccesAppliRepository extends EntityRepository
 {
+    /**
+     * Recherche si l'accès existe déja
+     */
+    public function isAccesAppli($application, $utilisateur) {
+        $nb = $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->setParameter('appli', $application)
+            ->setParameter('util', $utilisateur)
+            ->where('a.appliAcces = :appli and a.utilAcces = :util')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+        
+        if ($nb >= 1)
+            $retour = true;
+        else 
+            $retour = false;
+            
+        return $retour;
+    }
 }

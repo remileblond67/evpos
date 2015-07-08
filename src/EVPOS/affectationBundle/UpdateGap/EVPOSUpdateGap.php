@@ -44,19 +44,23 @@ class EVPOSUpdateGap {
             
             if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtilisateur) &&
                     $em->getRepository('EVPOSaffectationBundle:Application')->isApplication($codeApplication)) {
-                $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtilisateur);
                 $application = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeApplication);
+                $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtilisateur);
                 
-                $newAcces = new AccesAppli();
-                $newAcces->setAppliAcces($application);
-                $newAcces->setUtilAcces($utilisateur);
-                $newAcces->setSourceImport("GAP");
+                // Création de l'accès uniquement s'il n'existe pas préalablement
+                if ($em->getRepository('EVPOSaffectationBundle:AccesAppli')->isAccesAppli($application, $utilisateur) == false) {
+                    $newAcces = new AccesAppli();
                 
-                $em->persist($newAcces);
-                
-                if ($nb%100) $em->flush();
-                
-                $nb++;
+                    $newAcces->setAppliAcces($application);
+                    $newAcces->setUtilAcces($utilisateur);
+                    $newAcces->setSourceImport("GAP");
+                    
+                    $em->persist($newAcces);
+                    
+                    if ($nb%100) $em->flush();
+                    
+                    $nb++;
+                }
             }
             $em->flush();
         }
