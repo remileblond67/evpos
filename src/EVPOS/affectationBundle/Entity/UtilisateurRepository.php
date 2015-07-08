@@ -3,6 +3,7 @@
 namespace EVPOS\affectationBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * UtilisateurRepository
@@ -15,7 +16,7 @@ class UtilisateurRepository extends EntityRepository
     /**
      * Retourne la liste de tous les utilisateurs
      */
-    public function getUtilisateurs() {
+    public function getUtilisateurs($page, $nbParPage) {
         $query = $this->createQueryBuilder('u')
             ->leftJoin('u.serviceUtil', 's')
             ->addSelect('s')
@@ -23,7 +24,12 @@ class UtilisateurRepository extends EntityRepository
             ->getQuery()
         ;
 
-        return $query->getResult();
+        $query
+            ->setFirstResult(($page-1) * $nbParPage)
+            ->setMaxResults($nbParPage)
+        ;
+        
+        return new Paginator($query, true);
     }
 
     /**

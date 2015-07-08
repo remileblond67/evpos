@@ -29,5 +29,12 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if nbPages > 1 %}
+        <ul class="pagination">
+            {% for p in range(1, nbPages) %}
+            <a href="{{ path('evpos_listeUtil', {'page': p}) }}">{{p}}</a>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </ul>
 {%endblock%}

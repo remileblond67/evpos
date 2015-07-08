@@ -4,20 +4,38 @@ namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UtilisateurController extends Controller
 {
     /**
      * Affiche la liste de tous les utilisateurs
+     * liste paginée
      */
-    public function listeUtilisateurAction()
+    public function listeUtilisateurAction(Request $request)
     {
+        // Récupération du numéro de page courante
+        $page = $request->query->get('page');
+        
+        if ($page < 1) 
+            $page = 1;
+            
+        $nbParPage = 20;
+        
         $listeUtil = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Utilisateur')
-            ->getUtilisateurs()
+            ->getUtilisateurs($page, $nbParPage)
         ;
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_util.html.twig', array('listeUtil' => $listeUtil));
+        
+        $nbPages = ceil(count($listeUtil)/$nbParPage);
+        if ($nbPages != 0 and $page > $nbPages) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_util.html.twig',
+                             array('listeUtil' => $listeUtil,
+                                   'nbPages' => $nbPages,
+                                   'page' => $page));
     }
 
     /**
