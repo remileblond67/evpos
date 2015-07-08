@@ -27,7 +27,7 @@ class AccesAppli
     /**
      * @var string
      *
-     * @ORM\Column(name="source_import", type="string", length=10, nullable=true)
+     * @ORM\Column(name="source_import", type="string", length=30, nullable=true)
      */
     private $sourceImport;
 
@@ -76,7 +76,7 @@ class AccesAppli
      */
     public function setSourceImport($source)
     {
-        $this->source = $source;
+        $this->sourceImport = $source;
 
         return $this;
     }
@@ -88,7 +88,7 @@ class AccesAppli
      */
     public function getSourceImport()
     {
-        return $this->source;
+        return $this->sourceImport;
     }
 
     /**

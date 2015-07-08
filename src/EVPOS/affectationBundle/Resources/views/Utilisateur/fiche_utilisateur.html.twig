@@ -43,13 +43,19 @@
                 </tr>
             </thead>
             <tbody>
+                {% for acces in util.listeAcces %}
                 <tr>
-                    <td class="gradeA odd"></td>
-                    <td class="gradeA odd"></td>
-                    <td class="gradeA odd"></td>
+                    <td class="gradeA odd">
+                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli': acces.appliAcces.codeAppli }) }}">
+                            {{ acces.appliAcces.codeAppli }}
+                        </a>
+                    </td>
+                    <td class="gradeA odd">{{ acces.appliAcces.nomAppli }}</td>
+                    <td class="gradeA odd">{{ acces.sourceImport }}</td>
                     <td class="gradeA odd"></td>
                     <td class="gradeA odd"></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

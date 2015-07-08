@@ -71,7 +71,7 @@
             <tbody>
                 {% for acces in appli.listeAcces %}
                 <tr>
-                    <td class="row">{{ acces.utilAcces.matUtil }}</td>
+                    <td class="row"><a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a></td>
                     <td class="row">{{ acces.utilAcces.nomUtil }}</td>
                     <td class="row">
                         {% if acces.utilAcces.serviceUtil %}

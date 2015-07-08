@@ -56,7 +56,7 @@ class ImportGapCommand extends ContainerAwareCommand
                 
                     $newAcces->setAppliAcces($application);
                     $newAcces->setUtilAcces($utilisateur);
-                    $newAcces->setSourceImport("GAP");
+                    $newAcces->setSourceImport("Import GAP du ".date("d.m.y"));
                     
                     $em->persist($newAcces);
 
