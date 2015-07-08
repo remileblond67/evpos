@@ -57,6 +57,7 @@ class EVPOSUpdateGap {
                     
                     $em->persist($newAcces);
                     
+                    // Commit tous les 100 enregistrements
                     if ($nb%100) $em->flush();
                     
                     $nb++;
@@ -65,5 +66,7 @@ class EVPOSUpdateGap {
             $em->flush();
         }
         oci_free_statement($csr);
+        $message = "Import de ".$nb." accès applicatifs.";
+        return $message;
     }
 }

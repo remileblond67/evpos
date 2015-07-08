@@ -3,6 +3,7 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ApplicationController extends Controller
 {
@@ -95,11 +96,13 @@ class ApplicationController extends Controller
 	/**
 	 * Mise à jour de la liste des applications à partir de SUAPP
 	 */
-	 public function majSuappAction() {
+	 public function majSuappAction(Request $request) {
 		$updateSuapp = $this->container->get('evpos_affectation.update_suapp');
-        $message = $updateSuapp->importAppliSuapp() . $updateSuapp->importUoSuapp() ;
-        
-		return $this->render('EVPOSaffectationBundle:Application:update_suapp.html.twig', array('message' => $message)); 
+
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importAppliSuapp()));
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importUoSuapp()));
+         
+		return $this->redirect($this->generateUrl('evpos_indicateurs'));
 	 }
 }
 

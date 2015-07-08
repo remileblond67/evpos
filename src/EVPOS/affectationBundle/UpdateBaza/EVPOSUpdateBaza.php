@@ -51,10 +51,16 @@ class EVPOSUpdateBaza {
             $newDirection->setLibDirection($libDirection);
             
             $em->persist($newDirection);
+            
+            $nb++;
         }
         $em->flush();
         
         oci_free_statement($csr);
+        
+        $message = "Import de ".$nb." directions";
+        
+        return $message;
     }
 
     /**
@@ -84,10 +90,15 @@ class EVPOSUpdateBaza {
             $newService->setLibService($libService);
             
             $em->persist($newService);
+            $nb++;
         }
         $em->flush();
         
         oci_free_statement($csr);
+        
+        $message = "Import de ".$nb." services";
+        
+        return $message;
     }
     
     /**
@@ -131,10 +142,8 @@ class EVPOSUpdateBaza {
         
         oci_free_statement($csr);
         
-        return "OK";
-    }
-    
-    public function importAcces() {
+        $message = "Import de ".$nb." utilisateurs";
         
+        return $message;
     }
 }
