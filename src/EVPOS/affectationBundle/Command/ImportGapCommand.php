@@ -40,31 +40,34 @@ class ImportGapCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
         
         $nb = 0;
-         
+        
+        $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
+        $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
+        $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesAppli');
+        
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
             $matUtilisateur = $row["MATRICULE"] ;
             $codeApplication = $row["CODE_APPLICATION"] ;
             
-            if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtilisateur) &&
-                    $em->getRepository('EVPOSaffectationBundle:Application')->isApplication($codeApplication)) {
-                $application = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeApplication);
-                $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtilisateur);
+            if ($repUtil->isUtilisateur($matUtilisateur) && $repAppli->isApplication($codeApplication)) {
+                $application = $repAppli->getApplication($codeApplication);
+                $utilisateur = $repUtil->getUtilisateur($matUtilisateur);
                 
                 // Création de l'accès uniquement s'il n'existe pas préalablement
-                if ($em->getRepository('EVPOSaffectationBundle:AccesAppli')->isAccesAppli($application, $utilisateur) == false) {
+                if ($repAcces->isAccesAppli($application, $utilisateur) == false) {
                     $newAcces = new AccesAppli();
                 
                     $newAcces->setAppliAcces($application);
                     $newAcces->setUtilAcces($utilisateur);
-                    $newAcces->setSourceImport("Import GAP du ".date("d.m.y"));
+                    $newAcces->setSourceImport("Import GAP du ".date("d/m/Y"));
                     
                     $em->persist($newAcces);
 
-                    if ($nb%1000 == 0) {
+                    // VAlidation toutes les 500 modifications 
+                    if ($nb%500 == 0) {
                         $output->writeln($nb);
                         $em->flush();
                     }
-                    
                     $nb++;
                 }
             }

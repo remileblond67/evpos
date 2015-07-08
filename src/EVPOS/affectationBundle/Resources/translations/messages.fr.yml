@@ -69,7 +69,8 @@ nexthink:
 
 suapp:
     info: Information issues de SUAPP
-    update: Mise à jour à partir de SUAPP
+    updateApp: Import appli (SUAPP)
+    updateCpi: Import CPI (SUAPP)
 
 baza:
     updateDS: Mise à jour directions et services

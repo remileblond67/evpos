@@ -1,4 +1,5 @@
-<listeAppli>
+<?xml version="1.0" encoding="UTF-8"?>
+<listeAppli xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 {% for appli in listeAppli %}
 <appli>
     <codeAppli>{{appli.codeAppli}}</codeAppli>
@@ -6,6 +7,7 @@
     <descAppli>{{appli.descAppli}}</descAppli>
     <dispoMoca>{{appli.dispoMoca}}</dispoMoca>
     <natAppli>{{appli.natAppli}}</natAppli>
+    <nbUtil>{{appli.listeAcces| length}}</nbUtil>
     <listeUo>
     {% for uo in appli.listeUo %}
         <uo>
