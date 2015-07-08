@@ -73,8 +73,16 @@
                 <tr>
                     <td class="row">{{ acces.utilAcces.matUtil }}</td>
                     <td class="row">{{ acces.utilAcces.nomUtil }}</td>
-                    <td class="row">{{ acces.utilAcces.serviceUtil.libService }}</td>
-                    <td class="row">{{ acces.utilAcces.serviceUtil.direction.libDirection }}</td>
+                    <td class="row">
+                        {% if acces.utilAcces.serviceUtil %}
+                        {{ acces.utilAcces.serviceUtil.libService }}
+                        {% endif %}
+                    </td>
+                    <td class="row">
+                        {% if (acces.utilAcces.serviceUtil and acces.utilAcces.serviceUtil.direction) %}
+                        {{ acces.utilAcces.serviceUtil.direction.libDirection }}
+                        {% endif %}
+                    </td>
                     
                     <td class="row"></td>
                 </tr>
