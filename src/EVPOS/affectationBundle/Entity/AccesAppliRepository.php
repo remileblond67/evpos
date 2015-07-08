@@ -32,4 +32,17 @@ class AccesAppliRepository extends EntityRepository
             
         return $retour;
     }
+    
+    /**
+     * Retourne le nombre d'acces applicatifs
+     * Utilisé pour les indicateurs d'avancement
+     */
+    public function getNbAccesAppli() {
+        $query = $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
 }
