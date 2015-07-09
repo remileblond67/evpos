@@ -252,11 +252,6 @@ class Application
         return $this->dispoMoca;
     }
 
-
-
-
- 
-
     /**
      * Add listeAcces
      *

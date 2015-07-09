@@ -15,20 +15,16 @@ security:
 
     firewalls:
         main_login:
-            pattern: ^/login$
+            pattern: ^/log$
             anonymous: true
 
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
-        liste:
-            pattern: ^/liste
-            anonymous: true
-
-        main:
+        critique:
             pattern: ^/
-            anonymous: false
+            anonymous: true
             provider:  in_memory
             form_login:
                 login_path: login
@@ -36,5 +32,8 @@ security:
             logout:
                 path:   logout
                 target: /
+  
+
+        
 
 
