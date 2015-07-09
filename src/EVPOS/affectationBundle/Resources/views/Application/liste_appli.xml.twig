@@ -8,6 +8,11 @@
     <dispoMoca>{{appli.dispoMoca}}</dispoMoca>
     <natAppli>{{appli.natAppli}}</natAppli>
     <nbUtil>{{appli.listeAcces| length}}</nbUtil>
+    <cpi>
+        {% if appli.cpi %}
+        {{appli.cpi.nomUtil}}
+        {% endif %}
+    </cpi>
     <listeUo>
     {% for uo in appli.listeUo %}
         <uo>

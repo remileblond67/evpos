@@ -101,6 +101,7 @@ class ApplicationController extends Controller
 
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importAppliSuapp()));
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importUoSuapp()));
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importCpiSuapp()));
          
 		return $this->redirect($this->generateUrl('evpos_indicateurs'));
 	 }

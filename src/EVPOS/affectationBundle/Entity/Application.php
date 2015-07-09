@@ -54,6 +54,15 @@ class Application
      * @ORM\Column(name="nat_appli", type="string", length=2, nullable=true)
      */
     private $natAppli;
+    
+    /**
+     * CPI de l'application (premier CPI récupéré de SUAPP)
+     * Attention: si l'application comporte plusieurs CPI actifs, seul l'un d'eux
+     *
+     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Utilisateur")
+     * @ORM\JoinColumn(name="mat_cpi", referencedColumnName="mat_util")
+     */
+    private $cpi;
 
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\UO", mappedBy="appli")
@@ -279,5 +288,28 @@ class Application
     public function getListeAcces()
     {
         return $this->listeAcces;
+    }
+
+    /**
+     * Set cpi
+     *
+     * @param \EVPOS\affectationBundle\Entity\Utilisateur $cpi
+     * @return Application
+     */
+    public function setCpi(\EVPOS\affectationBundle\Entity\Utilisateur $cpi = null)
+    {
+        $this->cpi = $cpi;
+
+        return $this;
+    }
+
+    /**
+     * Get cpi
+     *
+     * @return \EVPOS\affectationBundle\Entity\Utilisateur 
+     */
+    public function getCpi()
+    {
+        return $this->cpi;
     }
 }

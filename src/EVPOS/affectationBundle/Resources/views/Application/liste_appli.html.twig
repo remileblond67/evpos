@@ -17,6 +17,7 @@
                 <td class="row">{{ 'application.nom'|trans }}</td>
                 <td class="row">{{ 'application.nature'|trans }}</td>
                 <td class="row">{{ 'application.listeUo'|trans }}</td>
+                 <td class="row">{{ 'application.cpi'|trans }}</td>
                 <td class="row">{{ 'application.dispoMoca'|trans }}</td>
                 <td class="row">{{ 'application.nbUtil'|trans }}</td>
             </tr>
@@ -33,6 +34,11 @@
                         <li><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}</li>
                         {% endfor %}
                     </ul>
+                </td>
+                <td>
+                    {% if appli.cpi %}
+                    {{appli.cpi.nomUtil}}
+                    {% endif %}
                 </td>
                 <td>{{appli.dispoMocaLong}}</td>
                 <td>{{appli.listeAcces| length}}</td>
