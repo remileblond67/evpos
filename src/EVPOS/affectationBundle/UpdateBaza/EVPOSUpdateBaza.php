@@ -31,7 +31,7 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des directions à partir de BAZA
      */
     public function importDirections() {
-        $requeteBaza = "select code_direction, nvl(lib_long_direction, ' ') lib_long_direction from baz_direction";
+        $requeteBaza = "select code_direction, nvl(lib_long_direction, ' ') lib_long_direction from baz_direction where flag is null";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
