@@ -29,7 +29,7 @@ class ApplicationController extends Controller
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
-            ->getApplicationsUo()
+            ->getApplicationsFull()
         ;
 
         return $this->render('EVPOSaffectationBundle:Application:liste_appli.xml.twig', array('listeAppli' => $listeAppli));

@@ -48,6 +48,10 @@ evpos_updateFromSUAPP:
     path: /update_from_suapp
     defaults: { _controller: EVPOSaffectationBundle:Application:majSUAPP }
     
+evpos_updateAccesService:
+    path: /update_acces_service_{codeService}
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:updateAccesService }
+    
 evpos_listeUtil:
     path:   /liste_util
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeUtilisateur }

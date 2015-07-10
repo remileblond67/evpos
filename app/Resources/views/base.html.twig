@@ -67,20 +67,22 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
                         <ul class="dropdown-menu">
+                            <li>
+                                <a href="">{{'gap.reportServDir'|trans}}</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="">{{'nexthink.import'|trans}}</a></li>
+                            <li><a href="">{{'nexthink.reportServDir'|trans}}</a></li>
                         </ul>
                     </li>
                     
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Regroupements <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('evpos_exportAppliNexthink') }}">{{'nexthink.exportAppli'|trans}}</a>
-                            </li>
-                            <li><a href="{{ path('evpos_exportUoNexthink') }}">{{'nexthink.exportUo'|trans}}</a>
-                            </li>
+                            <li><a href="{{ path('evpos_exportAppliNexthink') }}">{{'nexthink.exportAppli'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_exportUoNexthink') }}">{{'nexthink.exportUo'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('evpos_listeEc') }}">Ensembles cohérents</a>
-                            </li>
+                            <li><a href="{{ path('evpos_listeEc') }}">Ensembles cohérents</a></li>
                         </ul>
                     </li>
                     

@@ -70,7 +70,7 @@ class Application
     private $listeUO;
     
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesAppli", mappedBy="appliAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="appliAcces")
      */
     private $listeAcces;
 
@@ -255,10 +255,10 @@ class Application
     /**
      * Add listeAcces
      *
-     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
+     * @param \EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces
      * @return Application
      */
-    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
+    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces)
     {
         $this->listeAcces[] = $listeAcces;
 
@@ -268,9 +268,9 @@ class Application
     /**
      * Remove listeAcces
      *
-     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
+     * @param \EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces
      */
-    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
+    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces)
     {
         $this->listeAcces->removeElement($listeAcces);
     }

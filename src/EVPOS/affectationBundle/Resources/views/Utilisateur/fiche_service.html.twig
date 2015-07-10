@@ -3,7 +3,16 @@
 
 {% block content %}
 
-<h2>Service {{service.codeService}}</h2>
+<div class="row">
+    <div class="col-lg-6">
+        <h2>Service {{service.codeService}}</h2>
+    </div>
+    <div class="col-lg-6">
+        <a class="btn btn-lg btn-default" href="{{path('evpos_updateAccesService', {'codeService' : service.codeService })}}">
+            {{ 'gap.reportServDir'|trans }}
+        </a>
+    </div>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -37,13 +46,19 @@
                 </tr>
             </thead>
             <tbody>
+                {% for appli in service.listeAcces %}
                 <tr>
-                    <td class="gradeA odd"></td>
-                    <td class="gradeA odd"></td>
+                    <td class="gradeA odd">
+                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.appliAcces.codeAppli }) }}">
+                        {{appli.appliAcces.codeAppli}}
+                        </a>
+                    </td>
+                    <td class="gradeA odd">{{appli.appliAcces.nomAppli}}</td>
                     <td class="gradeA odd"></td>
                     <td class="gradeA odd"></td>
                     <td class="gradeA odd"></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

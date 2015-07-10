@@ -16,7 +16,21 @@ class UtilisateurRepository extends EntityRepository
     /**
      * Retourne la liste de tous les utilisateurs
      */
-    public function getUtilisateurs($page, $nbParPage) {
+    public function getUtilisateurs() {
+        $query = $this->createQueryBuilder('u')
+            ->leftJoin('u.serviceUtil', 's')
+            ->addSelect('s')
+            ->orderBy('u.nomUtil')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+    
+    /**
+     * Retourne la liste de tous les utilisateurs, avec pagination
+     */
+    public function getUtilisateursPage($page, $nbParPage) {
         $query = $this->createQueryBuilder('u')
             ->leftJoin('u.serviceUtil', 's')
             ->addSelect('s')
@@ -31,6 +45,8 @@ class UtilisateurRepository extends EntityRepository
         
         return new Paginator($query, true);
     }
+    
+    
 
     /**
      * Récupération d'un utilisateur à partir de son matricule

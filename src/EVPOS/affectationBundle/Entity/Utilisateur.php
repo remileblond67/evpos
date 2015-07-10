@@ -40,7 +40,7 @@ class Utilisateur
     private $serviceUtil;
 
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesAppli", mappedBy="utilAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="utilAcces")
      */
     private $listeAcces;
     
@@ -123,10 +123,10 @@ class Utilisateur
     /**
      * Add listeAcces
      *
-     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
+     * @param \EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces
      * @return Utilisateur
      */
-    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
+    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces)
     {
         $this->listeAcces[] = $listeAcces;
 
@@ -136,9 +136,9 @@ class Utilisateur
     /**
      * Remove listeAcces
      *
-     * @param \EVPOS\affectationBundle\Entity\AccesAppli $listeAcces
+     * @param \EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces
      */
-    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesAppli $listeAcces)
+    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesUtilAppli $listeAcces)
     {
         $this->listeAcces->removeElement($listeAcces);
     }

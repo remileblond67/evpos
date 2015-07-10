@@ -22,7 +22,7 @@ class Service
     /**
      * @var string
      * @ORM\Id
-     * @ORM\Column(name="code_service", type="string", length=255, nullable=false)
+     * @ORM\Column(name="code_service", type="string", length=5, nullable=false)
      */
     private $codeService;
 
@@ -43,6 +43,11 @@ class Service
       * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil")
       */
     private $listeUtilisateurs;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="serviceAcces")
+     */
+    private $listeAcces;
 
     /**
      * Set codeService
@@ -167,5 +172,38 @@ class Service
     public function getDirection()
     {
         return $this->direction;
+    }
+
+    /**
+     * Add listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces
+     * @return Service
+     */
+    public function addListeAcces(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces)
+    {
+        $this->listeAcces[] = $listeAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces
+     */
+    public function removeListeAcces(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces)
+    {
+        $this->listeAcces->removeElement($listeAcces);
+    }
+
+    /**
+     * Get listeAcces
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeAcces()
+    {
+        return $this->listeAcces;
     }
 }

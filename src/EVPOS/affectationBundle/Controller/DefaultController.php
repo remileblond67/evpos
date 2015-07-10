@@ -28,12 +28,12 @@ class DefaultController extends Controller
         ;
         
         // Récupération du nombre d'accès GAP
-        $nbAccesAppli = $this->getDoctrine()
+        $nbAccesUtilAppli = $this->getDoctrine()
             ->getManager()
-            ->getRepository('EVPOSaffectationBundle:AccesAppli')
-            ->getNbAccesAppli()
+            ->getRepository('EVPOSaffectationBundle:AccesUtilAppli')
+            ->getNbAccesUtilAppli()
         ;
         
-        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesAppli' => $nbAccesAppli));
+        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli));
     }
 }

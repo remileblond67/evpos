@@ -64,13 +64,16 @@ imprimante:
     listeUsage: Liste des imprimantes utilisées
 
 nexthink:
-    import: Importer l'usage depuis Nexthink
+    import: Import usage depuis Nexthink
     exportAppli: Export des applications dans Nexthink
     exportUo: Export des UO dans Nexthink
 
+gap:
+    reportServDir: Report usages sur services/directions
+
 suapp:
     info: Information issues de SUAPP
-    update: Mise à jour appli/uo/cpi (SUAPP)
+    update: Mise à jour appli/UO/CPI (SUAPP)
 
 baza:
     updateDS: Mise à jour directions et services

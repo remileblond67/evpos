@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
- * AccesAppli
+ * AccesUtilAppli
  *
- * @ORM\Table("evpos_acces_appli")
- * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\AccesAppliRepository")
+ * @ORM\Table("evpos_acces_util_appli")
+ * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\AccesUtilAppliRepository")
  */
-class AccesAppli
+class AccesUtilAppli
 {
     public function __construct() {
         // $this->dateImport = new DateTime();
@@ -49,7 +49,7 @@ class AccesAppli
      * Set dateImport
      *
      * @param \DateTime $dateImport
-     * @return AccesAppli
+     * @return AccesUtilAppli
      */
     public function setDateImport($dateImport)
     {
@@ -72,7 +72,7 @@ class AccesAppli
      * Set source
      *
      * @param string $source
-     * @return AccesAppli
+     * @return AccesUtilAppli
      */
     public function setSourceImport($source)
     {
@@ -95,7 +95,7 @@ class AccesAppli
      * Set utilAcces
      *
      * @param \EVPOS\affectationBundle\Entity\Utilisateur $utilAcces
-     * @return AccesAppli
+     * @return AccesUtilAppli
      */
     public function setUtilAcces(\EVPOS\affectationBundle\Entity\Utilisateur $utilAcces)
     {
@@ -118,7 +118,7 @@ class AccesAppli
      * Set appliAcces
      *
      * @param \EVPOS\affectationBundle\Entity\Application $appliAcces
-     * @return AccesAppli
+     * @return AccesUtilAppli
      */
     public function setAppliAcces(\EVPOS\affectationBundle\Entity\Application $appliAcces)
     {

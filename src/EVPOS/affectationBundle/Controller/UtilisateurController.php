@@ -25,7 +25,7 @@ class UtilisateurController extends Controller
         $listeUtil = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Utilisateur')
-            ->getUtilisateurs($page, $nbParPage)
+            ->getUtilisateursPage($page, $nbParPage)
         ;
         
         $nbPages = ceil(count($listeUtil)/$nbParPage);
@@ -140,6 +140,13 @@ class UtilisateurController extends Controller
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->importAcces()));
         
         return $this->redirect($this->generateUrl('evpos_indicateurs'));
+    }
+    
+    public function updateAccesServiceAction(Request $request, $codeService) {
+        $updateGap = $this->container->get('evpos_affectation.update_gap');
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateAccesService($codeService)));
+        
+        return $this->redirect($this->generateUrl('evpos_ficheService', array('codeService' => $codeService)));
     }
     
     

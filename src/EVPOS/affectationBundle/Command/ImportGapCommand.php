@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use EVPOS\affectationBundle\Entity\AccesAppli;
+use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 
 class ImportGapCommand extends ContainerAwareCommand
 {   
@@ -43,7 +43,7 @@ class ImportGapCommand extends ContainerAwareCommand
         
         $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
         $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
-        $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesAppli');
+        $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');
         
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
             $matUtilisateur = $row["MATRICULE"] ;
@@ -54,8 +54,8 @@ class ImportGapCommand extends ContainerAwareCommand
                 $utilisateur = $repUtil->getUtilisateur($matUtilisateur);
                 
                 // Création de l'accès uniquement s'il n'existe pas préalablement
-                if ($repAcces->isAccesAppli($application, $utilisateur) == false) {
-                    $newAcces = new AccesAppli();
+                if ($repAcces->isAccesUtilAppli($application, $utilisateur) == false) {
+                    $newAcces = new AccesUtilAppli();
                 
                     $newAcces->setAppliAcces($application);
                     $newAcces->setUtilAcces($utilisateur);

@@ -3,7 +3,9 @@ namespace EVPOS\affectationBundle\UpdateGap;
 
 use EVPOS\affectationBundle\Entity\Utilisateur;
 use EVPOS\affectationBundle\Entity\Application;
-use EVPOS\affectationBundle\Entity\AccesAppli;
+use EVPOS\affectationBundle\Entity\Service;
+use EVPOS\affectationBundle\Entity\AccesUtilAppli;
+use EVPOS\affectationBundle\Entity\AccesServiceAppli;
 
 class EVPOSUpdateGap {
     
@@ -48,8 +50,8 @@ class EVPOSUpdateGap {
                 $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtilisateur);
                 
                 // Création de l'accès uniquement s'il n'existe pas préalablement
-                if ($em->getRepository('EVPOSaffectationBundle:AccesAppli')->isAccesAppli($application, $utilisateur) == false) {
-                    $newAcces = new AccesAppli();
+                if ($em->getRepository('EVPOSaffectationBundle:AccesUtilAppli')->isAccesUtilAppli($application, $utilisateur) == false) {
+                    $newAcces = new AccesUtilAppli();
                 
                     $newAcces->setAppliAcces($application);
                     $newAcces->setUtilAcces($utilisateur);
@@ -67,6 +69,51 @@ class EVPOSUpdateGap {
         }
         oci_free_statement($csr);
         $message = "Import de ".$nb." accès applicatifs.";
+        return $message;
+    }
+    
+    
+    /**
+     * Mise à jour des accès applicatifs d'un service
+     */
+    public function updateAccesService($codeService) {
+        $em = $this->doctrine->getManager();
+        $nbUtil = 0;
+        $nbAcces = 0;
+        
+        $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+        
+        // Suppression des accès existants du service
+        foreach ($service->getListeAcces() as $acces) {
+            $em->remove($acces);
+        }
+        $em->flush();
+        
+        $listeUtilisateurs = $service->getListeUtilisateurs();
+        
+        $asa = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli');
+        
+        foreach ($listeUtilisateurs as $util) {
+            foreach ($util->getListeAcces() as $acces) {
+                $appliAcces = $acces->getAppliAcces();
+                if ($asa->isAccesServiceAppli($appliAcces, $service)) {
+                    // $newAcces = $asa->getAccesServiceAppli($appliAcces, $service);
+                    // $newAcces->setSourceImport("MAJ");
+                } else {
+                    $newAcces = new AccesServiceAppli();
+                    $newAcces->setServiceAcces($service);
+                    $newAcces->setAppliAcces($appliAcces);
+                    $newAcces->setSourceImport("NEW");
+                }
+                echo "Avant";
+                $em->persist($newAcces);
+                $em->flush();
+                $nbAcces++;
+            }
+            $nbUtil++;
+        }
+        
+        $message = "Mise à jour de ".$nbAcces." accès applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
         return $message;
     }
 }
