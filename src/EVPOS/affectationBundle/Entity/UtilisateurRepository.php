@@ -46,6 +46,28 @@ class UtilisateurRepository extends EntityRepository
     }
 
     /**
+     * Récupération d'un utilisateur à partir de son matricule
+     *
+     * - Récupération des informations liées -
+     */
+    public function getUtilisateurFull($matUtil) {
+        $query = $this->createQueryBuilder('u')
+            ->setParameter('matUtil', $matUtil)
+            ->where('u.matUtil = :matUtil')
+            ->leftJoin('u.serviceUtil', 'service')
+            ->addSelect('service')
+            ->leftJoin('service.direction', 'dir')
+            ->addSelect('dir')
+            ->leftJoin('u.listeAcces', 'acces')
+            ->addSelect('acces')
+            ->leftJoin('acces.appliAcces', 'appli')
+            ->addSelect('appli')
+            ->getQuery()
+        ;
+
+        return $query->getSingleResult();
+    }
+    /**
      * Import des utilisateurs actifs depuis la base Oracle BAZA
      */
     public function importBAZA() {

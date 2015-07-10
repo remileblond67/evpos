@@ -28,10 +28,14 @@ class ApplicationRepository extends EntityRepository
     /**
      * Retourne la liste de toutes les applications, avec leurs UO
      */
-    public function getApplicationsUO() {
+    public function getApplicationsFull() {
         $query = $this->createQueryBuilder('a')
             ->leftJoin('a.listeUO', 'uo')
             ->addSelect('uo')
+            ->leftJoin('a.cpi', 'cpi')
+            ->addSelect('cpi')
+            ->leftJoin('a.listeAcces', 'acces')
+            ->addSelect('acces')
             ->orderBy('a.codeAppli')
             ->getQuery()
         ;
@@ -51,7 +55,29 @@ class ApplicationRepository extends EntityRepository
 
         return $query->getSingleResult();
     }
-    
+
+    /**
+     * Retourne l'application correspondant au code appli passé en paramètre
+     */
+    public function getApplicationFull($codeAppli) {
+        $query = $this->createQueryBuilder('a')
+            ->setParameter('code', $codeAppli)
+            ->where('a.codeAppli = :code')
+            ->leftJoin('a.cpi', 'cpi')
+            ->addSelect('cpi')
+            ->leftJoin('a.listeAcces', 'acces')
+            ->addSelect('acces')
+            ->leftJoin('acces.utilAcces', 'util')
+            ->addSelect('util')
+            ->leftJoin('util.serviceUtil', 'service')
+            ->addSelect('service')
+            ->leftJoin('service.direction', 'dir')
+            ->addSelect('dir')
+            ->getQuery()
+        ;
+
+        return $query->getSingleResult();
+    }    
     /**
      * Teste si l'application dont le code est passé en parametre existe
      */

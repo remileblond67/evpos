@@ -45,7 +45,7 @@ class UtilisateurController extends Controller
         $util = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Utilisateur')
-            ->getUtilisateur($matUtil)
+            ->getUtilisateurFull($matUtil)
         ;
         return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_utilisateur.html.twig', array('util' => $util));
     }
@@ -83,7 +83,7 @@ class UtilisateurController extends Controller
         $listeService = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Service')
-            ->getServices()
+            ->getServicesFull()
         ;
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.html.twig', array('listeService' => $listeService));
     }

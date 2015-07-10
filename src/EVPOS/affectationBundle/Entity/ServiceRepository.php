@@ -24,6 +24,22 @@ class ServiceRepository extends EntityRepository
 
         return $query->getResult();
     }
+    
+    /**
+     * Retourne la liste de tous les services avec les informations liées
+     */
+    public function getServicesFull() {
+        $query = $this->createQueryBuilder('s')
+            ->leftJoin('s.direction', 'd')
+            ->addSelect('d')
+            ->orderBy('s.codeService')
+            ->where('s.codeService is not null')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+
 
     /**
      * Récupération d'un service à partir de son code
