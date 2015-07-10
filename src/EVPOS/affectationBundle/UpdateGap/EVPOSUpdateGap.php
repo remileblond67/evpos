@@ -105,13 +105,12 @@ class EVPOSUpdateGap {
                     $newAcces->setAppliAcces($appliAcces);
                     $newAcces->setSourceImport("NEW");
                 }
-                echo "Avant";
                 $em->persist($newAcces);
-                $em->flush();
                 $nbAcces++;
             }
             $nbUtil++;
         }
+        $em->flush();
         
         $message = "Mise à jour de ".$nbAcces." accès applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
         return $message;
