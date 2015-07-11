@@ -6,6 +6,7 @@ use EVPOS\affectationBundle\Entity\Application;
 use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 use EVPOS\affectationBundle\Entity\AccesServiceAppli;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class EVPOSUpdateGap {
     
@@ -93,22 +94,28 @@ class EVPOSUpdateGap {
         
         $asa = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli');
         
+        // Liste pour mémoriser les applications déjà traitées
+        $listeAppli = array();
+
         foreach ($listeUtilisateurs as $util) {
             foreach ($util->getListeAcces() as $acces) {
-                $appliAcces = $acces->getAppliAcces();
-                if ($asa->isAccesServiceAppli($appliAcces, $service)) {
-                    // $newAcces = $asa->getAccesServiceAppli($appliAcces, $service);
-                    // $newAcces->setSourceImport("MAJ");
-                } else {
-                    $newAcces = new AccesServiceAppli();
-                    $newAcces->setServiceAcces($service);
-                    $newAcces->setAppliAcces($appliAcces);
-                    $newAcces->setSourceImport("NEW");
-                }
-                $em->persist($newAcces);
+                $listeAppli[] = $acces->getAppliAcces()->getCodeAppli();
                 $nbAcces++;
             }
             $nbUtil++;
+        }
+        $listeAppli = array_unique($listeAppli);
+
+        foreach ($listeAppli as $codeAppli) {
+            $newAcces = new AccesServiceAppli();
+            
+            $appli = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeAppli);
+            
+            $newAcces->setServiceAcces($service);
+            $newAcces->setAppliAcces($appli);
+            $newAcces->setSourceImport("NEW");
+
+            $em->persist($newAcces);
         }
         $em->flush();
         
