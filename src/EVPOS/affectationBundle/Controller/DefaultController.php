@@ -13,6 +13,13 @@ class DefaultController extends Controller
 
     public function indicateursAction()
     {
+        // Récupération du nombre de services
+        $nbService = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Service')
+            ->getNbServices()
+        ;
+        
         // Récupération du nombre d'applications par nature
         $nbAppli = $this->getDoctrine()
             ->getManager()
@@ -34,6 +41,6 @@ class DefaultController extends Controller
             ->getNbAccesUtilAppli()
         ;
         
-        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli));
+        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli, 'nbService' => $nbService));
     }
 }

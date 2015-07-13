@@ -13,6 +13,17 @@ use Doctrine\ORM\EntityRepository;
 class AccesUtilAppliRepository extends EntityRepository
 {
     /**
+     * Retourne la liste des accès applicatifs
+     */
+    public function getListeAccesAppli() {
+        $query = $this->createQueryBuilder('a')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+    
+    /**
      * Recherche si l'accès existe déja
      */
     public function isAccesUtilAppli($application, $utilisateur) {

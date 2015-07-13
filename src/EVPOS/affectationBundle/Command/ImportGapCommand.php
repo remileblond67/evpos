@@ -36,6 +36,15 @@ class ImportGapCommand extends ContainerAwareCommand
 		  exit () ; 
 		}
         
+        // Suppression des anciens accès
+        $output->write("Suppression des anciens accès... ");
+        $listeAcces = $repAcces->getListeAccesAppli();
+        foreach($listeAcces as $acces) {
+            $em->remove($acces);
+        }
+        $em->flush();
+        $output->writeln("OK");
+        
         // Récupération de la liste des utilisateurs connus
         $listeUtil = $repUtil->getUtilisateurs();
         
@@ -46,20 +55,11 @@ class ImportGapCommand extends ContainerAwareCommand
         foreach ($listeUtil as $utilisateur) {
             $matUtilisateur = $utilisateur->getMatUtil();
             
-            // Suppression des anciens accès utilisateur
-            $output->write("D");
-            foreach ($utilisateur->getListeAcces() as $acces) {
-                $em->remove($acces);
-            }
-            $em->flush();
-            
             // Récupération de la liste des accès de l'utilisateur dans GAP
-            $output->write("S");
             $requeteBaza = "select distinct code_application from gap_user_application where matricule='".$matUtilisateur."'";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
             oci_execute ($csr) ;
             
-            $output->write("T");
             while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
                 $codeApplication = $row["CODE_APPLICATION"] ;
                 
@@ -79,14 +79,30 @@ class ImportGapCommand extends ContainerAwareCommand
             oci_free_statement($csr);
 
             $nbUtil++;
-            $output->write($nbUtil." ");
+            if ($nbUtil%100 == 0) 
+                $output->write($nbUtil." ");
         }
-        
+        $output->writeln("OK");
+        $output->write("Validation en base...");
         $em->flush();
         $output->writeln("Fin de l'import");
-        $output->writeln($nbUtil." utilisateurs traités");
         
         oci_close ($this->ORA) ;
+        
+        // Mise à jour des accès applicatifs de l'ensemble des services
+        $output->writeln("Report des accès sur les services");
+        
+        $updateGap = $this->getContainer()->get('evpos_affectation.update_gap');
+        $listeServices = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
+        
+        $nb = 0;
+        foreach($listeServices as $service) {
+            $updateGap->updateAccesService($service->getCodeService());
+            $nb++;
+            $output->write($nb." ");
+        }
+        
+        $output->writeln("Fin d'import");
     }
 }
         

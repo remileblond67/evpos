@@ -13,6 +13,18 @@ use Doctrine\ORM\EntityRepository;
 class ServiceRepository extends EntityRepository
 {
     /**
+     * Retourne le nombre de services
+     */
+    public function getNbServices() {
+        $query = $this->createQueryBuilder('s')
+            ->select('count(s)')
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
+    
+    /**
      * Retourne la liste de tous les services
      */
     public function getServices() {
