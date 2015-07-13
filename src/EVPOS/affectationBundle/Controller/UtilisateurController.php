@@ -142,11 +142,24 @@ class UtilisateurController extends Controller
         return $this->redirect($this->generateUrl('evpos_indicateurs'));
     }
     
+    /**
+     * Remontée des accès utilisateurs au niveau d'un service
+     */
     public function updateAccesServiceAction(Request $request, $codeService) {
         $updateGap = $this->container->get('evpos_affectation.update_gap');
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateAccesService($codeService)));
         
         return $this->redirect($this->generateUrl('evpos_ficheService', array('codeService' => $codeService)));
+    }
+    
+    /**
+     * Remontée des accès utilisateurs au niveau de l'ensemble des services
+     */
+    public function updateAccesServicesAction(Request $request) {
+        $updateGap = $this->container->get('evpos_affectation.update_gap');
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateAccesServices()));
+        
+        return $this->redirect($this->generateUrl('evpos_listeService'));
     }
     
     

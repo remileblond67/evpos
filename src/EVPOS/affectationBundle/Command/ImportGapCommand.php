@@ -41,20 +41,25 @@ class ImportGapCommand extends ContainerAwareCommand
         
         $nbUtil = 0;
         
+        $output->writeln("Import des accès applicatifs à partir de GAP");
+        
         foreach ($listeUtil as $utilisateur) {
             $matUtilisateur = $utilisateur->getMatUtil();
             
             // Suppression des anciens accès utilisateur
+            $output->write("D");
             foreach ($utilisateur->getListeAcces() as $acces) {
                 $em->remove($acces);
             }
             $em->flush();
             
             // Récupération de la liste des accès de l'utilisateur dans GAP
+            $output->write("S");
             $requeteBaza = "select distinct code_application from gap_user_application where matricule='".$matUtilisateur."'";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
             oci_execute ($csr) ;
-
+            
+            $output->write("T");
             while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
                 $codeApplication = $row["CODE_APPLICATION"] ;
                 
@@ -71,13 +76,13 @@ class ImportGapCommand extends ContainerAwareCommand
                     $em->persist($newAcces);
                 }
             }
-            $em->flush();
             oci_free_statement($csr);
 
             $nbUtil++;
-           $output->write($nbUtil." ");
+            $output->write($nbUtil." ");
         }
         
+        $em->flush();
         $output->writeln("Fin de l'import");
         $output->writeln($nbUtil." utilisateurs traités");
         

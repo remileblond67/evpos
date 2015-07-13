@@ -75,6 +75,23 @@ class EVPOSUpdateGap {
     
     
     /**
+     * Mise à jour des accès applicatifs de l'ensemble des services
+     */
+    public function updateAccesServices() {
+        $em = $this->doctrine->getManager();
+        $listeServices = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
+        
+        $nb = 0;
+        foreach($listeServices as $service) {
+            $this->updateAccesService($service->getCodeService());
+            $nb++;
+        }
+        
+        $message = "Mise à jour des accès de ".." services";
+        return $message;
+    }
+    
+    /**
      * Mise à jour des accès applicatifs d'un service
      */
     public function updateAccesService($codeService) {
