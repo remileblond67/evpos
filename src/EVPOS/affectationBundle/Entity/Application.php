@@ -75,6 +75,13 @@ class Application
     private $listeAcces;
 
     /**
+     * Retourne le nombre d'utilisateurs qui ont accès à l'application
+     */
+    public function getNbAcces() {
+        return $this->listeAcces->count();
+    }
+    
+    /**
      * Set codeAppli
      *
      * @param string $codeAppli
