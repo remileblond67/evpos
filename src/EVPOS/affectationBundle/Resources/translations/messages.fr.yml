@@ -45,6 +45,8 @@ service:
     code: Code du service
     nom: Nom du service
     liste: Liste des services
+    nbAgent: Nombre d'agents
+    nbAcces: Nombre d'applications utilisées
 
 direction:
     code: Code de la direction

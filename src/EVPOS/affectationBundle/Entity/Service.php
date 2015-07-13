@@ -50,6 +50,20 @@ class Service
     private $listeAcces;
 
     /**
+     * Retourne le nombre d'agents affectés au service
+     */
+    public function getNbAgent() {
+        return $this->listeUtilisateurs->count();
+    }
+    
+    /**
+     * Retourne le nombre d'accès applicatif affectés au service
+     */
+    public function getNbAcces() {
+        return $this->listeAcces->count();
+    }
+    
+    /**
      * Set codeService
      *
      * @param string $codeService
