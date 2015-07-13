@@ -58,6 +58,7 @@ utilisateur:
     nom: Nom de l'utilisateur
     liste: Liste des utilisateurs
     infoAnnuaire: Informations issues de l'annuaire
+    nbAcces: Nombre d'applications
 
 poste:
     listeUsage: Liste des postes utilisés

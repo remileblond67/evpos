@@ -45,6 +45,13 @@ class Utilisateur
     private $listeAcces;
     
     /**
+     * Retourne le nombre d'applications auquel l'utilisateur a accès
+     */
+    public function getNbAcces() {
+        return $this->listeAcces->count();
+    }
+    
+    /**
      * Set matUtil
      *
      * @param string $matUtil

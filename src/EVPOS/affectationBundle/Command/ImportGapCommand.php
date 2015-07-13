@@ -21,60 +21,65 @@ class ImportGapCommand extends ContainerAwareCommand
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) {
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
+        $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
+        $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');
+        
+        // Connexion à la base de données GAP
         $user = "970595";
 		$password = "M2p4CUS";
 		$sid = "pgap";
-		
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
 		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
 		  exit () ; 
 		}
         
-        // $name = $input->getArgument('name');
-        $requeteBaza = "select distinct matricule, code_application from gap_user_application";
-        $output->writeln($requeteBaza);
+        // Récupération de la liste des utilisateurs connus
+        $listeUtil = $repUtil->getUtilisateurs();
         
-        $csr = oci_parse ( $this->ORA , $requeteBaza) ;
-        oci_execute ($csr) ;
-        $em = $this->getContainer()->get('doctrine')->getManager();
+        $nbUtil = 0;
         
-        $nb = 0;
-        
-        $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
-        $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
-        $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');
-        
-        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
-            $matUtilisateur = $row["MATRICULE"] ;
-            $codeApplication = $row["CODE_APPLICATION"] ;
+        foreach ($listeUtil as $utilisateur) {
+            $matUtilisateur = $utilisateur->getMatUtil();
             
-            if ($repUtil->isUtilisateur($matUtilisateur) && $repAppli->isApplication($codeApplication)) {
-                $application = $repAppli->getApplication($codeApplication);
-                $utilisateur = $repUtil->getUtilisateur($matUtilisateur);
+            // Suppression des anciens accès utilisateur
+            foreach ($utilisateur->getListeAcces() as $acces) {
+                $em->remove($acces);
+            }
+            $em->flush();
+            
+            // Récupération de la liste des accès de l'utilisateur dans GAP
+            $requeteBaza = "select distinct code_application from gap_user_application where matricule='".$matUtilisateur."'";
+            $csr = oci_parse ( $this->ORA , $requeteBaza) ;
+            oci_execute ($csr) ;
+
+            while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+                $codeApplication = $row["CODE_APPLICATION"] ;
                 
-                // Création de l'accès uniquement s'il n'existe pas préalablement
-                if ($repAcces->isAccesUtilAppli($application, $utilisateur) == false) {
+                if ($repAppli->isApplication($codeApplication)) {
+                    $application = $repAppli->getApplication($codeApplication);
+                    
+                    // Création de l'accès
                     $newAcces = new AccesUtilAppli();
-                
+                    
                     $newAcces->setAppliAcces($application);
                     $newAcces->setUtilAcces($utilisateur);
                     $newAcces->setSourceImport("Import GAP du ".date("d/m/Y"));
                     
                     $em->persist($newAcces);
-
-                    // VAlidation toutes les 500 modifications 
-                    if ($nb%500 == 0) {
-                        $output->writeln($nb);
-                        $em->flush();
-                    }
-                    $nb++;
                 }
             }
+            $em->flush();
+            oci_free_statement($csr);
+
+            $nbUtil++;
+           $output->write($nbUtil." ");
         }
-        $em->flush();
-        oci_free_statement($csr);
+        
         $output->writeln("Fin de l'import");
+        $output->writeln($nbUtil." utilisateurs traités");
         
         oci_close ($this->ORA) ;
     }

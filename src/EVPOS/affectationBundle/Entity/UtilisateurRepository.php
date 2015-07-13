@@ -34,6 +34,8 @@ class UtilisateurRepository extends EntityRepository
         $query = $this->createQueryBuilder('u')
             ->leftJoin('u.serviceUtil', 's')
             ->addSelect('s')
+            ->leftJoin('u.listeAcces', 'a')
+            ->addSelect('a')
             ->orderBy('u.nomUtil')
             ->getQuery()
         ;

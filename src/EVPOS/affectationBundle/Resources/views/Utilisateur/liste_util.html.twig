@@ -10,6 +10,7 @@
                 <tr>
                     <td class="row">{{ 'utilisateur.matricule'|trans }}</td>
                     <td class="row">{{ 'utilisateur.nom'|trans }}</td>
+                    <td class="row">{{ 'utilisateur.nbAcces'|trans }}</td>
                     <td class="row">{{ 'service.nom'|trans }}</td>
                 </tr>
             </thead>
@@ -18,6 +19,7 @@
                 <tr class="gradeA odd">
                     <td class=""><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil }}</a></td>
                     <td class="">{{util.nomUtil }}</td>
+                    <td class="">{{util.nbAcces }}</td>
                     <td class="">
                         {% if util.serviceUtil %}
                         <a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">
