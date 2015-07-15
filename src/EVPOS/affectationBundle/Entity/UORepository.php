@@ -64,4 +64,11 @@ class UORepository extends EntityRepository
             
         return $retour;
     }
+    
+    /**
+     * Purge des UO existantes
+     */
+    public function purge() {
+        $listeUo = $this->findAll();
+    }
 }

@@ -31,22 +31,29 @@ class EVPOSUpdateSuapp {
      * Mise à jour de la liste des applications à partir de SUAPP
      */
     public function importAppliSuapp() {
+        $em = $this->doctrine->getManager();
+
+        // Suppression des UO existantes
+        $listeUo = $em->getRepository('EVPOSaffectationBundle:UO')->getListeUo();
+        foreach ($listeUo as $uo) {
+            $em->remove($uo);
+        }
+    
 		// Récupération de la liste des applications dans SUAPP
 		$requeteSUAPP = "SELECT distinct  a.code_appli code,
          a.nom_appli nom,
          a.desc_appli description,
          a.nat_appli nature,
          a.dispo_moca disponible
-  FROM   app_application a, app_module m
- WHERE   (date_cloture IS NULL OR date_cloture < '1/6/2015')
-         AND nat_appli IN ('AS', 'AI')
-         and a.code_appli = m.code_appli and (m.mig_moca is null or m.mig_moca = 'o')";
+          FROM   app_application a, app_module m
+         WHERE   (date_cloture IS NULL OR date_cloture < '1/6/2015')
+                 AND nat_appli IN ('AS', 'AI')
+                 and a.code_appli = m.code_appli and (m.mig_moca is null or m.mig_moca = 'o')";
         
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
         
         oci_execute ($csr) ;
 
-        $em = $this->doctrine->getManager();
         $nbAppli = 0;
          
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
