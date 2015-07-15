@@ -12,6 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class AccesServiceAppliRepository extends EntityRepository
 {
+    public function getListeAccesServiceAppli() {
+        $query = $this->createQueryBuilder('a')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+    
+    
     /**
      * Recherche si l'accès existe déja
      */

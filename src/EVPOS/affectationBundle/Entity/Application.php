@@ -73,6 +73,11 @@ class Application
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="appliAcces")
      */
     private $listeAcces;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="appliAcces")
+     */
+    private $listeServiceAcces;
 
     /**
      * Retourne le nombre d'utilisateurs qui ont accès à l'application
@@ -308,10 +313,43 @@ class Application
     /**
      * Get cpi
      *
-     * @return \EVPOS\affectationBundle\Entity\Utilisateur 
+     * @return \EVPOS\affectationBundle\Entity\Utilisateur
      */
     public function getCpi()
     {
         return $this->cpi;
+    }
+
+    /**
+     * Add listeServiceAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces
+     * @return Application
+     */
+    public function addListeServiceAcces(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces)
+    {
+        $this->listeServiceAcces[] = $listeServiceAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeServiceAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces
+     */
+    public function removeListeServiceAcces(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces)
+    {
+        $this->listeServiceAcces->removeElement($listeServiceAcces);
+    }
+
+    /**
+     * Get listeServiceAcces
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeServiceAcces()
+    {
+        return $this->listeServiceAcces;
     }
 }

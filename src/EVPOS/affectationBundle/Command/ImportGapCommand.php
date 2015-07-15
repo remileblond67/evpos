@@ -91,18 +91,48 @@ class ImportGapCommand extends ContainerAwareCommand
         
         // Mise à jour des accès applicatifs de l'ensemble des services
         $output->writeln("Report des accès sur les services");
-        
-        $updateGap = $this->getContainer()->get('evpos_affectation.update_gap');
-        $listeServices = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
-        
+                
         $nb = 0;
-        foreach($listeServices as $service) {
-            $updateGap->updateAccesService($service->getCodeService());
-            $nb++;
-            $output->write($nb." ");
-        }
         
+        $output->write("Suppression des accès exitants de tous les services...");
+        $listeAcces = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli')->getListeAccesServiceAppli();
+        foreach($listeAcces as $acces) {
+            $em->remove($acces);
+        }
+        $em->flush();
+        $output->writeln("OK");        
+        
+        $listeServices = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
+
+        foreach($listeServices as $service) {
+            $listeUtilisateurs = $service->getListeUtilisateurs();
+            // Liste pour mÃ©moriser les applications dÃ©jÃ  traitÃ©es
+            $listeAppli = array();
+
+            foreach ($listeUtilisateurs as $util) {
+                foreach ($util->getListeAcces() as $acces) {
+                    $listeAppli[] = $acces->getAppliAcces()->getCodeAppli();
+                }
+            }
+            $listeAppli = array_unique($listeAppli);
+
+            foreach ($listeAppli as $codeAppli) {
+                $newAcces = new AccesServiceAppli();
+                
+                $appli = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeAppli);
+                
+                $newAcces->setServiceAcces($service);
+                $newAcces->setAppliAcces($appli);
+                $newAcces->setSourceImport("NEW");
+
+                $em->persist($newAcces);
+            }
+        }
         $output->writeln("Fin d'import");
+        $em->flush();
+        $output->writeln("Import validé");
+        
+        $output->writeln("Fin du traitement");
     }
 }
         

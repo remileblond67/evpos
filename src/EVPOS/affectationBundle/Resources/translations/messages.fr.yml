@@ -31,6 +31,7 @@ application:
     usage: Usage de l'application
     accès: Accès à l'application
     utilisation: Utilisation de l'application
+    services: Services utilisant l'application
     validation: Besoin de l'application validé
     nbUtil: Nombre d'utilisateurs
     cpi: Nom du CPI
