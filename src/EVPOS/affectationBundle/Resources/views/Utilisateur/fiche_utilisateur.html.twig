@@ -30,40 +30,47 @@
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-group" id="accordionAppli" role="tablist" aria-multiselectable="true">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ 'applications.listeUsage'|trans }}</h3>
+        <h3 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordionAppli" href="#collapseAppli" aria-expanded="true" aria-controls="collapseOne">
+            {{ 'applications.listeUsage'|trans }}
+            <div class="badge">{{util.listeAcces|length}}</div>
+        </a>
+        </h3>
     </div>
-    <div class="panel-body">
-        <table class="table table-striped table-bordered table-hover dataTable no-footer">
-            <thead>
-                <tr>
-                    <td class="row" rowspan="2">{{ 'application.code'|trans }}</td>
-                    <td class="row" rowspan="2">{{ 'application.nom'|trans }}</td>
-                    <td class="row" colspan="3">{{ 'application.usage'|trans }}</td>
-                </tr>
-                <tr>
-                    <td class="row">{{ 'application.accès'|trans }}</td>
-                    <td class="row">{{ 'application.utilisation'|trans }}</td>
-                    <td class="row">{{ 'application.validation'|trans }}</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for acces in util.listeAcces %}
-                <tr>
-                    <td class="gradeA odd">
-                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli': acces.appliAcces.codeAppli }) }}">
-                            {{ acces.appliAcces.codeAppli }}
-                        </a>
-                    </td>
-                    <td class="gradeA odd">{{ acces.appliAcces.nomAppli }}</td>
-                    <td class="gradeA odd">{{ acces.sourceImport }}</td>
-                    <td class="gradeA odd"></td>
-                    <td class="gradeA odd"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div id="collapseAppli" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
+                    <tr>
+                        <td class="row" rowspan="2">{{ 'application.code'|trans }}</td>
+                        <td class="row" rowspan="2">{{ 'application.nom'|trans }}</td>
+                        <td class="row" colspan="3">{{ 'application.usage'|trans }}</td>
+                    </tr>
+                    <tr>
+                        <td class="row">{{ 'application.accès'|trans }}</td>
+                        <td class="row">{{ 'application.utilisation'|trans }}</td>
+                        <td class="row">{{ 'application.validation'|trans }}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acces in util.listeAcces %}
+                    <tr>
+                        <td class="gradeA odd">
+                            <a href="{{ path('evpos_ficheAppli', { 'codeAppli': acces.appliAcces.codeAppli }) }}">
+                                {{ acces.appliAcces.codeAppli }}
+                            </a>
+                        </td>
+                        <td class="gradeA odd">{{ acces.appliAcces.nomAppli }}</td>
+                        <td class="gradeA odd">{{ acces.sourceImport }}</td>
+                        <td class="gradeA odd"></td>
+                        <td class="gradeA odd"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
