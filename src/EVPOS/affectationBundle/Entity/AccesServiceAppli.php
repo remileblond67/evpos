@@ -39,7 +39,7 @@ class AccesServiceAppli
     private $serviceAcces;
     
     /**
-     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeAcces")
+     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeServiceAcces")
      * @ORM\Id
      * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false)
      */

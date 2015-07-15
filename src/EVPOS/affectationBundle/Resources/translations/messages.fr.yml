@@ -33,7 +33,9 @@ application:
     utilisation: Utilisation de l'application
     services: Services utilisant l'application
     validation: Besoin de l'application validé
-    nbUtil: Nombre d'utilisateurs
+    nbUtil: Nombre util.
+    nbUtilDeclares: Déclarés
+    nbUtilActifs: Actifs
     cpi: Nom du CPI
 
 uo:
