@@ -109,8 +109,7 @@ class AccesUtilAppli
      *
      * @return \EVPOS\affectationBundle\Entity\Utilisateur 
      */
-    public function getUtilAcces()
-    {
+    public function getUtilAcces() {
         return $this->utilAcces;
     }
 

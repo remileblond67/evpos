@@ -14,11 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Application
 {
-    public function __construct()
-    {
-        
-    }
-
     /**
      * @var string
      *

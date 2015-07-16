@@ -69,9 +69,9 @@
         </Conditions>
 
         <LogicalExpression>1 OR 2
-        {% if appli.listeUo|length > 0 %}
-            {% for n in 1..(appli.listeUo|length) %}
-             OR {{n+2}} OR {{n+3}}
+        {% if appli.listeUo %}
+            {% for n in 0..(appli.listeUo|length-1) %}
+             OR {{(n*2)+3}} OR {{(n*2)+4}}
             {% endfor %}
         {% endif %}
         </LogicalExpression>

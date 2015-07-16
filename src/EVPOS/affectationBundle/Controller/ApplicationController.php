@@ -87,7 +87,7 @@ class ApplicationController extends Controller
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
-            ->getApplicationsUo()
+            ->getApplicationsFull()
         ;
 
         return $this->render('EVPOSaffectationBundle:Application:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));

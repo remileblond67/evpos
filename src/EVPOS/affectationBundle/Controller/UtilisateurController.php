@@ -12,8 +12,7 @@ class UtilisateurController extends Controller
      * Affiche la liste de tous les utilisateurs
      * liste paginée
      */
-    public function listeUtilisateurAction(Request $request)
-    {
+    public function listeUtilisateurAction(Request $request) {
         // Récupération du numéro de page courante
         $page = $request->query->get('page');
         
@@ -103,8 +102,7 @@ class UtilisateurController extends Controller
     /**
      * Affiche la liste des ensembles cohérents
      */
-    public function listeEcAction()
-    {
+    public function listeEcAction() {
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
     }
     
@@ -153,7 +151,7 @@ class UtilisateurController extends Controller
     }
     
     /**
-     * Remontée des accès utilisateurs au niveau de l'ensemble des services
+     * Remontée des accès utilisateurs au niveau de tous les services
      */
     public function updateAccesServicesAction(Request $request) {
         $updateGap = $this->container->get('evpos_affectation.update_gap');
@@ -161,6 +159,4 @@ class UtilisateurController extends Controller
         
         return $this->redirect($this->generateUrl('evpos_listeService'));
     }
-    
-    
 }

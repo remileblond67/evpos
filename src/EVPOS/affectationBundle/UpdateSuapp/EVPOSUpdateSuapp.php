@@ -96,7 +96,7 @@ class EVPOSUpdateSuapp {
     public function importUoSuapp() {
         // Récupération de la liste des UO depuis SUAPP
         $requeteSUAPP = "select id_module,code_appli,lib_module,translate(mig_moca, 'on', '10') mig_moca
-                         from app_module where (mig_moca is null or mig_moca = 'o')";
+                         from app_module";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
         oci_execute ($csr) ;
         

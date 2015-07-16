@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
-    {
+    // Appel de la page d'accueil
+    public function indexAction() {
         return $this->render('EVPOSaffectationBundle:Default:index.html.twig');
     }
 
-    public function indicateursAction()
-    {
+    // Appel de la page des indicateurs
+    public function indicateursAction() {
         // Récupération du nombre de services
         $nbService = $this->getDoctrine()
             ->getManager()

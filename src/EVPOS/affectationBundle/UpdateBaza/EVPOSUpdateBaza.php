@@ -128,14 +128,9 @@ class EVPOSUpdateBaza {
                 
             $newUtilisateur->setMatUtil($matUtil);
             $newUtilisateur->setNomUtil($nomUtil);
-            // $newUtilisateur->setPrenomUtil($prenomUtil);
             
             $em->persist($newUtilisateur);
             
-            // Commit tous les 100 enregistrements
-            if (($nb%100)==0)
-                $em->flush();
-                
             $nb++;
         }
         $em->flush();
