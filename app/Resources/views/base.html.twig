@@ -16,8 +16,18 @@
 
     {% stylesheets '@EVPOSaffectationBundle/Resources/public/css/*.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" /> {% endstylesheets %}
-
-
+	<style>
+	.nonMoca {
+		text-decoration:line-through;
+	}
+	.ok {
+		color: green;
+	}
+	
+	.ko {
+		color: red;
+	}
+	</style>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 

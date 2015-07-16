@@ -37,7 +37,7 @@
                 <td>
                     <ul>
                         {% for uo in appli.listeUo %}
-                        <li><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}</li>
+                        <li {% if uo.migMoca != true %}class="nonMoca"{% endif %}><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}</li>
                         {% endfor %}
                     </ul>
                 </td>

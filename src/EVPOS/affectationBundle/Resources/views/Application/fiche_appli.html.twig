@@ -43,7 +43,7 @@
             </thead>
             <tbody>
                 {% for uo in appli.listeUo %}
-                <tr class="gradeA odd">
+                <tr class="gradeA odd {% if uo.migMoca != true %}nonMoca{% endif %}">
                     <td class=""><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a></td>
                     <td class="">{{uo.nomUO}}</td>
                     <td>{{ uo.migMocaLong }}</td>
