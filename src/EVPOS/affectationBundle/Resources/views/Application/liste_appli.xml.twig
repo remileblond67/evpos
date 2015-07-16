@@ -15,12 +15,14 @@
     </cpi>
     <listeUo>
     {% for uo in appli.listeUo %}
-        <uo>
+        {% if uo.migMoca %}
+		<uo>
             <codeUo>{{uo.codeUO }}</codeUo>
             <nomUo>{{ uo.nomUo }}</nomUo>
             <migMoca>{{uo.migMoca}}</migMoca>
             <avancementMoca>{{uo.avancementMoca}}</avancementMoca>
         </uo>
+		{% endif %}
     {% endfor %}
     </listeUo>
 </appli>
