@@ -50,6 +50,7 @@ service:
     liste: Liste des services
     nbAgent: Nombre d'agents
     nbAcces: Nombre d'applications utilisées
+    riu: Nom du RIU
 
 direction:
     code: Code de la direction
@@ -76,6 +77,7 @@ nexthink:
 
 gap:
     reportServDir: Report usages sur services/directions
+    updateRiu: Mise à jour des RIU
 
 suapp:
     info: Information issues de SUAPP

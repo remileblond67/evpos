@@ -83,6 +83,10 @@ evpos_updateDirServFromBAZA:
 evpos_updateUtilFromBAZA:
     path: /update_util_from_baza
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:majBazaUtil } 
+    
+evpos_updateRiu:
+    path: /update_riu
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:majRiu } 
 
 evpos_ficheDirection:
     path: /direction/{codeDirection}

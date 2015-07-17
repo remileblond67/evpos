@@ -30,12 +30,8 @@ class ApplicationRepository extends EntityRepository
      */
     public function getApplicationsFull() {
         $query = $this->createQueryBuilder('a')
-            ->leftJoin('a.listeUO', 'uo')
-            ->addSelect('uo')
             ->leftJoin('a.cpi', 'cpi')
             ->addSelect('cpi')
-            ->leftJoin('a.listeAcces', 'acces')
-            ->addSelect('acces')
             ->orderBy('a.codeAppli')
             ->getQuery()
         ;

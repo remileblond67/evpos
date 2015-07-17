@@ -34,10 +34,22 @@ class Service
     private $libService;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Direction", inversedBy="listeServices")
-     * @ORM\JoinColumn(name="code_direction", referencedColumnName="code_direction", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Direction", inversedBy="listeServices", cascade={"persist"})
+     * @ORM\JoinColumn(name="code_direction", referencedColumnName="code_direction",
+     *                 nullable=true)
      */
     private $direction;
+	
+	/**
+     * @ORM\ManyToMany(targetEntity="Utilisateur")
+     * @ORM\JoinTable(name="evpos_riu_service",
+     *      joinColumns={@ORM\JoinColumn(name="service_riu", referencedColumnName="code_service")},
+     *      inverseJoinColumns={
+     *      @ORM\JoinColumn(name="mat_riu", referencedColumnName="mat_util")
+     *      }
+     * )
+	 */
+	private $listeRiu;
 
      /**
       * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil")
@@ -69,8 +81,7 @@ class Service
      * @param string $codeService
      * @return Service
      */
-    public function setCodeService($codeService)
-    {
+    public function setCodeService($codeService) {
         $this->codeService = $codeService;
 
         return $this;
@@ -81,8 +92,7 @@ class Service
      *
      * @return string
      */
-    public function getCodeService()
-    {
+    public function getCodeService() {
         return $this->codeService;
     }
 
@@ -92,8 +102,7 @@ class Service
      * @param string $libService
      * @return Service
      */
-    public function setLibService($libService)
-    {
+    public function setLibService($libService) {
         $this->libService = $libService;
 
         return $this;
@@ -104,8 +113,7 @@ class Service
      *
      * @return string
      */
-    public function getLibService()
-    {
+    public function getLibService() {
         return $this->libService;
     }
 
@@ -115,8 +123,7 @@ class Service
      * @param \EVPOS\affectationBundle\Entity\Utilisateur $listeUtilisateurs
      * @return Service
      */
-    public function addListeUtilisateur(\EVPOS\affectationBundle\Entity\Utilisateur $listeUtilisateurs)
-    {
+    public function addListeUtilisateur(\EVPOS\affectationBundle\Entity\Utilisateur $listeUtilisateurs) {
         $this->listeUtilisateurs[] = $listeUtilisateurs;
 
         return $this;
@@ -219,5 +226,62 @@ class Service
     public function getListeAcces()
     {
         return $this->listeAcces;
+    }
+
+
+    /**
+     * Add listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces
+     * @return Service
+     */
+    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces)
+    {
+        $this->listeAcces[] = $listeAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces
+     */
+    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeAcces)
+    {
+        $this->listeAcces->removeElement($listeAcces);
+    }
+
+    /**
+     * Add listeRiu
+     *
+     * @param \EVPOS\affectationBundle\Entity\Utilisateur $listeRiu
+     * @return Service
+     */
+    public function addListeRiu(\EVPOS\affectationBundle\Entity\Utilisateur $listeRiu)
+    {
+        $this->listeRiu[] = $listeRiu;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeRiu
+     *
+     * @param \EVPOS\affectationBundle\Entity\Utilisateur $listeRiu
+     */
+    public function removeListeRiu(\EVPOS\affectationBundle\Entity\Utilisateur $listeRiu)
+    {
+        $this->listeRiu->removeElement($listeRiu);
+    }
+
+    /**
+     * Get listeRiu
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeRiu()
+    {
+        return $this->listeRiu;
     }
 }

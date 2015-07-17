@@ -17,11 +17,19 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-4"><h4>Code service</h4>{{service.codeService}}</div>
-            <div class="col-lg-4"><h4>Nom service</h4>{{service.libService}}</div>
-            <div class="col-lg-4">
+            <div class="col-lg-3"><h4>Code service</h4>{{service.codeService}}</div>
+            <div class="col-lg-3"><h4>Nom service</h4>{{service.libService}}</div>
+            <div class="col-lg-3">
                 <h4>Direction</h4>
                 <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a>
+            </div>
+            <div class="col-lg-3">
+                <h4>{{'service.riu'|trans}}</h4>
+                <ul>
+                {% for riu in service.listeRiu %}
+                    <li>{{ riu.nomUtil }}</li>
+                {% endfor %}
+                </li>
             </div>
         </div>
     </div>

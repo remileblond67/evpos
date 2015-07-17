@@ -159,4 +159,14 @@ class UtilisateurController extends Controller
         
         return $this->redirect($this->generateUrl('evpos_listeService'));
     }
+    
+    /**
+     * Mise à jour des RIU de chaque service, à partir des informations contenues dans GAP
+     */
+    public function majRiuAction(Request $request) {
+        $updateGap = $this->container->get('evpos_affectation.update_gap');
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateRiu()));
+        
+        return $this->redirect($this->generateUrl('evpos_listeService'));
+    }
 }

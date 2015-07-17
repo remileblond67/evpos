@@ -120,13 +120,6 @@ class Utilisateur
         return $this->serviceUtil;
     }
 
-
-
-
-
-
- 
-
     /**
      * Add listeAcces
      *

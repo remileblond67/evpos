@@ -16,6 +16,7 @@
                 <tr>
                     <td class="row">{{ 'service.code'|trans }}</td>
                     <td class="row">{{ 'service.nom'|trans }}</td>
+					<td class="row">{{ 'service.riu'|trans }}</td>
                     <td class="row">{{ 'service.nbAgent'|trans }}</td>
                     <td class="row">{{ 'service.nbAcces'|trans }}</td>
                     <td class="row">{{ 'direction.nom'|trans }}</td>
@@ -32,6 +33,13 @@
                         {% endif %}
                     </td>
                     <td class="">{{service.libService }}</td>
+					<td class="">
+                        <ul>
+                        {% for riu in service.listeRiu %}
+                            <li>{{ riu.nomUtil }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
                     <td class="">{{service.nbAgent}}</td>
                     <td class="">{{service.nbAcces}}</td>
                     <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a></td>

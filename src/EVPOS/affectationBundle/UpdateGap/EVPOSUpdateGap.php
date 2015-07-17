@@ -13,9 +13,24 @@ class EVPOSUpdateGap {
     private $doctrine;
     
     public function __construct($doctrine) {
-        $this->doctrine = $doctrine; 
+        $this->doctrine = $doctrine;
+        
+        // Connexion à la base de données GAP
+        $user = "970595";
+		$password = "M2p4CUS";
+		$sid = "pgap";
+        $this->ORA = oci_connect ($user , $password , $sid) ;
+        if (! $this->ORA) {
+		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
+		  exit () ; 
+		}
     }
-            
+    
+    public function __destruct() {
+        // Fermeture de l'accès à la base GAP
+        oci_close ($this->ORA) ;
+    }
+    
     /**
      * Mise à jour des accès applicatifs d'un service
      */
@@ -36,7 +51,7 @@ class EVPOSUpdateGap {
         
         $asa = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli');
         
-        // Liste pour mÃ©moriser les applications dÃ©jÃ  traitÃ©es
+        // Liste pour mémoriser les applications déjà  traitées
         $listeAppli = array();
 
         foreach ($listeUtilisateurs as $util) {
@@ -62,6 +77,50 @@ class EVPOSUpdateGap {
         $em->flush();
         
         $message = "Mise à jour de ".$nbAcces." accès applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
+        return $message;
+    }
+    
+    /**
+     * Mise à jour des RIU à partir de GAP
+     */
+    public function updateRiu() {
+        $nbRiu = 0;
+        $em = $this->doctrine->getManager();
+        $rUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
+
+        
+        $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
+        foreach ($listeService as $service) {
+            // Suppression des anciens RIU
+            foreach($service->getListeRiu() as $riu) {
+                $service->removeListeRiu($riu);
+            }
+            
+            $codeService = $service->getCodeService();
+            
+            // Recherche, dans GAP, la liste des RIU du service
+            $requeteGap = "select matricule from GAP_NT_RIU where code_service = '".$codeService."'";
+            $csr = oci_parse ( $this->ORA , $requeteGap) ;
+            oci_execute ($csr) ;
+            
+            while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+                $matricule = $row["MATRICULE"] ;
+                
+                // Recherche de l'utilisateur correspondant au matricule
+                if ($rUtil->isUtilisateur($matricule)) {
+                    $utilisateur = $rUtil->getUtilisateur($matricule);
+                
+                    // Enregistrement des RIU dans le service
+                    $service->addListeRiu($utilisateur);
+                }
+            }
+            oci_free_statement($csr);
+            $nbRiu++;
+        }
+        
+        $em->flush();
+        
+        $message = "Mise à jour de ".$nbRiu." RIU";
         return $message;
     }
 }
