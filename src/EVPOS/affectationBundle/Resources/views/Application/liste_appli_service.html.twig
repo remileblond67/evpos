@@ -52,8 +52,13 @@
                                     <li>
                                         <a href="{{ path('evpos_ficheAppli', { 'codeAppli' : acces.appliAcces.codeAppli }) }}"
                                            title="{{ acces.appliAcces.nomAppli }}"
+                                            {% if acces.appliAcces.dispoMoca %}
+                                                class="ok"
+                                            {% else %}
+                                                class="ko"
+                                            {% endif %}
                                         >
-                                        {{ acces.appliAcces.codeAppli }}
+                                            {{ acces.appliAcces.codeAppli }}
                                         </a>
                                     </li>
                                 {% endfor %}
