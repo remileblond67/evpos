@@ -23,6 +23,14 @@ evpos_listeAppli:
 evpos_listeAppliXml:
     path:   /application_xml
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliXml }
+    
+evpos_listeServiceAppli:
+    path:   /service_appli
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliService }
+    
+evpos_listeServiceAppliXml:
+    path:   /service_appli_xml
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliServiceXml }    
 
 evpos_ficheAppli:
     path:  /application/{codeAppli}

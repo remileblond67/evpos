@@ -24,6 +24,7 @@ applications:
     listeUsage: Liste des applications utilisées
     patrimoine: Patrimoine applicatif
     listeAppliUo: Liste des applications / UO
+    listeAppliService: Liste des applications des services/directions
 
 patrimoine: Patrimoine
     

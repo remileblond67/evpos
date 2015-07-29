@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeDirServAppli xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+{% for direction in listeDirServAppli %}
+    <direction>
+        <codeDirection>{{direction.codeDirection}}</codeDirection>
+        <libDirection>{{direction.libDirection}}</libDirection>
+            <services>
+            {% for service in direction.listeServices %}
+                <service>
+                    <codeService>{{service.codeService}}</codeService>
+                    <libService>{{service.libService}}</libService>
+                    <applications>
+                    {% for acces in service.listeAcces %}
+                        <application>
+                            <codeAppli>{{acces.appliAcces.codeAppli}}</codeAppli>
+                            <nomAppli>{{acces.appliAcces.nomAppli}}</nomAppli>
+                        </application>
+                    {% endfor %}
+                    </applications>
+                </service>
+            {% endfor %}
+            </services>
+    </direction>
+{% endfor %}
+</listeDirServAppli>

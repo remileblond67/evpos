@@ -96,14 +96,39 @@ class ApplicationController extends Controller
 	/**
 	 * Mise à jour de la liste des applications à partir de SUAPP
 	 */
-	 public function majSuappAction(Request $request) {
-		$updateSuapp = $this->container->get('evpos_affectation.update_suapp');
+    public function majSuappAction(Request $request) {
+        $updateSuapp = $this->container->get('evpos_affectation.update_suapp');
 
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importAppliSuapp()));
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importUoSuapp()));
         $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importCpiSuapp()));
          
-		return $this->redirect($this->generateUrl('evpos_indicateurs'));
-	 }
+        return $this->redirect($this->generateUrl('evpos_indicateurs'));
+    }
+    
+        
+    /**
+     * Liste des applications de chaque service
+     */
+    public function listeAppliServiceAction() {
+        $listeDirServAppli = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDirServAppli()
+        ;
+        return $this->render('EVPOSaffectationBundle:Application:liste_appli_service.html.twig', array('listeDirServAppli' => $listeDirServAppli));
+    }
+    
+    /**
+     * Liste des applications de chaque service au format XML
+     */
+    public function listeAppliServiceXmlAction() {
+        $listeDirServAppli = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDirServAppli()
+        ;
+        return $this->render('EVPOSaffectationBundle:Application:liste_appli_service.xml.twig', array('listeDirServAppli' => $listeDirServAppli));
+    }
 }
 
