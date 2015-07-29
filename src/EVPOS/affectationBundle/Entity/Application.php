@@ -207,7 +207,7 @@ class Application
     }
 
     /**
-     * Get natAppliLong
+     * Retourne la version longue de la nature appli
      *
      * @return string
      */
@@ -215,11 +215,13 @@ class Application
         $libNat="Autre";
         switch($this->natAppli) {
             case "AS":
-                $libNat = "Appli service";
+                $libNat = "Application service";
                 break;
             case "AI":
-                $libNat = "Appli informatique";
+                $libNat = "Application informatique";
                 break;
+            default:
+                $libNat = "?";
         }
         return $libNat;
     }

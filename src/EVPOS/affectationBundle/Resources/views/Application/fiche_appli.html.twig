@@ -15,9 +15,10 @@
     </div>
     <div class="panel-body">
         <div class="row">
+            <div class="col-lg-2"><h4>{{ 'application.nature'|trans }}</h4>{{appli.natAppliLong}}</div>
             <div class="col-lg-2"><h4>{{ 'application.code'|trans }}</h4>{{appli.codeAppli}}</div>
             <div class="col-lg-3"><h4>{{ 'application.nom'|trans }}</h4>{{appli.nomAppli}}</div>
-            <div class="col-lg-5"><h4>{{ 'application.desc'|trans }}</h4>{{appli.descAppli}}</div>
+            <div class="col-lg-3"><h4>{{ 'application.desc'|trans }}</h4>{{appli.descAppli}}</div>
             <div class="col-lg-2"><h4>{{ 'application.cpi'|trans }}</h4>
                 {% if appli.cpi %}
                 {{appli.cpi.nomUtil}}
