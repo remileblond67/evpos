@@ -26,13 +26,30 @@ class ApplicationRepository extends EntityRepository
     }
 
     /**
-     * Retourne la liste de toutes les applications, avec leurs UO
+     * Retourne la liste de toutes les applications, avec toutes leurs UO
      */
     public function getApplicationsFull() {
         $query = $this->createQueryBuilder('a')
             ->leftJoin('a.cpi', 'cpi')
             ->addSelect('cpi')
             ->orderBy('a.codeAppli')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+    
+    /**
+     * Retourne la liste de toutes les applications, avec leurs UO à migrer
+     */
+    public function getApplicationsUo() {
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.cpi', 'cpi')
+            ->addSelect('cpi')
+            ->leftJoin('a.listeUO', 'uo')
+            ->addSelect('uo')
+            ->orderBy('a.codeAppli')
+            ->where('uo.migMoca = true')
             ->getQuery()
         ;
 

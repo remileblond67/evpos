@@ -13,6 +13,11 @@ user:
     connected: connecté
     disconnected: Non connecté
     disconnect: Se déconnecter
+    
+poste:
+    liste: Liste des postes
+    type: Type de poste
+    hostname: Hostname
 
 applications:
     liste: Liste des applications
@@ -20,6 +25,8 @@ applications:
     patrimoine: Patrimoine applicatif
     listeAppliUo: Liste des applications / UO
 
+patrimoine: Patrimoine
+    
 application:
     code: Code de l'application
     nom: Nom de l'application
@@ -91,3 +98,6 @@ baza:
 xml:
     export: Exporter en XML
     import: Importer du XML
+    
+cpi:
+    export: Export des CPI

@@ -39,6 +39,20 @@ class DirectionRepository extends EntityRepository
 
         return $query->getResult();
     }
+    
+    public function getDirectionsServicesAppli() {
+        $query = $this->createQueryBuilder('d')
+            ->leftJoin('d.listeServices', 's')
+            ->addSelect('s')
+            -leftJoin('s.listeAcces', 'a')
+            ->addSelect('a')
+            ->orderBy('d.codeDirection, s.codeService')
+            ->where('d.codeDirection is not null')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
 
     /**
      * Récupération d'une direction à partir du code direction

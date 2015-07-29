@@ -71,6 +71,10 @@ evpos_ficheService:
 evpos_listeDirection:
     path: /direction
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeDirection }
+    
+evpos_listePoste:
+    path: /poste
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listePoste }
 
 evpos_importAcces:
     path: /import_acces
@@ -96,3 +100,11 @@ evpos_listeEc:
     path:   /ec
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }
 
+evpos_exportCPI:
+    path: /export_cpi
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportCpi }
+    
+evpos_exportService:
+    path: /export_service
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportXmlService }
+    

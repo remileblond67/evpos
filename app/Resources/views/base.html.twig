@@ -63,14 +63,16 @@
                             <li><a href="{{path('evpos_updateDirServFromBAZA') }}">{{'baza.updateDS'|trans}}</a></li>
                             <li><a href="{{path('evpos_updateUtilFromBAZA') }}">{{'baza.updateUtil'|trans}}</a></li>
                             <li><a href="{{path('evpos_updateRiu') }}">{{'gap.updateRiu'|trans}}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{path('evpos_exportCPI') }}">{{'cpi.export'|trans}}</a></li>
                         </ul>
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'applications.patrimoine'|trans}} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'patrimoine'|trans}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('evpos_listeAppli') }}">{{ 'applications.listeAppliUo'|trans }}</a>
-                            </li>
+                            <li><a href="{{ path('evpos_listeAppli') }}">{{ 'applications.listeAppliUo'|trans }}</a></li>
+                            <li><a href="{{ path('evpos_listePoste') }}">{{ 'poste.liste'|trans }}</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('evpos_updateFromSUAPP') }}">{{ 'suapp.update'|trans }}</a></li>
                         </ul>

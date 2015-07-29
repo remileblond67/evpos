@@ -88,6 +88,18 @@ class UtilisateurController extends Controller
     }
 
     /**
+     * Export XML des services
+     */
+    public function exportXmlServiceAction() {
+        $listeDirection = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getDirectionsServices()
+        ;
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.xml.twig', array('listeDirection' => $listeDirection));
+    }
+
+    /**
      * Affiche la fiche d'un service dont le code est passé en paramètre
      */
     public function ficheServiceAction($codeService) {
@@ -97,6 +109,19 @@ class UtilisateurController extends Controller
             ->getService($codeService)
         ;
         return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_service.html.twig', array('service' => $service));
+    }
+    
+    /**
+     * Liste des postes connus
+     */
+    public function listePosteAction() {
+        $listePoste = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getPostes()
+        ;
+        
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_poste.html.twig', array('listePoste' => $listePoste));
     }
 
     /**
@@ -169,4 +194,12 @@ class UtilisateurController extends Controller
         
         return $this->redirect($this->generateUrl('evpos_listeService'));
     }
+    
+    /**
+     * Export de la liste des CPI pour diffusion de message
+     */
+    public function exportCpiAction() {
+        return $this->redirect($this->generateUrl('evpos_indicateurs'));
+    }
+    
 }
