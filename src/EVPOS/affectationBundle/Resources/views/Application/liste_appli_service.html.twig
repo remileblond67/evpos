@@ -50,8 +50,8 @@
                                 <ul>
                                 {% for acces in service.listeAcces %}
                                     <li>
-                                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli' : appli.appliAcces.codeAppli }) }}"
-                                           title="{{ appli.appliAcces.nomAppli }}"
+                                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli' : acces.appliAcces.codeAppli }) }}"
+                                           title="{{ acces.appliAcces.nomAppli }}"
                                         >
                                         {{ acces.appliAcces.codeAppli }}
                                         </a>
