@@ -1,0 +1,22 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Export liste CPI{% endblock%}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Liste des CPI</h3>
+        <h4>Liste de matricules à utiliser pour envoyer un message à l'ensemble des CPI d'applications à migrer</h4>
+        <p>Copier/coller dans la liste des destinataires de messages</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10">
+        <textarea name="" id="" cols="100" rows="20">
+        {% for cpi in listeCpi %}
+{{ cpi.matUtil }};
+        {% endfor %}
+        </textarea>
+    </div>
+</div>
+{% endblock%}

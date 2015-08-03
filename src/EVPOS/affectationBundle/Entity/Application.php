@@ -54,7 +54,7 @@ class Application
      * CPI de l'application (premier CPI récupéré de SUAPP)
      * Attention: si l'application comporte plusieurs CPI actifs, seul l'un d'eux
      *
-     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Utilisateur", inversedBy="listeAppliCpi" )
      * @ORM\JoinColumn(name="mat_cpi", referencedColumnName="mat_util")
      */
     private $cpi;

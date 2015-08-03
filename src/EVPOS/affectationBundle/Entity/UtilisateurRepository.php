@@ -125,4 +125,19 @@ class UtilisateurRepository extends EntityRepository
 
         return $query->getSingleScalarResult();
     }
+        
+    /**
+     * Retourne la liste de tous les CPI
+     */
+    public function getListeCpi() {
+        $query = $this->createQueryBuilder('u')
+            ->addSelect('u.matUtil')
+            ->leftJoin('u.listeAppliCpi', 'appli')
+            ->addSelect('appli.codeAppli')
+            ->where('appli.codeAppli is not null')
+            ->getQuery()
+        ;
+        
+        return $query->getResult();
+    }
 }

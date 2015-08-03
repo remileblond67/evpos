@@ -199,7 +199,13 @@ class UtilisateurController extends Controller
      * Export de la liste des CPI pour diffusion de message
      */
     public function exportCpiAction() {
-        return $this->redirect($this->generateUrl('evpos_indicateurs'));
+        $listeCpi = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Utilisateur')
+            ->getListeCpi()
+        ;
+        
+        return $this->render('EVPOSaffectationBundle:Utilisateur:export_cpi.html.twig', array('listeCpi' => $listeCpi));
     }
     
 }

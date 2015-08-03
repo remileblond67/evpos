@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\AccesUtilAppli;
+use EVPOS\affectationBundle\Entity\AccesServiceAppli;
 
 class ImportGapCommand extends ContainerAwareCommand
 {   
@@ -94,7 +95,7 @@ class ImportGapCommand extends ContainerAwareCommand
                 
         $nb = 0;
         
-        $output->write("Suppression des accès exitants de tous les services...");
+        $output->write("Suppression des accès existants de tous les services...");
         $listeAcces = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli')->getListeAccesServiceAppli();
         foreach($listeAcces as $acces) {
             $em->remove($acces);
@@ -106,7 +107,7 @@ class ImportGapCommand extends ContainerAwareCommand
 
         foreach($listeServices as $service) {
             $listeUtilisateurs = $service->getListeUtilisateurs();
-            // Liste pour mÃ©moriser les applications dÃ©jÃ  traitÃ©es
+            // Liste pour mémoriser les applications déjà  traitées
             $listeAppli = array();
 
             foreach ($listeUtilisateurs as $util) {
