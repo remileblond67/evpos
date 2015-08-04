@@ -1,5 +1,6 @@
 {
     "name": "remi/evpos",
+    "description": "Application de suivi du projet EVPOS/MOCA",
     "license": "proprietary",
     "type": "project",
     "autoload": {
