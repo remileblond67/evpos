@@ -36,14 +36,6 @@ class UORepository extends EntityRepository
 
         return $query->getSingleResult();
     }
-
-    /**
-     * Mise à jour des données à partir de SUAPP
-     */
-    public function majSUAPP() {
-        $requeteSUAPP = "select id_module, code_appli, lib_module, translate(mig_moca, 'on', '10') mig_moca from app_module";
-        return true;
-    }
     
     /**
      * Teste si l'UO dont le code est passé en parametre existe
@@ -63,12 +55,5 @@ class UORepository extends EntityRepository
             $retour = false;
             
         return $retour;
-    }
-    
-    /**
-     * Purge des UO existantes
-     */
-    public function purge() {
-        $listeUo = $this->findAll();
     }
 }

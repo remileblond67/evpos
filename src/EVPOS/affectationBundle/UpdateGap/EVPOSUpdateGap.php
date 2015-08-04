@@ -1,8 +1,6 @@
 <?php
 namespace EVPOS\affectationBundle\UpdateGap;
 
-use EVPOS\affectationBundle\Entity\Utilisateur;
-use EVPOS\affectationBundle\Entity\Application;
 use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 use EVPOS\affectationBundle\Entity\AccesServiceAppli;
@@ -103,7 +101,7 @@ class EVPOSUpdateGap {
             oci_bind_by_name($csr, ':codeService', $codeService);
             oci_execute ($csr) ;
             
-            while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+            while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
                 $matricule = $row["MATRICULE"] ;
                 
                 // Recherche de l'utilisateur correspondant au matricule

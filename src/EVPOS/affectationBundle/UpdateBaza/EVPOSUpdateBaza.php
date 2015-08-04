@@ -38,7 +38,7 @@ class EVPOSUpdateBaza {
         $em = $this->doctrine->getManager();
         $nb = 0;
          
-        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
             $codeDirection = $row["CODE_DIRECTION"] ;
             $libDirection = utf8_encode($row["LIB_LONG_DIRECTION"]);
             
@@ -74,7 +74,7 @@ class EVPOSUpdateBaza {
         $em = $this->doctrine->getManager();
         $nb = 0;
          
-        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
             $codeService = $row["CODE_SERVICE"] ;
             $codeDirection = $row["CODE_DIRECTION"] ;
             $libService = utf8_encode($row["DESCRIPTION_SERVICE"]);
@@ -112,7 +112,7 @@ class EVPOSUpdateBaza {
         $em = $this->doctrine->getManager();
         $nb = 0;
          
-        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
             $matUtil = $row["MATRICULE"];
             $nomUtil = utf8_encode($row["NOM"]);
             // $prenomUtil = utf8_encode($row["PRENOM"]);

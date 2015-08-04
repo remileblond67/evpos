@@ -69,15 +69,6 @@ class DirectionRepository extends EntityRepository
 
         return $query->getSingleResult();
     }
-
-    /**
-     * Import des données depuis BAZA
-     */
-    public function importBAZA() {
-        $requeteBAZA = "select code_direction, lib_long_direction, mat_criu from baz_direction";
-
-        return true;
-    }
     
     /**
      * Vérifie si la direction existe

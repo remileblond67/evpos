@@ -3,9 +3,7 @@
 namespace EVPOS\affectationBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\AccesUtilAppli;
@@ -63,7 +61,7 @@ class ImportGapCommand extends ContainerAwareCommand
             oci_bind_by_name($csr, ':matricule', $matUtilisateur);
             oci_execute ($csr) ;
             
-            while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+            while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
                 $codeApplication = $row["CODE_APPLICATION"] ;
                 
                 if ($repAppli->isApplication($codeApplication)) {
@@ -93,8 +91,6 @@ class ImportGapCommand extends ContainerAwareCommand
         
         // Mise à jour des accés applicatifs de l'ensemble des services
         $output->writeln("Report des accés sur les services");
-                
-        $nb = 0;
         
         $output->write("Suppression des accés existants de tous les services...");
         $listeAcces = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli')->getListeAccesServiceAppli();

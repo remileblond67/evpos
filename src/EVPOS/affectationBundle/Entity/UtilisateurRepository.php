@@ -85,13 +85,6 @@ class UtilisateurRepository extends EntityRepository
 
         return $query->getSingleResult();
     }
-    /**
-     * Import des utilisateurs actifs depuis la base Oracle BAZA
-     */
-    public function importBAZA() {
-        $requeteBaza = "select matricule, nom, prenom, code_service from baz_agent where date_sortie is null";
-        return true;
-    }
     
     /**
      * Teste si l'utilisateur dont le matricule est passé en parametre existe
