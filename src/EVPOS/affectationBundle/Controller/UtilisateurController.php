@@ -28,7 +28,7 @@ class UtilisateurController extends Controller
         ;
         
         $nbPages = ceil(count($listeUtil)/$nbParPage);
-        if ($nbPages != 0 and $page > $nbPages) {
+        if ($nbPages != 0 && $page > $nbPages) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_util.html.twig',
