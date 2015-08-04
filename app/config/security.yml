@@ -10,8 +10,8 @@ security:
         in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER', 'ROLE_MAJ' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    user:  { password: %admin_password%, roles: [ 'ROLE_USER', 'ROLE_MAJ' ] }
+                    admin: { password: %admin_password%, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
         main_login:
