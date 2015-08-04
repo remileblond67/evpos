@@ -87,29 +87,6 @@ class UtilisateurController extends Controller
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.html.twig', array('listeService' => $listeService));
     }
 
-    /**
-     * Export XML des services
-     */
-    public function exportXmlServiceAction() {
-        $listeDirection = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Direction')
-            ->getDirectionsServices()
-        ;
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.xml.twig', array('listeDirection' => $listeDirection));
-    }
-    
-    /**
-     * Export XML des services, avec la liste des RIU
-     */
-    public function exportXmlServiceRiuAction() {
-        $listeDirection = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Direction')
-            ->getDirectionsServices()
-        ;
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service_riu.xml.twig', array('listeDirection' => $listeDirection));
-    }
 
     /**
      * Affiche la fiche d'un service dont le code est passé en paramètre
@@ -196,17 +173,5 @@ class UtilisateurController extends Controller
         return $this->redirect($this->generateUrl('evpos_listeService'));
     }
     
-    /**
-     * Export de la liste des CPI pour diffusion de message
-     */
-    public function exportCpiAction() {
-        $listeCpi = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Utilisateur')
-            ->getListeCpi()
-        ;
-        
-        return $this->render('EVPOSaffectationBundle:Utilisateur:export_cpi.html.twig', array('listeCpi' => $listeCpi));
-    }
     
 }

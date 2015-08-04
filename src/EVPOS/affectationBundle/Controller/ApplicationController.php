@@ -64,34 +64,6 @@ class ApplicationController extends Controller
 
         return $this->render('EVPOSaffectationBundle:Application:fiche_appli.html.twig', array('appli' => $appli));
     }
-
-    /**
-     * Export de la définition des différents UO pour import dans Nexthink
-     *
-     */
-    public function exportUoNexthinkAction() {
-        $listeUo = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:UO')
-            ->getListeUo()
-        ;
-
-        return $this->render('EVPOSaffectationBundle:Application:export_uo_nexthink.xml.twig', array('listeUo' => $listeUo));
-    }
-
-    /**
-     * Export de la définition des différentes applications pour import dans Nexthink
-     *
-     */
-    public function exportAppliNexthinkAction() {
-        $listeAppli = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Application')
-            ->getApplicationsFull()
-        ;
-
-        return $this->render('EVPOSaffectationBundle:Application:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));
-    }
 	
 	/**
 	 * Mise à jour de la liste des applications à partir de SUAPP

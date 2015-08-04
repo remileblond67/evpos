@@ -44,14 +44,6 @@ evpos_ficheUo:
     path:   /uo/{codeUo}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheUo }
 
-evpos_exportUoNexthink:
-    path:  /uo_ntk
-    defaults: { _controller: EVPOSaffectationBundle:Application:exportUoNexthink }
-
-evpos_exportAppliNexthink:
-    path:  /appli_ntk
-    defaults: { _controller: EVPOSaffectationBundle:Application:exportAppliNexthink }
-
 evpos_updateFromSUAPP:
     path: /update_from_suapp
     defaults: { _controller: EVPOSaffectationBundle:Application:majSUAPP }
@@ -103,16 +95,24 @@ evpos_ficheDirection:
 evpos_listeEc:
     path:   /ec
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }
+    
+# Fonctions d'export
+evpos_exportAppliNexthink:
+    path:  /appli_ntk
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportAppliNexthink }
+
+evpos_exportUoNexthink:
+    path:  /uo_ntk
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportUoNexthink }
 
 evpos_exportCPI:
     path: /export_cpi
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportCpi }
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCpi }
     
 evpos_exportService:
     path: /export_service
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportXmlService }
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlService }
     
 evpos_exportServiceRiu:
     path: /export_service_riu
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportXmlServiceRiu }
-    
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlServiceRiu }
