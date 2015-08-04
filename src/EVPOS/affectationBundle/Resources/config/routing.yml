@@ -32,10 +32,6 @@ evpos_ficheAppli:
     path:  /application/{codeAppli}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheAppli }
 
-evpos_listeUo:
-    path:   /uo
-    defaults: { _controller: EVPOSaffectationBundle:Application:listeUo }
-
 evpos_ficheUo:
     path:   /uo/{codeUo}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheUo }
@@ -115,7 +111,11 @@ evpos_exportServiceRiu:
     path: /export_service_riu
     defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlServiceRiu }
     
-evpos_listeAppliXml:
+evpos_listeAppliUoXml:
     path:   /application_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXml }
+
+evpos_listeAppliXml:
+    path:   /application_xml_only
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXmlOnly }
 

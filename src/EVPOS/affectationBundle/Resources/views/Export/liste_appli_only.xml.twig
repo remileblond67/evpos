@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeAppli xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+{% for appli in listeAppli %}
+<appli>
+    <codeAppli>{{appli.codeAppli}}</codeAppli>
+    <nomAppli>{{appli.nomAppli}}</nomAppli>
+    <descAppli>{{appli.descAppli}}</descAppli>
+    <dispoMoca>{{appli.dispoMoca}}</dispoMoca>
+    <natAppli>{{appli.natAppli}}</natAppli>
+    <nbUtil>{{appli.listeAcces| length}}</nbUtil>
+    <cpi>
+        {% if appli.cpi %}
+        {{appli.cpi.nomUtil}}
+        {% endif %}
+    </cpi>
+</appli>
+{% endfor %}
+</listeAppli>

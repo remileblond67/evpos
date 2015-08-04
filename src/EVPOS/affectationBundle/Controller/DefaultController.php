@@ -13,8 +13,15 @@ class DefaultController extends Controller
 
     // Appel de la page des indicateurs
     public function indicateursAction() {
+        // Récupération du nombre de directions
+        $nbDirections = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getNbDirections()
+        ;
+        
         // Récupération du nombre de services
-        $nbService = $this->getDoctrine()
+        $nbServices = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Service')
             ->getNbServices()
@@ -41,6 +48,6 @@ class DefaultController extends Controller
             ->getNbAccesUtilAppli()
         ;
         
-        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli, 'nbService' => $nbService));
+        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli, 'nbService' => $nbServices, 'nbDirection' => $nbDirections));
     }
 }

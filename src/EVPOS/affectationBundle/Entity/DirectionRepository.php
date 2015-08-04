@@ -13,6 +13,18 @@ use Doctrine\ORM\EntityRepository;
 class DirectionRepository extends EntityRepository
 {
     /**
+     * Retourne le nombre de directions
+     */
+    public function getNbDirections() {
+        $query = $this->createQueryBuilder('d')
+            ->select('count(d)')
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
+    
+    /**
      * Récupération de la liste des directions
      */
     public function getDirections() {

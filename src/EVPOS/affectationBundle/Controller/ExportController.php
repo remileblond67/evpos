@@ -47,6 +47,20 @@ class ExportController extends Controller
     }
     
     /**
+     * Liste des applications au format XML, pour exploitation dans Excel
+     */
+    public function listeAppliXmlOnlyAction()
+    {
+        $listeAppli = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Application')
+            ->getApplications()
+        ;
+
+        return $this->render('EVPOSaffectationBundle:Export:liste_appli_only.xml.twig', array('listeAppli' => $listeAppli));
+    }    
+    
+    /**
      * Export de la liste des CPI pour diffusion de message
      */
     public function exportCpiAction() {

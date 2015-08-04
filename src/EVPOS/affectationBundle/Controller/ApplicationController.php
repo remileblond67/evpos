@@ -21,11 +21,6 @@ class ApplicationController extends Controller
         return $this->render('EVPOSaffectationBundle:Application:liste_appli.html.twig', array('listeAppli' => $listeAppli));
     }
 
-    public function listeUoAction()
-    {
-        return $this->render('EVPOSaffectationBundle:Application:liste_uo.html.twig');
-    }
-
     /**
      * Affichage de la fiche d'une UO dont le code est passé en paramètre
      */
