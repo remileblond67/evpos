@@ -119,59 +119,5 @@ class UtilisateurController extends Controller
     public function listeEcAction() {
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
     }
-    
-    /**
-     * Mise à jour des informations provenant de BAZA (directions et services)
-     */
-    public function majBazaDirServAction(Request $request) {
-        $updateBaza = $this->container->get('evpos_affectation.update_baza');
         
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateBaza->importDirections()));
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateBaza->importServices()));
-        
-        return $this->redirect($this->generateUrl('evpos_indicateurs'));
-    }
-    
-    /**
-     * Mise à jour des informations provenant de BAZA (utilisateurs)
-     */
-    public function majBazaUtilAction(Request $request) {
-        $updateBaza = $this->container->get('evpos_affectation.update_baza');
-        
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateBaza->importUtilisateurs()));
-        
-        return $this->redirect($this->generateUrl('evpos_indicateurs'));
-    }    
-    
-    /**
-     * Remontée des accès utilisateurs au niveau d'un service
-     */
-    public function updateAccesServiceAction(Request $request, $codeService) {
-        $updateGap = $this->container->get('evpos_affectation.update_gap');
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateAccesService($codeService)));
-        
-        return $this->redirect($this->generateUrl('evpos_ficheService', array('codeService' => $codeService)));
-    }
-    
-    /**
-     * Remontée des accès utilisateurs au niveau de tous les services
-     */
-    public function updateAccesServicesAction(Request $request) {
-        $updateGap = $this->container->get('evpos_affectation.update_gap');
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateAccesServices()));
-        
-        return $this->redirect($this->generateUrl('evpos_listeService'));
-    }
-    
-    /**
-     * Mise à jour des RIU de chaque service, à partir des informations contenues dans GAP
-     */
-    public function majRiuAction(Request $request) {
-        $updateGap = $this->container->get('evpos_affectation.update_gap');
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->updateRiu()));
-        
-        return $this->redirect($this->generateUrl('evpos_listeService'));
-    }
-    
-    
 }

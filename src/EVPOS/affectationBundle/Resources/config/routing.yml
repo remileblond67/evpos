@@ -20,10 +20,6 @@ evpos_listeAppli:
     path:   /application
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppli }
 
-evpos_listeAppliXml:
-    path:   /application_xml
-    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliXml }
-    
 evpos_listeServiceAppli:
     path:   /service_appli
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliService }
@@ -44,14 +40,6 @@ evpos_ficheUo:
     path:   /uo/{codeUo}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheUo }
 
-evpos_updateFromSUAPP:
-    path: /update_from_suapp
-    defaults: { _controller: EVPOSaffectationBundle:Application:majSUAPP }
-    
-evpos_updateAccesService:
-    path: /update_acces_service_{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:updateAccesService }
-    
 evpos_listeUtil:
     path:   /utilisateur
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeUtilisateur }
@@ -76,17 +64,6 @@ evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listePoste }
     
-evpos_updateDirServFromBAZA:
-    path: /update_ds_from_baza
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:majBazaDirServ } 
-
-evpos_updateUtilFromBAZA:
-    path: /update_util_from_baza
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:majBazaUtil } 
-    
-evpos_updateRiu:
-    path: /update_riu
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:majRiu } 
 
 evpos_ficheDirection:
     path: /direction/{codeDirection}
@@ -95,7 +72,28 @@ evpos_ficheDirection:
 evpos_listeEc:
     path:   /ec
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }
+ 
+# Fonctions de mise à jour
+evpos_updateUtilFromBAZA:
+    path: /update_util_from_baza
+    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaUtil } 
     
+evpos_updateRiu:
+    path: /update_riu
+    defaults: { _controller: EVPOSaffectationBundle:Update:majRiu } 
+
+evpos_updateDirServFromBAZA:
+    path: /update_ds_from_baza
+    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaDirServ } 
+
+evpos_updateFromSUAPP:
+    path: /update_from_suapp
+    defaults: { _controller: EVPOSaffectationBundle:Update:majSUAPP }
+    
+evpos_updateAccesService:
+    path: /update_acces_service_{codeService}
+    defaults: { _controller: EVPOSaffectationBundle:Update:updateAccesService }
+ 
 # Fonctions d'export
 evpos_exportAppliNexthink:
     path:  /appli_ntk
@@ -116,3 +114,8 @@ evpos_exportService:
 evpos_exportServiceRiu:
     path: /export_service_riu
     defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlServiceRiu }
+    
+evpos_listeAppliXml:
+    path:   /application_xml
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXml }
+

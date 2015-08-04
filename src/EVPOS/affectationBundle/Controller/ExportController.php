@@ -17,7 +17,7 @@ class ExportController extends Controller
             ->getRepository('EVPOSaffectationBundle:Direction')
             ->getDirectionsServices()
         ;
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.xml.twig', array('listeDirection' => $listeDirection));
+        return $this->render('EVPOSaffectationBundle:Export:liste_service.xml.twig', array('listeDirection' => $listeDirection));
     }
     
     /**
@@ -29,9 +29,23 @@ class ExportController extends Controller
             ->getRepository('EVPOSaffectationBundle:Direction')
             ->getDirectionsServices()
         ;
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service_riu.xml.twig', array('listeDirection' => $listeDirection));
+        return $this->render('EVPOSaffectationBundle:Export:liste_service_riu.xml.twig', array('listeDirection' => $listeDirection));
     }
+    
+    /**
+     * Liste des applications et UO au format XML, pour exploitation dans Excel
+     */
+    public function listeAppliXmlAction()
+    {
+        $listeAppli = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Application')
+            ->getApplicationsFull()
+        ;
 
+        return $this->render('EVPOSaffectationBundle:Export:liste_appli.xml.twig', array('listeAppli' => $listeAppli));
+    }
+    
     /**
      * Export de la liste des CPI pour diffusion de message
      */
@@ -42,7 +56,7 @@ class ExportController extends Controller
             ->getListeCpi()
         ;
         
-        return $this->render('EVPOSaffectationBundle:Utilisateur:export_cpi.html.twig', array('listeCpi' => $listeCpi));
+        return $this->render('EVPOSaffectationBundle:Export:export_cpi.html.twig', array('listeCpi' => $listeCpi));
     }
 
         /**
@@ -56,7 +70,7 @@ class ExportController extends Controller
             ->getListeUo()
         ;
 
-        return $this->render('EVPOSaffectationBundle:Application:export_uo_nexthink.xml.twig', array('listeUo' => $listeUo));
+        return $this->render('EVPOSaffectationBundle:Export:export_uo_nexthink.xml.twig', array('listeUo' => $listeUo));
     }
 
     /**
@@ -70,7 +84,7 @@ class ExportController extends Controller
             ->getApplicationsFull()
         ;
 
-        return $this->render('EVPOSaffectationBundle:Application:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));
+        return $this->render('EVPOSaffectationBundle:Export:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));
     }
 
 }

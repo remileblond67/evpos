@@ -21,20 +21,6 @@ class ApplicationController extends Controller
         return $this->render('EVPOSaffectationBundle:Application:liste_appli.html.twig', array('listeAppli' => $listeAppli));
     }
 
-    /**
-     * Liste des applications et UO au format XML, pour exploitation dans Excel
-     */
-    public function listeAppliXmlAction()
-    {
-        $listeAppli = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Application')
-            ->getApplicationsFull()
-        ;
-
-        return $this->render('EVPOSaffectationBundle:Application:liste_appli.xml.twig', array('listeAppli' => $listeAppli));
-    }
-
     public function listeUoAction()
     {
         return $this->render('EVPOSaffectationBundle:Application:liste_uo.html.twig');
@@ -64,21 +50,7 @@ class ApplicationController extends Controller
 
         return $this->render('EVPOSaffectationBundle:Application:fiche_appli.html.twig', array('appli' => $appli));
     }
-	
-	/**
-	 * Mise à jour de la liste des applications à partir de SUAPP
-	 */
-    public function majSuappAction(Request $request) {
-        $updateSuapp = $this->container->get('evpos_affectation.update_suapp');
-
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importAppliSuapp()));
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importUoSuapp()));
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSuapp->importCpiSuapp()));
-         
-        return $this->redirect($this->generateUrl('evpos_indicateurs'));
-    }
-    
-        
+	        
     /**
      * Liste des applications de chaque service
      */

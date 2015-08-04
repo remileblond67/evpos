@@ -2,55 +2,8 @@
 {% block title%}Suivi de la migration MOCA{% endblock%}
 
 {% block content %}
-<div class="row">
-   <div class="col-lg-6">
-        <h2>Applications</h2>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Répartition par nature application</h3>
-            </div>
-            <div class="panel-body">
-                <ul>
-                    {% for nb in nbAppli %}
-                    <li>{{ nb.natAppli }} {{nb.nb }}</li>
-                    {% endfor %}
-                </ul>
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-pie-chart" style="padding: 0px; position: relative;">
-                        <canvas class="base" width="329" height="400"></canvas>
-                        <canvas class="overlay" width="329" height="400" style="position: absolute; left: 0px; top: 0px;"></canvas>
-                        <div class="legend">
-                            <div style="position: absolute; width: 58px; height: 68px; top: 5px; right: 5px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
-                            <table style="position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454">
-                                <tbody>
-                                    <tr>
-                                        <td class="legendColorBox">
-                                            <div style="border:1px solid #ccc;padding:1px">
-                                                <div style="width:4px;height:0;border:5px solid rgb(237,194,64);overflow:hidden"></div>
-                                            </div>
-                                        </td>
-                                        <td class="legendLabel">Applications service</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="legendColorBox">
-                                            <div style="border:1px solid #ccc;padding:1px">
-                                                <div style="width:4px;height:0;border:5px solid rgb(175,216,248);overflow:hidden"></div>
-                                            </div>
-                                        </td>
-                                        <td class="legendLabel">Applications informatique</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    
-    <div class="col-lg-6">
+<div class="row">    
+    <div class="col-lg-4">
         <h2>Services / Directions</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -72,7 +25,25 @@
                 <p>{{ nbUtil }}</p>           
             </div>
         </div>
-
+    </div>
+    
+    <div class="col-lg-4">
+        <h2>Applications</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Répartition par nature application</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    {% for nb in nbAppli %}
+                    <li>{{ nb.natAppli }} {{nb.nb }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
         <h2>Accès applicatifs</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -90,43 +61,4 @@
 {%endblock%}
 
 {% block javascripts %}
-<script>
-$(function() {
-
-    var data = [{
-        label: "Series 0",
-        data: 1
-    }, {
-        label: "Series 1",
-        data: 3
-    }, {
-        label: "Series 2",
-        data: 9
-    }, {
-        label: "Series 3",
-        data: 20
-    }];
-
-    var plotObj = $.plot($("#graph_nature_appli"), data, {
-        series: {
-            pie: {
-                show: true
-            }
-        },
-        grid: {
-            hoverable: true
-        },
-        tooltip: true,
-        tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
-            defaultTheme: false
-        }
-    });
-
-});
-</script>
 {% endblock %}
