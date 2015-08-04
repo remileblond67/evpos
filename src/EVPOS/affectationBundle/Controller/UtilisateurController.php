@@ -98,6 +98,18 @@ class UtilisateurController extends Controller
         ;
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.xml.twig', array('listeDirection' => $listeDirection));
     }
+    
+    /**
+     * Export XML des services, avec la liste des RIU
+     */
+    public function exportXmlServiceRiuAction() {
+        $listeDirection = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getDirectionsServices()
+        ;
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service_riu.xml.twig', array('listeDirection' => $listeDirection));
+    }
 
     /**
      * Affiche la fiche d'un service dont le code est passé en paramètre
@@ -153,17 +165,6 @@ class UtilisateurController extends Controller
         
         return $this->redirect($this->generateUrl('evpos_indicateurs'));
     }    
-    
-    /**
-     * Import des accès depuis GAP
-     */
-    public function importAccesAction(Request $request) {
-        $updateGap = $this->container->get('evpos_affectation.update_gap');
-        
-        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateGap->importAcces()));
-        
-        return $this->redirect($this->generateUrl('evpos_indicateurs'));
-    }
     
     /**
      * Remontée des accès utilisateurs au niveau d'un service

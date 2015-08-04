@@ -3,11 +3,12 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-8">
         <h4>{{ 'service.liste'|trans }}</h4>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-4">
         <a href="{{path('evpos_exportService')}}" class="btn btn-sm btn-default">{{ 'xml.export'|trans }}</a>
+        <a href="{{path('evpos_exportServiceRiu')}}" class="btn btn-sm btn-default">{{ 'xml.export'|trans }} + {{ 'service.riu'|trans }}</a>
     </div>
 </div>
     <ul>
@@ -16,9 +17,9 @@
                 <tr>
                     <td class="row">{{ 'service.code'|trans }}</td>
                     <td class="row">{{ 'service.nom'|trans }}</td>
-					<td class="row">{{ 'service.riu'|trans }}</td>
                     <td class="row">{{ 'service.nbAgent'|trans }}</td>
                     <td class="row">{{ 'service.nbAcces'|trans }}</td>
+					<td class="row">{{ 'service.riu'|trans }}</td>
                     <td class="row">{{ 'direction.nom'|trans }}</td>
                 </tr>
             </thead>
@@ -33,6 +34,8 @@
                         {% endif %}
                     </td>
                     <td class="">{{service.libService }}</td>
+                    <td class="">{{service.nbAgent}}</td>
+                    <td class="">{{service.nbAcces}}</td>
 					<td class="">
                         <ul>
                         {% for riu in service.listeRiu %}
@@ -40,8 +43,6 @@
                         {% endfor %}
                         </ul>
                     </td>
-                    <td class="">{{service.nbAgent}}</td>
-                    <td class="">{{service.nbAcces}}</td>
                     <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a></td>
                 </tr>
                 {% endfor %}

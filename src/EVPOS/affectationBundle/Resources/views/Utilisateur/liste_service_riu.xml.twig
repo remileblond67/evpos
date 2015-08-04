@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeDirection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+{% for direction in listeDirection %}
+    <direction>
+        <codeDirection>{{direction.codeDirection}}</codeDirection>
+        <libDirection>{{direction.libDirection}}</libDirection>
+        {% for service in direction.listeServices %}
+            {% if service.codeService != '' %}
+            <service>
+                <codeService>{{ service.codeService }}</codeService>
+                <libService>{{ service.libService }}</libService>
+                <nbAgent>{{service.nbAgent}}</nbAgent>
+                <listeRiu>
+                    {% for riu in service.listeRiu %}
+                        <riu>
+                            <matRiu>{{ riu.matUtil }}</matRiu>
+                            <nomRiu>{{ riu.nomUtil }}</nomRiu>
+                        </riu>
+                    {% endfor %}
+                </listeRiu>
+            </service>
+            {% endif %}
+        {% endfor %}
+    </direction>
+{% endfor %}
+</listeDirection>

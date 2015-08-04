@@ -59,7 +59,7 @@ service:
     liste: Liste des services
     nbAgent: Nombre d'agents
     nbAcces: Nombre d'applications utilisées
-    riu: Nom du RIU
+    riu: Nom RIU
 
 direction:
     code: Code de la direction

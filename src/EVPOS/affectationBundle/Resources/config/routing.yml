@@ -83,10 +83,6 @@ evpos_listeDirection:
 evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listePoste }
-
-evpos_importAcces:
-    path: /import_acces
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:importAcces }
     
 evpos_updateDirServFromBAZA:
     path: /update_ds_from_baza
@@ -115,4 +111,8 @@ evpos_exportCPI:
 evpos_exportService:
     path: /export_service
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportXmlService }
+    
+evpos_exportServiceRiu:
+    path: /export_service_riu
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:exportXmlServiceRiu }
     
