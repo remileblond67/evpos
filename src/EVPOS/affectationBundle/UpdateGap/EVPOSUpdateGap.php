@@ -87,9 +87,11 @@ class EVPOSUpdateGap {
         $nbRiu = 0;
         $em = $this->doctrine->getManager();
         $rUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
-
-        
         $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
+        
+        // Recherche, dans GAP, la liste des RIU du service
+        $requeteGap = "select matricule from GAP_NT_RIU where code_service = :codeService";
+        $csr = oci_parse ( $this->ORA , $requeteGap) ;
         foreach ($listeService as $service) {
             // Suppression des anciens RIU
             foreach($service->getListeRiu() as $riu) {
@@ -98,9 +100,7 @@ class EVPOSUpdateGap {
             
             $codeService = $service->getCodeService();
             
-            // Recherche, dans GAP, la liste des RIU du service
-            $requeteGap = "select matricule from GAP_NT_RIU where code_service = '".$codeService."'";
-            $csr = oci_parse ( $this->ORA , $requeteGap) ;
+            oci_bind_by_name($csr, ':codeService', $codeService);
             oci_execute ($csr) ;
             
             while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
@@ -114,9 +114,9 @@ class EVPOSUpdateGap {
                     $service->addListeRiu($utilisateur);
                 }
             }
-            oci_free_statement($csr);
             $nbRiu++;
         }
+        oci_free_statement($csr);
         
         $em->flush();
         

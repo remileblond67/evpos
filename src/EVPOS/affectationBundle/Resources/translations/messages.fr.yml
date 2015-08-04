@@ -18,6 +18,7 @@ poste:
     liste: Liste des postes
     type: Type de poste
     hostname: Hostname
+    listeUsage: Liste des postes utilisés
 
 applications:
     liste: Liste des applications
