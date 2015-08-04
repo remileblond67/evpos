@@ -17,7 +17,7 @@ class ImportGapCommand extends ContainerAwareCommand
         parent::configure();
         $this
             ->setName('evpos:import_gap')
-            ->setDescription('Import des accès applicatifs depuis la base GAP')
+            ->setDescription('Import des accÃ¨s applicatifs depuis la base GAP')
         ;
     }
     
@@ -27,18 +27,18 @@ class ImportGapCommand extends ContainerAwareCommand
         $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
         $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');
         
-        // Connexion à la base de données GAP
+        // Connexion Ã  la base de donnÃ©es GAP
         $user = "970595";
 		$password = "M2p4CUS";
 		$sid = "pgap";
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
-		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
+		  print "Erreur de connexion Ã  la base de donnÃ©es $sid avec l'utilisateur $user." ; 
 		  exit () ; 
 		}
         
-        // Suppression des anciens accès
-        $output->write("Suppression des anciens accès... ");
+        // Suppression des anciens accÃ©s
+        $output->write("Suppression des anciens accÃ©s... ");
         $listeAcces = $repAcces->getListeAccesAppli();
         foreach($listeAcces as $acces) {
             $em->remove($acces);
@@ -46,12 +46,12 @@ class ImportGapCommand extends ContainerAwareCommand
         $em->flush();
         $output->writeln("OK");
         
-        // Récupération de la liste des utilisateurs connus
+        // RÃ©cupÃ©ration de la liste des utilisateurs connus
         $listeUtil = $repUtil->getUtilisateurs();
         
         $nbUtil = 0;
         
-        $output->writeln("Import des accès applicatifs à partir de GAP");
+        $output->writeln("Import des accÃ©s applicatifs Ã  partir de GAP");
         
         $requeteBaza = "select distinct code_application from gap_user_application where matricule=:matricule";
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
@@ -59,7 +59,7 @@ class ImportGapCommand extends ContainerAwareCommand
         foreach ($listeUtil as $utilisateur) {
             $matUtilisateur = $utilisateur->getMatUtil();
             
-            // Récupération de la liste des accès de l'utilisateur dans GAP
+            // RÃ©cupÃ©ration de la liste des accÃ©s de l'utilisateur dans GAP
             oci_bind_by_name($csr, ':matricule', $matUtilisateur);
             oci_execute ($csr) ;
             
@@ -69,7 +69,7 @@ class ImportGapCommand extends ContainerAwareCommand
                 if ($repAppli->isApplication($codeApplication)) {
                     $application = $repAppli->getApplication($codeApplication);
                     
-                    // Création de l'accès
+                    // CrÃ©ation de l'accÃ©s
                     $newAcces = new AccesUtilAppli();
                     
                     $newAcces->setAppliAcces($application);
@@ -91,12 +91,12 @@ class ImportGapCommand extends ContainerAwareCommand
         
         oci_close ($this->ORA) ;
         
-        // Mise à jour des accès applicatifs de l'ensemble des services
-        $output->writeln("Report des accès sur les services");
+        // Mise Ã  jour des accÃ©s applicatifs de l'ensemble des services
+        $output->writeln("Report des accÃ©s sur les services");
                 
         $nb = 0;
         
-        $output->write("Suppression des accès existants de tous les services...");
+        $output->write("Suppression des accÃ©s existants de tous les services...");
         $listeAcces = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli')->getListeAccesServiceAppli();
         foreach($listeAcces as $acces) {
             $em->remove($acces);
@@ -108,7 +108,7 @@ class ImportGapCommand extends ContainerAwareCommand
 
         foreach($listeServices as $service) {
             $listeUtilisateurs = $service->getListeUtilisateurs();
-            // Liste pour mémoriser les applications déjà  traitées
+            // Liste pour mÃ©moriser les applications dÃ©jÃ  traitÃ©es
             $listeAppli = array();
 
             foreach ($listeUtilisateurs as $util) {
@@ -132,7 +132,7 @@ class ImportGapCommand extends ContainerAwareCommand
         }
         $output->writeln("Fin d'import");
         $em->flush();
-        $output->writeln("Import validé");
+        $output->writeln("Import validÃ©");
         
         $output->writeln("Fin du traitement");
     }

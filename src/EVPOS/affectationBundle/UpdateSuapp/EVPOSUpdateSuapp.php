@@ -18,7 +18,7 @@ class EVPOSUpdateSuapp {
 		
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
-		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
+		  print "Erreur de connexion Ã  la base de donnÃ©es $sid avec l'utilisateur $user." ; 
 		  exit () ; 
 		}
     }
@@ -28,7 +28,7 @@ class EVPOSUpdateSuapp {
     }
     
     /**
-     * Mise à jour de la liste des applications à partir de SUAPP
+     * Mise Ã  jour de la liste des applications Ã  partir de SUAPP
      */
     public function importAppliSuapp() {
         $em = $this->doctrine->getManager();
@@ -39,7 +39,7 @@ class EVPOSUpdateSuapp {
             $em->remove($uo);
         }
     
-		// Récupération de la liste des applications dans SUAPP
+		// RÃ©cupÃ©ration de la liste des applications dans SUAPP
 		$requeteSUAPP = "SELECT distinct  a.code_appli code,
          a.nom_appli nom,
          a.desc_appli description,
@@ -86,15 +86,15 @@ class EVPOSUpdateSuapp {
         
         oci_free_statement($csr);
         
-        $message = $nbAppli . " applications importées";
+        $message = $nbAppli . " applications importÃ©es";
         return $message;
 	}
     
     /**
-     * Mise à jour de la liste des UO à partir de SUAPP
+     * Mise Ã  jour de la liste des UO Ã  partir de SUAPP
      */
     public function importUoSuapp() {
-        // Récupération de la liste des UO depuis SUAPP
+        // RÃ©cupÃ©ration de la liste des UO depuis SUAPP
         $requeteSUAPP = "select id_module,code_appli,lib_module,translate(mig_moca, 'on', '10') mig_moca
                          from app_module";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
@@ -128,15 +128,15 @@ class EVPOSUpdateSuapp {
         }
         $em->flush();
         
-        $message = $nbUo . " UO importées";
+        $message = $nbUo . " UO importÃ©es";
         return $message;
     }
     
     /**
-     * Mise à jour de la liste des CPI d'application à partir de SUAPP
+     * Mise Ã  jour de la liste des CPI d'application Ã  partir de SUAPP
      */
     public function importCpiSuapp() {
-        // Récupération des CPI depuis SUAPP
+        // RÃ©cupÃ©ration des CPI depuis SUAPP
         $requeteSUAPP = "select i.code_appli, i.mat_util
                         from app_intervient i, app_application a
                         where i.code_appli = a.code_appli and a.date_cloture is null and (inter_date_fin is null or inter_date_fin < '1/7/2015') and id_role_int = 'CPI'
@@ -163,7 +163,7 @@ class EVPOSUpdateSuapp {
         }
         $em->flush();
         
-        $message = "Mise à jour du CPI de " . $nb . " applications.";
+        $message = "Mise Ã  jour du CPI de " . $nb . " applications.";
         return $message;
     }
 }

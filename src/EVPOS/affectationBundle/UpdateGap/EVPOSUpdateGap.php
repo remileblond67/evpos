@@ -15,24 +15,24 @@ class EVPOSUpdateGap {
     public function __construct($doctrine) {
         $this->doctrine = $doctrine;
         
-        // Connexion à la base de données GAP
+        // Connexion Ã  la base de donnÃ©es GAP
         $user = "970595";
 		$password = "M2p4CUS";
 		$sid = "pgap";
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
-		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
+		  print "Erreur de connexion Ã  la base de donnÃ©es $sid avec l'utilisateur $user." ; 
 		  exit () ; 
 		}
     }
     
     public function __destruct() {
-        // Fermeture de l'accès à la base GAP
+        // Fermeture de l'accÃ¨s Ã  la base GAP
         oci_close ($this->ORA) ;
     }
     
     /**
-     * Mise à jour des accès applicatifs d'un service
+     * Mise Ã  jour des accÃ¨s applicatifs d'un service
      */
     public function updateAccesService($codeService) {
         $em = $this->doctrine->getManager();
@@ -41,7 +41,7 @@ class EVPOSUpdateGap {
         
         $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
         
-        // Suppression des accès existants du service
+        // Suppression des accÃ¨s existants du service
         foreach ($service->getListeAcces() as $acces) {
             $em->remove($acces);
         }
@@ -51,7 +51,7 @@ class EVPOSUpdateGap {
         
         $asa = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli');
         
-        // Liste pour mémoriser les applications déjà  traitées
+        // Liste pour mÃ©moriser les applications dÃ©jÃ  traitÃ©es
         $listeAppli = array();
 
         foreach ($listeUtilisateurs as $util) {
@@ -76,12 +76,12 @@ class EVPOSUpdateGap {
         }
         $em->flush();
         
-        $message = "Mise à jour de ".$nbAcces." accès applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
+        $message = "Mise Ã  jour de ".$nbAcces." accÃ¨s applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
         return $message;
     }
     
     /**
-     * Mise à jour des RIU à partir de GAP
+     * Mise Ã  jour des RIU Ã  partir de GAP
      */
     public function updateRiu() {
         $nbRiu = 0;
@@ -120,7 +120,7 @@ class EVPOSUpdateGap {
         
         $em->flush();
         
-        $message = "Mise à jour de ".$nbRiu." RIU";
+        $message = "Mise Ã  jour de ".$nbRiu." RIU";
         return $message;
     }
 }

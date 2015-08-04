@@ -18,7 +18,7 @@ class EVPOSUpdateBaza {
 		
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
-		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
+		  print "Erreur de connexion Ã  la base de donnÃ©es $sid avec l'utilisateur $user." ; 
 		  exit () ; 
 		}
     }
@@ -28,7 +28,7 @@ class EVPOSUpdateBaza {
     }
         
     /**
-     * Mise à jour de la liste des directions à partir de BAZA
+     * Mise Ã  jour de la liste des directions Ã  partir de BAZA
      */
     public function importDirections() {
         $requeteBaza = "select code_direction, nvl(lib_long_direction, ' ') lib_long_direction from baz_direction where flag is null";
@@ -64,7 +64,7 @@ class EVPOSUpdateBaza {
     }
 
     /**
-     * Mise à jour de la liste des services à partir de BAZA
+     * Mise Ã  jour de la liste des services Ã  partir de BAZA
      */
     public function importServices() {
         $requeteBaza = "select code_service, code_direction, nvl(description_service, ' ') description_service from baz_service where flag is null";
@@ -102,7 +102,7 @@ class EVPOSUpdateBaza {
     }
     
     /**
-     * Mise à jour de la liste des utilisateurs à partir de BAZA
+     * Mise Ã  jour de la liste des utilisateurs Ã  partir de BAZA
      */
     public function importUtilisateurs() {
         $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
