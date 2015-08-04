@@ -151,7 +151,7 @@ class EVPOSUpdateSuapp {
             $matUtil = $row["MAT_UTIL"];
             
             // L'application et l'utilisateur existent-ils dans la base ?
-            if($em->getRepository('EVPOSaffectationBundle:Application')->isApplication($codeAppli) and $em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil)) {
+            if($em->getRepository('EVPOSaffectationBundle:Application')->isApplication($codeAppli) && $em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil)) {
                 $appli = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeAppli);
                 $cpi = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
                
