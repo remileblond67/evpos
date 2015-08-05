@@ -24,10 +24,6 @@ evpos_listeServiceAppli:
     path:   /service_appli
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliService }
     
-evpos_listeServiceAppliXml:
-    path:   /service_appli_xml
-    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliServiceXml }    
-
 evpos_ficheAppli:
     path:  /application/{codeAppli}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheAppli }
@@ -99,9 +95,9 @@ evpos_exportUoNexthink:
     path:  /uo_ntk
     defaults: { _controller: EVPOSaffectationBundle:Export:exportUoNexthink }
 
-evpos_exportCPI:
-    path: /export_cpi
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCpi }
+evpos_listeCPI:
+    path: /liste_cpi
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeCpi }
     
 evpos_exportService:
     path: /export_service
@@ -119,3 +115,11 @@ evpos_listeAppliXml:
     path:   /application_xml_only
     defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXmlOnly }
 
+evpos_listeServiceAppliXml:
+    path:   /service_appli_xml
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliServiceXml }    
+
+evpos_exportDirServUtilAppliXml:
+    path:  /direction_service_util_appli_xml
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
+    

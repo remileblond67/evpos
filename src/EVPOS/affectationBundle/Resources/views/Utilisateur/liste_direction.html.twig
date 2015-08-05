@@ -3,11 +3,12 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-6">
         <h4>{{ 'direction.liste'|trans }}</h4>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-6">
         <a href="{{path('evpos_exportService')}}" class="btn btn-sm btn-default">{{ 'xml.export'|trans }}</a>
+        <a href="{{path('evpos_exportDirServUtilAppliXml')}}" class="btn btn-sm btn-default">{{ 'xml.export'|trans }} + {{'utilisateur.liste'|trans}}</a>
     </div>
 </div>
 <div class="row">

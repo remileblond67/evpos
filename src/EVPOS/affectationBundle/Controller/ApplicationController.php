@@ -57,17 +57,5 @@ class ApplicationController extends Controller
         ;
         return $this->render('EVPOSaffectationBundle:Application:liste_appli_service.html.twig', array('listeDirServAppli' => $listeDirServAppli));
     }
-    
-    /**
-     * Liste des applications de chaque service au format XML
-     */
-    public function listeAppliServiceXmlAction() {
-        $listeDirServAppli = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Direction')
-            ->getListeDirServAppli()
-        ;
-        return $this->render('EVPOSaffectationBundle:Application:liste_appli_service.xml.twig', array('listeDirServAppli' => $listeDirServAppli));
-    }
 }
 

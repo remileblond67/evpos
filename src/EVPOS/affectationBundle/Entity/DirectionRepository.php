@@ -101,4 +101,25 @@ class DirectionRepository extends EntityRepository
             
         return $retour;
     }
+    
+    /**
+     * Liste des directions, services, utilisateurs et de leurs applications
+     */
+    public function getListeDirServiceUtilAppli() {
+        $query = $this->createQueryBuilder('d')
+            ->addSelect('d')
+            ->leftJoin('d.listeServices', 's')
+            ->addSelect('s')
+            ->leftJoin('s.listeUtilisateurs', 'u')
+            ->addSelect('u')
+            ->leftJoin('u.listeAcces', 'a')
+            ->addSelect('a')
+            ->leftJoin('a.appliAcces', 'app')
+            ->addSelect('app')
+            ->getQuery()
+        ;
+        
+        return $query->getResult(); 
+    }
+
 }

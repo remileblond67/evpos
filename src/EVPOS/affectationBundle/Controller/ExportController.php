@@ -61,19 +61,6 @@ class ExportController extends Controller
     }    
     
     /**
-     * Export de la liste des CPI pour diffusion de message
-     */
-    public function exportCpiAction() {
-        $listeCpi = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Utilisateur')
-            ->getListeCpi()
-        ;
-        
-        return $this->render('EVPOSaffectationBundle:Export:export_cpi.html.twig', array('listeCpi' => $listeCpi));
-    }
-
-        /**
      * Export de la définition des différents UO pour import dans Nexthink
      *
      */
@@ -100,5 +87,27 @@ class ExportController extends Controller
 
         return $this->render('EVPOSaffectationBundle:Export:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));
     }
-
+    
+    /**
+     * Liste des applications de chaque service au format XML
+     */
+    public function listeAppliServiceXmlAction() {
+        $listeDirServAppli = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDirServAppli()
+        ;
+        return $this->render('EVPOSaffectationBundle:Export:liste_appli_service.xml.twig', array('listeDirServAppli' => $listeDirServAppli));
+    }
+        
+    /**
+     * Export des Services, utilisateurs et de leurs accès applicatifs
+     */
+    public function exportServiceUtilAppliXmlAction() {
+        $listeDirServiceUtilAppli = $this->getDoctrine()->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDirServiceUtilAppli()
+        ;
+        return $this->render('EVPOSaffectationBundle:Export:liste_service_util_appli.xml.twig', array('listeDirection' => $listeDirServiceUtilAppli));
+    }
 }

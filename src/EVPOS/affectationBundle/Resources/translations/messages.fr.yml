@@ -3,7 +3,7 @@
 'Organisation des données': 'Organisation des données'
 app:
     name: Suivi MOCA
-    slogan: Site de suivi et d'aide à la planification du projet MOCA de l'Eurométropole de Strasbourg
+    slogan: "EVPOS : base de suivi de la migration MOCA"
     etat: Etat actuel de l'application
     home: Retour à l'accueil
     update: Mise à jour

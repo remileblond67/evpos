@@ -14,15 +14,49 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-10">
+    <div class="col-lg-6">
+        <article>
         <h3>{{ 'app.slogan'|trans }}</h3>
-        <h4>Organisation des données</h4>
-        <p>Les données sont réparties en trois catégories :</p>
+        <h4>Finalités de l'application</h4>
+
+        <p>Cette application a pour but de faciliter la planification et le suivi de la migration MOCA au sein de l'Eurométropole de Strasbourg.</p>
+
+        <p>Elle doit permettre :</p>
+
         <ul>
-            <li><b>Annuaire</b> : informations relatives aux directions, services et utilisateurs (source : BAZA)</li>
-            <li><b>Patrimoine</b> : informations relatives aux applications et UO à migrer dans MOCA (source : SUAPP)</li>
-            <li><b>Usage</b> : informations relatives à l'usage des applications (source : GAP pour les accès applicatifs, intgération d'informations Nexthink à venir)</li>
+        <li>de <strong>prioriser</strong> la migration des applications, en identifiant celles qui sont le plus utilisées.</li>
+        <li>d'aider à définir le planing de déploiement des différents services, en <strong>consitituant des groupes cohérents</strong> (utilisation de groupes d'applications communes).</li>
+        <li>de valider les <strong>besoins applicatifs des services</strong> avant migration</li>
+        <li>de prévoir les <strong>types de postes à migrer</strong> en fonction de l'usage réel constaté (import d'extractions Nexthink).</li>
         </ul>
+
+        <h4><a id="user-content-annuaire" class="anchor" href="#annuaire" aria-hidden="true"><span class="octicon octicon-link"></span></a>Annuaire</h4>
+
+        <p>On regroupe ici les informations relatives aux directions, services et utilisateurs. </p>
+
+        <p>Ces informations relatives aux services, directions et utilisateurs sont récupérées de <strong>BAZA</strong>.</p>
+
+        <h4>Patrimoine applicatif</h4>
+
+        <p>Reprise des informations de <strong>SUAPP</strong> relatives aux applications et à leurs UO. Seules les applications contenant au moins une UO à migrer dans MOCA sont reprises. L'ensemble des UO est repris, même celles qui ne doivent pas être migrées dans MOCA (pour permettre leur identification dans Nexthink).</p>
+
+        <h4>Usage</h4>
+
+        <p>Les usages suivants sont récupérés des sources suivantes :</p>
+
+        <ul>
+        <li><strong>GAP</strong> : affectation des utilisateurs aux applications</li>
+        <li><strong>Fichiers licences</strong> (sur T:\Licences) : affectation des applications aux postes de travail <em>reste à faire</em></li>
+        <li><strong>Nexthink</strong> :
+
+        <ul>
+        <li>Utilisation des postes de travail <em>reste à faire</em></li>
+        <li>Utilisation effective des applications <em>reste à faire</em></li>
+        </ul></li>
+        </ul>
+
+        <p>L'application permet également d'extraire les règles permettant d'identifier, dans Nexthink, les applications et leurs UO (export XML).</p>
+        </article>
     </div>
 </div>
 {%endblock%}

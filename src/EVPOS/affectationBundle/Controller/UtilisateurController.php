@@ -119,5 +119,17 @@ class UtilisateurController extends Controller
     public function listeEcAction() {
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
     }
+    /**
+     * Extraction de la liste des CPI pour diffusion de message
+     */
+    public function listeCpiAction() {
+        $listeCpi = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Utilisateur')
+            ->getListeCpi()
+        ;
         
+        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_cpi.html.twig', array('listeCpi' => $listeCpi));
+    }
+
 }
