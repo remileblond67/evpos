@@ -246,7 +246,7 @@ class Application
                 $retour = "Oui";
                 break;
             default:
-                $retour = "";
+                $retour = "Non";
         }
         return $retour;
     }
