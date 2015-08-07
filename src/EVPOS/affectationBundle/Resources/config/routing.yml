@@ -68,6 +68,10 @@ evpos_ficheDirection:
 evpos_listeEc:
     path:   /ec
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }
+    
+evpos_listeCPI:
+    path: /liste_cpi
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeCpi }
  
 # Fonctions de mise à jour
 evpos_updateUtilFromBAZA:
@@ -103,10 +107,6 @@ evpos_exportUoNexthink:
     path:  /uo_ntk
     defaults: { _controller: EVPOSaffectationBundle:Export:exportUoNexthink }
 
-evpos_listeCPI:
-    path: /liste_cpi
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeCpi }
-    
 evpos_exportService:
     path: /export_service
     defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlService }
@@ -126,8 +126,3 @@ evpos_listeAppliXml:
 evpos_listeServiceAppliXml:
     path:   /service_appli_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliServiceXml }    
-
-evpos_exportDirServUtilAppliXml:
-    path:  /direction_service_util_appli_xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
-    

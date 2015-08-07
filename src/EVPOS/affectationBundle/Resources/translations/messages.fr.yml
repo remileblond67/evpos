@@ -54,6 +54,7 @@ uo:
     nom: Nom de l'UO
     migMoca: À migrer dans MOCA ?
     avancementMigMoca: Avancement de la migration MOCA
+    liste: Liste des UO
 
 service:
     code: Code du service
@@ -61,7 +62,10 @@ service:
     liste: Liste des services
     nbAgent: Nombre d'agents
     nbAcces: Nombre d'applications utilisées
-    riu: Nom RIU
+    
+RIU:
+    nom: Nom RIU
+    liste: Liste des RIU
 
 direction:
     code: Code de la direction
@@ -105,6 +109,7 @@ sharecan:
 xml:
     export: Exporter en XML
     import: Importer du XML
+    
     
 cpi:
     export: Export des CPI
