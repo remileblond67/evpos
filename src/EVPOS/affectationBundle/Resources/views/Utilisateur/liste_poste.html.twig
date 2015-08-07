@@ -6,6 +6,7 @@
 <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
         <tr>
+            <td class="row">{{ 'poste.codeMateriel'|trans }}</td>
             <td class="row">{{ 'poste.hostname'|trans }}</td>
             <td class="row">{{ 'poste.type'|trans }}</td>
         </tr>
@@ -13,6 +14,7 @@
     <tbody>
         {% for poste in listePoste %}
         <tr class="gradeA odd">
+            <td class="">{{util.codeMateriel }}</a></td>
             <td class="">{{util.hostname }}</a></td>
             <td class="">{{util.type }}</td>
         </tr>

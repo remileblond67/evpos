@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UpdateController extends Controller
 {
 	/**
-	 * Mise à jour de la liste des applications à partir de SUAPP
+	 * Mise Ã  jour de la liste des applications Ã  partir de SUAPP
 	 */
     public function majSuappAction(Request $request) {
         $updateSuapp = $this->container->get('evpos_affectation.update_suapp');
@@ -21,7 +21,7 @@ class UpdateController extends Controller
     }
     
     /**
-     * Mise à jour des informations provenant de BAZA (directions et services)
+     * Mise Ã  jour des informations provenant de BAZA (directions et services)
      */
     public function majBazaDirServAction(Request $request) {
         $updateBaza = $this->container->get('evpos_affectation.update_baza');
@@ -33,7 +33,7 @@ class UpdateController extends Controller
     }
     
     /**
-     * Mise à jour des informations provenant de BAZA (utilisateurs)
+     * Mise Ã  jour des informations provenant de BAZA (utilisateurs)
      */
     public function majBazaUtilAction(Request $request) {
         $updateBaza = $this->container->get('evpos_affectation.update_baza');
@@ -44,7 +44,7 @@ class UpdateController extends Controller
     }    
     
     /**
-     * Remontée des accès utilisateurs au niveau d'un service
+     * RemontÃ©e des accÃ¨s utilisateurs au niveau d'un service
      */
     public function updateAccesServiceAction(Request $request, $codeService) {
         $updateGap = $this->container->get('evpos_affectation.update_gap');
@@ -54,7 +54,7 @@ class UpdateController extends Controller
     }
     
     /**
-     * Mise à jour des RIU de chaque service, à partir des informations contenues dans GAP
+     * Mise Ã  jour des RIU de chaque service, Ã  partir des informations contenues dans GAP
      */
     public function majRiuAction(Request $request) {
         $updateGap = $this->container->get('evpos_affectation.update_gap');
@@ -63,4 +63,14 @@ class UpdateController extends Controller
         return $this->redirect($this->generateUrl('evpos_listeService'));
     }
     
+    /**
+     * Mise Ã  jour de l'avancement Ã  partir de sharecan
+     */
+    public function updateShareCanAction(Request $request) {
+        $request->getSession()->getFlashBag()->add('info', 'Fonction de mise Ã  jour pas encore disponible');
+        $updateSharecan = $this->container->get('evpos_affectation.update_sharecan');
+        $request->getSession()->getFlashBag()->add('info', utf8_encode($updateSharecan->updateAvancement()));
+        
+        return $this->redirect($this->generateUrl('evpos_indicateurs'));
+    }
 }

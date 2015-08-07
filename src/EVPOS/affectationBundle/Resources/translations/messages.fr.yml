@@ -17,8 +17,10 @@ user:
 poste:
     liste: Liste des postes
     type: Type de poste
+    codeMateriel: Code matériel
     hostname: Hostname
     listeUsage: Liste des postes utilisés
+    import: Import des postes depuis GPARC (export CSV)
 
 applications:
     liste: Liste des applications
@@ -96,6 +98,9 @@ baza:
     updateDS: Mise à jour directions et services
     updateUtil: Mise à jour utilisateurs
     importAcces: Import des accès depuis GAP
+    
+sharecan:
+    update: Mise à jour de l'avancement (Sharecan)
 
 xml:
     export: Exporter en XML

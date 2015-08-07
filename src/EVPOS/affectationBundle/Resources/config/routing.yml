@@ -54,7 +54,11 @@ evpos_listeDirection:
     
 evpos_listePoste:
     path: /poste
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listePoste }
+    defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
+    
+evpos_importPoste:
+    path: /import_poste
+    defaults: { _controller: EVPOSaffectationBundle:Poste:importPoste }
     
 
 evpos_ficheDirection:
@@ -85,7 +89,11 @@ evpos_updateFromSUAPP:
 evpos_updateAccesService:
     path: /update_acces_service_{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Update:updateAccesService }
- 
+    
+evpos_updateFromShareCan:
+    path: /update_sharecan
+    defaults: { _controller: EVPOSaffectationBundle:Update:updateShareCan }
+
 # Fonctions d'export
 evpos_exportAppliNexthink:
     path:  /appli_ntk

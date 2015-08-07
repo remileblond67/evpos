@@ -101,19 +101,6 @@ class UtilisateurController extends Controller
     }
     
     /**
-     * Liste des postes connus
-     */
-    public function listePosteAction() {
-        $listePoste = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Poste')
-            ->getPostes()
-        ;
-        
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_poste.html.twig', array('listePoste' => $listePoste));
-    }
-
-    /**
      * Affiche la liste des ensembles cohérents
      */
     public function listeEcAction() {

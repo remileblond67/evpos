@@ -15,23 +15,22 @@ class Poste
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="code_materiel", type="string")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $codeMateriel;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="hostname", type="string", length=8)
+     * @ORM\Column(name="hostname", type="string", length=8, nullable=true)
      */
     private $hostname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
@@ -41,9 +40,14 @@ class Poste
      *
      * @return integer 
      */
-    public function getId()
+    public function getCodeMateriel()
     {
-        return $this->id;
+        return $this->codeMateriel;
+    }
+    
+    public function setCodeMateriel($codeMateriel) {
+        $this->codeMateriel = $codeMateriel;
+        return $this;
     }
 
     /**
