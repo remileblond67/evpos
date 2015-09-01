@@ -24,7 +24,7 @@
                 <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a>
             </div>
             <div class="col-lg-3">
-                <h4>{{'service.riu'|trans}}</h4>
+                <h4>{{'riu.nom'|trans}}</h4>
                 <ul>
                 {% for riu in service.listeRiu %}
                     <li>{{ riu.nomUtil }}</li>

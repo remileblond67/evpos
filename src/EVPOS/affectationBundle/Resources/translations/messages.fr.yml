@@ -63,7 +63,7 @@ service:
     nbAgent: Nombre d'agents
     nbAcces: Nombre d'applications utilisées
     
-RIU:
+riu:
     nom: Nom RIU
     liste: Liste des RIU
 
@@ -78,6 +78,7 @@ utilisateur:
     liste: Liste des utilisateurs
     infoAnnuaire: Informations issues de l'annuaire
     nbAcces: Nombre d'applications
+    listeAcces: Liste des accès utilisateur
 
 poste:
     listeUsage: Liste des postes utilisés

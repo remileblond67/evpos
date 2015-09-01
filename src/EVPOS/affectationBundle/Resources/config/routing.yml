@@ -126,3 +126,7 @@ evpos_listeAppliXml:
 evpos_listeServiceAppliXml:
     path:   /service_appli_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliServiceXml }    
+
+evpos_exportDirServUtilAppliXml:  
+    path:  /direction_service_util_appli_xml  
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }  
