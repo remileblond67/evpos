@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeDirectionServiceUtilAppli xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    {% for direction in listeDirection %}
+    <direction>
+        <codeDirection>{{ direction.codeDirection }}</codeDirection>
+        <libDirection>{{ direction.libDirection }}</libDirection>
+        {% for service in direction.listeServices %}
+        <service>
+            <codeService>{{service.codeService}}</codeService>
+            <libService>{{service.libService}}</libService>
+            <utilisateurs>
+                {% for utilisateur in service.listeUtilisateurs %}
+                <utilisateur>
+                    <matUtil>{{utilisateur.matUtil }}</matUtil>
+                    <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
+                </utilisateur>
+                {% endfor %}
+            </utilisateurs>
+        </service>
+        {% endfor %}
+    </direction>
+    {% endfor %}
+</listeDirectionServiceUtilAppli>

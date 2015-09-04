@@ -110,6 +110,10 @@ evpos_exportUoNexthink:
 evpos_exportService:
     path: /export_service
     defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlService }
+
+evpos_exportServiceUtil:
+    path: /export_service_util
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilXml }
     
 evpos_exportServiceRiu:
     path: /export_service_riu

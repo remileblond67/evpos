@@ -38,7 +38,7 @@ class DirectionRepository extends EntityRepository
     }
 
     /**
-     * Récupération de la liste des direction et de leurs services
+     * Récupération de la liste des directions et de leurs services
      */
     public function getDirectionsServices() {
         $query = $this->createQueryBuilder('d')
@@ -65,7 +65,6 @@ class DirectionRepository extends EntityRepository
             ->where('d.codeDirection is not null')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -121,5 +120,20 @@ class DirectionRepository extends EntityRepository
         
         return $query->getResult(); 
     }
-
+    
+    /**
+     * Liste des directions, services, utilisateurs
+     */
+    public function getListeDirServiceUtil() {
+        $query = $this->createQueryBuilder('d')
+            ->addSelect('d')
+            ->leftJoin('d.listeServices', 's')
+            ->addSelect('s')
+            ->leftJoin('s.listeUtilisateurs', 'u')
+            ->addSelect('u')
+            ->getQuery()
+        ;
+        
+        return $query->getResult(); 
+    }
 }

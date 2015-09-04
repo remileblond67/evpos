@@ -5,7 +5,7 @@
         <codeDirection>{{direction.codeDirection}}</codeDirection>
         <libDirection>{{direction.libDirection}}</libDirection>
         {% for service in direction.listeServices %}
-            {% if service.codeService != '' %}
+            {% if service.codeService is not null and service.nbAgent > 0 %}
             <service>
                 <codeService>{{ service.codeService }}</codeService>
                 <libService>{{ service.libService }}</libService>
