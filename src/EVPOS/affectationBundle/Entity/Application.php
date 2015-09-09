@@ -14,6 +14,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Application
 {
+    private function __construct() {
+        $this->listeUo = new ArrayCollection() ;
+        $this->listeAcces = new ArrayCollection() ;
+        $this->listeServiceAcces = new ArrayCollection() ;
+    }
+    
     /**
      * @var string
      *
@@ -68,7 +74,7 @@ class Application
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="appliAcces")
      */
     private $listeAcces;
-    
+       
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="appliAcces")
      */

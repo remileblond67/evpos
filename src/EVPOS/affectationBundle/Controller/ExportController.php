@@ -32,10 +32,11 @@ class ExportController extends Controller
         return $this->render('EVPOSaffectationBundle:Export:liste_service_riu.xml.twig', array('listeDirection' => $listeDirection));
     }
     
+          
     /**
-     * Liste des applications et UO au format XML, pour exploitation dans Excel
+     * Liste des applications et UO à migrer dans MOCA au format XML, pour exploitation dans Excel
      */
-    public function listeAppliXmlAction()
+    public function listeAppliUoXmlAction()
     {
         $listeAppli = $this->getDoctrine()
             ->getManager()
@@ -47,9 +48,23 @@ class ExportController extends Controller
     }
     
     /**
-     * Liste des applications au format XML, pour exploitation dans Excel
+     * Liste de toutes mes applications et UO au format XML, pour exploitation dans Excel
      */
-    public function listeAppliXmlOnlyAction()
+    public function listeAppliUoAllXmlAction()
+    {
+        $listeAppli = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Application')
+            ->getApplicationsFull()
+        ;
+
+        return $this->render('EVPOSaffectationBundle:Export:liste_appli_all.xml.twig', array('listeAppli' => $listeAppli));
+    }
+    
+    /**
+     * Liste des applications à migrer dans MOCA au format XML, pour exploitation dans Excel
+     */
+    public function listeAppliXmlAction()
     {
         $listeAppli = $this->getDoctrine()
             ->getManager()

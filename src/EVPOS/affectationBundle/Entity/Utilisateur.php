@@ -45,6 +45,11 @@ class Utilisateur
     private $listeAcces;
     
     /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="utilAcces")
+     */
+    private $listeAccesUo;
+    
+    /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\Application", mappedBy="cpi")
      * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli")
      */

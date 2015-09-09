@@ -23,10 +23,12 @@ poste:
     import: Import des postes depuis GPARC (export CSV)
 
 applications:
-    liste: Liste des applications
+    liste: Liste des applications à migrer
+    listeAll: Liste de TOUTES les applications
     listeUsage: Liste des applications utilisées
     patrimoine: Patrimoine applicatif
-    listeAppliUo: Liste des applications / UO
+    listeAppliUo: Liste des applications / UO à migrer
+    listeAppliUoAll: Liste de TOUTES les applications / UO
     listeAppliService: Liste des applications des services/directions
 
 patrimoine: Patrimoine

@@ -62,6 +62,11 @@ class Service
     private $listeAcces;
 
     /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces")
+     */
+    private $listeAccesUo;
+
+    /**
      * Retourne le nombre d'agents affectés au service
      */
     public function getNbAgent() {

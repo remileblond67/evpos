@@ -15,7 +15,8 @@
     <!-- Bootstrap Core CSS -->
 
     {% stylesheets '@EVPOSaffectationBundle/Resources/public/css/*.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" /> {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 	<style>
 	.nonMoca {
 		text-decoration:line-through;
@@ -29,7 +30,7 @@
 	}
 	</style>
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/evposaffectation/images/favicon.ico') }}" />
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -102,8 +103,11 @@
                             <li><a href="{{ path('evpos_exportService') }}">{{'service.liste'|trans}}</a></li>
                             <li><a href="{{ path('evpos_exportServiceUtil') }}">{{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
                             <li><a href="{{ path('evpos_exportServiceRiu') }}">{{'riu.liste'|trans}}</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ path('evpos_listeAppliXml') }}">{{'applications.liste'|trans}}</a></li>
                             <li><a href="{{ path('evpos_listeAppliUoXml') }}">{{'applications.listeAppliUo'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_listeAppliUoAllXml') }}">{{'applications.listeAppliUoAll'|trans}}</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ path('evpos_listeServiceAppliXml') }}">{{'applications.listeAppliService'|trans}}</a></li>
                             <li><a href="{{ path('evpos_exportDirServUtilAppliXml') }}">{{'utilisateur.listeAcces'|trans}}</a></li>
                         </ul>

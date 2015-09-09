@@ -121,11 +121,15 @@ evpos_exportServiceRiu:
     
 evpos_listeAppliUoXml:
     path:   /application_xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXml }
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliUoXml }
+
+evpos_listeAppliUoAllXml:
+    path:   /application_all_xml
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliUoAllXml }
 
 evpos_listeAppliXml:
     path:   /application_xml_only
-    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXmlOnly }
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliXml }
 
 evpos_listeServiceAppliXml:
     path:   /service_appli_xml
