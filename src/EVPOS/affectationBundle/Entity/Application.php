@@ -355,4 +355,27 @@ class Application
     {
         return $this->listeServiceAcces;
     }
+
+    /**
+     * Add listeServiceAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces
+     * @return Application
+     */
+    public function addListeServiceAcce(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces)
+    {
+        $this->listeServiceAcces[] = $listeServiceAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeServiceAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces
+     */
+    public function removeListeServiceAcce(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces)
+    {
+        $this->listeServiceAcces->removeElement($listeServiceAcces);
+    }
 }

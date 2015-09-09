@@ -191,4 +191,70 @@ class UO
     {
         return $this->avancementMoca;
     }
+
+    /**
+     * Add listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesUtilUo $listeAcces
+     * @return UO
+     */
+    public function addListeAcce(\EVPOS\affectationBundle\Entity\AccesUtilUo $listeAcces)
+    {
+        $this->listeAcces[] = $listeAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesUtilUo $listeAcces
+     */
+    public function removeListeAcce(\EVPOS\affectationBundle\Entity\AccesUtilUo $listeAcces)
+    {
+        $this->listeAcces->removeElement($listeAcces);
+    }
+
+    /**
+     * Get listeAcces
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeAcces()
+    {
+        return $this->listeAcces;
+    }
+
+    /**
+     * Add listeServiceAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceUo $listeServiceAcces
+     * @return UO
+     */
+    public function addListeServiceAcce(\EVPOS\affectationBundle\Entity\AccesServiceUo $listeServiceAcces)
+    {
+        $this->listeServiceAcces[] = $listeServiceAcces;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeServiceAcces
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceUo $listeServiceAcces
+     */
+    public function removeListeServiceAcce(\EVPOS\affectationBundle\Entity\AccesServiceUo $listeServiceAcces)
+    {
+        $this->listeServiceAcces->removeElement($listeServiceAcces);
+    }
+
+    /**
+     * Get listeServiceAcces
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeServiceAcces()
+    {
+        return $this->listeServiceAcces;
+    }
 }

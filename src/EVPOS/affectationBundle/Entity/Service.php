@@ -289,4 +289,37 @@ class Service
     {
         return $this->listeRiu;
     }
+
+    /**
+     * Add listeAccesUo
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceUo $listeAccesUo
+     * @return Service
+     */
+    public function addListeAccesUo(\EVPOS\affectationBundle\Entity\AccesServiceUo $listeAccesUo)
+    {
+        $this->listeAccesUo[] = $listeAccesUo;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeAccesUo
+     *
+     * @param \EVPOS\affectationBundle\Entity\AccesServiceUo $listeAccesUo
+     */
+    public function removeListeAccesUo(\EVPOS\affectationBundle\Entity\AccesServiceUo $listeAccesUo)
+    {
+        $this->listeAccesUo->removeElement($listeAccesUo);
+    }
+
+    /**
+     * Get listeAccesUo
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeAccesUo()
+    {
+        return $this->listeAccesUo;
+    }
 }
