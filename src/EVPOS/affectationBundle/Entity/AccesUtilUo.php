@@ -119,7 +119,7 @@ class AccesUtilUo
      * @param \EVPOS\affectationBundle\Entity\UO $uoAcces
      * @return AccesUtilUo
      */
-    public function setUoAcces(\EVPOS\affectationBundle\Entity\UO $appliAcces)
+    public function setUoAcces(\EVPOS\affectationBundle\Entity\UO $uoAcces)
     {
         $this->uoAcces = $uoAcces;
 

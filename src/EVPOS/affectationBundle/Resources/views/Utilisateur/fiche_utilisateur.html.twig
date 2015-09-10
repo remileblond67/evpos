@@ -15,14 +15,16 @@
             <div class="col-lg-3">
                 <h4>{{ 'service.nom'|trans }}</h4>
                 {% if util.serviceUtil %}
-                <a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">{{util.serviceUtil.libService}}</a>
+                <a href="{{ path('evpos_ficheService', { 'codeService' : util.serviceUtil.codeService }) }}">
+                    {{util.serviceUtil.codeService}} : {{util.serviceUtil.libService}}
+                </a>
                 {% endif %}
             </div>
             <div class="col-lg-3">
                 <h4>{{ 'direction.nom'|trans }}</h4>
                 {% if util.serviceUtil %}
                 <a href="{{path('evpos_ficheDirection', {'codeDirection': util.serviceUtil.direction.codeDirection})}}">
-                {{util.serviceUtil.direction.libDirection }}
+                    {{util.serviceUtil.direction.codeDirection }} : {{util.serviceUtil.direction.libDirection }}
                 </a>
                 {% endif %}
             </div>

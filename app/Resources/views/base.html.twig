@@ -46,7 +46,9 @@
 <body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('evpos_accueil') }}" alt="{{'app.home'|trans}}">{{ 'app.name'|trans }}</a>
+            <a class="navbar-brand" href="{{ path('evpos_accueil') }}" alt="{{'app.home'|trans}}">
+                <img src="{{asset('bundles/evposaffectation/images/MOCA-hcolor50.png')}}" alt="{{ 'app.name'|trans }}"/>
+            </a>
         </div>
         <div class="container">
             <div class="collapse navbar-collapse">
@@ -109,7 +111,8 @@
                             <li><a href="{{ path('evpos_listeAppliUoAllXml') }}">{{'applications.listeAppliUoAll'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('evpos_listeServiceAppliXml') }}">{{'applications.listeAppliService'|trans}}</a></li>
-                            <li><a href="{{ path('evpos_exportDirServUtilAppliXml') }}">{{'utilisateur.listeAcces'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_exportDirServUtilAppliXml') }}">{{'utilisateur.listeAccesAppli'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_exportDirServUtilAppliXml') }}">{{'utilisateur.listeAccesUo'|trans}}</a></li>
                         </ul>
                     </li>
                     

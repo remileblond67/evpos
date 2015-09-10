@@ -39,7 +39,7 @@
                     <td class="row sorting_asc">{{ 'uo.code'|trans }}</td>
                     <td class="row">{{ 'uo.nom'|trans }}</td>
                     <td class="row">{{ 'uo.migMoca'|trans }}</td>
-                    <td class="row">{{ 'uo.avancementMigMoca'|trans }}</td>
+                    <td class="row">{{ 'uo.nbUtil'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@
                     <td class=""><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a></td>
                     <td class="">{{uo.nomUO}}</td>
                     <td>{{ uo.migMocaLong }}</td>
-                    <td class="">{{uo.avancementMoca}}</td>
+                    <td class="">{{uo.listeAcces|length}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -91,14 +91,14 @@
                         <td class="row">
                             {% if acces.utilAcces.serviceUtil %}
                             <a href="{{ path('evpos_ficheService', { 'codeService' : acces.utilAcces.serviceUtil.codeService }) }}" alt="{{ 'service.nom'|trans }}">
-                                {{ acces.utilAcces.serviceUtil.libService }}
+                                {{ acces.utilAcces.serviceUtil.codeService }} : {{ acces.utilAcces.serviceUtil.libService }}
                             </a>
                             {% endif %}
                         </td>
                         <td class="row">
                             {% if (acces.utilAcces.serviceUtil and acces.utilAcces.serviceUtil.direction) %}
                             <a href="{{path('evpos_ficheDirection', {'codeDirection': acces.utilAcces.serviceUtil.direction.codeDirection})}}">
-                                {{ acces.utilAcces.serviceUtil.direction.libDirection }}
+                                {{ acces.utilAcces.serviceUtil.direction.codeDirection }} : {{ acces.utilAcces.serviceUtil.direction.libDirection }}
                             </a>
                             {% endif %}
                         </td>

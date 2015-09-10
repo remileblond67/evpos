@@ -53,7 +53,7 @@ class EVPOSUpdateSuapp {
         $nbAppli = 0;
          
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
-            $codeAppli = $row["CODE"] ;
+            $codeAppli = strtoupper($row["CODE"]) ;
             $nomAppli = utf8_encode($row["NOM"]);
             $descAppli = utf8_encode($row["DESCRIPTION"]);
             $natAppli = $row['NATURE'];
@@ -99,8 +99,8 @@ class EVPOSUpdateSuapp {
         $em = $this->doctrine->getManager();
         $nbUo = 0;
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
-            $codeUo = $row["ID_MODULE"] ;
-            $codeAppli = $row["CODE_APPLI"];
+            $codeUo = strtoupper($row["ID_MODULE"]) ;
+            $codeAppli = strtoupper($row["CODE_APPLI"]);
             $nomUo = utf8_encode($row["LIB_MODULE"]);
             $migMoca = $row["MIG_MOCA"];
             

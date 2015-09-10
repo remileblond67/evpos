@@ -19,6 +19,7 @@
                     <td class="row">{{ 'direction.nom'|trans }}</td>
                     <td class="row">{{ 'service.code'|trans }}</td>
                     <td class="row">{{ 'service.nom'|trans }}</td>
+                    <td class="row">{{ 'service.nbAgent'|trans }}</td>
                     <td class="row">{{ 'applications.liste'|trans }}</td>
                 </tr>
             </thead>
@@ -45,6 +46,9 @@
                                 <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
                                 {{ service.libService }}
                                 </a>
+                            </td>
+                            <td>
+                                {{ service.listeUtilisateurs|length }}
                             </td>
                             <td>
                                 <ul>

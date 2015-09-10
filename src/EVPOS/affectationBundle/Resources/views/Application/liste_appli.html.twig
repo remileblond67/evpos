@@ -20,14 +20,9 @@
             <td class="row" rowspan="2">{{ 'application.listeUo'|trans }}</td>
              <td class="row" rowspan="2">{{ 'application.cpi'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.dispoMoca'|trans }}</td>
-            <td class="row" colspan="2">
-                {{ 'application.nbUtil'|trans }}
-            </td>
+            <td class="row" colspan="2">{{ 'application.nbUtil'|trans }}</td>
         </tr>
-        <tr>
-            <td class="row">{{ 'application.nbUtilDeclares'|trans }}</td>
-            <td class="row">{{ 'application.nbUtilActifs'|trans }}</td>
-        </tr>
+
     </thead>
     <tbody>
         {% for appli in listeAppli %}
@@ -38,18 +33,19 @@
             <td>
                 <ul>
                     {% for uo in appli.listeUo %}
-                    <li {% if uo.migMoca != true %}class="nonMoca"{% endif %}><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}</li>
+                    <li {% if uo.migMoca != true %}class="nonMoca"{% endif %}>
+                        <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}
+                    </li>
                     {% endfor %}
                 </ul>
             </td>
             <td>
                 {% if appli.cpi %}
-                {{appli.cpi.nomUtil}}
+                    {{appli.cpi.nomUtil}}
                 {% endif %}
             </td>
             <td>{{appli.dispoMocaLong}}</td>
             <td>{{appli.nbAcces}}</td>
-            <td></td>
         </tr>
         {% endfor %}
     </tbody>

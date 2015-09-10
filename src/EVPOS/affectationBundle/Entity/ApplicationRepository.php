@@ -90,7 +90,8 @@ class ApplicationRepository extends EntityRepository
         ;
 
         return $query->getSingleResult();
-    }    
+    }   
+    
     /**
      * Teste si l'application dont le code est passé en parametre existe
      */
