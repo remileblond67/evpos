@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Application
 {
-    private function __construct() {
+    public function __construct() {
         $this->listeUo = new ArrayCollection() ;
         $this->listeAcces = new ArrayCollection() ;
         $this->listeServiceAcces = new ArrayCollection() ;

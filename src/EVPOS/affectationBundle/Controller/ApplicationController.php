@@ -3,10 +3,31 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use EVPOS\affectationBundle\Entity\Application;
 use Symfony\Component\HttpFoundation\Request;
 
 class ApplicationController extends Controller
 {
+    /**
+     * Cherche une application
+     */
+    public function chercheAppliAction() {
+        $request = $this->get('request');
+        $appli = new Application;
+        
+        $form = $this->createFormBuilder($appli)
+            ->add('codeAppli')
+            ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            return $this->redirect($this->generateUrl('evpos_ficheAppli', array('codeAppli' => strtoupper($form['codeAppli']->getData()))));
+        }
+            
+        return $this->render('EVPOSaffectationBundle:Application:recherche_appli.html.twig', array('form' => $form->createView()));
+    }
+    
     /**
      * Liste des applications et UO dans un tableau HTML
      */
@@ -20,7 +41,7 @@ class ApplicationController extends Controller
 
         return $this->render('EVPOSaffectationBundle:Application:liste_appli.html.twig', array('listeAppli' => $listeAppli));
     }
-
+   
     /**
      * Affichage de la fiche d'une UO dont le code est passé en paramètre
      */
@@ -30,7 +51,14 @@ class ApplicationController extends Controller
             ->getRepository('EVPOSaffectationBundle:UO')
             ->getUo($codeUo)
         ;
-        return $this->render('EVPOSaffectationBundle:Application:fiche_uo.html.twig', array('uo' => $uo));
+        
+        if ($uo == NULL) {
+            $this->get('request')->getSession()->getFlashBag()->add('erreur', utf8_encode("Impossible de trouver l'UO ".$codeUo));
+            return $this->render('EVPOSaffectationBundle:Default:index.html.twig');
+        }
+        else {
+            return $this->render('EVPOSaffectationBundle:Application:fiche_uo.html.twig', array('uo' => $uo));
+        }
     }
 
     /**
@@ -43,7 +71,12 @@ class ApplicationController extends Controller
             ->getApplicationFull($codeAppli)
         ;
 
-        return $this->render('EVPOSaffectationBundle:Application:fiche_appli.html.twig', array('appli' => $appli));
+        if ($appli == NULL) {
+            $this->get('request')->getSession()->getFlashBag()->add('erreur', utf8_encode("Impossible de trouver l'application ".$codeAppli));
+            return $this->render('EVPOSaffectationBundle:Default:index.html.twig');
+        } else {
+            return $this->render('EVPOSaffectationBundle:Application:fiche_appli.html.twig', array('appli' => $appli));
+        }
     }
 	        
     /**

@@ -19,6 +19,10 @@ evpos_indicateurs:
 evpos_listeAppli:
     path:   /application
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppli }
+    
+evpos_cherche_appli:
+    path: /application_cherche
+    defaults: { _controller: EVPOSaffectationBundle:Application:chercheAppli }
 
 evpos_listeServiceAppli:
     path:   /service_appli

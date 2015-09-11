@@ -66,7 +66,7 @@ class ApplicationRepository extends EntityRepository
             ->getQuery()
         ;
 
-        return $query->getSingleResult();
+        return $query->getOneOrNullResult();
     }
 
     /**
@@ -89,7 +89,7 @@ class ApplicationRepository extends EntityRepository
             ->getQuery()
         ;
 
-        return $query->getSingleResult();
+        return $query->getOneOrNullResult();
     }   
     
     /**
