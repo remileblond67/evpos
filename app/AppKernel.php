@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new EVPOS\affectationBundle\EVPOSaffectationBundle(),
             new EVPOS\UserBundle\EVPOSUserBundle(),
+            new Evheniy\JqueryBundle\JqueryBundle(),
+            new Anezi\Bundle\BootstrapBundle\BootstrapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

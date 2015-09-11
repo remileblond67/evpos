@@ -13,11 +13,12 @@
     {% block stylesheets %}{% endblock %}
 
     <!-- Bootstrap Core CSS -->
-
-    {% stylesheets '@EVPOSaffectationBundle/Resources/public/css/*.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% stylesheets output="css/compiled/main.css" filter="cssrewrite"
+            'bundles/bootstrap/css/bootstrap.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
-	<style>
+
+    <style>
 	.nonMoca {
 		text-decoration:line-through;
 	}
@@ -188,11 +189,14 @@
         </div>
     </div>
 
-    {% javascripts '@EVPOSaffectationBundle/Resources/public/js/jquery.js' filter='cssrewrite' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %} {% javascripts '@EVPOSaffectationBundle/Resources/public/js/bootstrap.js' filter='cssrewrite' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %} {% block javascripts %} {% endblock %}
+    {% javascripts output="js/compiled/core.js"
+       'bundles/jquery/js/jquery*.js'
+       'bundles/bootstrap/js/bootstrap.js'
+    %}
+        <script src="{{ asset_url }}" charset="utf-8"></script>
+    {% endjavascripts %}
+    
+    {% block javascripts %} {% endblock %}
 </body>
 
 </html>

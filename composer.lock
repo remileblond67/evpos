@@ -4,8 +4,125 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "81a40eec508b6b938b12ef7f87b12551",
+    "hash": "6deab6fe792674cb6623da93a97f36b0",
     "packages": [
+        {
+            "name": "composer-fork/composer",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer-fork/composer.git",
+                "reference": "72de4788e91e11bc8f51bfdc1ae96219205dc5e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer-fork/composer/zipball/72de4788e91e11bc8f51bfdc1ae96219205dc5e2",
+                "reference": "72de4788e91e11bc8f51bfdc1ae96219205dc5e2",
+                "shasum": ""
+            },
+            "require": {
+                "justinrainbow/json-schema": "~1.1",
+                "php": ">=5.3.2",
+                "seld/jsonlint": "1.*",
+                "symfony/console": "~2.3",
+                "symfony/finder": "~2.2",
+                "symfony/process": "~2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "suggest": {
+                "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
+                "ext-zip": "Enabling the zip extension allows you to unzip archives, and allows gzip compression of all internet traffic"
+            },
+            "bin": [
+                "bin/composer"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "[Non-official] Composer helps you declare, manage and install dependencies of PHP projects, ensuring you have the right stack everywhere.",
+            "homepage": "http://getcomposer.org/",
+            "keywords": [
+                "autoload",
+                "dependency",
+                "package"
+            ],
+            "abandoned": "composer/composer",
+            "time": "2014-10-15 21:53:37"
+        },
+        {
+            "name": "curl/curl",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-mod/curl.git",
+                "reference": "82cac3f504e2c6b31eb0f379dc2f80f6d0e80cbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-mod/curl/zipball/82cac3f504e2c6b31eb0f379dc2f80f6d0e80cbb",
+                "reference": "82cac3f504e2c6b31eb0f379dc2f80f6d0e80cbb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Curl": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan Amouhzi",
+                    "email": "hassan@anezi.net",
+                    "homepage": "http://hassan.amouhzi.com"
+                },
+                {
+                    "name": "php-curl-class",
+                    "homepage": "https://github.com/php-curl-class"
+                },
+                {
+                    "name": "user52",
+                    "homepage": "https://github.com/user52"
+                }
+            ],
+            "description": "cURL class for PHP",
+            "homepage": "https://github.com/php-mod/curl",
+            "keywords": [
+                "curl",
+                "dot"
+            ],
+            "time": "2014-08-14 20:11:02"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
@@ -703,37 +820,29 @@
             "time": "2015-08-31 13:19:01"
         },
         {
-            "name": "incenteev/composer-parameter-handler",
-            "version": "v2.1.1",
+            "name": "evheniy/jquery-bundle",
+            "version": "1.4.3",
+            "target-dir": "Evheniy/JqueryBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Incenteev/ParameterHandler.git",
-                "reference": "84a205fe80a46101607bafbc423019527893ddd0"
+                "url": "https://github.com/evheniy/JqueryBundle.git",
+                "reference": "41238858bd045a77d0fe6e6e97a467b46c396031"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/84a205fe80a46101607bafbc423019527893ddd0",
-                "reference": "84a205fe80a46101607bafbc423019527893ddd0",
+                "url": "https://api.github.com/repos/evheniy/JqueryBundle/zipball/41238858bd045a77d0fe6e6e97a467b46c396031",
+                "reference": "41238858bd045a77d0fe6e6e97a467b46c396031",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3",
-                "symfony/yaml": "~2.0"
+                "php": ">=5.3.0",
+                "symfony/assetic-bundle": "~2.5-dev",
+                "symfony/symfony": ">=2.3"
             },
-            "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpspec/prophecy-phpunit": "~1.0",
-                "symfony/filesystem": "~2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
+            "type": "symfony-bundle",
             "autoload": {
-                "psr-4": {
-                    "Incenteev\\ParameterHandler\\": ""
+                "psr-0": {
+                    "Evheniy\\JqueryBundle": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -742,16 +851,17 @@
             ],
             "authors": [
                 {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
+                    "name": "evheniy",
+                    "homepage": "https://github.com/evheniy"
                 }
             ],
-            "description": "Composer script handling your ignored parameter file",
-            "homepage": "https://github.com/Incenteev/ParameterHandler",
+            "description": "The JqueryBundle adds the ability to add latest jQuery to your application.",
             "keywords": [
-                "parameters management"
+                "jquery",
+                "latest",
+                "symfony"
             ],
-            "time": "2015-06-03 08:27:03"
+            "time": "2015-09-01 18:01:07"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -802,6 +912,72 @@
                 "sql"
             ],
             "time": "2014-01-12 16:20:24"
+        },
+        {
+            "name": "justinrainbow/json-schema",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "a4bee9f4b344b66e0a0d96c7afae1e92edf385fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/a4bee9f4b344b66e0a0d96c7afae1e92edf385fe",
+                "reference": "a4bee9f4b344b66e0a0d96c7afae1e92edf385fe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "json-schema/json-schema-test-suite": "1.1.0",
+                "phpdocumentor/phpdocumentor": "~2",
+                "phpunit/phpunit": "~3.7"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JsonSchema\\": "src/JsonSchema/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2015-09-08 22:28:04"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -994,6 +1170,52 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "seld/jsonlint",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/jsonlint.git",
+                "reference": "863ae85c6d3ef60ca49cb12bd051c4a0648c40c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/863ae85c6d3ef60ca49cb12bd051c4a0648c40c4",
+                "reference": "863ae85c6d3ef60ca49cb12bd051c4a0648c40c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "bin/jsonlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "JSON Linter",
+            "keywords": [
+                "json",
+                "linter",
+                "parser",
+                "validator"
+            ],
+            "time": "2015-01-04 21:18:15"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -1206,6 +1428,111 @@
                 "mailer"
             ],
             "time": "2015-06-06 14:19:39"
+        },
+        {
+            "name": "symfony-bundle/bootstrap-bundle",
+            "version": "3.2.0",
+            "target-dir": "Anezi/Bundle/BootstrapBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony-bundle/bootstrap-bundle.git",
+                "reference": "95f222da0f4334c0d2e88d15550080faa59a0103"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony-bundle/bootstrap-bundle/zipball/95f222da0f4334c0d2e88d15550080faa59a0103",
+                "reference": "95f222da0f4334c0d2e88d15550080faa59a0103",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "symfony-bundle/jquery-bundle": ">=1.9.0",
+                "twbs/bootstrap": "3.2.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Anezi\\Bundle\\BootstrapBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan AMOUHZI",
+                    "email": "hassan@amouhzi.com"
+                }
+            ],
+            "description": "Twitter Bootstrap Bundle for Symfony2",
+            "homepage": "https://git.anezi.net/symfony/bootstrapbundle",
+            "keywords": [
+                "bootstrap"
+            ],
+            "time": "2014-09-24 13:46:43"
+        },
+        {
+            "name": "symfony-bundle/jquery-bundle",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony-bundle/jquery-bundle.git",
+                "reference": "c07b5ec110795e423b24ac891bf90c8438b7d467"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony-bundle/jquery-bundle/zipball/c07b5ec110795e423b24ac891bf90c8438b7d467",
+                "reference": "c07b5ec110795e423b24ac891bf90c8438b7d467",
+                "shasum": ""
+            },
+            "require": {
+                "composer-fork/composer": "0.0.*",
+                "curl/curl": "1.1.*",
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "incenteev/composer-parameter-handler": "~2.0",
+                "phpunit/phpunit": "4.3.*",
+                "sensio/distribution-bundle": "~3.0",
+                "sensio/framework-extra-bundle": "~3.0",
+                "symfony-bundle/bootstrap-bundle": "3.2.*",
+                "symfony-bundle/highlight-bundle": "1.0.*",
+                "symfony/assetic-bundle": "~2.3",
+                "symfony/symfony": "2.5.*",
+                "twig/extensions": "~1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony-app-dir": "app",
+                "symfony-web-dir": "web",
+                "incenteev-parameters": {
+                    "file": "app/config/parameters.yml"
+                },
+                "jquery-version": "*"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Anezi\\Bundle\\JQueryBundle": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan AMOUHZI",
+                    "email": "hassan@amouhzi.com"
+                }
+            ],
+            "description": "JQuery Bundle",
+            "homepage": "https://git.anezi.net/symfony/jquerybundle",
+            "keywords": [
+                "Symfony Bundle",
+                "jquery"
+            ],
+            "time": "2014-10-15 22:09:51"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -1514,6 +1841,57 @@
                 "framework"
             ],
             "time": "2015-09-08 14:26:39"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "c068162161154a4b85110ea1e7dd3d7897ce2b72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/c068162161154a4b85110ea1e7dd3d7897ce2b72",
+                "reference": "c068162161154a4b85110ea1e7dd3d7897ce2b72",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "http://getbootstrap.com",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ],
+            "time": "2014-06-26 16:36:48"
         },
         {
             "name": "twig/twig",
