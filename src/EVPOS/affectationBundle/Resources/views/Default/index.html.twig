@@ -7,10 +7,6 @@
             </div>
             <div class="panel-body">
                 <p>Environnement {{ app.environment }}.</p>
-                {% if app.user %}
-                <p>Connecté en tant que {{ app.user }}</p>
-                {% endif %}
-                <a href="{{ path('logout') }}" class="btn"></a>
             </div>
         </div>
     </div>

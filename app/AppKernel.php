@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new EVPOS\affectationBundle\EVPOSaffectationBundle(),
-            new EVPOS\UserBundle\EVPOSUserBundle(),
             new Evheniy\JqueryBundle\JqueryBundle(),
             new Anezi\Bundle\BootstrapBundle\BootstrapBundle(),
         );
