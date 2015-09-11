@@ -34,7 +34,7 @@ class ExportController extends Controller
     
           
     /**
-     * Liste des applications et UO à migrer dans MOCA au format XML, pour exploitation dans Excel
+     * Liste des applications et UO Ã  migrer dans MOCA au format XML, pour exploitation dans Excel
      */
     public function listeAppliUoXmlAction()
     {
@@ -62,7 +62,7 @@ class ExportController extends Controller
     }
     
     /**
-     * Liste des applications à migrer dans MOCA au format XML, pour exploitation dans Excel
+     * Liste des applications Ã  migrer dans MOCA au format XML, pour exploitation dans Excel
      */
     public function listeAppliXmlAction()
     {
@@ -76,7 +76,7 @@ class ExportController extends Controller
     }    
     
     /**
-     * Export de la définition des différents UO pour import dans Nexthink
+     * Export de la dÃ©finition des diffÃ©rents UO pour import dans Nexthink
      *
      */
     public function exportUoNexthinkAction() {
@@ -90,7 +90,7 @@ class ExportController extends Controller
     }
 
     /**
-     * Export de la définition des différentes applications pour import dans Nexthink
+     * Export de la dÃ©finition des diffÃ©rentes applications pour import dans Nexthink
      *
      */
     public function exportAppliNexthinkAction() {
@@ -127,7 +127,7 @@ class ExportController extends Controller
     }
     
     /**
-     * Export des Services, utilisateurs et de leurs accès applicatifs
+     * Export des Services, utilisateurs et de leurs accÃ¨s applicatifs
      */
     public function exportServiceUtilAppliXmlAction() {
         $listeDirServiceUtilAppli = $this->getDoctrine()->getManager()

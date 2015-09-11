@@ -115,7 +115,6 @@ class EVPOSUpdateBaza {
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
             $matUtil = $row["MATRICULE"];
             $nomUtil = utf8_encode($row["NOM"]);
-            // $prenomUtil = utf8_encode($row["PRENOM"]);
             $codeService = strtoupper(utf8_encode($row["CODE_SERVICE"]));
             
             if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil))

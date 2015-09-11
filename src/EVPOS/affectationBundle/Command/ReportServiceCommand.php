@@ -23,7 +23,6 @@ class ReportServiceCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output) {
         $em = $this->getContainer()->get('doctrine')->getManager();
         
-        $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
         $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
         $repUo = $em->getRepository('EVPOSaffectationBundle:UO');
         $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');

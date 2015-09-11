@@ -22,7 +22,7 @@ class ApplicationController extends Controller
         $form->handleRequest($request);
         
         if ($form->isValid()) {
-            return $this->redirect($this->generateUrl('evpos_ficheAppli', array('codeAppli' => strtoupper($form['codeAppli']->getData()))));
+            return $this->redirect($this->generateUrl('evpos_ficheAppli', array('codeAppli' => strtoupper(trim($form['codeAppli']->getData())))));
         }
             
         return $this->render('EVPOSaffectationBundle:Application:recherche_appli.html.twig', array('form' => $form->createView()));
