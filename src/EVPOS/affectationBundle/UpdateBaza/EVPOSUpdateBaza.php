@@ -18,8 +18,7 @@ class EVPOSUpdateBaza {
 		
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
-		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
-		  exit () ; 
+            $this->get('request')->getSession()->getFlashBag()->add('erreur', utf8_encode("Erreur de connexion à la base de données $sid avec l'utilisateur $user.")) ; 
 		}
     }
     
