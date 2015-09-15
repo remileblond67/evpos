@@ -9,4 +9,6 @@
 /composer.phar
 /vendor/
 /web/bundles/
+/web/css/compiled/
+/web/js/compiled/
 *~

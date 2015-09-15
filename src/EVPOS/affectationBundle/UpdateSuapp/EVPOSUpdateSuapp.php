@@ -29,10 +29,10 @@ class EVPOSUpdateSuapp {
     public function importAppliSuapp() {
         $em = $this->doctrine->getManager();
 
-        // Suppression des UO existantes
+        // Marquage des UO existantes
         $listeUo = $em->getRepository('EVPOSaffectationBundle:UO')->getListeUo();
         foreach ($listeUo as $uo) {
-            $em->remove($uo);
+            $em->setMigMoca = false;
         }
     
 		// Récupération de la liste des applications dans SUAPP
