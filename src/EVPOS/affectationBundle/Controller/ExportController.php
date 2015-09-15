@@ -69,7 +69,7 @@ class ExportController extends Controller
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
-            ->getApplications()
+            ->getApplicationsUo()
         ;
 
         return $this->render('EVPOSaffectationBundle:Export:liste_appli_only.xml.twig', array('listeAppli' => $listeAppli));
