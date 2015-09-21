@@ -16,11 +16,12 @@
                     <uos>
                         {% for uo in utilisateur.listeAccesUo %}
                         <uo>
-                            <codeAppli>{{ appli.appliAcces.codeAppli }}</codeAppli>
-                            <nomAppli>{{ appli.appliAcces.nomAppli }}</nomAppli>
-                            <dispoMoca>{{ appli.appliAcces.dispoMocaLong }}</dispoMoca>
-                            <codeUo></codeUo>
-                            <mig
+                            <codeAppli>{{ uo.uoAcces.appli.codeAppli }}</codeAppli>
+                            <nomAppli>{{ uo.uoAcces.appli.nomAppli }}</nomAppli>
+                            <natureAppli>{{ uo.uoAcces.appli.natAppli }}</natureAppli>
+                            <codeUo>{{ uo.uoAcces.codeUo }}</codeUo>
+                            <nomUo>{{ uo.uoAcces.nomUo }}</nomUo>
+                            <avancementMoca>{{ uo.uoAcces.avancementMoca }}</avancementMoca>
                         </uo>
                         {% endfor %}
                     </uos>

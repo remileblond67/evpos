@@ -56,6 +56,7 @@ class EVPOSUpdateBaza {
         $em->flush();
         
         oci_free_statement($csr);
+        unset($csr);
         
         $message = "Import de ".$nb." directions";
         
@@ -94,6 +95,7 @@ class EVPOSUpdateBaza {
         $em->flush();
         
         oci_free_statement($csr);
+        unset($csr);
         
         $message = "Import de ".$nb." services";
         
@@ -134,6 +136,7 @@ class EVPOSUpdateBaza {
         $em->flush();
         
         oci_free_statement($csr);
+        unset($csr);
         
         $message = "Import de ".$nb." utilisateurs";
         

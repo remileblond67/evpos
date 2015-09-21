@@ -47,8 +47,6 @@ class UtilisateurRepository extends EntityRepository
         
         return new Paginator($query, true);
     }
-    
-    
 
     /**
      * Récupération d'un utilisateur à partir de son matricule
@@ -80,6 +78,7 @@ class UtilisateurRepository extends EntityRepository
             ->addSelect('acces')
             ->leftJoin('acces.appliAcces', 'appli')
             ->addSelect('appli')
+            ->orderBy('appli.codeAppli')
             ->getQuery()
         ;
 

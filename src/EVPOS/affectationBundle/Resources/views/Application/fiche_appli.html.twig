@@ -39,6 +39,7 @@
                     <td class="row sorting_asc">{{ 'uo.code'|trans }}</td>
                     <td class="row">{{ 'uo.nom'|trans }}</td>
                     <td class="row">{{ 'uo.migMoca'|trans }}</td>
+                    <td class="row">{{ 'uo.avancementMigMoca'|trans}}</td>
                     <td class="row">{{ 'uo.nbUtil'|trans }}</td>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
                     <td class=""><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a></td>
                     <td class="">{{uo.nomUO}}</td>
                     <td>{{ uo.migMocaLong }}</td>
+                    <td>{{ uo.avancementMoca }}</td>
                     <td class="">{{uo.listeAcces|length}}</td>
                 </tr>
                 {% endfor %}

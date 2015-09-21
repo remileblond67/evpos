@@ -19,16 +19,19 @@
         <div class="row">
             <div class="col-lg-2"><h4>Code appli</h4><a href="{{path('evpos_ficheAppli', {'codeAppli': uo.appli.codeAppli})}}">{{uo.appli.codeAppli}}</a></div>
             <div class="col-lg-2"><h4>Code UO</h4>{{uo.codeUo}}</div>
-            <div class="col-lg-5"><h4>Libellé UO</h4>{{uo.nomUo}}</div>
-			<div class="col-lg-3">
-				<h4>
-					{% if uo.migMoca %}
-					<span class="ok">A migrer dans MOCA</span>
-					{% else %}
-					<span class="ko">Non migré dans MOCA</span>
-					{% endif %}
-				</h4>
+            <div class="col-lg-2"><h4>Libellé UO</h4>{{uo.nomUo}}</div>
+			<div class="col-lg-2">
+				<h4>{{'application.aMigrer'|trans}}</h4>
+                {% if uo.migMoca %}
+                <span class="ok glyphicon glyphicon-ok">Oui</span>
+                {% else %}
+                <span class="ko glyphicon glyphicon-remove">Non</span>
+                {% endif %}
 			</div>
+            <div class="col-lg-2">
+				<h4>{{ 'uo.avancementMigMoca'|trans}}</h4>
+                {{ uo.avancementMoca }}
+            </div>
         </div>
     </div>
 </div>

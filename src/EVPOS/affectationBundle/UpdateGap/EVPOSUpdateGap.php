@@ -69,6 +69,7 @@ class EVPOSUpdateGap {
             $em->persist($newAcces);
         }
         $em->flush();
+        unset($listeAppli);
         
         $message = "Mise à jour de ".$nbAcces." accès applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
         return $message;
@@ -111,6 +112,7 @@ class EVPOSUpdateGap {
             $nbRiu++;
         }
         oci_free_statement($csr);
+        unset($csr);
         
         $em->flush();
         

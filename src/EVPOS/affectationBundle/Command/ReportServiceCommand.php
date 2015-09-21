@@ -37,6 +37,7 @@ class ReportServiceCommand extends ContainerAwareCommand
             $em->remove($acces);
         }
         $em->flush();
+        unset($listeAcces);
         $output->writeln("OK");        
         
         $output->writeln("Mise à jour des accès service");

@@ -7,6 +7,7 @@ app:
     etat: Etat actuel de l'application
     home: Retour à l'accueil
     update: Mise à jour
+    source: Source de l'info
 
 user:
     connect: Se connecter
@@ -40,6 +41,7 @@ application:
     nature: Nature de l'application
     listeUo: Liste des UO
     dispoMoca: Disponible dans MOCA ?
+    aMigrer: A migrer dans MOCA
     utils: Utilisateurs de l'application
     usage: Usage de l'application
     accès: Accès à l'application
@@ -56,6 +58,8 @@ uo:
     avancementMigMoca: Avancement de la migration MOCA
     liste: Liste des UO
     nbUtil: Nombre d'utilisateurs
+    listeUsage: Liste des UO utilisées
+    usage: Usage de l'UO
 
 service:
     code: Code du service

@@ -51,23 +51,20 @@
                                 {{ service.listeUtilisateurs|length }}
                             </td>
                             <td>
-                                <ul>
                                 {% for acces in service.listeAcces %}
-                                    <li>
+                                    <p>
                                         <a href="{{ path('evpos_ficheAppli', { 'codeAppli' : acces.appliAcces.codeAppli }) }}"
                                            title="{{ acces.appliAcces.nomAppli }}"
                                             {% if acces.appliAcces.dispoMoca %}
-                                                class="ok"
+                                                class="ok glyphicon glyphicon-ok"
                                             {% else %}
-                                                class="ko"
+                                                class="ko glyphicon glyphicon-remove"
                                             {% endif %}
                                         >
-                                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                             {{ acces.appliAcces.codeAppli }}
                                         </a> - {{ acces.appliAcces.natAppli }}
-                                    </li>
+                                    </p>
                                 {% endfor %}
-                                </ul>
                             </td>
                         </tr>
                     {% endfor %}

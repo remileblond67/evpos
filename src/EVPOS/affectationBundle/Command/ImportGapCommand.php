@@ -14,11 +14,14 @@ class ImportGapCommand extends ContainerAwareCommand
         parent::configure();
         $this
             ->setName('evpos:import_gap')
-            ->setDescription('Import des accès applicatifs depuis la base GAP')
+            ->setDescription('Import des accès applicatifs depuis les bases GAP et BAZA')
         ;
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) {
+        ini_set('memory_limit', -1);
+        gc_enable();
+        
         $em = $this->getContainer()->get('doctrine')->getManager();
         $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
         $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
@@ -35,7 +38,6 @@ class ImportGapCommand extends ContainerAwareCommand
 		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
 		  $output->writeln("Impossible de se connecter à la base de données");
 		} else {
-        
             // Suppression des anciens accès aux applications
             $output->write("Suppression des anciens accès aux applications... ");
             $listeAcces = $repAcces->getListeAccesAppli();
@@ -43,6 +45,7 @@ class ImportGapCommand extends ContainerAwareCommand
                 $em->remove($acces);
             }
             $em->flush();
+            unset($listeAcces);
             $output->writeln("OK");
             
             // Suppression des anciens accès aux UO
@@ -52,9 +55,10 @@ class ImportGapCommand extends ContainerAwareCommand
                 $em->remove($acces);
             }
             $em->flush();
+            unset($listeAccesUo);
             $output->writeln("OK");
             
-            
+            gc_collect_cycles();
             
             // Récupération de la liste des utilisateurs connus
             $listeUtil = $repUtil->getUtilisateurs();
@@ -83,10 +87,12 @@ class ImportGapCommand extends ContainerAwareCommand
                         $newAcces = new AccesUtilAppli();
                         
                         $newAcces->setAppliAcces($application);
+                        unset($application);
                         $newAcces->setUtilAcces($utilisateur);
-                        $newAcces->setSourceImport("Import GAP du ".date("d/m/Y"));
+                        $newAcces->setSourceImport("Import BAZA du ".date("d/m/Y"));
                         
                         $em->persist($newAcces);
+                        unset($newAcces);
                     }
                 }
                 $nbUtil++;
@@ -101,10 +107,29 @@ class ImportGapCommand extends ContainerAwareCommand
             $output->writeln("Fin de l'import");
             
             
-            $output->writeln("Import des accès aux UO à partir de GAP");
+            $output->writeln("Import des accès aux UO à partir de BAZA");
             $nbUtil = 0;
             
-            $requeteBaza = "select REGEXP_REPLACE(REGEXP_REPLACE(upper(ntmgname), '^GA_', ''),'_P$','') CODE_UO from baz_member where upper(ntmgname) like 'GA\_%\_P' escape '\' and ntmuid=:matricule";
+            $requeteBaza = "SELECT UNIQUE code_uo
+                              FROM   (SELECT   REGEXP_REPLACE (
+                                                  REGEXP_REPLACE (UPPER (ntmgname), '^GA_', ''),
+                                                  '_P$',
+                                                  ''
+                                               )
+                                                  CODE_UO
+                                        FROM   baz_member
+                                       WHERE   UPPER (ntmgname) LIKE 'GA\_%\_P' ESCAPE '\'
+                                               AND ntmuid = :matricule
+                                      UNION
+                                      SELECT   UNIQUE
+                                               REGEXP_REPLACE (
+                                                  REGEXP_REPLACE (nom_role_util, '^._[^_]+_'),
+                                                  '_.*'
+                                               )
+                                                  code_uo
+                                        FROM   baz_role_a_util
+                                       WHERE   nom_util = :matricule)";
+            //$requeteBaza = "select REGEXP_REPLACE(REGEXP_REPLACE(upper(ntmgname), '^GA_', ''),'_P$','') CODE_UO from baz_member where upper(ntmgname) like 'GA\_%\_P' escape '\' and ntmuid=:matricule";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
 
             foreach ($listeUtil as $utilisateur) {
@@ -120,21 +145,24 @@ class ImportGapCommand extends ContainerAwareCommand
                     if ($repUo->isUo($codeUo)) {
                         $uo = $repUo->getUo($codeUo);
                         
-                        // Création de l'accés
+                        // Création de l'accès
                         $newAcces = new AccesUtilUo();
                         
                         $newAcces->setUoAcces($uo);
+                        unset($uo);
                         $newAcces->setUtilAcces($utilisateur);
-                        $newAcces->setSourceImport("Import GAP du ".date("d/m/Y"));
+                        $newAcces->setSourceImport("Import BAZA du ".date("d/m/Y"));
                         
                         $em->persist($newAcces);
+                        unset($newAcces);
                     }
                 }
                 $nbUtil++;
-                if ($nbUtil%100 == 0) 
+                if ($nbUtil%100 == 0) {
                     $output->write($nbUtil." ");
-                if ($nbUtil%1000 == 0) 
-                    $em->flush();
+                    if ($nbUtil%1000 == 0) 
+                        $em->flush();
+                }
             }
             oci_free_statement($csr);
             $output->writeln("OK");
