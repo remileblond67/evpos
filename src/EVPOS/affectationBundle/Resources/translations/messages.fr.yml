@@ -50,6 +50,9 @@ application:
     validation: Besoin de l'application validé
     nbUtil: Nombre d'utilisateurs
     cpi: Nom du CPI
+    service: Service gestionnaire
+    secteur: Secteur gestionnaire
+    purge: Purge de la base de données
 
 uo:
     code: Code de l'UO
@@ -60,6 +63,8 @@ uo:
     nbUtil: Nombre d'utilisateurs
     listeUsage: Liste des UO utilisées
     usage: Usage de l'UO
+    typePoste: Type de poste
+    updateAvancement: Mise à jour de l'avancement des FIA
 
 service:
     code: Code du service

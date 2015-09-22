@@ -134,7 +134,14 @@ evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml  
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }  
 
-
 evpos_exportDirServUtilUoXml:  
     path:  /direction_service_util_uo_xml  
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXml }  
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXml }
+    
+evpos_updateAvancement:
+    path: /update_avancement
+    defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancementUo }
+    
+evpos_purgeBase:
+    path: /purge_base
+    defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }

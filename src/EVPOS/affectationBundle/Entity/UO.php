@@ -52,6 +52,12 @@ class UO
      */
     private $avancementMoca;
     
+    /** 
+     * @var string
+     * @ORM\Column(name="type_poste", type="string", length=50, nullable=true)
+     */
+    private $typePoste;
+    
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="uoAcces")
      */
@@ -256,5 +262,13 @@ class UO
     public function getListeServiceAcces()
     {
         return $this->listeServiceAcces;
+    }
+    
+    public function setTypePoste($type) {
+        $this->typePoste = $type;
+    }
+    
+    public function getTypePoste() {
+        return $this->typePoste;
     }
 }

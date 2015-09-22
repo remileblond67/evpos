@@ -17,7 +17,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-2"><h4>Code appli</h4><a href="{{path('evpos_ficheAppli', {'codeAppli': uo.appli.codeAppli})}}">{{uo.appli.codeAppli}}</a></div>
+            <div class="col-lg-1"><h4>Code appli</h4><a href="{{path('evpos_ficheAppli', {'codeAppli': uo.appli.codeAppli})}}">{{uo.appli.codeAppli}}</a></div>
             <div class="col-lg-2"><h4>Code UO</h4>{{uo.codeUo}}</div>
             <div class="col-lg-2"><h4>Libellé UO</h4>{{uo.nomUo}}</div>
 			<div class="col-lg-2">
@@ -31,6 +31,10 @@
             <div class="col-lg-2">
 				<h4>{{ 'uo.avancementMigMoca'|trans}}</h4>
                 {{ uo.avancementMoca }}
+            </div>
+            <div class="col-lg-1">
+                <h4>Type de poste</h4>
+                {{ uo.typePoste }}
             </div>
         </div>
     </div>

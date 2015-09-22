@@ -17,12 +17,28 @@
         <div class="row">
             <div class="col-lg-2"><h4>{{ 'application.nature'|trans }}</h4>{{appli.natAppliLong}}</div>
             <div class="col-lg-2"><h4>{{ 'application.code'|trans }}</h4>{{appli.codeAppli}}</div>
-            <div class="col-lg-3"><h4>{{ 'application.nom'|trans }}</h4>{{appli.nomAppli}}</div>
-            <div class="col-lg-3"><h4>{{ 'application.desc'|trans }}</h4>{{appli.descAppli}}</div>
+            <div class="col-lg-2"><h4>{{ 'application.nom'|trans }}</h4>{{appli.nomAppli}}</div>
+            <div class="col-lg-4"><h4>{{ 'application.desc'|trans }}</h4>{{appli.descAppli}}</div>
             <div class="col-lg-2"><h4>{{ 'application.cpi'|trans }}</h4>
                 {% if appli.cpi %}
                 {{appli.cpi.nomUtil}}
                 {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <h4>{{ 'application.service'|trans }}</h4>
+                <a href="{{ path('evpos_ficheService', { 'codeService' : appli.serviceAppli.codeService }) }}">
+                    {{ appli.serviceAppli.codeService }} : {{ appli.serviceAppli.libService }}
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <h4>{{ 'application.secteur'|trans }}</h4>
+                
+            </div>
+            <div class="col-lg-4">
+                <h4>{{ 'application.dispoMoca'|trans }}</h4>
+                {{appli.dispoMocaLong}}
             </div>
         </div>
     </div>
@@ -41,6 +57,7 @@
                     <td class="row">{{ 'uo.migMoca'|trans }}</td>
                     <td class="row">{{ 'uo.avancementMigMoca'|trans}}</td>
                     <td class="row">{{ 'uo.nbUtil'|trans }}</td>
+                    <td class="row">{{ 'uo.typePoste'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +68,7 @@
                     <td>{{ uo.migMocaLong }}</td>
                     <td>{{ uo.avancementMoca }}</td>
                     <td class="">{{uo.listeAcces|length}}</td>
+                    <td>{{ uo.typePoste }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

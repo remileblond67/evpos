@@ -5,30 +5,33 @@
         <codeDirection>{{ direction.codeDirection }}</codeDirection>
         <libDirection>{{ direction.libDirection }}</libDirection>
         {% for service in direction.listeServices %}
-        <service>
-            <codeService>{{service.codeService}}</codeService>
-            <libService>{{service.libService}}</libService>
-            <utilisateurs>
-                {% for utilisateur in service.listeUtilisateurs %}
-                <utilisateur>
-                    <matUtil>{{utilisateur.matUtil }}</matUtil>
-                    <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
-                    <uos>
-                        {% for uo in utilisateur.listeAccesUo %}
-                        <uo>
-                            <codeAppli>{{ uo.uoAcces.appli.codeAppli }}</codeAppli>
-                            <nomAppli>{{ uo.uoAcces.appli.nomAppli }}</nomAppli>
-                            <natureAppli>{{ uo.uoAcces.appli.natAppli }}</natureAppli>
-                            <codeUo>{{ uo.uoAcces.codeUo }}</codeUo>
-                            <nomUo>{{ uo.uoAcces.nomUo }}</nomUo>
-                            <avancementMoca>{{ uo.uoAcces.avancementMoca }}</avancementMoca>
-                        </uo>
-                        {% endfor %}
-                    </uos>
-                </utilisateur>
-                {% endfor %}
-            </utilisateurs>
-        </service>
+            {% if service.codeService is not null and service.nbAgent > 0 %}
+            <service>
+                <codeService>{{service.codeService}}</codeService>
+                <libService>{{service.libService}}</libService>
+                <utilisateurs>
+                    {% for utilisateur in service.listeUtilisateurs %}
+                    <utilisateur>
+                        <matUtil>{{utilisateur.matUtil }}</matUtil>
+                        <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
+                        <uos>
+                            {% for uo in utilisateur.listeAccesUo %}
+                            <uo>
+                                <codeAppli>{{ uo.uoAcces.appli.codeAppli }}</codeAppli>
+                                <nomAppli>{{ uo.uoAcces.appli.nomAppli }}</nomAppli>
+                                <natureAppli>{{ uo.uoAcces.appli.natAppli }}</natureAppli>
+                                <codeUo>{{ uo.uoAcces.codeUo }}</codeUo>
+                                <nomUo>{{ uo.uoAcces.nomUo }}</nomUo>
+                                <avancementMoca>{{ uo.uoAcces.avancementMoca }}</avancementMoca>
+                                <typePoste>{{ uo.uoAcces.typePoste }}</typePoste>
+                            </uo>
+                            {% endfor %}
+                        </uos>
+                    </utilisateur>
+                    {% endfor %}
+                </utilisateurs>
+            </service>
+            {% endif %}
         {% endfor %}
     </direction>
     {% endfor %}

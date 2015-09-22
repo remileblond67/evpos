@@ -8,12 +8,16 @@
         <descAppli>{{appli.descAppli}}</descAppli>
         <dispoMoca>{{appli.dispoMocaLong}}</dispoMoca>
         <natAppli>{{appli.natAppli}}</natAppli>
-        <nbUtil>{{appli.listeAcces| length}}</nbUtil>
+        {% if appli.serviceAppli %}
+            <codeServiceAppli>{{ appli.serviceAppli.codeService }}</codeServiceAppli>
+            <libServiceAppli>{{ appli.serviceAppli.libService }}</libServiceAppli>
+        {% endif %}
         <cpi>
             {% if appli.cpi %}
             {{appli.cpi.nomUtil}}
             {% endif %}
         </cpi>
+        <nbUtil>{{appli.listeAcces| length}}</nbUtil>
         <listeUo>
         {% for uo in appli.listeUo %}
             {% if uo.migMoca %}

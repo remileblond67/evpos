@@ -1,0 +1,14 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}
+{{'uo.updateAvancement'|trans}}
+{% endblock%}
+
+{% block content %}
+<h2>{{'uo.updateAvancement'|trans}}</h2>
+<div class="well">
+  <form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" />
+  </form>
+</div>
+{%endblock%}

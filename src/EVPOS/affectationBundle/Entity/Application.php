@@ -41,6 +41,14 @@ class Application
      * @ORM\Column(name="desc_appli", type="string", length=2000, nullable=true)
      */
     private $descAppli;
+    
+    /**
+     * Service en charge de l'application
+     *
+     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Service", inversedBy="listeAppliService" )
+     * @ORM\JoinColumn(name="service_appli", referencedColumnName="code_service")
+     */
+    private $serviceAppli;
 
     /**
      * @var boolean
@@ -58,7 +66,7 @@ class Application
     
     /**
      * CPI de l'application (premier CPI récupéré de SUAPP)
-     * Attention: si l'application comporte plusieurs CPI actifs, seul l'un d'eux
+     * Attention: si l'application comporte plusieurs CPI actifs, seul l'un d'eux est pris en compte
      *
      * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Utilisateur", inversedBy="listeAppliCpi" )
      * @ORM\JoinColumn(name="mat_cpi", referencedColumnName="mat_util")
@@ -377,5 +385,19 @@ class Application
     public function removeListeServiceAcce(\EVPOS\affectationBundle\Entity\AccesServiceAppli $listeServiceAcces)
     {
         $this->listeServiceAcces->removeElement($listeServiceAcces);
+    }
+    
+    /**
+     * Set serviceAppli
+     */
+    public function setServiceAppli($codeAppli) {
+        $this->serviceAppli = $codeAppli;
+    }
+    
+    /**
+     * Get serviceAppli
+     */
+    public function getServiceAppli() {
+        return $this->serviceAppli;
     }
 }

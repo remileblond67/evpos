@@ -65,7 +65,7 @@ class ServiceRepository extends EntityRepository
             ->getQuery()
         ;
 
-        return $query->getSingleResult();
+        return $query->getOneOrNullResult();
     }
 
     /**

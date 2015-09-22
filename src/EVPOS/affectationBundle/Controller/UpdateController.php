@@ -4,6 +4,7 @@ namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use EVPOS\affectationBundle\Entity\DataAvancement;
 
 class UpdateController extends Controller
 {
@@ -73,4 +74,30 @@ class UpdateController extends Controller
         
         return $this->redirect($this->generateUrl('evpos_indicateurs'));
     }
+	
+	/** 
+	 * Mise à jour de l'état d'intégration des UO
+	 */
+    
+	public function updateAvancementUoAction() {
+		$request = $this->get('request');
+		$data = new DataAvancement();
+        $formBuilder = $this->createFormBuilder($data);
+        $formBuilder->add('data', 'textarea');
+        $form = $formBuilder->getForm();
+        
+		return $this->render('EVPOSaffectationBundle:Application:update_avancement.html.twig', array(
+            'form' => $form->createView(),
+        ));
+	}
+    
+    /**
+     * Purge des données de la base
+     */
+    public function purgeBaseAction(Request $request) {
+        $request->getSession()->getFlashBag()->add('info', 'Base de données purgée des éléments non utilisés');
+        
+        return $this->redirect($this->generateUrl('evpos_indicateurs'));
+    }
+    
 }

@@ -40,7 +40,8 @@ class EVPOSUpdateSuapp {
          a.nom_appli nom,
          a.desc_appli description,
          a.nat_appli nature,
-         a.dispo_moca disponible
+         a.dispo_moca disponible,
+         a.code_service
           FROM   app_application a, app_module m
          WHERE   (date_cloture IS NULL OR date_cloture < '1/6/2015')
                  AND nat_appli IN ('AS', 'AI')
@@ -58,11 +59,18 @@ class EVPOSUpdateSuapp {
             $descAppli = utf8_encode($row["DESCRIPTION"]);
             $natAppli = $row['NATURE'];
             $dispoMoca = $row['DISPONIBLE'];
+            $codeService = strtoupper($row["CODE_SERVICE"]);
             
-            // Recherche de l'application dans la base
+            // Recherche du service
+            $serviceAppli = $em->getRepository('EVPOSaffectationBundle:Service')
+                ->getService($codeService)
+            ;
+            
+            // Recherche de l'application 
             $appliExistante = $em->getRepository('EVPOSaffectationBundle:Application')
                 ->isApplication($codeAppli)
             ;
+
             // L'application existe-elle dans la base ?
             if($appliExistante)
                 $newAppli = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeAppli);
@@ -74,6 +82,7 @@ class EVPOSUpdateSuapp {
             $newAppli->setDescAppli($descAppli);
             $newAppli->setNatAppli($natAppli);
             $newAppli->setDispoMoca($dispoMoca);
+            $newAppli->setServiceAppli($serviceAppli);
             
             $em->persist($newAppli);
             $nbAppli++;
@@ -91,8 +100,9 @@ class EVPOSUpdateSuapp {
      */
     public function importUoSuapp() {
         // Récupération de la liste des UO depuis SUAPP
-        $requeteSUAPP = "select id_module,code_appli,lib_module,translate(mig_moca, 'on', '10') mig_moca
-                         from app_module";
+        $requeteSUAPP = "select m.id_module,code_appli,lib_module,translate(mig_moca, 'on', '10') mig_moca, c.type_poste_client
+                         from app_module m LEFT OUTER JOIN app_contr_poste_client c
+                                           on (m.id_module = c.id_module and c.type_poste_client like 'MOCA%')";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
         oci_execute ($csr) ;
         
@@ -103,6 +113,7 @@ class EVPOSUpdateSuapp {
             $codeAppli = strtoupper($row["CODE_APPLI"]);
             $nomUo = utf8_encode($row["LIB_MODULE"]);
             $migMoca = $row["MIG_MOCA"];
+            $typePoste = $row["TYPE_POSTE_CLIENT"];
             
             // L'application existe-elle dans la base ?
             if($em->getRepository('EVPOSaffectationBundle:Application')->isApplication($codeAppli)) {
@@ -117,6 +128,7 @@ class EVPOSUpdateSuapp {
                 $newUo->setAppli($appli);
                 $newUo->setNomUo($nomUo);
                 $newUo->setMigMoca($migMoca);
+                $newUo->setTypePoste($typePoste);
                 
                 $em->persist($newUo);
                 $nbUo++;
@@ -143,7 +155,7 @@ class EVPOSUpdateSuapp {
         $em = $this->doctrine->getManager();
         $nb = 0;
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
-            $codeAppli = $row["CODE_APPLI"] ;
+            $codeAppli = strtoupper($row["CODE_APPLI"]) ;
             $matUtil = $row["MAT_UTIL"];
             
             // L'application et l'utilisateur existent-ils dans la base ?
@@ -163,3 +175,4 @@ class EVPOSUpdateSuapp {
         return $message;
     }
 }
+

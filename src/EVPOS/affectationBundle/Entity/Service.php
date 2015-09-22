@@ -51,9 +51,14 @@ class Service
 	 */
 	private $listeRiu;
 
-     /**
-      * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil")
-      */
+    /**
+     * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli")
+     */
+    private $listeAppliService;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil")
+     */
     private $listeUtilisateurs;
     
     /**
@@ -321,5 +326,38 @@ class Service
     public function getListeAccesUo()
     {
         return $this->listeAccesUo;
+    }
+
+    /**
+     * Add listeAppliService
+     *
+     * @param \EVPOS\affectationBundle\Entity\Application $listeAppliService
+     * @return Service
+     */
+    public function addListeAppliService(\EVPOS\affectationBundle\Entity\Application $listeAppliService)
+    {
+        $this->listeAppliService[] = $listeAppliService;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeAppliService
+     *
+     * @param \EVPOS\affectationBundle\Entity\Application $listeAppliService
+     */
+    public function removeListeAppliService(\EVPOS\affectationBundle\Entity\Application $listeAppliService)
+    {
+        $this->listeAppliService->removeElement($listeAppliService);
+    }
+
+    /**
+     * Get listeAppliService
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeAppliService()
+    {
+        return $this->listeAppliService;
     }
 }

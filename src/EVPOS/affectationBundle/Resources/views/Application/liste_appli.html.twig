@@ -17,6 +17,7 @@
             <td class="row sorting_asc" rowspan="2">{{ 'application.code'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.nom'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.nature'|trans }}</td>
+            <td class="row" rowspan="2">{{ 'application.service'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.listeUo'|trans }}</td>
              <td class="row" rowspan="2">{{ 'application.cpi'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.dispoMoca'|trans }}</td>
@@ -30,6 +31,13 @@
             <td class=""><a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.codeAppli }) }}">{{appli.codeAppli }}</a></td>
             <td class="">{{appli.nomAppli }}</td>
             <td class="">{{appli.natAppliLong }}</td>
+            <td class="">
+                {% if appli.serviceAppli %}
+                    <a href="{{ path('evpos_ficheService', { 'codeService' : appli.serviceAppli.codeService }) }}">
+                    {{appli.serviceAppli.libService}}
+                    </a>
+                {% endif %}
+            </td>
             <td>
                 <ul>
                     {% for uo in appli.listeUo %}

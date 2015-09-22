@@ -48,7 +48,7 @@
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ path('evpos_accueil') }}" alt="{{'app.home'|trans}}">
-                <img src="{{asset('bundles/evposaffectation/images/MOCA-hcolor50.png')}}" alt="{{ 'app.name'|trans }}"/>
+                <img height="30px" src="{{asset('bundles/evposaffectation/images/MOCA-hcolor50.png')}}" alt="{{ 'app.name'|trans }}"/>
             </a>
         </div>
         <div class="container">
@@ -64,6 +64,7 @@
                             <li><a href="{{path('evpos_updateDirServFromBAZA') }}">{{'baza.updateDS'|trans}}</a></li>
                             <li><a href="{{path('evpos_updateUtilFromBAZA') }}">{{'baza.updateUtil'|trans}}</a></li>
                             <li><a href="{{path('evpos_updateRiu') }}">{{'gap.updateRiu'|trans}}</a></li>
+                            <li><a href="{{path('evpos_purgeBase') }}">{{'application.purge'|trans}}</a>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{path('evpos_listeCPI') }}">{{'cpi.export'|trans}}</a></li>
                         </ul>
@@ -83,9 +84,7 @@
                             <li><a href="{{ path('evpos_importPoste') }}">{{ 'poste.import'|trans }}</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('evpos_updateFromSUAPP') }}">{{ 'suapp.update'|trans }}</a></li>
-                            <!--
-                            <li><a href="{{ path('evpos_updateFromShareCan') }}">{{ 'sharecan.update'|trans }}</a></li>
-                            -->
+                            <li><a href="{{ path('evpos_updateAvancement') }}">{{ 'sharecan.update'|trans }}</a></li>
                         </ul>
                     </li>
                     
