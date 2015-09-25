@@ -57,7 +57,7 @@
                     <td class="row">{{ 'uo.migMoca'|trans }}</td>
                     <td class="row">{{ 'uo.avancementMigMoca'|trans}}</td>
                     <td class="row">{{ 'uo.nbUtil'|trans }}</td>
-                    <td class="row">{{ 'uo.typePoste'|trans }}</td>
+                    <td class="row">{{ 'uo.nbPoste'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
@@ -65,10 +65,16 @@
                 <tr class="gradeA odd {% if uo.migMoca != true %}nonMoca{% endif %}">
                     <td class=""><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a></td>
                     <td class="">{{uo.nomUO}}</td>
-                    <td>{{ uo.migMocaLong }}</td>
+                    <td>
+                    {% if uo.migMoca %}
+                    <span class="ok glyphicon glyphicon-ok"></span> Oui
+                    {% else %}
+                    <span class="ko glyphicon glyphicon-remove"></span> Non
+                    {% endif %}
+                    </td>
                     <td>{{ uo.avancementMoca }}</td>
                     <td class="">{{uo.listeAcces|length}}</td>
-                    <td>{{ uo.typePoste }}</td>
+                    <td>{{ uo.listePostes|length }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -17,11 +17,15 @@ user:
     
 poste:
     liste: Liste des postes
-    type: Type de poste
+    categorie: Catégorie de poste
     codeMateriel: Code matériel
     hostname: Hostname
     listeUsage: Liste des postes utilisés
     import: Import des postes depuis GPARC (export CSV)
+    modele: Modèle de poste
+    statut: Statut
+    utilisateurs: Liste des utilisateurs
+    uo: Liste des UO locales
 
 applications:
     liste: Liste des applications à migrer
@@ -61,6 +65,7 @@ uo:
     avancementMigMoca: Avancement de la migration MOCA
     liste: Liste des UO
     nbUtil: Nombre d'utilisateurs
+    nbPoste: Nombre de postes
     listeUsage: Liste des UO utilisées
     usage: Usage de l'UO
     typePoste: Type de poste

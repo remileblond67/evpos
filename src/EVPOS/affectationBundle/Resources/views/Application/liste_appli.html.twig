@@ -52,7 +52,14 @@
                     {{appli.cpi.nomUtil}}
                 {% endif %}
             </td>
-            <td>{{appli.dispoMocaLong}}</td>
+            <td>
+                {% if appli.dispoMoca %}
+                    <span class="ok glyphicon glyphicon-ok"></span>
+                    {% else %}
+                    <span class="ko glyphicon glyphicon-remove"></span> 
+                {% endif %}
+                {{appli.dispoMocaLong}}
+            </td>
             <td>{{appli.nbAcces}}</td>
         </tr>
         {% endfor %}

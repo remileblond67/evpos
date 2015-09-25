@@ -67,6 +67,11 @@ class UO
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="uoAcces")
      */
     private $listeServiceAcces;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUo")
+     */
+    private $listePostes;
 
     /**
      * Set codeUo
@@ -270,5 +275,38 @@ class UO
     
     public function getTypePoste() {
         return $this->typePoste;
+    }
+
+    /**
+     * Add listePostes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Poste $listePostes
+     * @return UO
+     */
+    public function addListePoste(\EVPOS\affectationBundle\Entity\Poste $listePostes)
+    {
+        $this->listePostes[] = $listePostes;
+
+        return $this;
+    }
+
+    /**
+     * Remove listePostes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Poste $listePostes
+     */
+    public function removeListePoste(\EVPOS\affectationBundle\Entity\Poste $listePostes)
+    {
+        $this->listePostes->removeElement($listePostes);
+    }
+
+    /**
+     * Get listePostes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListePostes()
+    {
+        return $this->listePostes;
     }
 }

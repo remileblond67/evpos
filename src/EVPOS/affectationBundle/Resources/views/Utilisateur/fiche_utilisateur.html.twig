@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div class="panel panel-group" id="accordionAppli" role="tablist" aria-multiselectable="true">
+<div class="panel panel-group panel-default" id="accordionAppli" role="tablist" aria-multiselectable="true">
     <div class="panel-heading">
         <h3 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordionAppli" href="#collapseAppli" aria-expanded="true" aria-controls="collapseOne">
@@ -46,14 +46,9 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                     <tr>
-                        <td class="row" rowspan="2">{{ 'application.code'|trans }}</td>
-                        <td class="row" rowspan="2">{{ 'application.nom'|trans }}</td>
-                        <td class="row" colspan="3">{{ 'application.usage'|trans }}</td>
-                    </tr>
-                    <tr>
-                        <td class="row">{{ 'application.accès'|trans }}</td>
-                        <td class="row">{{ 'application.utilisation'|trans }}</td>
-                        <td class="row">{{ 'application.validation'|trans }}</td>
+                        <td class="row">{{ 'application.code'|trans }}</td>
+                        <td class="row">{{ 'application.nom'|trans }}</td>
+                        <td class="row">{{ 'app.source'|trans }}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,8 +61,6 @@
                         </td>
                         <td class="gradeA odd">{{ acces.appliAcces.nomAppli }}</td>
                         <td class="gradeA odd">{{ acces.sourceImport }}</td>
-                        <td class="gradeA odd"></td>
-                        <td class="gradeA odd"></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -76,7 +69,7 @@
     </div>
 </div>
 
-<div class="panel panel-group" id="accordionUo" role="tablist" aria-multiselectable="true">
+<div class="panel panel-group panel-default" id="accordionUo" role="tablist" aria-multiselectable="true">
     <div class="panel-heading">
         <h3 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordionUo" href="#collapseUo" aria-expanded="true" aria-controls="collapseOne">
@@ -118,21 +111,49 @@
 
 
 
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">{{ 'poste.listeUsage'|trans }}</h3>
     </div>
     <div class="panel-body">
+    <table class="table table-striped table-bordered table-hover dataTable no-footer">
+        <thead>
+            <tr>
+                <td class="row">{{ 'poste.codeMateriel'|trans }}</td>
+                <td class="row">{{ 'poste.hostname'|trans }}</td>
+                <td class="row">{{ 'poste.categorie'|trans }}</td>
+                <td class="row">{{ 'poste.modele'|trans }}</td>
+                <td class="row">{{ 'poste.statut'|trans }}</td>
+                <td class="row">{{ 'poste.uo'|trans }}</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for poste in util.listePostes %}
+            <tr class="gradeA odd">
+                <td class="">{{poste.codeMateriel }}</a></td>
+                <td class="">{{poste.hostname }}</a></td>
+                <td class="">{{poste.categorieCourt }}</td>
+                <td class="">{{poste.modele }}</td>
+                <td class="">{{poste.statut }}</td>
+                <td>
+                    <ul>
+                    {% for uo in poste.listeUo %}
+                        <li>
+                            <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
+                            {{ uo.appli.codeAppli }}
+                            </a>
+                            : 
+                            <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
+                            {{ uo.codeUo }}
+                            </a>- {{ uo.nomUo }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
 
-    </div>
-</div>
-
-<div class="panel">
-    <div class="panel-heading">
-        <h3 class="panel-title">{{ 'imprimante.listeUsage'|trans }}</h3>
-    </div>
-    <div class="panel-body">
-
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     </div>
 </div>
 {%endblock%}

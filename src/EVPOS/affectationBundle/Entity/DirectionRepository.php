@@ -1,7 +1,6 @@
 <?php
 
 namespace EVPOS\affectationBundle\Entity;
-
 use Doctrine\ORM\EntityRepository;
 
 /**

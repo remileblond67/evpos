@@ -19,7 +19,7 @@ class UtilisateurController extends Controller
         if ($page < 1) 
             $page = 1;
             
-        $nbParPage = 100;
+        $nbParPage = 1000;
         
         $listeUtil = $this->getDoctrine()
             ->getManager()

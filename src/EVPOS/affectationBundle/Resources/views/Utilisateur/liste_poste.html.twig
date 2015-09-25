@@ -8,17 +8,55 @@
         <tr>
             <td class="row">{{ 'poste.codeMateriel'|trans }}</td>
             <td class="row">{{ 'poste.hostname'|trans }}</td>
-            <td class="row">{{ 'poste.type'|trans }}</td>
+            <td class="row">{{ 'poste.categorie'|trans }}</td>
+            <td class="row">{{ 'poste.modele'|trans }}</td>
+            <td class="row">{{ 'poste.statut'|trans }}</td>
+            <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
+            <td class="row">{{ 'poste.uo'|trans }}</td>
         </tr>
     </thead>
     <tbody>
         {% for poste in listePoste %}
         <tr class="gradeA odd">
-            <td class="">{{util.codeMateriel }}</a></td>
-            <td class="">{{util.hostname }}</a></td>
-            <td class="">{{util.type }}</td>
+            <td class="">{{poste.codeMateriel }}</a></td>
+            <td class="">{{poste.hostname }}</a></td>
+            <td class="">{{poste.categorieCourt }}</td>
+            <td class="">{{poste.modele }}</td>
+            <td class="">{{poste.statut }}</td>
+            <td class="">
+            <ul>
+            {% for util in poste.listeUtilisateurs %}
+                <li>
+                    <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a> : {{util.nomUtil}}
+                </li>
+            {% endfor %}
+            </ul>
+            </td>
+            <td>
+            <ul>
+            {% for uo in poste.listeUo %}
+                <li>
+                    <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
+                    {{ uo.appli.codeAppli }}
+                    </a>
+                    : 
+                    <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
+                    {{ uo.codeUo }}
+                    </a>- {{ uo.nomUo }}</li>
+            {% endfor %}
+            </ul>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% if nbPages > 1 %}
+<nav>
+    <ul class="pagination">
+        {% for p in range(1, nbPages) %}
+        <li {% if p == page %}class="active"{% endif %}><a href="{{ path('evpos_listePoste', {'page': p}) }}">{{p}}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
 {%endblock%}

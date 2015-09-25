@@ -2,7 +2,7 @@
 
 namespace EVPOS\affectationBundle\Entity;
 
-use EVPOS\affectationBundle\Entity\Sercice;
+use EVPOS\affectationBundle\Entity\Service;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -54,6 +54,11 @@ class Utilisateur
      * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli")
      */
     private $listeAppliCpi;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUtilisateurs")
+     */
+    private $listePostes;
     
     /**
      * Retourne le nombre d'applications auquel l'utilisateur a accès
@@ -228,5 +233,38 @@ class Utilisateur
     public function getListeAccesUo()
     {
         return $this->listeAccesUo;
+    }
+
+    /**
+     * Add listePostes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Poste $listePostes
+     * @return Utilisateur
+     */
+    public function addListePoste(\EVPOS\affectationBundle\Entity\Poste $listePostes)
+    {
+        $this->listePostes[] = $listePostes;
+
+        return $this;
+    }
+
+    /**
+     * Remove listePostes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Poste $listePostes
+     */
+    public function removeListePoste(\EVPOS\affectationBundle\Entity\Poste $listePostes)
+    {
+        $this->listePostes->removeElement($listePostes);
+    }
+
+    /**
+     * Get listePostes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListePostes()
+    {
+        return $this->listePostes;
     }
 }

@@ -53,13 +53,15 @@
                             <td>
                                 {% for acces in service.listeAcces %}
                                     <p>
-                                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli' : acces.appliAcces.codeAppli }) }}"
-                                           title="{{ acces.appliAcces.nomAppli }}"
+                                        <span
                                             {% if acces.appliAcces.dispoMoca %}
                                                 class="ok glyphicon glyphicon-ok"
                                             {% else %}
                                                 class="ko glyphicon glyphicon-remove"
                                             {% endif %}
+                                        ></span>
+                                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli' : acces.appliAcces.codeAppli }) }}"
+                                           title="{{ acces.appliAcces.nomAppli }}"
                                         >
                                             {{ acces.appliAcces.codeAppli }}
                                         </a> - {{ acces.appliAcces.natAppli }}

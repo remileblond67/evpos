@@ -49,7 +49,7 @@ class ApplicationController extends Controller
         $uo = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:UO')
-            ->getUo($codeUo)
+            ->getUoFull($codeUo)
         ;
         
         if ($uo == NULL) {

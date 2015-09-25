@@ -3,6 +3,7 @@
 namespace EVPOS\affectationBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * PosteRepository
@@ -22,5 +23,37 @@ class PosteRepository extends EntityRepository {
 
         return $query->getResult();
     }
+    
+    /**
+     * Retourne la liste de tous les postes
+     */
+    public function getPostesPages($page, $nbParPage) {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.hostname')
+            ->getQuery()
+        ;
 
+        $query
+            ->setFirstResult(($page-1) * $nbParPage)
+            ->setMaxResults($nbParPage)
+        ;
+        
+        return new Paginator($query, true);
+    }    
+    
+    /**
+     * Retourne la liste de tous les postes et de leurs utilisateurs
+     */
+    public function getPostesUtil() {
+        $query = $this->createQueryBuilder('p')
+            ->leftJoin('p.listeUtilisateurs', 'u')
+            ->addSelect('u')
+            ->orderBy('p.hostname')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+    
+    
 }

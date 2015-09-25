@@ -36,6 +36,27 @@ class UORepository extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
+
+    /**
+     * Récupération d'une UO et de toutes ses informations à partir de son code
+     */
+    public function getUoFull($codeUo) {
+        $query = $this->createQueryBuilder('uo')
+            ->setParameter('code', $codeUo)
+            ->leftJoin('uo.listeAcces', 'a')
+            ->addSelect('a')
+            ->leftJoin('a.utilAcces', 'ua')
+            ->addSelect('ua')
+            ->leftJoin('ua.serviceUtil', 's')
+            ->addSelect('s')
+            ->leftJoin('s.direction', 'd')
+            ->addSelect('d')
+            ->where('uo.codeUo = :code')
+            ->getQuery()
+        ;
+
+        return $query->getOneOrNullResult();
+    }
     
     /**
      * Teste si l'UO dont le code est passé en parametre existe
