@@ -92,7 +92,7 @@
                 </thead>
                 <tbody>
                     {% for acces in util.listeAccesUo %}
-                    <tr>
+                    <tr class="gradeA odd {% if acces.uoAcces.migMoca != true %}nonMoca{% endif %}">
                         <td class="gradeA odd">
                             <a href="{{ path('evpos_ficheUo', { 'codeUo': acces.uoAcces.codeUo }) }}">
                                 {{ acces.uoAcces.codeUo }}

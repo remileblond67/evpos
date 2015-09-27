@@ -135,4 +135,22 @@ class DirectionRepository extends EntityRepository
         
         return $query->getResult(); 
     }
+    
+    /**
+     * Liste des postes et de leurs utilisateurs par service / direction
+     */
+    public function getListeDirServicePosteUtil() {
+        $query = $this->createQueryBuilder('d')
+            ->addSelect('d')
+            ->leftJoin('d.listeServices', 's')
+            ->addSelect('s')
+            ->leftJoin('s.listePostes', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.listeUtilisateurs', 'u')
+            ->addSelect('u')
+            ->getQuery()
+        ;
+        
+        return $query->getResult();
+    }
 }

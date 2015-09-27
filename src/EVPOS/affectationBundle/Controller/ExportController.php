@@ -147,4 +147,15 @@ class ExportController extends Controller
         ;
         return $this->render('EVPOSaffectationBundle:Export:liste_service_util_uo.xml.twig', array('listeDirection' => $listeDirServiceUtilAppli));
     }
+    
+    /**
+     * Export XML des postes 
+     */
+    public function exportDirServicePosteUtilXmlAction() {
+        $listeDirection = $this->getDoctrine()->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDirServicePosteUtil()
+        ;
+        return $this->render('EVPOSaffectationBundle:Export:liste_dir_serv_poste_util.xml.twig', array('listeDirection' => $listeDirection));
+    }
 }

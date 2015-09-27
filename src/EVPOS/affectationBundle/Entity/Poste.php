@@ -57,7 +57,27 @@ class Poste
      *
      * @ORM\Column(name="statut", type="string", length=255, nullable=true)
      */
-    private $statut;    
+    private $statut; 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="text", nullable=true)
+     */
+    private $commentaire;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_usage", type="string", length=255, nullable=true)
+     */
+    private $typeUsage;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Service", inversedBy="listePostes")
+    * @ORM\JoinColumn(name="code_service", referencedColumnName="code_service", nullable=true)
+    */
+    private $service;    
     
     /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="listePostes")
@@ -306,5 +326,74 @@ class Poste
     public function getListeUo()
     {
         return $this->listeUo;
+    }
+
+    /**
+     * Set service
+     *
+     * @param \EVPOS\affectationBundle\Entity\Service $service
+     * @return Poste
+     */
+    public function setService(\EVPOS\affectationBundle\Entity\Service $service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return \EVPOS\affectationBundle\Entity\Service 
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Poste
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string 
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set typeUsage
+     *
+     * @param string $typeUsage
+     * @return Poste
+     */
+    public function setTypeUsage($typeUsage)
+    {
+        $this->typeUsage = $typeUsage;
+
+        return $this;
+    }
+
+    /**
+     * Get typeUsage
+     *
+     * @return string 
+     */
+    public function getTypeUsage()
+    {
+        return $this->typeUsage;
     }
 }

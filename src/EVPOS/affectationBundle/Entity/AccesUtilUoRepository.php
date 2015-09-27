@@ -12,5 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class AccesUtilUoRepository extends EntityRepository
 {
-
+	public function getAccesUtilUo($util, $uo) {
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->setParameter('Uo', $uo)
+			->setParameter('Utilisateur', $util)
+			->leftJoin('a.uoAcces', 'uo')
+			->leftJoin('a.utilAcces', 'u')
+            ->where('uo = :Uo and u = :Utilisateur')
+            ->getQuery()
+        ;
+        
+        return $query->getOneOrNullResult();
+    }
 }

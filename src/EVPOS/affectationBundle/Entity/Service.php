@@ -62,6 +62,10 @@ class Service
     private $listeUtilisateurs;
     
     /**
+     * @ORM\OneToMany(targetEntity="Poste", mappedBy="service")
+     */
+    private $listePostes;    
+    /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="serviceAcces")
      */
     private $listeAcces;
@@ -359,5 +363,38 @@ class Service
     public function getListeAppliService()
     {
         return $this->listeAppliService;
+    }
+
+    /**
+     * Add listePostes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Poste $listePostes
+     * @return Service
+     */
+    public function addListePoste(\EVPOS\affectationBundle\Entity\Poste $listePostes)
+    {
+        $this->listePostes[] = $listePostes;
+
+        return $this;
+    }
+
+    /**
+     * Remove listePostes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Poste $listePostes
+     */
+    public function removeListePoste(\EVPOS\affectationBundle\Entity\Poste $listePostes)
+    {
+        $this->listePostes->removeElement($listePostes);
+    }
+
+    /**
+     * Get listePostes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListePostes()
+    {
+        return $this->listePostes;
     }
 }

@@ -55,5 +55,19 @@ class PosteRepository extends EntityRepository {
         return $query->getResult();
     }
     
-    
+    /**
+     * Retourne la liste des postes de postes sur lesquels sont installées des applications
+     */
+    public function getPosteUtilisateursAppli() {
+        $query = $this->createQueryBuilder('p')
+            ->leftJoin('p.listeUtilisateurs', 'u')
+            ->addSelect('u')
+            ->leftJoin('p.listeUo', 'uo')
+            ->addSelect('uo')
+            ->where('uo is not null and u is not null')
+            ->getQuery()
+        ;
+        
+        return $query->getResult();
+    }
 }

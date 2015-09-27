@@ -21,6 +21,8 @@ class ReportServiceCommand extends ContainerAwareCommand
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) {
+        ini_set('memory_limit', -1);
+        
         $em = $this->getContainer()->get('doctrine')->getManager();
         
         $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
@@ -54,6 +56,7 @@ class ReportServiceCommand extends ContainerAwareCommand
                 }
             }
             $listeAppli = array_unique($listeAppli);
+            unset($listeUtilisateurs);
 
             foreach ($listeAppli as $codeAppli) {
                 $newAcces = new AccesServiceAppli();
@@ -66,9 +69,12 @@ class ReportServiceCommand extends ContainerAwareCommand
 
                 $em->persist($newAcces);
             }
+            unset($listeAppli);
             
             $em->flush();
         }
+        unset($listeServices);
+        
         $output->writeln("Fin d'import");
         $em->flush();
         $output->writeln("Import validé");
