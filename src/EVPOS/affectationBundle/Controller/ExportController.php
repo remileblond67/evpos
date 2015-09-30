@@ -48,7 +48,7 @@ class ExportController extends Controller
     }
     
     /**
-     * Liste de toutes mes applications et UO au format XML, pour exploitation dans Excel
+     * Liste de toutes les applications et UO au format XML, pour exploitation dans Excel
      */
     public function listeAppliUoAllXmlAction()
     {
@@ -152,6 +152,7 @@ class ExportController extends Controller
      * Export XML des postes 
      */
     public function exportDirServicePosteUtilXmlAction() {
+        ini_set('memory_limit', -1);
         $listeDirection = $this->getDoctrine()->getManager()
             ->getRepository('EVPOSaffectationBundle:Direction')
             ->getListeDirServicePosteUtil()

@@ -13,6 +13,7 @@
                 <utilisateur>
                     <matUtil>{{utilisateur.matUtil }}</matUtil>
                     <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
+                    <lastLogin>{{ utilisateur.lastLogin|date("d/m/Y") }}</lastLogin>
                 </utilisateur>
                 {% endfor %}
             </utilisateurs>

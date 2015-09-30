@@ -43,7 +43,7 @@ class DirectionRepository extends EntityRepository
         $query = $this->createQueryBuilder('d')
             ->leftJoin('d.listeServices', 's')
             ->addSelect('s')
-            ->orderBy('d.codeDirection')
+            ->orderBy('d.codeDirection, s.codeService')
             ->where('d.codeDirection is not null')
             ->getQuery()
         ;

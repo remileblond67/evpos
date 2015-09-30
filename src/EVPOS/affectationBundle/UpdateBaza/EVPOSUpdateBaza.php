@@ -5,6 +5,9 @@ use EVPOS\affectationBundle\Entity\Direction;
 use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\Utilisateur;
 
+use Symfony\Component\Validator\Constraints\DateTime;
+
+
 class EVPOSUpdateBaza {
     
     private $doctrine, $ORA;
@@ -106,7 +109,7 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des utilisateurs à partir de BAZA
      */
     public function importUtilisateurs() {
-        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
+        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
@@ -117,6 +120,7 @@ class EVPOSUpdateBaza {
             $matUtil = $row["MATRICULE"];
             $nomUtil = utf8_encode($row["NOM"]);
             $codeService = strtoupper(utf8_encode($row["CODE_SERVICE"]));
+            $lastLogin = $row["NTULASTLGN"];
             
             if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil))
                 $newUtilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
@@ -128,6 +132,9 @@ class EVPOSUpdateBaza {
                 
             $newUtilisateur->setMatUtil($matUtil);
             $newUtilisateur->setNomUtil($nomUtil);
+            if ($lastLogin != null) {
+                $newUtilisateur->setLastLogin(new \DateTime($lastLogin));
+            }
             
             $em->persist($newUtilisateur);
             

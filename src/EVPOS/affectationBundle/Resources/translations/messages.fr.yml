@@ -44,6 +44,7 @@ application:
     desc: Description de l'application
     nature: Nature de l'application
     listeUo: Liste des UO
+    listeUoMig: Liste des UO à migrer
     dispoMoca: Disponible dans MOCA ?
     aMigrer: A migrer dans MOCA
     utils: Utilisateurs de l'application
@@ -70,6 +71,7 @@ uo:
     usage: Usage de l'UO
     typePoste: Type de poste
     updateAvancement: Mise à jour de l'avancement des FIA
+    openFia: Ouvrir la FIA
 
 service:
     code: Code du service
@@ -95,9 +97,13 @@ utilisateur:
     nbAcces: Nombre d'applications
     listeAccesAppli: Liste des accès utilisateur aux applications
     listeAccesUo: Liste des accès utilisateurs aux UO
+    lastLogin: Date de dernière connexion
 
 poste:
     listeUsage: Liste des postes utilisés
+    hostname: Hostname
+    categorie: Catégorie
+    
 
 imprimante:
     listeUsage: Liste des imprimantes utilisées

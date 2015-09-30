@@ -26,7 +26,7 @@ class UO
     /**
      * @var string
      *
-     * @ORM\Column(name="code_uo", type="string", length=10, nullable=false)
+     * @ORM\Column(name="code_uo", type="string", length=12, nullable=false)
      * @ORM\Id
      */
     private $codeUo;
@@ -202,6 +202,45 @@ class UO
     {
         return $this->avancementMoca;
     }
+    
+    /**
+     * Get avancementMocaIcon
+     *
+     * @return boolean
+     */
+    public function getAvancementMocaIcon()
+    {
+        switch ($this->avancementMoca) {
+            case "3. Validé":
+                $icon = "glyphicon glyphicon-ok ok";
+                break;
+            case "2. En cours":
+                $icon = "glyphicon glyphicon-refresh";
+                break;
+            case "1. Pas initiée":
+                $icon = "glyphicon glyphicon-remove ko";
+                break;
+            default:
+                $icon = "glyphicon glyphicon-minus";
+        }
+        
+        return $icon;
+    }
+    
+    public function getEnCours() {
+        switch ($this->avancementMoca) {
+            case "3. Validé":
+                $enCours = true;
+                break;
+            case "2. En cours":
+                $enCours = true;
+                break;
+            default:
+                $enCours = false;
+        }
+        return $enCours;
+    }
+    
 
     /**
      * Add listeAcces
@@ -309,4 +348,12 @@ class UO
     {
         return $this->listePostes;
     }
+    
+    /**
+     * Retourne le lien vers la FIA de l'application
+     */
+    public function getLienFia() {
+        return "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx";
+    }
+     
 }

@@ -20,7 +20,7 @@ class Poste
     /**
      * @var string
      * @ORM\Id
-     * @ORM\Column(name="hostname", type="string", length=8, nullable=true)
+     * @ORM\Column(name="hostname", type="string", length=10, nullable=true)
      */
     private $hostname;
     

@@ -18,7 +18,7 @@
             <td class="row" rowspan="2">{{ 'application.nom'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.nature'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.service'|trans }}</td>
-            <td class="row" rowspan="2">{{ 'application.listeUo'|trans }}</td>
+            <td class="row" rowspan="2">{{ 'application.listeUoMig'|trans }}</td>
              <td class="row" rowspan="2">{{ 'application.cpi'|trans }}</td>
             <td class="row" rowspan="2">{{ 'application.dispoMoca'|trans }}</td>
             <td class="row" colspan="2">{{ 'application.nbUtil'|trans }}</td>
@@ -42,7 +42,13 @@
                 <ul>
                     {% for uo in appli.listeUo %}
                     <li {% if uo.migMoca != true %}class="nonMoca"{% endif %}>
+                        <span class="{{uo.avancementMocaIcon}}"></span>
                         <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}
+                        {% if uo.enCours %}
+                        <a href="{{uo.lienFia}}" title="{{'uo.openFia'|trans}}">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </a>
+                        {% endif %}
                     </li>
                     {% endfor %}
                 </ul>

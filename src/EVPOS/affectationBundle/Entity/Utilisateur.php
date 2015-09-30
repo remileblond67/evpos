@@ -32,13 +32,20 @@ class Utilisateur
      * @ORM\Column(name="nom_util", type="string", length=255)
      */
     private $nomUtil;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     */
+    private $lastLogin;
 
     /**
     * @ORM\ManyToOne(targetEntity="Service", inversedBy="listeUtilisateurs")
     * @ORM\JoinColumn(name="service_util", referencedColumnName="code_service", nullable=true)
     */
     private $serviceUtil;
-
+        
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="utilAcces")
      */
@@ -266,5 +273,28 @@ class Utilisateur
     public function getListePostes()
     {
         return $this->listePostes;
+    }
+
+    /**
+     * Set lastLogin
+     *
+     * @param \DateTime $lastLogin
+     * @return Utilisateur
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get lastLogin
+     *
+     * @return \DateTime 
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
     }
 }

@@ -26,17 +26,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <h4>{{ 'application.service'|trans }}</h4>
                 <a href="{{ path('evpos_ficheService', { 'codeService' : appli.serviceAppli.codeService }) }}">
                     {{ appli.serviceAppli.codeService }} : {{ appli.serviceAppli.libService }}
                 </a>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <h4>{{ 'application.secteur'|trans }}</h4>
                 
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <h4>{{ 'application.dispoMoca'|trans }}</h4>
                 {{appli.dispoMocaLong}}
             </div>
@@ -72,7 +72,15 @@
                     <span class="ko glyphicon glyphicon-remove"></span> Non
                     {% endif %}
                     </td>
-                    <td>{{ uo.avancementMoca }}</td>
+                    <td>
+                        <span class="{{uo.avancementMocaIcon}}"></span>
+                        {{ uo.avancementMoca }}
+                        {% if uo.enCours %}
+                        <a href="{{uo.lienFia}}" title="{{'uo.openFia'|trans}}">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </a>
+                        {% endif %}
+                    </td>
                     <td class="">{{uo.listeAcces|length}}</td>
                     <td>{{ uo.listePostes|length }}</td>
                 </tr>
@@ -92,9 +100,6 @@
                      <div class="badge">{{ appli.listeAcces| length  }}</div>
                     </a>
                     </h3>
-            </div>
-            <div class="col-lg-6">
-                <a class="btn btn-sm btn-default" href="">{{ 'nexthink.import'|trans }}</a>
             </div>
         </div> 
     </div>
