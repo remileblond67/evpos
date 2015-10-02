@@ -54,24 +54,15 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer">
             <thead>
                 <tr>
+                    <td class="row">{{ 'direction.nom'|trans }}</td>
+                    <td class="row">{{ 'service.nom'|trans }}</td>
                     <td class="row">{{ 'utilisateur.matricule'|trans }}</td>
                     <td class="row">{{ 'utilisateur.nom'|trans }}</td>
-                    <td class="row">{{ 'service.nom'|trans }}</td>
-                    <td class="row">{{ 'direction.nom'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
             {% for acces in uo.listeAcces %}
             <tr>
-                <td class="row"><a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a></td>
-                <td class="row">{{ acces.utilAcces.nomUtil }}</td>
-                <td class="row">
-                    {% if acces.utilAcces.serviceUtil %}
-                    <a href="{{ path('evpos_ficheService', { 'codeService' : acces.utilAcces.serviceUtil.codeService }) }}" alt="{{ 'service.nom'|trans }}">
-                        {{ acces.utilAcces.serviceUtil.codeService }} : {{ acces.utilAcces.serviceUtil.libService }}
-                    </a>
-                    {% endif %}
-                </td>
                 <td class="row">
                     {% if (acces.utilAcces.serviceUtil and acces.utilAcces.serviceUtil.direction) %}
                     <a href="{{path('evpos_ficheDirection', {'codeDirection': acces.utilAcces.serviceUtil.direction.codeDirection})}}">
@@ -79,6 +70,15 @@
                     </a>
                     {% endif %}
                 </td>
+                <td class="row">
+                    {% if acces.utilAcces.serviceUtil %}
+                    <a href="{{ path('evpos_ficheService', { 'codeService' : acces.utilAcces.serviceUtil.codeService }) }}" alt="{{ 'service.nom'|trans }}">
+                        {{ acces.utilAcces.serviceUtil.codeService }} : {{ acces.utilAcces.serviceUtil.libService }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="row"><a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a></td>
+                <td class="row">{{ acces.utilAcces.nomUtil }}</td>
             </tr>
             {% endfor %}
             </tbody>

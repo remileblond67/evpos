@@ -23,6 +23,19 @@ class PosteRepository extends EntityRepository {
 
         return $query->getResult();
     }
+
+    /**
+     * Retourne la liste de tous les postes non affectés à un service
+     */
+    public function getPostesSansService() {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.hostname')
+            ->where('p.service is null')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
     
     /**
      * Retourne la liste de tous les postes

@@ -132,9 +132,9 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                <thead>
                    <tr>
-                       <td class="row">Matricule</td>
-                       <td class="row">Nom</td>
-                       <td class="row">Ensemble cohérent</td>
+                       <td class="row">{{'utilisateur.matricule'|trans}}</td>
+                       <td class="row">{{'utilisateur.nom'|trans}}</td>
+                       <td class="row">{{'utilisateur.poste'|trans}}</td>
                    </tr>
                </thead>
                 <tbody>
@@ -142,7 +142,11 @@
                     <tr class="gradeA odd">
                         <td><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a></td>
                         <td>{{util.nomUtil}}</td>
-                        <td></td>
+                        <td>
+                        {% for poste in util.listePostes %}
+                        {{poste.hostname}}
+                        {% endfor %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -160,22 +164,30 @@
             </a>
         </h3>
     </div>
-    <div id="collapseUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+    <div id="collapsePoste" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                <thead>
                    <tr>
                        <td class="row">{{'poste.hostname'|trans}}</td>
+                       <td class="row">{{'poste.utilisateurs'|trans}}</td>
                        <td class="row">{{'poste.categorie'|trans}}</td>
                        <td class="row">{{'poste.localisation'|trans}}</td>
+                       <td class="row">{{'poste.commentaire'|trans}}</td>
                    </tr>
                </thead>
                 <tbody>
                    {% for poste in service.listePostes %}
                     <tr class="gradeA odd">
                         <td>{{poste.hostname}}</td>
+                        <td>
+                            {% for util in poste.listeUtilisateurs %}
+                            <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a> : {{util.nomUtil}}
+                            {% endfor %}
+                        </td>
                         <td>{{poste.categorie}}</td>
                         <td>{{poste.localisation}}</td>
+                        <td>{{poste.commentaire}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

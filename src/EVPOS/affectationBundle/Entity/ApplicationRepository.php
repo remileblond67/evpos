@@ -86,6 +86,7 @@ class ApplicationRepository extends EntityRepository
             ->addSelect('service')
             ->leftJoin('service.direction', 'dir')
             ->addSelect('dir')
+            ->orderBy('dir.codeDirection, service.codeService, util.matUtil')
             ->getQuery()
         ;
 

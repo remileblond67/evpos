@@ -52,6 +52,7 @@ class UORepository extends EntityRepository
             ->leftJoin('s.direction', 'd')
             ->addSelect('d')
             ->where('uo.codeUo = :code')
+	    ->orderBy('d.codeDirection, s.codeService, ua.nomUtil')
             ->getQuery()
         ;
 

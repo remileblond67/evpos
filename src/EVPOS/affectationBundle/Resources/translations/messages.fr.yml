@@ -26,6 +26,8 @@ poste:
     statut: Statut
     utilisateurs: Liste des utilisateurs
     uo: Liste des UO locales
+    localisation: Localisation
+    commentaire: Commentaire (GPARC)
 
 applications:
     liste: Liste des applications à migrer
@@ -98,6 +100,7 @@ utilisateur:
     listeAccesAppli: Liste des accès utilisateur aux applications
     listeAccesUo: Liste des accès utilisateurs aux UO
     lastLogin: Date de dernière connexion
+    poste: Poste de travail
 
 poste:
     listeUsage: Liste des postes utilisés
