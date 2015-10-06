@@ -8,6 +8,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 use EVPOS\affectationBundle\Entity\AccesUtilUo;
 
+/**
+ * Import des accès applicatifs à partir des bases GAP et BAZA 
+ * - GAP : accès aux applications
+ * - BAZA : accès aux UO
+ */
 class ImportGapCommand extends ContainerAwareCommand
 {   
     protected function configure() {
@@ -111,11 +116,7 @@ class ImportGapCommand extends ContainerAwareCommand
             $nbUtil = 0;
             
             $requeteBaza = "SELECT UNIQUE code_uo
-                              FROM   (SELECT   REGEXP_REPLACE (
-                                                  REGEXP_REPLACE (UPPER (ntmgname), '^GA_', ''),
-                                                  '_P$',
-                                                  ''
-                                               )
+                              FROM   (SELECT   REGEXP_REPLACE (REGEXP_REPLACE (UPPER (ntmgname), '^GA_', ''), '_P$','')
                                                   CODE_UO
                                         FROM   baz_member
                                        WHERE   UPPER (ntmgname) LIKE 'GA\_%\_P' ESCAPE '\'
@@ -129,7 +130,6 @@ class ImportGapCommand extends ContainerAwareCommand
                                                   code_uo
                                         FROM   baz_role_a_util
                                        WHERE   nom_util = :matricule)";
-            //$requeteBaza = "select REGEXP_REPLACE(REGEXP_REPLACE(upper(ntmgname), '^GA_', ''),'_P$','') CODE_UO from baz_member where upper(ntmgname) like 'GA\_%\_P' escape '\' and ntmuid=:matricule";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
 
             foreach ($listeUtil as $utilisateur) {

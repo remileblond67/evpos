@@ -65,6 +65,7 @@ class Poste
      * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
     private $commentaire;
+
     
     /**
      * @var string

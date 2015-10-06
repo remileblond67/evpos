@@ -38,9 +38,11 @@
             </div>
             <div class="col-lg-1">
                 <h4>FIA</h4>
+                {% if uo.enCours %}
                 <a href="{{uo.lienFia}}" title="{{'uo.openFia'|trans}}">
                     <span class="glyphicon glyphicon-file"></span>
                 </a>
+                {% endif %}
             </div>
         </div>
     </div>

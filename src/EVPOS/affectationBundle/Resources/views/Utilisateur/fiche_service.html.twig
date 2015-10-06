@@ -135,6 +135,7 @@
                        <td class="row">{{'utilisateur.matricule'|trans}}</td>
                        <td class="row">{{'utilisateur.nom'|trans}}</td>
                        <td class="row">{{'utilisateur.poste'|trans}}</td>
+                       <td class="row">{{'utilisateur.lastLogin'|trans}}</td>
                    </tr>
                </thead>
                 <tbody>
@@ -147,6 +148,7 @@
                         {{poste.hostname}}
                         {% endfor %}
                         </td>
+                        <td>{{util.lastLogin|date("d/m/Y") }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
