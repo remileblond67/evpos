@@ -16,6 +16,7 @@ class Utilisateur
 {
     public function __construct() {
         $this->listeAccesUo = new ArrayCollection() ;
+		$this->listeAcces = new ArrayCollection() ;
     }
 
     /**

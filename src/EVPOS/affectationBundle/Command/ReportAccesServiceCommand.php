@@ -10,12 +10,12 @@ use EVPOS\affectationBundle\Entity\AccesServiceAppli;
 use EVPOS\affectationBundle\Entity\AccesUtilUo;
 use EVPOS\affectationBundle\Entity\AccesServiceUo;
 
-class ReportServiceCommand extends ContainerAwareCommand
+class ReportAccesServiceCommand extends ContainerAwareCommand
 {   
     protected function configure() {
         parent::configure();
         $this
-            ->setName('evpos:report_service_appli')
+            ->setName('evpos:report_acces_service')
             ->setDescription('Report des accès appli et UO au niveau des services')
         ;
     }
@@ -31,7 +31,7 @@ class ReportServiceCommand extends ContainerAwareCommand
         $repAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesUtilUo');
         
         // Mise à jour des accès applicatifs de l'ensemble des services
-        $output->writeln("Report des accès sur les services");
+        $output->writeln("Report des accès appli et uo sur les services");
         
         $output->write("Suppression des accès appli de tous les services...");
         $listeAcces = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli')->getListeAccesServiceAppli();
@@ -55,8 +55,15 @@ class ReportServiceCommand extends ContainerAwareCommand
                 foreach ($util->getListeAcces() as $acces) {
                     $listeAppli[] = $acces->getAppliAcces()->getCodeAppli();
                 }
+				unset($util);
+				foreach ($util->getListeAccesUo() as $acces) {
+					$listeUo[] = $acces->getUoAcces()->getCodeUo();
+				}
+				unset($util);
             }
             $listeAppli = array_unique($listeAppli);
+			$listeUo = array_unique($listeUo);
+			
             unset($listeUtilisateurs);
 
             foreach ($listeAppli as $codeAppli) {
@@ -66,11 +73,23 @@ class ReportServiceCommand extends ContainerAwareCommand
                 
                 $newAcces->setServiceAcces($service);
                 $newAcces->setAppliAcces($appli);
-                $newAcces->setSourceImport("NEW");
+                $newAcces->setSourceImport("Report service appli");
 
                 $em->persist($newAcces);
             }
             unset($listeAppli);
+			
+			foreach ($listeUo as $codeUo) {
+				$newAcces = new AccesServiceUo();
+				
+				$uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($codeUo);
+				
+				$newAcces->setServiceAcces($service);
+                $newAcces->setUoAcces($appli);
+                $newAcces->setSourceImport("Report service UO");
+
+                $em->persist($newAcces);
+			}
             
             $em->flush();
         }
