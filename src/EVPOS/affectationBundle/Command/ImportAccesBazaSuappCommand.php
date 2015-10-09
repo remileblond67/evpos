@@ -42,7 +42,7 @@ class ImportAccesBazaSuappCommand extends ContainerAwareCommand
             
             $requeteBaza = "select distinct a.id_module code_uo, m.ntmuid mat_util
                             from app_role_appli a, baz_member m
-                            where a.code_env = 'PROD' and upper(a.code_role_appli) = upper(m.ntmgname)";
+                            where a.code_env = 'PROD' and upper(a.code_role_appli) = upper(m.ntmgname) order by code_uo";
             
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
             oci_execute ($csr) ;
@@ -68,12 +68,9 @@ class ImportAccesBazaSuappCommand extends ContainerAwareCommand
                         $nb++;
                         if ($nb%1000 == 0) {
                             $em->flush();
+                            $output->write($nb.' ');
                         }
-                        $output->write('.');
                     }
-                    $output->write('o');
-                } else {
-                    $output->write('o');
                 }
             }
             oci_free_statement($csr);
