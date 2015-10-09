@@ -60,21 +60,25 @@ class ImportAccesUoCommand extends ContainerAwareCommand
             $output->writeln("Import des accès aux UO à partir de BAZA");
             $nbUtil = 0;
             
-            $requeteBaza = "SELECT UNIQUE code_uo
-                              FROM   (SELECT   REGEXP_REPLACE (REGEXP_REPLACE (UPPER (ntmgname), '^GA_', ''), '_P$','')
-                                                  CODE_UO
-                                        FROM   baz_member
-                                       WHERE   UPPER (ntmgname) LIKE 'GA\_%\_P' ESCAPE '\'
-                                               AND ntmuid = :matricule
-                                      UNION
-                                      SELECT   UNIQUE
-                                               REGEXP_REPLACE (
-                                                  REGEXP_REPLACE (nom_role_util, '^._[^_]+_'),
-                                                  '_.*'
-                                               )
-                                                  code_uo
-                                        FROM   baz_role_a_util
-                                       WHERE   nom_util = :matricule)";
+            $requeteBaza = "SELECT distinct code_uo
+			  FROM (SELECT REGEXP_REPLACE (REGEXP_REPLACE (UPPER (ntmgname), '^GA_', ''), '_P$', '')
+							  CODE_UO
+					  FROM baz_member
+					 WHERE     UPPER (ntmgname) LIKE 'GA\_%\_P' ESCAPE '\'
+						   AND ntmuid = :matricule
+					UNION
+					SELECT REGEXP_REPLACE (REGEXP_REPLACE (nom_role_util, '^._[^_]+_'),
+										   '_.*')
+							  code_uo
+					  FROM baz_role_a_util
+					 WHERE nom_util = :matricule
+					UNION
+					SELECT a.id_module code_uo
+					  FROM app_role_appli a, baz_member m
+					 WHERE     a.code_env = 'PROD'
+						   AND UPPER (a.code_role_appli) = UPPER (m.ntmgname)
+						   AND upper(a.code_role_appli) not in ('GA_TSE')
+						   AND m.ntmuid = :matricule)";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
 
             foreach ($listeUtil as $utilisateur) {

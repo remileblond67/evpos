@@ -15,7 +15,7 @@ class ReportServiceCommand extends ContainerAwareCommand
     protected function configure() {
         parent::configure();
         $this
-            ->setName('evpos:report_service')
+            ->setName('evpos:report_service_appli')
             ->setDescription('Report des accès appli et UO au niveau des services')
         ;
     }
@@ -42,10 +42,11 @@ class ReportServiceCommand extends ContainerAwareCommand
         unset($listeAcces);
         $output->writeln("OK");        
         
-        $output->writeln("Mise à jour des accès service");
+        $output->writeln("Mise à jour des accès applicatifs au niveau des services");
         $listeServices = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
 
         foreach($listeServices as $service) {
+			$output->write('Service '.$service->getCodeService().' ');
             $listeUtilisateurs = $service->getListeUtilisateurs();
             // Liste pour mémoriser les applications déjà traitées
             $listeAppli = array();

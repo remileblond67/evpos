@@ -57,16 +57,15 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Annuaire <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('evpos_listeDirection') }}">{{'direction.liste'|trans}}</a></li>
-                            <li><a href="{{ path('evpos_listeService') }}">{{'service.liste'|trans}}</a></li>
-                            <li><a href="{{ path('evpos_listeUtil') }}">{{'utilisateur.liste'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_listeDirection') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'direction.liste'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_listeService') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'service.liste'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_listeUtil') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'utilisateur.liste'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{path('evpos_updateDirServFromBAZA') }}">{{'baza.updateDS'|trans}}</a></li>
-                            <li><a href="{{path('evpos_updateUtilFromBAZA') }}">{{'baza.updateUtil'|trans}}</a></li>
-                            <li><a href="{{path('evpos_updateRiu') }}">{{'gap.updateRiu'|trans}}</a></li>
-                            <li><a href="{{path('evpos_purgeBase') }}">{{'application.purge'|trans}}</a>
+                            <li><a href="{{path('evpos_updateDirServFromBAZA') }}"><span class="glyphicon glyphicon-refresh"></span> {{'baza.updateDS'|trans}}</a></li>
+                            <li><a href="{{path('evpos_updateUtilFromBAZA') }}"><span class="glyphicon glyphicon-refresh"></span> {{'baza.updateUtil'|trans}}</a></li>
+                            <li><a href="{{path('evpos_updateRiu') }}"><span class="glyphicon glyphicon-refresh"></span> {{'gap.updateRiu'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{path('evpos_listeCPI') }}">{{'cpi.export'|trans}}</a></li>
+                            <li><a href="{{path('evpos_listeCPI') }}"><span class="glyphicon glyphicon-export"></span> {{'cpi.export'|trans}}</a></li>
                         </ul>
                     </li>
                     
@@ -77,48 +76,44 @@
                                 {% render(controller('EVPOSaffectationBundle:Application:chercheAppli')) %}
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('evpos_listeAppli') }}">{{ 'applications.listeAppliUo'|trans }}</a></li>
-                            <li><a href="{{ path('evpos_listeServiceAppli') }}">{{ 'applications.listeAppliService'|trans }}</a></li>
-                            <li><a href="{{ path('evpos_listePoste') }}">{{ 'poste.liste'|trans }}</a></li>
+                            <li><a href="{{ path('evpos_listeAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliUo'|trans }}</a></li>
+                            <li><a href="{{ path('evpos_listeServiceAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliService'|trans }}</a></li>
+                            <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('evpos_importPoste') }}">{{ 'poste.import'|trans }}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('evpos_updateFromSUAPP') }}">{{ 'suapp.update'|trans }}</a></li>
-                            <li><a href="{{ path('evpos_updateAvancement') }}">{{ 'sharecan.update'|trans }}</a></li>
+
+                            <li><a href="{{ path('evpos_updateFromSUAPP') }}"><span class="glyphicon glyphicon-refresh"></span> {{ 'suapp.update'|trans }}</a></li>
                         </ul>
                     </li>
                     
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-							<li><a href="{{ path('evpos_exportAppliNexthink') }}">{{'nexthink.exportAppli'|trans}}</a></li>
-                            <li><a href="{{ path('evpos_exportUoNexthink') }}">{{'nexthink.exportUo'|trans}}</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Regroupements <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('evpos_listeEc') }}">Ensembles cohérents</a></li>
+							<li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
+                            <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
                         </ul>
                     </li>
                     
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">XML Excel <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a target="_blank" href="{{ path('evpos_exportService') }}">11. {{'service.liste'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportServiceUtil') }}">12. {{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportServiceRiu') }}">13. {{'riu.liste'|trans}}</a></li>
+                            <li>
+								<a target="_blank" href="{{ path('evpos_exportService') }}">
+									<span class="glyphicon glyphicon-export"></span>
+									11. {{'service.liste'|trans}}
+								</a>
+							</li>
+                            <li><a target="_blank" href="{{ path('evpos_exportServiceUtil') }}"><span class="glyphicon glyphicon-export"></span> 12. {{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_exportServiceRiu') }}"><span class="glyphicon glyphicon-export"></span> 13. {{'riu.liste'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeAppliXml') }}">21. {{'applications.liste'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeAppliUoXml') }}">22. {{'applications.listeAppliUo'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeAppliUoAllXml') }}">23. {{'applications.listeAppliUoAll'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_listeAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 21. {{'applications.liste'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_listeAppliUoXml') }}"><span class="glyphicon glyphicon-export"></span> 22. {{'applications.listeAppliUo'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_listeAppliUoAllXml') }}"><span class="glyphicon glyphicon-export"></span> 23. {{'applications.listeAppliUoAll'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}">31. {{'applications.listeAppliService'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}">32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}">33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 31. {{'applications.listeAppliService'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}"><span class="glyphicon glyphicon-export"></span> 33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}">41. {{'poste.liste'|trans}}</a></li>
+                            <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.liste'|trans}}</a></li>
                         </ul>
                     </li>
                     
