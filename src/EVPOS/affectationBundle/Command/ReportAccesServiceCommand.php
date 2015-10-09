@@ -33,13 +33,18 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
         // Mise à jour des accès applicatifs de l'ensemble des services
         $output->writeln("Report des accès appli et uo sur les services");
         
-        $output->write("Suppression des accès appli de tous les services...");
+        $output->write("Suppression des accès appli et UO de tous les services...");
         $listeAcces = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli')->getListeAccesServiceAppli();
         foreach($listeAcces as $acces) {
             $em->remove($acces);
         }
-        $em->flush();
+        
+		$listeAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesServiceUo')->getListeAccesServiceUo();
+        foreach($listeAccesUo as $acces) {
+            $em->remove($acces);
+        }
         unset($listeAcces);
+		$em->flush();
         $output->writeln("OK");        
         
         $output->writeln("Mise à jour des accès applicatifs au niveau des services");
@@ -55,11 +60,10 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
                 foreach ($util->getListeAcces() as $acces) {
                     $listeAppli[] = $acces->getAppliAcces()->getCodeAppli();
                 }
-				unset($util);
+				
 				foreach ($util->getListeAccesUo() as $acces) {
 					$listeUo[] = $acces->getUoAcces()->getCodeUo();
 				}
-				unset($util);
             }
             $listeAppli = array_unique($listeAppli);
 			$listeUo = array_unique($listeUo);
@@ -85,7 +89,7 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
 				$uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($codeUo);
 				
 				$newAcces->setServiceAcces($service);
-                $newAcces->setUoAcces($appli);
+                $newAcces->setUoAcces($uo);
                 $newAcces->setSourceImport("Report service UO");
 
                 $em->persist($newAcces);

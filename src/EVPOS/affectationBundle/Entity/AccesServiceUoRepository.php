@@ -12,5 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class AccesServiceUoRepository extends EntityRepository
 {
+    public function getListeAccesServiceUo() {
+        $query = $this->createQueryBuilder('a')
+            ->getQuery()
+        ;
 
+        return $query->getResult();
+    }
 }
