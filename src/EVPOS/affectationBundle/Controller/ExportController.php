@@ -148,6 +148,17 @@ class ExportController extends Controller
         return $this->render('EVPOSaffectationBundle:Export:liste_service_util_uo.xml.twig', array('listeDirection' => $listeDirServiceUtilAppli));
     }
     
+	/**
+     * Export d'un service, avec l'ensemble de ses utilisateurs et de leurs accès UO
+     */
+    public function exportServiceUtilUoXmlServiceAction($codeService) {
+        $listeDirServiceUtilAppli = $this->getDoctrine()->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDir1ServiceUtilAppli($codeService)
+        ;
+        return $this->render('EVPOSaffectationBundle:Export:liste_service_util_uo.xml.twig', array('listeDirection' => $listeDirServiceUtilAppli));
+    }
+	
     /**
      * Export XML des postes 
      */

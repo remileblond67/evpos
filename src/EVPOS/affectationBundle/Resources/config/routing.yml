@@ -141,6 +141,10 @@ evpos_exportDirServUtilAppliXml:
 evpos_exportDirServUtilUoXml:  
     path:  /direction_service_util_uo_xml  
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXml }
+
+evpos_exportDirServUtilUoXml_service:  
+    path:  /direction_service_util_uo_xml/{codeService}
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXmlService }
     
 evpos_updateAvancement:
     path: /update_avancement
