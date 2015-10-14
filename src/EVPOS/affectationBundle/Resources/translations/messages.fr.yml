@@ -82,6 +82,7 @@ service:
     liste: Liste des services
     nbAgent: Nombre d'agents
     nbAcces: Nombre d'applications utilisées
+    nbAccesUo: Nombre d'UO utilisées
     
 riu:
     nom: Nom RIU

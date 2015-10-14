@@ -88,6 +88,13 @@ class Service
     public function getNbAcces() {
         return $this->listeAcces->count();
     }
+	
+	/**
+     * Retourne le nombre d'accès UO affectés au service
+     */
+    public function getNbAccesUo() {
+        return $this->listeAccesUo->count();
+    }
     
     /**
      * Set codeService

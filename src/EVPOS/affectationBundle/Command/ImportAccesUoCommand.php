@@ -77,7 +77,7 @@ class ImportAccesUoCommand extends ContainerAwareCommand
 					  FROM app_role_appli a, baz_member m
 					 WHERE     a.code_env = 'PROD'
 						   AND UPPER (a.code_role_appli) = UPPER (m.ntmgname)
-						   AND upper(a.code_role_appli) not in ('GA_TSE')
+						   AND upper(a.code_role_appli) not in ('GA_TSE', 'GA_ACINT_PROFIL1')
 						   AND m.ntmuid = :matricule)";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
 

@@ -55,6 +55,7 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
             $listeUtilisateurs = $service->getListeUtilisateurs();
             // Liste pour mémoriser les applications déjà traitées
             $listeAppli = array();
+			$listeUo = array();
 
             foreach ($listeUtilisateurs as $util) {
                 foreach ($util->getListeAcces() as $acces) {
@@ -94,6 +95,7 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
 
                 $em->persist($newAcces);
 			}
+			unset($listeUo);
             
             $em->flush();
         }
