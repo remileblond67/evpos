@@ -8,7 +8,26 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PosteController extends Controller
 {
-    /**
+	/**
+	 * Affichage de la fiche d'un poste
+	 */
+	public function fichePosteAction($hostname) {
+		$poste = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+			->getPoste($hostname)
+		;
+		
+		if ($poste == NULL) {
+            $this->get('request')->getSession()->getFlashBag()->add('erreur', utf8_encode("Impossible de trouver le poste ".$poste));
+            return $this->render('EVPOSaffectationBundle:Default:index.html.twig');
+        }
+        else {
+            return $this->render('EVPOSaffectationBundle:Application:fiche_poste.html.twig', array('poste' => $poste));
+        }
+	}
+	
+	/**
      * Liste des postes connus
      */
     public function listePosteAction(Request $request) {

@@ -50,6 +50,10 @@ evpos_listeDirection:
 evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
+
+evpos_fichePoste:
+    path: /poste/{hostname}
+    defaults: { _controller: EVPOSaffectationBundle:Poste:fichePoste }
     
 evpos_importPoste:
     path: /import_poste

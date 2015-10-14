@@ -29,6 +29,8 @@ poste:
     localisation: Localisation
     commentaire: Commentaire (GPARC)
     service: Service d'affectation
+    typeUsage: Type d'usage
+    infoGAP: Informations issues de GAP
 
 applications:
     liste: Liste des applications à migrer

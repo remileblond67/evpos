@@ -1,0 +1,82 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Poste {{poste.hostname}}{% endblock%}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <h2>
+            Poste {{poste.hostname}}
+        </h2>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{'poste.infoGAP'|trans}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-2">
+				<h4>{{'poste.codeMateriel'|trans}}</h4>
+				{{poste.codeMateriel}}
+			</div>
+            <div class="col-lg-4">
+				<h4>{{'poste.categorie'|trans}}</h4>
+				{{poste.categorie}}
+			</div>
+            <div class="col-lg-2">
+				<h4>{{'poste.statut'|trans}}</h4>
+				{{poste.statut}}
+			</div>
+            <div class="col-lg-2">
+				<h4>{{'poste.typeUsage'|trans}}</h4>
+				{{poste.typeUsage}}
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h4>{{'poste.service'|trans}}</h4>
+				{{poste.service.codeService}} : {{poste.service.libService}}
+			</div>
+            <div class="col-lg-4">
+				<h4>{{'poste.localisation'|trans}}</h4>
+				{{poste.localisation}}
+			</div>			
+			<div class="col-lg-4">
+				<h4>{{'poste.commentaire'|trans}}</h4>
+				{{poste.commentaire}}
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{'poste.utilisateurs'|trans}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+			<ul>
+			{% for util in poste.listeUtilisateurs %}
+			<li><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil }}</a> : {{util.nomUtil}}</li>
+			{% endfor %}
+			</ul>
+		</div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{'poste.uo'|trans}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+			<ul>
+				{% for uo in poste.listeUo %}
+				<li>{{uo.codeUo}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+    </div>
+</div>
+{% endblock %}

@@ -12,7 +12,21 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * repository methods below.
  */
 class PosteRepository extends EntityRepository {
-    /**
+    
+	/**
+	 * Retourne le poste correspondant au hostname passé en paramètre
+	 */
+	public function getPoste($hostname) {
+		$query = $this->createQueryBuilder('p')
+            ->setParameter('hostname', $hostname)
+            ->where('p.hostname = :hostname')
+            ->getQuery()
+        ;
+
+        return $query->getOneOrNullResult();	
+	}
+	
+	/**
      * Retourne la liste de tous les postes
      */
     public function getPostes() {
