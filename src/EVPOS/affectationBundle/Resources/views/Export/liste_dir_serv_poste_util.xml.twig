@@ -11,13 +11,30 @@
                     <libService>{{service.libService}}</libService>
                         <postes>
                             {% for poste in service.listePostes %}
-                            <utilisateurs>
+                            <poste>
+								<hostname>{{poste.hostname}}</hostname>
+								<codeMateriel>{{poste.codeMateriel}}</codeMateriel>
+								<categorie>{{poste.categorie}}</categorie>
+								<modele>{{poste.modele}}</modele>
+								<localisation>{{poste.localisation}}</localisation>
+								<statut>{{poste.statut}}</statut>
+								<commentaire>{{poste.commentaire}}</commentaire>
+								<typeUsage>{{poste.typeUsage}}</typeUsage>
+								<utilisateurs>
                                 {% for util in poste.listeUtilisateurs %}
                                     <utilisateur>
-                                        
+                                        <matUtil>{{util.matUtil}}</matUtil>
                                     </utilisateur>
                                 {% endfor %}
-                            </utilisateurs>
+								</utilisateurs>
+								<uoLocales>
+								{% for uo in poste.listeUo %}
+									<uo>
+										<codeUo>{{uo.codeUo}}</codeUo>
+									</uo>
+								{% endfor %}
+								</uoLocales>
+                            </poste>
                             {% endfor %}
                         </postes>
                 </service>

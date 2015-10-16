@@ -33,7 +33,10 @@
                 <h4>{{'riu.nom'|trans}}</h4>
                 <ul>
                 {% for riu in service.listeRiu %}
-                    <li>{{ riu.nomUtil }}</li>
+                    <li>
+						{{ riu.nomUtil }} 
+						(<a href="{{ path('evpos_ficheService', { 'codeService' : riu.serviceUtil.codeService }) }}" title="{{riu.serviceUtil.libService}}">{{riu.serviceUtil.codeService}}</a>)
+					</li>
                 {% endfor %}
                 </li>
             </div>
@@ -242,22 +245,23 @@
                        <td class="row">{{'poste.hostname'|trans}}</td>
                        <td class="row">{{'poste.utilisateurs'|trans}}</td>
                        <td class="row">{{'poste.categorie'|trans}}</td>
-                       <td class="row">{{'poste.localisation'|trans}}</td>
+					   <td class="row">{{'poste.modele'|trans}}</td>
 					   <td class="row">{{'poste.uo'|trans }}</td>
+					   <td class="row">{{'poste.localisation'|trans}}</td>
                        <td class="row">{{'poste.commentaire'|trans}}</td>
                    </tr>
                </thead>
                 <tbody>
                    {% for poste in service.listePostes %}
                     <tr class="gradeA odd">
-                        <td>{{poste.hostname}}</td>
+                        <td><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname}}</a></td>
                         <td>
                             {% for util in poste.listeUtilisateurs %}
                             <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a> : {{util.nomUtil}}
                             {% endfor %}
                         </td>
                         <td>{{poste.categorie}}</td>
-                        <td>{{poste.localisation}}</td>
+						<td>{{poste.modele}}</td>
 						<td>
 						{% for uo in poste.listeUo %}
 							<li class="{% if uo.migMoca != true %}nonMoca{% endif %}">
@@ -271,6 +275,7 @@
 								</a>- {{ uo.nomUo }}</li>
 						{% endfor %}
 						</td>
+                        <td>{{poste.localisation}}</td>
                         <td>{{poste.commentaire}}</td>
                     </tr>
                     {% endfor %}
