@@ -14,6 +14,7 @@
             <td class="row">{{ 'poste.service'|trans }}</td>
             <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
             <td class="row">{{ 'poste.uo'|trans }}</td>
+			<td class="row">{{ 'poste.commentaire'|trans }}</td>
         </tr>
     </thead>
     <tbody>
@@ -48,6 +49,7 @@
             {% endfor %}
             </ul>
             </td>
+			<td>{{ poste.commentaire }}</td>
         </tr>
         {% endfor %}
     </tbody>
