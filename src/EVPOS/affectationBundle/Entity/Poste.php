@@ -44,6 +44,13 @@ class Poste
      * @ORM\Column(name="modele", type="string", length=255, nullable=true)
      */
     private $modele;  
+	
+	/**
+     * @var boolean
+     *
+     * @ORM\Column(name="licence_w8", type="boolean", nullable=true)
+     */
+    private $licenceW8;
     
     /**
      * @var string
@@ -396,5 +403,28 @@ class Poste
     public function getTypeUsage()
     {
         return $this->typeUsage;
+    }
+
+    /**
+     * Set licenceW8
+     *
+     * @param boolean $licenceW8
+     * @return Poste
+     */
+    public function setLicenceW8($licenceW8)
+    {
+        $this->licenceW8 = $licenceW8;
+
+        return $this;
+    }
+
+    /**
+     * Get licenceW8
+     *
+     * @return boolean 
+     */
+    public function getLicenceW8()
+    {
+        return $this->licenceW8;
     }
 }

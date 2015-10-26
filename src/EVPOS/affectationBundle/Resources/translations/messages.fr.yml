@@ -31,6 +31,7 @@ poste:
     service: Service d'affectation
     typeUsage: Type d'usage
     infoGAP: Informations issues de GAP
+    licenceW8: Licence Windows 8
 
 applications:
     liste: Liste des applications à migrer

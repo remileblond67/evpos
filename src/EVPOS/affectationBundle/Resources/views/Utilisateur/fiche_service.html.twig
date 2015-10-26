@@ -246,6 +246,7 @@
                        <td class="row">{{'poste.utilisateurs'|trans}}</td>
                        <td class="row">{{'poste.categorie'|trans}}</td>
 					   <td class="row">{{'poste.modele'|trans}}</td>
+					   <td class="row">{{'poste.licenceW8'|trans}}</td>
 					   <td class="row">{{'poste.uo'|trans }}</td>
 					   <td class="row">{{'poste.localisation'|trans}}</td>
                        <td class="row">{{'poste.commentaire'|trans}}</td>
@@ -262,6 +263,7 @@
                         </td>
                         <td>{{poste.categorie}}</td>
 						<td>{{poste.modele}}</td>
+						<td>{% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}</td>
 						<td>
 						{% for uo in poste.listeUo %}
 							<li class="{% if uo.migMoca != true %}nonMoca{% endif %}">
