@@ -121,6 +121,7 @@
                         <td class="row">{{ 'poste.service'|trans }}</td>
                         <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
                         <td class="row">{{ 'poste.uo'|trans }}</td>
+                        <td class="row">{{ 'poste.licenceW8'|trans }}</td>
                         <td class="row">{{ 'poste.commentaire'|trans }}</td>
                     </tr>
                 </thead>
@@ -156,6 +157,7 @@
                         {% endfor %}
                         </ul>
                         </td>
+                        <td><span class="{{poste.licenceW8Icon}}"></span> {{ poste.licenceW8Long}}</td>
                         <td>{{ poste.commentaire }}</td>
                     </tr>
                     {% endfor %}

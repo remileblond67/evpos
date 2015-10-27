@@ -42,8 +42,10 @@
                 <ul>
                     {% for uo in appli.listeUo %}
                     <li {% if uo.migMoca != true %}class="nonMoca"{% endif %}>
-                        <span class="{{uo.avancementMocaIcon}}"></span>
-                        <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a> : {{ uo.nomUo }}
+                        <a title="{{uo.avancementMoca}}" href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
+                            <span class="{{uo.avancementMocaIcon}}"></span>
+                            {{uo.codeUO }}
+                        </a> : {{ uo.nomUo }}
                         {% if uo.enCours %}
                         <a href="{{uo.lienFia}}" title="{{'uo.openFia'|trans}}">
                             <span class="glyphicon glyphicon-file"></span>

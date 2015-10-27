@@ -9,6 +9,7 @@ app:
     update: Mise à jour
     source: Source de l'info
     add: Ajouter une nouvelle entrée
+    version: Version 0.5
 
 user:
     connect: Se connecter

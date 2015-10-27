@@ -438,4 +438,35 @@ class Poste
     {
         return $this->licenceW8;
     }
+    
+    public function getLicenceW8Long() {
+        switch ($this->licenceW8) {
+            case 1:
+                $retour = "Oui";
+                break;
+            case 0:
+                $retour = "Non";
+                break;
+            default:
+                $retour = "";
+        }
+        return $retour;
+    }
+   
+    public function getLicenceW8Icon()
+    {
+        switch ($this->licenceW8) {
+            case 1:
+                $icon = "glyphicon glyphicon-ok ok";
+                break;
+            case 0:
+                $icon = "glyphicon glyphicon-remove ko";
+                break;
+            default:
+                $icon = "glyphicon glyphicon-minus";
+        }
+       
+        return $icon;
+    }
+   
 }

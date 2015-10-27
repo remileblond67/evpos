@@ -30,9 +30,7 @@
 			</div>
 			<div class="col-lg-1">
 				<h4>{{'poste.licenceW8'|trans}}</h4>
-				{% if poste.licenceW8 %}
-					<span class="glyphicon glyphicon-ok ok"></span>
-				{% endif %}
+				<span class="{{poste.licenceW8Icon}}"></span> {{ poste.licenceW8Long}}
 			</div>
             <div class="col-lg-2">
 				<h4>{{'poste.typeUsage'|trans}}</h4>
