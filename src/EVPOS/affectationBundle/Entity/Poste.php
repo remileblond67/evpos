@@ -16,7 +16,9 @@ class Poste
 {
     public function __construct() {
         $this->listeUtilisateurs = new ArrayCollection();
+        $this->listeUo = new ArrayCollection();
     }
+    
     /**
      * @var string
      * @ORM\Id
@@ -334,6 +336,15 @@ class Poste
     public function getListeUo()
     {
         return $this->listeUo;
+    }
+    
+    /** 
+     * Supprime la liste des UO installées sur le poste
+     */
+    public function delListeUo() {
+        foreach ($this->listeUo as $uo) {
+            $this->listeUo->removeElement($uo);
+        }
     }
 
     /**

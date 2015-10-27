@@ -157,3 +157,16 @@ evpos_updateAvancement:
 evpos_purgeBase:
     path: /purge_base
     defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }
+
+# Pages de contrôle
+evpos_ctrl_poste_inconnu:
+    path: /ctrl_poste_inconnu
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listePosteInconnu }
+
+evpos_ctrl_uo_inconnue:
+    path: /ctrl_uo_inconnue
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUoInconnue }
+    
+evpos_ctrl_corresp_uo:
+    path: /ctrl_corresp_uo
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeCorrespUo }

@@ -24,9 +24,15 @@
 				<h4>{{'poste.categorie'|trans}}</h4>
 				{{poste.categorie}}
 			</div>
-            <div class="col-lg-2">
+            <div class="col-lg-1">
 				<h4>{{'poste.statut'|trans}}</h4>
 				{{poste.statut}}
+			</div>
+			<div class="col-lg-1">
+				<h4>{{'poste.licenceW8'|trans}}</h4>
+				{% if poste.licenceW8 %}
+					<span class="glyphicon glyphicon-ok ok"></span>
+				{% endif %}
 			</div>
             <div class="col-lg-2">
 				<h4>{{'poste.typeUsage'|trans}}</h4>

@@ -8,12 +8,18 @@ app:
     home: Retour à l'accueil
     update: Mise à jour
     source: Source de l'info
+    add: Ajouter une nouvelle entrée
 
 user:
     connect: Se connecter
     connected: connecté
     disconnected: Non connecté
     disconnect: Se déconnecter
+
+ctrl:
+    posteInconnu: Postes inconnus trouvés dans les fichiers de licence
+    uoInconnue: UO inconnues trouvées dans les fichiers de licence
+    nb: Nombre d'occurences
     
 poste:
     liste: Liste des postes
@@ -31,7 +37,7 @@ poste:
     service: Service d'affectation
     typeUsage: Type d'usage
     infoGAP: Informations issues de GAP
-    licenceW8: Licence Windows 8
+    licenceW8: Licence EOM Windows 8
 
 applications:
     liste: Liste des applications à migrer
@@ -54,6 +60,7 @@ application:
     dispoMoca: Disponible dans MOCA ?
     aMigrer: A migrer dans MOCA
     utils: Utilisateurs de l'application
+    postes: Postes sur lesquels l'application est installée
     usage: Usage de l'application
     accès: Accès à l'application
     utilisation: Utilisation de l'application
@@ -70,6 +77,8 @@ uo:
     nom: Nom de l'UO
     migMoca: À migrer dans MOCA ?
     avancementMigMoca: Avancement de la migration MOCA
+    utils: Utilisateurs de l'UO
+    postes: Postes sur lesquels l'UO est distribuée
     liste: Liste des UO
     nbUtil: Nombre d'utilisateurs
     nbPoste: Nombre de postes
@@ -78,6 +87,9 @@ uo:
     typePoste: Type de poste
     updateAvancement: Mise à jour de l'avancement des FIA
     openFia: Ouvrir la FIA
+    corresp: Correspondance des codes UO
+    codeOld: Ancien code
+    codeNew: Nouveau code
 
 service:
     code: Code du service
@@ -111,7 +123,6 @@ poste:
     listeUsage: Liste des postes utilisés
     hostname: Hostname
     categorie: Catégorie
-    
 
 imprimante:
     listeUsage: Liste des imprimantes utilisées
@@ -140,7 +151,6 @@ sharecan:
 xml:
     export: Exporter en XML
     import: Importer du XML
-    
-    
+      
 cpi:
     export: Export des CPI
