@@ -5,14 +5,8 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use EVPOS\affectationBundle\Entity\AccesUtilAppli;
-use EVPOS\affectationBundle\Entity\AccesUtilUo;
-use EVPOS\affectationBundle\Entity\Uo;
-use EVPOS\affectationBundle\Entity\Poste;
 use EVPOS\affectationBundle\Entity\PosteInconnu;
 use EVPOS\affectationBundle\Entity\UoInconnue;
-
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Import des accès applicatifs à partir de la base GAP 

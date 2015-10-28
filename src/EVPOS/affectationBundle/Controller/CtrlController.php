@@ -3,8 +3,6 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use EVPOS\affectationBundle\Entity\CorrespoUo;
-use Symfony\Component\HttpFoundation\Request;
 
 class CtrlController extends Controller
 {

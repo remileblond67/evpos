@@ -4,7 +4,6 @@ namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use EVPOS\affectationBundle\Entity\Application;
-use Symfony\Component\HttpFoundation\Request;
 
 class ApplicationController extends Controller
 {

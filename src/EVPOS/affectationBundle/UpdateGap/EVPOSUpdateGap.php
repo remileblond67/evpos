@@ -1,10 +1,7 @@
 <?php
 namespace EVPOS\affectationBundle\UpdateGap;
 
-use EVPOS\affectationBundle\Entity\Service;
-use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 use EVPOS\affectationBundle\Entity\AccesServiceAppli;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class EVPOSUpdateGap {
     

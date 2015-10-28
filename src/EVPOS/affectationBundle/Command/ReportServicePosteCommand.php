@@ -5,9 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use EVPOS\affectationBundle\Entity\Poste;
-use EVPOS\affectationBundle\Entity\Utilisateur;
-
 /**
  Affectation des postes non affectés au service de leur utilisateur principal 
  */
