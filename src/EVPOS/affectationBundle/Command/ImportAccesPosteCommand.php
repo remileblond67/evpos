@@ -67,8 +67,9 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
         }
         unset($listeCorresp);
         
-        $output->write("Lecture du fichier des accès...");
-        $fichierLicence = fopen("/home/evpos/dev/LocalInstall/extraction-courant.csv", "r");
+        $output->write("Lecture du fichier des accès... ");
+        $csvFile = __DIR__ . "/../../../../../LocalInstall/extraction-courant.csv";
+        $fichierLicence = fopen($csvFile, "r");
 		while($tab=fgetcsv($fichierLicence,1024,';')) {
             $champs = count($tab); 
 			//affichage de chaque champ de la ligne en question
