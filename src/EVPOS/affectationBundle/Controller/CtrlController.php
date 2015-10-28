@@ -31,5 +31,4 @@ class CtrlController extends Controller
         $listeCorresp = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:CorrespUo')->findAll();
 		return $this->render('EVPOSaffectationBundle:Ctrl:liste_corresp_uo.html.twig', array('listeCorresp' => $listeCorresp));
     }
-
 }

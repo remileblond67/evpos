@@ -13,4 +13,3 @@ services:
     evpos_affectation.update_gap:
         class: EVPOS\affectationBundle\UpdateGap\EVPOSUpdateGap
         arguments: [@doctrine]
-        

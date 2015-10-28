@@ -114,7 +114,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
                 }
                 
                 // Enregistrement de la correspondance
-                if ($uo !== null and $poste !== null) {
+                if ($uo !== null && $poste !== null) {
                     $poste->addListeUo($uo);
                     $em->persist($poste);
                 }
