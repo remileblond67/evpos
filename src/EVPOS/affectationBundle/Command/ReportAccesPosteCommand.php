@@ -31,7 +31,7 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
                 foreach ($poste->getListeUo() as $uo) {
 					$acces = $em->getRepository('EVPOSaffectationBundle:AccesUtilUo')->getAccesUtilUo($util, $uo);
 					
-                    if ($acces == null) {
+                    if ($acces === null) {
 						$acces = new AccesUtilUo();
 						$acces->setUtilAcces($util);
 						$acces->setUoAcces($uo);

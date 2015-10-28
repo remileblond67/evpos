@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use EVPOS\affectationBundle\Entity\Poste;
 
 /**
- * Import des postes à partir de GPARC
+ * Import des postes Ã  partir de GPARC
  */
 class ImportPosteCommand extends ContainerAwareCommand
 {   
@@ -21,11 +21,11 @@ class ImportPosteCommand extends ContainerAwareCommand
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) {
-		//pour se connecter en remplaçant par les bonnes valeurs, si tu ne les a pas je te les envoi dans un autre mail 
+		//pour se connecter en remplaÃ§ant par les bonnes valeurs, si tu ne les a pas je te les envoi dans un autre mail 
 		$bdd_gparc = mssql_connect( "pgparc", "" , "");
 
 		//place la requete ici
-		$req = "SELECT NETWORK_IDENTIFIER FROM EVO_DATA50004.[50004].AM_ASSET WHERE NETWORK_IDENTIFIER LIKE ‘HMIC%’ AND NETWORK_IDENTIFIER LIKE ‘HPOR%’ ";
+		$req = "SELECT NETWORK_IDENTIFIER FROM EVO_DATA50004.[50004].AM_ASSET WHERE NETWORK_IDENTIFIER LIKE â€˜HMIC%â€™ AND NETWORK_IDENTIFIER LIKE â€˜HPOR%â€™ ";
 
 		$parse = oci_parse($bdd_gparc, $req);
 		oci_execute($parse);

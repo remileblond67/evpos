@@ -13,7 +13,4 @@ services:
     evpos_affectation.update_gap:
         class: EVPOS\affectationBundle\UpdateGap\EVPOSUpdateGap
         arguments: [@doctrine]
-
-    evpos_affectation.update_sharecan:
-        class: EVPOS\affectationBundle\UpdateSharecan\EVPOSUpdateSharecan
-        arguments: [@doctrine]
+        

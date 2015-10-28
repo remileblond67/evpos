@@ -15,8 +15,8 @@ use EVPOS\affectationBundle\Entity\UoInconnue;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Import des accès applicatifs à partir de la base GAP 
- * - GAP : accès aux applications
+ * Import des accÃ¨s applicatifs Ã  partir de la base GAP 
+ * - GAP : accÃ¨s aux applications
  */
 class ImportAccesPosteCommand extends ContainerAwareCommand
 {   
@@ -24,7 +24,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
         parent::configure();
         $this
             ->setName('evpos:import_acces_poste')
-            ->setDescription('Import des applications distribuées sur les postes')
+            ->setDescription('Import des applications distribuÃ©es sur les postes')
         ;
     }
     
@@ -47,7 +47,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
 		unset($listeUoInconnue);
 		$output->writeln("OK");
         
-        $output->write("Suppression de la liste des UO liées aux postes...");
+        $output->write("Suppression de la liste des UO liÃ©es aux postes...");
 		$listePoste = $em->getRepository('EVPOSaffectationBundle:Poste')->findAll();
 		foreach ($listePoste as $tmpPoste) {
             $tmpPoste->delListeUo();
@@ -58,7 +58,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
 
 		$em->flush();
         
-        // Récupération des correspondances de code UO
+        // RÃ©cupÃ©ration des correspondances de code UO
         $output->writeln("Prise en compte des correspondances de code UO");
         $listeCorresp = $em->getRepository('EVPOSaffectationBundle:CorrespUo')->findAll();
         foreach($listeCorresp as $cor) {
@@ -67,7 +67,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
         }
         unset($listeCorresp);
         
-        $output->write("Lecture du fichier des accès...");
+        $output->write("Lecture du fichier des accÃ¨s...");
         $fichierLicence = fopen("/home/evpos/dev/LocalInstall/extraction-courant.csv", "r");
 		while($tab=fgetcsv($fichierLicence,1024,';')) {
             $champs = count($tab); 
@@ -87,14 +87,14 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
         }
         $output->writeln("OK");
 		
-        $output->write("Ecriture des accès dans la base...");
+        $output->write("Ecriture des accÃ¨s dans la base...");
         foreach(array_keys($accesPosteUo) as $hostname) {
             // Recherche poste
             $poste = $em->getRepository('EVPOSaffectationBundle:Poste')->getPoste($hostname);
             //$output->writeln("Poste : " . $hostname);
             
-            if ($poste == null) {
-                // Enregistrement du poste non trouvé
+            if ($poste === null) {
+                // Enregistrement du poste non trouvÃ©
                 $posteInconnu = new PosteInconnu();
                 $posteInconnu->setHostname($hostname);
                 $em->persist($posteInconnu);
@@ -106,7 +106,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
                 // Recherche Uo
                 $uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($codeUo);
                 //$output->writeln("- ".$codeUo);
-                if ($uo == null) {
+                if ($uo === null) {
                     // Enregistrement de l'UO inconnue
                     $uoInconnue = new UoInconnue();
                     $uoInconnue->setCodeUo($codeUo);
@@ -114,7 +114,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
                 }
                 
                 // Enregistrement de la correspondance
-                if ($uo != null and $poste != null) {
+                if ($uo !== null and $poste !== null) {
                     $poste->addListeUo($uo);
                     $em->persist($poste);
                 }

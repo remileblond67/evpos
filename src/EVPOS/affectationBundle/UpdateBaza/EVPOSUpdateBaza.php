@@ -132,7 +132,7 @@ class EVPOSUpdateBaza {
                 
             $newUtilisateur->setMatUtil($matUtil);
             $newUtilisateur->setNomUtil($nomUtil);
-            if ($lastLogin != null) {
+            if ($lastLogin !== null) {
                 $newUtilisateur->setLastLogin(new \DateTime($lastLogin));
             }
             
