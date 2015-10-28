@@ -80,6 +80,7 @@ uo:
     migMoca: À migrer dans MOCA ?
     avancementMigMoca: Avancement de la migration MOCA
     utils: Utilisateurs de l'UO
+    services: Services utilisateurs de l'UO
     postes: Postes sur lesquels l'UO est distribuée
     liste: Liste des UO
     nbUtil: Nombre d'utilisateurs
