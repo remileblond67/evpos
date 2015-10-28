@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "6deab6fe792674cb6623da93a97f36b0",
+    "content-hash": "8207ef872c5732dff6b96463590a142a",
     "packages": [
         {
             "name": "composer-fork/composer",
