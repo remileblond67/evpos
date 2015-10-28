@@ -27,27 +27,28 @@ poste:
     categorie: Catégorie de poste
     codeMateriel: Code matériel
     hostname: Hostname
-    listeUsage: Liste des postes utilisés
+    listeUsage: Postes utilisés
     import: Import des postes depuis GPARC (export CSV)
     modele: Modèle de poste
     statut: Statut
-    utilisateurs: Liste des utilisateurs
-    uo: Liste des UO locales
-    localisation: Localisation
+    utilisateurs: Utilisateurs du poste
+    uo: UO locales
+    localisation: Localisation du poste
     commentaire: Commentaire (GPARC)
     service: Service d'affectation
     typeUsage: Type d'usage
     infoGAP: Informations issues de GAP
     licenceW8: Licence EOM Windows 8
+    equipementLie: Equipements liés
 
 applications:
-    liste: Liste des applications à migrer
-    listeAll: Liste de TOUTES les applications
-    listeUsage: Liste des applications utilisées
+    liste: Applications à migrer
+    listeAll: TOUTES les applications
+    listeUsage: Applications utilisées
     patrimoine: Patrimoine applicatif
-    listeAppliUo: Liste des applications / UO à migrer
-    listeAppliUoAll: Liste de TOUTES les applications / UO
-    listeAppliService: Liste des applications des services/directions
+    listeAppliUo: Applications / UO à migrer
+    listeAppliUoAll: TOUTES les applications / UO
+    listeAppliService: Applications des services/directions
 
 patrimoine: Patrimoine
     
@@ -124,6 +125,11 @@ poste:
     listeUsage: Liste des postes utilisés
     hostname: Hostname
     categorie: Catégorie
+    
+equipement:
+    codeMateriel: Code matériel
+    categorie: Catégorie
+    modele: Modèle
 
 imprimante:
     listeUsage: Liste des imprimantes utilisées

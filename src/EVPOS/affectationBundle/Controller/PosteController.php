@@ -23,7 +23,7 @@ class PosteController extends Controller
             return $this->render('EVPOSaffectationBundle:Default:index.html.twig');
         }
         else {
-            return $this->render('EVPOSaffectationBundle:Application:fiche_poste.html.twig', array('poste' => $poste));
+            return $this->render('EVPOSaffectationBundle:Poste:fiche_poste.html.twig', array('poste' => $poste));
         }
 	}
 	
@@ -49,7 +49,7 @@ class PosteController extends Controller
         if ($nbPages != 0 && $page > $nbPages) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
-        return $this->render('EVPOSaffectationBundle:Utilisateur:liste_poste.html.twig',
+        return $this->render('EVPOSaffectationBundle:Poste:liste_poste.html.twig',
                              array('listePoste' => $listePoste,
                                    'nbPages' => $nbPages,
                                    'page' => $page));

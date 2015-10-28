@@ -17,6 +17,7 @@ class Poste
     public function __construct() {
         $this->listeUtilisateurs = new ArrayCollection();
         $this->listeUo = new ArrayCollection();
+        $this->listeEquipementLie = new ArrayCollection();
     }
     
     /**
@@ -106,6 +107,11 @@ class Poste
      * )
      */
     private $listeUo;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Equipement", mappedBy="poste")
+     */
+    private $listeEquipement;
     
     /**
      * Get id
@@ -469,4 +475,37 @@ class Poste
         return $icon;
     }
    
+
+    /**
+     * Add listeEquipement
+     *
+     * @param \EVPOS\affectationBundle\Entity\Equipement $listeEquipement
+     * @return Poste
+     */
+    public function addListeEquipement(\EVPOS\affectationBundle\Entity\Equipement $listeEquipement)
+    {
+        $this->listeEquipement[] = $listeEquipement;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeEquipement
+     *
+     * @param \EVPOS\affectationBundle\Entity\Equipement $listeEquipement
+     */
+    public function removeListeEquipement(\EVPOS\affectationBundle\Entity\Equipement $listeEquipement)
+    {
+        $this->listeEquipement->removeElement($listeEquipement);
+    }
+
+    /**
+     * Get listeEquipement
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeEquipement()
+    {
+        return $this->listeEquipement;
+    }
 }
