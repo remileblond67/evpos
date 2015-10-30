@@ -23,6 +23,7 @@ ctrl:
     nb: Nombre d'occurences
     
 poste:
+    titre: Postes
     liste: Liste des postes
     categorie: Catégorie de poste
     codeMateriel: Code matériel
@@ -50,9 +51,8 @@ applications:
     listeAppliUoAll: TOUTES les applications / UO
     listeAppliService: Applications des services/directions
 
-patrimoine: Patrimoine
-    
 application:
+    titre: Applications/UO
     code: Code de l'application
     nom: Nom de l'application
     desc: Description de l'application
@@ -123,6 +123,7 @@ utilisateur:
     poste: Poste de travail
 
 poste:
+    titre: Postes
     listeUsage: Liste des postes utilisés
     hostname: Hostname
     categorie: Catégorie

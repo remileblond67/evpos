@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Annuaire <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Organigramme <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('evpos_listeDirection') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'direction.liste'|trans}}</a></li>
                             <li><a href="{{ path('evpos_listeService') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'service.liste'|trans}}</a></li>
@@ -70,7 +70,7 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'patrimoine'|trans}} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'application.titre'|trans}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 {% render(controller('EVPOSaffectationBundle:Application:chercheAppli')) %}
@@ -78,13 +78,21 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('evpos_listeAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliUo'|trans }}</a></li>
                             <li><a href="{{ path('evpos_listeServiceAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliService'|trans }}</a></li>
-                            <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
                             <li role="separator" class="divider"></li>
 							 <li><a href="{{ path('evpos_ctrl_corresp_uo') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'uo.corresp'|trans }}</a></li>
 							<li role="separator" class="divider"></li>
 
                             <li><a href="{{ path('evpos_updateFromSUAPP') }}"><span class="glyphicon glyphicon-refresh"></span> {{ 'suapp.update'|trans }}</a></li>
                         </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">{{'poste.titre'|trans}} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
+                        </ul>
+                    </li>
+                    
                     </li>
                     
                     <li class="dropdown">

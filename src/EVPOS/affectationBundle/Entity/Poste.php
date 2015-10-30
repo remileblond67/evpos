@@ -5,6 +5,7 @@ namespace EVPOS\affectationBundle\Entity;
 use EVPOS\affectationBundle\Entity\Utilisateur;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Poste
@@ -310,6 +311,16 @@ class Poste
     {
         return $this->listeUtilisateurs;
     }
+    
+    /** 
+     * Supprime la liste des utilisateurs du poste
+     */
+    public function delListeUtilisateurs() {
+        foreach ($this->listeUtilisateurs as $util) {
+            $this->listeUtilisateurs->removeElement($util);
+        }
+    }
+
 
     /**
      * Add listeUo

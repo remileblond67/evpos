@@ -25,7 +25,9 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output) {
 		$em = $this->getContainer()->get('doctrine')->getManager();
 		
-		$output->write("Suppression de la liste des postes inconnus...");
+		// Suppression des données existantes
+        // ----------------------------------
+        $output->write("Suppression de la liste des postes inconnus...");
 		$listePosteInconnu = $em->getRepository('EVPOSaffectationBundle:PosteInconnu')->findAll();
 		foreach ($listePosteInconnu as $poste) {
 			$em->remove($poste);
@@ -51,6 +53,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
 		$output->writeln("OK");
 
 		$em->flush();
+        // Fin des suppressions
         
         // Récupération des correspondances de code UO
         $output->writeln("Prise en compte des correspondances de code UO");

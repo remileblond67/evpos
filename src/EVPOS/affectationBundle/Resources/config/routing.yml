@@ -37,15 +37,15 @@ evpos_ficheUtil:
 
 evpos_listeService:
     path:   /service
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeService }
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeService }
 
 evpos_ficheService:
     path: /service/{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:ficheService }
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheService }
 
 evpos_listeDirection:
     path: /direction
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeDirection }
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeDirection }
     
 evpos_listePoste:
     path: /poste
@@ -62,11 +62,11 @@ evpos_importPoste:
 
 evpos_ficheDirection:
     path: /direction/{codeDirection}
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:ficheDirection }
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheDirection }
 
 evpos_listeEc:
     path:   /ec
-    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeEc }
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeEc }
     
 evpos_listeCPI:
     path: /liste_cpi

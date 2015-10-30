@@ -263,7 +263,10 @@
                         </td>
                         <td>{{poste.categorie}}</td>
 						<td>{{poste.modele}}</td>
-						<td>{% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}</td>
+						<td>
+							{% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}
+							{{ poste.licenceW8Long }}
+						</td>
 						<td>
 						{% for uo in poste.listeUo %}
 							<li class="{% if uo.migMoca != true %}nonMoca{% endif %}">
