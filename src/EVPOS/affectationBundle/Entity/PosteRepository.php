@@ -97,4 +97,16 @@ class PosteRepository extends EntityRepository {
         
         return $query->getResult();
     }
+    
+    /**
+     * Retourne la liste des postes non trouvés dans GPARC
+     */
+    public function findNonGparc() {
+        $query = $this->createQueryBuilder('p')
+            ->where('p.existeGparc = FALSE')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
 }

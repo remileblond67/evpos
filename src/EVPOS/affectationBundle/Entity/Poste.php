@@ -115,6 +115,13 @@ class Poste
     private $listeEquipement;
     
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe_gparc", type="boolean", nullable=true)
+     */
+    private $existeGparc;
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -518,5 +525,28 @@ class Poste
     public function getListeEquipement()
     {
         return $this->listeEquipement;
+    }
+
+    /**
+     * Set existeGparc
+     *
+     * @param boolean $existeGparc
+     * @return Poste
+     */
+    public function setExisteGparc($existeGparc)
+    {
+        $this->existeGparc = $existeGparc;
+
+        return $this;
+    }
+
+    /**
+     * Get existeGparc
+     *
+     * @return boolean 
+     */
+    public function getExisteGparc()
+    {
+        return $this->existeGparc;
     }
 }
