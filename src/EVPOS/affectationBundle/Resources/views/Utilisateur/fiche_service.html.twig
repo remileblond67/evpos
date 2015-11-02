@@ -216,7 +216,7 @@
                         <td>{{util.nomUtil}}</td>
                         <td>
                         {% for poste in util.listePostes %}
-                        {{poste.hostname}}
+                        <a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname}}</a>
                         {% endfor %}
                         </td>
                         <td>{{util.lastLogin|date("d/m/Y") }}</td>

@@ -16,7 +16,7 @@ class ImportPosteCommand extends ContainerAwareCommand
         parent::configure();
         $this
             ->setName('evpos:import_poste')
-            ->setDescription('Import des postes depuis la base GPARC')
+            ->setDescription('Import des postes et de leurs équipements depuis la base GPARC')
         ;
     }
     
@@ -109,15 +109,31 @@ class ImportPosteCommand extends ContainerAwareCommand
         $output->writeln("OK");
         
         // Suppression des postes ne figurant pas dans la liste extraite de GPARC
-        $output->write("Suppression des postes inexistants... ");
+        $output->write("Suppression des postes non référencés dans GPARC... ");
         $listePoste = $em->getRepository('EVPOSaffectationBundle:Poste')->findNonGparc();
         foreach ($listePoste as $poste) {
             $output->writeln("Suppression du poste ".$poste->getHostname());
             $em->remove($poste);
         }
         $em->flush();
+        unset($listePoste);
         $output->writeln("OK");
-
+        
+        // Import des équipements liés
+        $output->writeln("*** Import des équipements légers ***");
+        // Lecture du fichier CSV extrait de GPARC
+        $output->write("Lecture du fichier des équipements liés... ");
+        $fileName = "/home/data/evpos/dev/gparc/materiel-lies.csv";
+        $csvFile = fopen($fileName, 'r');
+        $nbLine = 0;
+        
+        while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
+            $codeMateriel = strtoupper(trim($data[1]));
+            
+        }
+        fclose($csvFile);
+        $output->writeln("OK");
+        
 		$output->writeln("Fin du traitement");
 	}
 }

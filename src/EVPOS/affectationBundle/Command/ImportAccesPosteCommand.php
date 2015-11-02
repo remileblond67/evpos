@@ -5,8 +5,8 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use EVPOS\affectationBundle\Entity\PosteInconnu;
-use EVPOS\affectationBundle\Entity\UoInconnue;
+use EVPOS\affectationBundle\Entity\CtrlPosteInconnu;
+use EVPOS\affectationBundle\Entity\CtrlUoInconnue;
 
 /**
  * Import des accès applicatifs à partir de la base GAP 
@@ -27,23 +27,23 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
 		
 		// Suppression des données existantes
         // ----------------------------------
-        $output->write("Suppression de la liste des postes inconnus...");
-		$listePosteInconnu = $em->getRepository('EVPOSaffectationBundle:PosteInconnu')->findAll();
+        $output->write("Suppression de la liste des postes inconnus... ");
+		$listePosteInconnu = $em->getRepository('EVPOSaffectationBundle:CtrlPosteInconnu')->findAll();
 		foreach ($listePosteInconnu as $poste) {
 			$em->remove($poste);
 		}
 		unset($listePosteInconnu);
 		$output->writeln("OK");
 
-		$output->write("Suppression de la liste des UO inconnues...");
-		$listeUoInconnue = $em->getRepository('EVPOSaffectationBundle:UoInconnue')->findAll();
+		$output->write("Suppression de la liste des UO inconnues... ");
+		$listeUoInconnue = $em->getRepository('EVPOSaffectationBundle:CtrlUoInconnue')->findAll();
 		foreach ($listeUoInconnue as $uo) {
 			$em->remove($uo);
 		}
 		unset($listeUoInconnue);
 		$output->writeln("OK");
         
-        $output->write("Suppression de la liste des UO liées aux postes...");
+        $output->write("Suppression de la liste des UO liées aux postes... ");
 		$listePoste = $em->getRepository('EVPOSaffectationBundle:Poste')->findAll();
 		foreach ($listePoste as $tmpPoste) {
             $tmpPoste->delListeUo();
@@ -85,7 +85,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
         }
         $output->writeln("OK");
 		
-        $output->write("Ecriture des accès dans la base...");
+        $output->write("Ecriture des accès dans la base... ");
         foreach(array_keys($accesPosteUo) as $hostname) {
             // Recherche poste
             $poste = $em->getRepository('EVPOSaffectationBundle:Poste')->getPoste($hostname);
@@ -93,7 +93,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
             
             if ($poste === null) {
                 // Enregistrement du poste non trouvé
-                $posteInconnu = new PosteInconnu();
+                $posteInconnu = new CtrlPosteInconnu();
                 $posteInconnu->setHostname($hostname);
                 $em->persist($posteInconnu);
             }
@@ -106,7 +106,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
                 //$output->writeln("- ".$codeUo);
                 if ($uo === null) {
                     // Enregistrement de l'UO inconnue
-                    $uoInconnue = new UoInconnue();
+                    $uoInconnue = new CtrlUoInconnue();
                     $uoInconnue->setCodeUo($codeUo);
                     $em->persist($uoInconnue);
                 }

@@ -10,7 +10,7 @@ class CtrlController extends Controller
      * Affiche la liste des postes inconnus
      */
     public function listePosteInconnuAction() {
-		$listePosteInconnu = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:PosteInconnu')->getUniques();
+		$listePosteInconnu = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:CtrlPosteInconnu')->getUniques();
 		return $this->render('EVPOSaffectationBundle:Ctrl:liste_poste_inconnu.html.twig', array('listePosteInconnu' => $listePosteInconnu));
 	}
 	
@@ -18,7 +18,7 @@ class CtrlController extends Controller
 	 * Affiche la liste des UO inconnues
 	 */
 	public function listeUoInconnueAction() {
-		$listeUoInconnue = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:UoInconnue')->getUniques();
+		$listeUoInconnue = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:CtrlUoInconnue')->getUniques();
 		return $this->render('EVPOSaffectationBundle:Ctrl:liste_uo_inconnue.html.twig', array('listeUoInconnue' => $listeUoInconnue));
 	}
     

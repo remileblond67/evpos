@@ -5,12 +5,12 @@ namespace EVPOS\affectationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UoInconnue
+ * CtrlPosteInconnu
  *
- * @ORM\Table("evpos_uo_inconnue")
- * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\UoInconnueRepository")
+ * @ORM\Table("evpos_ctrl_poste_inconnu")
+ * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\CtrlPosteInconnuRepository")
  */
-class UoInconnue
+class CtrlPosteInconnu
 {
     /**
      * @var integer
@@ -24,9 +24,9 @@ class UoInconnue
     /**
      * @var string
      *
-     * @ORM\Column(name="codeUo", type="string", length=50)
+     * @ORM\Column(name="hostname", type="string", length=12)
      */
-    private $codeUo;
+    private $hostname;
 
 
     /**
@@ -40,25 +40,25 @@ class UoInconnue
     }
 
     /**
-     * Set codeUo
+     * Set hostname
      *
-     * @param string $codeUo
-     * @return UoInconnue
+     * @param string $hostname
+     * @return posteInconnu
      */
-    public function setCodeUo($codeUo)
+    public function setHostname($hostname)
     {
-        $this->codeUo = $codeUo;
+        $this->hostname = $hostname;
 
         return $this;
     }
 
     /**
-     * Get codeUo
+     * Get hostname
      *
      * @return string 
      */
-    public function getCodeUo()
+    public function getHostname()
     {
-        return $this->codeUo;
+        return $this->hostname;
     }
 }

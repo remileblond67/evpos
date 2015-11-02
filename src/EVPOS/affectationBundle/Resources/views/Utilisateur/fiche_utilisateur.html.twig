@@ -127,8 +127,8 @@
     <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
             <tr>
-                <td class="row">{{ 'poste.codeMateriel'|trans }}</td>
                 <td class="row">{{ 'poste.hostname'|trans }}</td>
+                <td class="row">{{ 'poste.localisation'|trans }}</td>
                 <td class="row">{{ 'poste.categorie'|trans }}</td>
                 <td class="row">{{ 'poste.modele'|trans }}</td>
                 <td class="row">{{ 'poste.statut'|trans }}</td>
@@ -138,8 +138,12 @@
         <tbody>
         {% for poste in util.listePostes %}
             <tr class="gradeA odd">
-                <td class="">{{poste.codeMateriel }}</a></td>
-                <td class="">{{poste.hostname }}</a></td>
+                <td class="">
+                    <a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">
+                    {{poste.hostname }}
+                    </a>
+                </td>
+                <td class="">{{poste.localisation }}</td>
                 <td class="">{{poste.categorieCourt }}</td>
                 <td class="">{{poste.modele }}</td>
                 <td class="">{{poste.statut }}</td>
