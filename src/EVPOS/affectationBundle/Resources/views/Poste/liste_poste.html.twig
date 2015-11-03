@@ -15,6 +15,7 @@
             <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
             <td class="row">{{ 'poste.uo'|trans }}</td>
             <td class="row">{{ 'poste.licenceW8'|trans }}</td>
+            <td class="row">{{ 'poste.equipementLie'|trans }}</td>
 			<td class="row">{{ 'poste.commentaire'|trans }}</td>
         </tr>
     </thead>
@@ -51,7 +52,8 @@
             </ul>
             </td>
             <td><span class="{{poste.licenceW8Icon}}"></span> {{ poste.licenceW8Long}}</td>
-			<td>{{ poste.commentaire }}</td>
+            <td>{{poste.listeEquipement|length}}</td>
+			<td>{{ poste.commentaire|raw }}</td>
         </tr>
         {% endfor %}
     </tbody>

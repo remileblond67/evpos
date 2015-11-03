@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\Poste;
+use EVPOS\affectationBundle\Entity\Equipement;
 
 /**
  * Import des postes à partir de GPARC
@@ -22,6 +23,8 @@ class ImportPosteCommand extends ContainerAwareCommand
     
     protected function execute(InputInterface $input, OutputInterface $output) {
 		$em = $this->getContainer()->get('doctrine')->getManager();
+        
+        $output->writeln("*** Import des postes ***");
         
         // Préparation des données
         $output->write("Préparation des données existantes... ");
@@ -102,11 +105,8 @@ class ImportPosteCommand extends ContainerAwareCommand
             $nbLine++;
         }
         fclose($csvFile);
-        
-        $output->writeln("OK (".$nbLine." lignes)");
-        $output->write("Commit... ");
         $em->flush();
-        $output->writeln("OK");
+        $output->writeln("OK (".$nbLine." lignes)");
         
         // Suppression des postes ne figurant pas dans la liste extraite de GPARC
         $output->write("Suppression des postes non référencés dans GPARC... ");
@@ -120,18 +120,58 @@ class ImportPosteCommand extends ContainerAwareCommand
         $output->writeln("OK");
         
         // Import des équipements liés
-        $output->writeln("*** Import des équipements légers ***");
+        $output->writeln("*** Import des équipements liés ***");
+        $output->write("Suppression des équipements existants... ");
+        $listeEquipement = $em->getRepository('EVPOSaffectationBundle:Equipement')->findAll();
+        foreach($listeEquipement as $equipement) {
+            $em->remove($equipement);
+        }
+        $em->flush();
+        unset($listeEquipement);
+        $output->writeln("OK");
+        
         // Lecture du fichier CSV extrait de GPARC
         $output->write("Lecture du fichier des équipements liés... ");
         $fileName = "/home/data/evpos/dev/gparc/materiel-lies.csv";
         $csvFile = fopen($fileName, 'r');
         $nbLine = 0;
         
+        $listeCodeMateriel = [];
+        
         while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
-            $codeMateriel = strtoupper(trim($data[1]));
-            
+            if ($nbLine > 0) {
+                $hostname = strtoupper(trim($data[0]));
+                if ($hostname != "") {
+                    $codeMateriel = strtoupper(trim($data[1]));
+                    if (in_array($codeMateriel, $listeCodeMateriel)) {
+                        // Le code a déjà été rencontré
+                        $output->write("Doublon:".$codeMateriel);
+                    } else {
+                        // Le code matériel n'avais jamais été rencontré
+                        $listeCodeMateriel[] = $codeMateriel;
+                        
+                        $categorie = trim($data[2]);
+                        $modele = trim($data[3]);
+                        
+                        $equipement = new Equipement();
+                        $equipement->setCodeMateriel($codeMateriel);
+                        $equipement->setCategorie($categorie);
+                        $equipement->setModele($modele);
+                        
+                        // recherche du poste lié
+                        $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);
+                        if ($poste !== NULL) {
+                            $equipement->setPoste($poste);
+                            $em->persist($equipement);
+                        }
+                    }
+                }
+            }
+            $nbLine++;
         }
+        unset($listeCodeMateriel);
         fclose($csvFile);
+        $em->flush();
         $output->writeln("OK");
         
 		$output->writeln("Fin du traitement");

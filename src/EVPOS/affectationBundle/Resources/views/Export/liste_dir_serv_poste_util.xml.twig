@@ -28,13 +28,15 @@
                                     </utilisateur>
                                 {% endfor %}
 								</utilisateurs>
-								<uoLocales>
-								{% for uo in poste.listeUo %}
-									<uo>
-										<codeUo>{{uo.codeUo}}</codeUo>
-									</uo>
-								{% endfor %}
-								</uoLocales>
+                                <equipements>
+                                {% for equipement in poste.listeEquipement %}
+                                    <equipement>
+                                        <codeMateriel>{{ equipement.codeMateriel }}</codeMateriel>
+                                        <categorie>{{ equipement.categorie }}</categorie>
+                                        <modele>{{ equipement.modele }}</modele>
+                                    </equipement>
+                                {% endfor %}
+                                </equipements>
                             </poste>
                             {% endfor %}
                         </postes>

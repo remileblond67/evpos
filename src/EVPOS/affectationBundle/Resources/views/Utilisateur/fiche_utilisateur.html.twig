@@ -133,6 +133,7 @@
                 <td class="row">{{ 'poste.modele'|trans }}</td>
                 <td class="row">{{ 'poste.statut'|trans }}</td>
                 <td class="row">{{ 'poste.uo'|trans }}</td>
+                <td class="row">{{ 'poste.commentaire'|trans }}</td>
             </tr>
         </thead>
         <tbody>
@@ -161,6 +162,7 @@
                     {% endfor %}
                     </ul>
                 </td>
+                <td class="">{{poste.commentaire}}</td>
 
             </tr>
         {% endfor %}
