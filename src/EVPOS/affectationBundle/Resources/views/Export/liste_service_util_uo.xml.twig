@@ -48,12 +48,10 @@
                                 {% endfor %}
 								</utilisateurs>
 								<ecrans>
-								{% for equipement in poste.listeEquipement %}
-                                    {% if 'Matériel/Ordinateur/Périphérique/Ecran' in equipement.categorie %}
+								{% for ecran in poste.listeEcran %}
 									<ecran>
-                                        {{equipement.categorie}}
+                                        {{ecran}}
                                     </ecran>
-                                    {% endif %}
 								{% endfor %}
 								</ecrans>
                             </poste>

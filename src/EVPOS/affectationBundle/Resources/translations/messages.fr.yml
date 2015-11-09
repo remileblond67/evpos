@@ -31,6 +31,7 @@ poste:
     listeUsage: Postes utilisés
     import: Import des postes depuis GPARC (export CSV)
     modele: Modèle de poste
+    ecran: Ecran
     statut: Statut
     utilisateurs: Utilisateurs du poste
     uo: UO locales

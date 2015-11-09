@@ -549,4 +549,17 @@ class Poste
     {
         return $this->existeGparc;
     }
+    
+    /**
+     * Retourne les types d'écran reliés au poste
+     */
+    public function getListeEcran() {
+        $liste = [];
+        foreach ($this->listeEquipement as $equip) {
+            if (ereg ('.*Ecran/(.+)$', $equip->getCategorie(), $type)) {
+                $liste[] = $type[1];
+            }
+        }
+        return $liste;
+    }
 }

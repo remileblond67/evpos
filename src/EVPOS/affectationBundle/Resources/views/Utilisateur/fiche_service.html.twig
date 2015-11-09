@@ -246,6 +246,7 @@
                        <td class="row">{{'poste.utilisateurs'|trans}}</td>
                        <td class="row">{{'poste.categorie'|trans}}</td>
 					   <td class="row">{{'poste.modele'|trans}}</td>
+                       <td class="row">{{'poste.ecran'|trans}}</td>
 					   <td class="row">{{'poste.licenceW8'|trans}}</td>
 					   <td class="row">{{'poste.uo'|trans }}</td>
 					   <td class="row">{{'poste.localisation'|trans}}</td>
@@ -263,6 +264,11 @@
                         </td>
                         <td>{{poste.categorie}}</td>
 						<td>{{poste.modele}}</td>
+                        <td>
+                        {% for ecran in poste.listeEcran %}
+                            {{ecran}}
+                        {% endfor %}
+                        </td>
 						<td>
 							{% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}
 							{{ poste.licenceW8Long }}
