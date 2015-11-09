@@ -71,7 +71,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                             $poste = new Poste();
                             $poste->setHostname($hostname);
                             
-                            $output->writeln("Nouveau poste : ".$hostname);
+                            $output->writeln(" Nouveau poste : ".$hostname);
                         }
                         
                         // Update des caractéristiques du poste
@@ -145,7 +145,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                     $codeMateriel = strtoupper(trim($data[1]));
                     if (in_array($codeMateriel, $listeCodeMateriel)) {
                         // Le code a déjà été rencontré
-                        $output->write("Doublon:".$codeMateriel);
+                        $output->write(" Doublon:".$codeMateriel);
                     } else {
                         // Le code matériel n'avais jamais été rencontré
                         $listeCodeMateriel[] = $codeMateriel;

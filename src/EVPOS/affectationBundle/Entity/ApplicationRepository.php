@@ -126,5 +126,17 @@ class ApplicationRepository extends EntityRepository
 
         return $query->getResult();
     }
+    
+    /** 
+     * Retourne la liste des applications non identifiées dans SUAPP
+     */
+    public function getAppliNonSuapp() {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.existeSuapp = FALSE')
+            ->getQuery()
+        ;
+        
+        return $query->getResult();
+    }
 }
 

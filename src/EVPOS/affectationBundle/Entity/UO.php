@@ -59,12 +59,12 @@ class UO
     private $typePoste;
     
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="uoAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="uoAcces", cascade={"persist", "remove"})
      */
     private $listeAcces;
        
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="uoAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="uoAcces", cascade={"persist", "remove"})
      */
     private $listeServiceAcces;
     
@@ -314,6 +314,13 @@ class UO
     
     public function getTypePoste() {
         return $this->typePoste;
+    }
+    
+    /**
+     * Ajoute un nouveau type de poste pour l'UO
+     */
+    public function appendTypePoste($type) {
+        $this->typePoste = $this->typePoste . " " . $type;
     }
 
     /**

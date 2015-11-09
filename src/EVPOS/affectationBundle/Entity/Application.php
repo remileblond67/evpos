@@ -72,19 +72,26 @@ class Application
      * @ORM\JoinColumn(name="mat_cpi", referencedColumnName="mat_util")
      */
     private $cpi;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe_suapp", type="boolean", nullable=true)
+     */
+    private $existeSuapp;
 
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\UO", mappedBy="appli")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\UO", mappedBy="appli", cascade={"persist", "remove"})
      */
     private $listeUO;
     
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="appliAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="appliAcces", cascade={"persist", "remove"})
      */
     private $listeAcces;
        
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="appliAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="appliAcces", cascade={"persist", "remove"})
      */
     private $listeServiceAcces;
 
@@ -399,5 +406,28 @@ class Application
      */
     public function getServiceAppli() {
         return $this->serviceAppli;
+    }
+
+    /**
+     * Set existeSuapp
+     *
+     * @param boolean $existeSuapp
+     * @return Application
+     */
+    public function setExisteSuapp($existeSuapp)
+    {
+        $this->existeSuapp = $existeSuapp;
+
+        return $this;
+    }
+
+    /**
+     * Get existeSuapp
+     *
+     * @return boolean 
+     */
+    public function getExisteSuapp()
+    {
+        return $this->existeSuapp;
     }
 }

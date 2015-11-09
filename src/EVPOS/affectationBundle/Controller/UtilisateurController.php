@@ -45,7 +45,13 @@ class UtilisateurController extends Controller
             ->getRepository('EVPOSaffectationBundle:Utilisateur')
             ->getUtilisateurFull($matUtil)
         ;
-        return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_utilisateur.html.twig', array('util' => $util));
+        
+        if ($util !== NULL) {
+            return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_utilisateur.html.twig', array('util' => $util));
+        } else {
+            $this->get('request')->getSession()->getFlashBag()->add('erreur', utf8_encode("Impossible de trouver l'utilisateur ".$matUtil));
+            return $this->render('EVPOSaffectationBundle:Default:index.html.twig');
+        }
     }
 
     /**
