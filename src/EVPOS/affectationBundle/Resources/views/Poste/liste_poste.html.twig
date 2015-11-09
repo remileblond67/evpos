@@ -10,6 +10,7 @@
             <td class="row">{{ 'poste.hostname'|trans }}</td>
             <td class="row">{{ 'poste.categorie'|trans }}</td>
             <td class="row">{{ 'poste.modele'|trans }}</td>
+            <td class="row">{{ 'poste.ecran'|trans }}</td>
             <td class="row">{{ 'poste.statut'|trans }}</td>
             <td class="row">{{ 'poste.service'|trans }}</td>
             <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
@@ -22,11 +23,16 @@
     <tbody>
         {% for poste in listePoste %}
         <tr class="gradeA odd">
-            <td class="">{{poste.codeMateriel }}</td>
+            <td class="">{{ poste.codeMateriel }}</td>
             <td class=""><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname }}</a></td>
-            <td class="">{{poste.categorieCourt }}</td>
-            <td class="">{{poste.modele }}</td>
-            <td class="">{{poste.statut }}</td>
+            <td class="">{{ poste.categorieCourt }}</td>
+            <td class="">{{ poste.modele }}</td>
+            <td class="">
+            {% for ecran in poste.listeEcran %}
+                {{ecran}}
+            {% endfor %}
+            </td>
+            <td class="">{{ poste.statut }}</td>
             <td class=""></td>
             <td class="">
             <ul>
