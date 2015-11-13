@@ -109,4 +109,32 @@ class PosteRepository extends EntityRepository {
 
         return $query->getResult();
     }
+    
+    /**
+     * Retourne le nombre de postes
+     * Utilisé pour les indicateurs d'avancement
+     */
+    public function getNbPoste() {
+        $query = $this->createQueryBuilder('p')
+            ->select('count(p.hostname) nb')
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
+
+    /**
+     * Retourne le nombre de postes par type d'usage
+     * Utilisé pour les indicateurs d'avancement
+     */
+    public function getNbPosteUsage() {
+        $query = $this->createQueryBuilder('p')
+            ->select('p.typeUsage, count(p.hostname) nb')
+            ->groupBy('p.typeUsage')
+            ->orderBy('nb', 'DESC')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
 }

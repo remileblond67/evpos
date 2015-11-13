@@ -109,7 +109,7 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des utilisateurs à partir de BAZA
      */
     public function importUtilisateurs() {
-        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and ntulastlgn is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
+        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
@@ -123,20 +123,22 @@ class EVPOSUpdateBaza {
             $lastLogin = $row["NTULASTLGN"];
             
             if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil))
-                $newUtilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
+                $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
             else
-                $newUtilisateur = new Utilisateur();
+                $utilisateur = new Utilisateur();
                 
             if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService))
-                $newUtilisateur->setServiceUtil($em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService));
+                $utilisateur->setServiceUtil($em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService));
                 
-            $newUtilisateur->setMatUtil($matUtil);
-            $newUtilisateur->setNomUtil($nomUtil);
+            $utilisateur->setMatUtil($matUtil);
+            $utilisateur->setNomUtil($nomUtil);
             if ($lastLogin !== null) {
-                $newUtilisateur->setLastLogin(new \DateTime($lastLogin));
+                $utilisateur->setLastLogin(new \DateTime($lastLogin));
+            } else {
+                $utilisateur->setLastLogin(new \DateTime("1/1/1900"));
             }
             
-            $em->persist($newUtilisateur);
+            $em->persist($utilisateur);
             
             $nb++;
         }

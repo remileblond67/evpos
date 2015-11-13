@@ -127,44 +127,53 @@
     <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
             <tr>
-                <td class="row">{{ 'poste.hostname'|trans }}</td>
-                <td class="row">{{ 'poste.localisation'|trans }}</td>
-                <td class="row">{{ 'poste.categorie'|trans }}</td>
-                <td class="row">{{ 'poste.modele'|trans }}</td>
-                <td class="row">{{ 'poste.statut'|trans }}</td>
-                <td class="row">{{ 'poste.uo'|trans }}</td>
-                <td class="row">{{ 'poste.commentaire'|trans }}</td>
+                       <td class="row">{{'poste.hostname'|trans}}</td>
+                       <td class="row">{{'poste.utilisateurs'|trans}}</td>
+                       <td class="row">{{'poste.categorie'|trans}}</td>
+					   <td class="row">{{'poste.modele'|trans}}</td>
+                       <td class="row">{{'poste.ecran'|trans}}</td>
+					   <td class="row">{{'poste.licenceW8'|trans}}</td>
+					   <td class="row">{{'poste.uo'|trans }}</td>
+					   <td class="row">{{'poste.localisation'|trans}}</td>
+                       <td class="row">{{'poste.commentaire'|trans}}</td>
             </tr>
         </thead>
         <tbody>
         {% for poste in util.listePostes %}
-            <tr class="gradeA odd">
-                <td class="">
-                    <a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">
-                    {{poste.hostname }}
-                    </a>
-                </td>
-                <td class="">{{poste.localisation }}</td>
-                <td class="">{{poste.categorieCourt }}</td>
-                <td class="">{{poste.modele }}</td>
-                <td class="">{{poste.statut }}</td>
-                <td>
-                    <ul>
-                    {% for uo in poste.listeUo %}
-                        <li>
-                            <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
-                            {{ uo.appli.codeAppli }}
-                            </a>
-                            : 
-                            <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
-                            {{ uo.codeUo }}
-                            </a>- {{ uo.nomUo }}</li>
-                    {% endfor %}
-                    </ul>
-                </td>
-                <td class="">{{poste.commentaire}}</td>
-
-            </tr>
+			<tr class="gradeA odd">
+				<td><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname}}</a></td>
+				<td>
+					{% for util in poste.listeUtilisateurs %}
+					<a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a> : {{util.nomUtil}}
+					{% endfor %}
+				</td>
+				<td>{{poste.categorie}}</td>
+				<td>{{poste.modele}}</td>
+				<td>
+				{% for ecran in poste.listeEcran %}
+					{{ecran}}
+				{% endfor %}
+				</td>
+				<td>
+					{% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}
+					{{ poste.licenceW8Long }}
+				</td>
+				<td>
+				{% for uo in poste.listeUo %}
+					<li class="{% if uo.migMoca != true %}nonMoca{% endif %}">
+						<span class="{{uo.avancementMocaIcon}}"></span>
+						<a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
+						{{ uo.appli.codeAppli }}
+						</a>
+						: 
+						<a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
+						{{ uo.codeUo }}
+						</a>- {{ uo.nomUo }}</li>
+				{% endfor %}
+				</td>
+				<td>{{poste.localisation}}</td>
+				<td>{{poste.commentaire|raw}}</td>
+			</tr>
         {% endfor %}
         </tbody>
     </table>

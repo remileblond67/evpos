@@ -287,7 +287,7 @@
 						{% endfor %}
 						</td>
                         <td>{{poste.localisation}}</td>
-                        <td>{{poste.commentaire}}</td>
+                        <td>{{poste.commentaire|raw}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

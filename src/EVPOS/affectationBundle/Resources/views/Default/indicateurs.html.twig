@@ -51,8 +51,43 @@
                 </ul>
             </div>
         </div>
+        
+        <h2>Postes</h2>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Nombre de poste</h3>
+            </div>
+            <div class="panel-body">
+                {{nbPoste}}
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Répartition par type d'usage</h3>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type d'usage</th>
+                            <th>Nombre de poste</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for ligne in nbPosteUsage %}
+                    <tr>
+                        <td>{{ligne.typeUsage}}</td>
+                        <td>{{ligne.nb}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </table>
+            </div>
+        </div>
     </div>
-    
+        
     <div class="col-lg-4">
         <h2>Accès applicatifs</h2>
         <div class="panel panel-default">

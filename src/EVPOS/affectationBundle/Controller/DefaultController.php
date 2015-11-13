@@ -48,6 +48,20 @@ class DefaultController extends Controller
             ->getNbAccesUtilAppli()
         ;
         
-        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli, 'nbService' => $nbServices, 'nbDirection' => $nbDirections));
+        // Récupération du nombre de postes
+        $nbPoste = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getNbPoste()
+        ;
+        
+        // Réparition des postes par type d'usage
+        $nbPosteUsage = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getNbPosteUsage()
+        ;
+        
+        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli, 'nbService' => $nbServices, 'nbDirection' => $nbDirections, 'nbPoste' => $nbPoste, 'nbPosteUsage' => $nbPosteUsage));
     }
 }
