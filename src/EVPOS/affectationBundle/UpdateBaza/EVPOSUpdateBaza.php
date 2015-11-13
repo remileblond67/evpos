@@ -33,11 +33,18 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des directions à partir de BAZA
      */
     public function importDirections() {
+        $em = $this->doctrine->getManager();
+        // Marquage des directions existantes
+        $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->findAll();
+        foreach($listeDirection as $direction) {
+            $direction->setExisteBaza(FALSE);
+        }
+        unset($listeDirection);
+        
         $requeteBaza = "select code_direction, nvl(lib_long_direction, ' ') lib_long_direction from baz_direction where flag is null";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
-        $em = $this->doctrine->getManager();
         $nb = 0;
          
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
@@ -45,14 +52,15 @@ class EVPOSUpdateBaza {
             $libDirection = utf8_encode($row["LIB_LONG_DIRECTION"]);
             
             if ($em->getRepository('EVPOSaffectationBundle:Direction')->isDirection($codeDirection))
-                $newDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection);
+                $direction = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection);
             else
-                $newDirection = new Direction();
+                $direction = new Direction();
             
-            $newDirection->setCodeDirection($codeDirection);
-            $newDirection->setLibDirection($libDirection);
+            $direction->setCodeDirection($codeDirection);
+            $direction->setLibDirection($libDirection);
+            $direction->setExisteBaza(TRUE);
             
-            $em->persist($newDirection);
+            $em->persist($direction);
             
             $nb++;
         }
@@ -70,11 +78,18 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des services à partir de BAZA
      */
     public function importServices() {
+        $em = $this->doctrine->getManager();
+        // Marquage des services existants
+        $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
+        foreach($listeService as $service) {
+            $service->setExisteBaza(FALSE);
+        }
+        unset($listeService);
+        
         $requeteBaza = "select code_service, code_direction, nvl(description_service, ' ') description_service from baz_service where flag is null";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
-        $em = $this->doctrine->getManager();
         $nb = 0;
          
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
@@ -83,19 +98,31 @@ class EVPOSUpdateBaza {
             $libService = utf8_encode($row["DESCRIPTION_SERVICE"]);
             
             if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService))
-                $newService = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+                $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
             else
-                $newService = new Service();
+                $service = new Service();
                 
             
-            $newService->setDirection($em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection));
-            $newService->setCodeService($codeService);
-            $newService->setLibService($libService);
+            $service->setDirection($em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection));
+            $service->setCodeService($codeService);
+            $service->setLibService($libService);
+            $service->setExisteBaza(TRUE);
             
-            $em->persist($newService);
+            $em->persist($service);
             $nb++;
         }
         $em->flush();
+        
+        // Suppression des services non retrouvés dans BAZA
+        $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServicesNonBaza();
+        foreach($listeService as $service) {
+            $em->remove($service);
+        }
+        unset($listeService);
+        $em->flush();
+        
+        // Création des utilisateurs générique de services
+
         
         oci_free_statement($csr);
         unset($csr);

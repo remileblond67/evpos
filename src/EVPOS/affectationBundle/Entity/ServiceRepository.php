@@ -53,6 +53,18 @@ class ServiceRepository extends EntityRepository
 
         return $query->getResult();
     }
+    
+    /**
+     * Liste des services non trouvés dans BAZA
+     */
+    public function getServicesNonBaza() {
+        $query = $this->createQueryBuilder('s')
+            ->where('s.existeBaza = FALSE')
+            ->getQuery()
+        ;
+        
+        return $query->getResult();
+    }
 
 
     /**

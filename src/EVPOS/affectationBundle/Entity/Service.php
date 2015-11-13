@@ -74,6 +74,13 @@ class Service
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces")
      */
     private $listeAccesUo;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe_baza", type="boolean", nullable=true)
+     */
+    private $existeBaza;
 
     /**
      * Retourne le nombre d'agents affectés au service
@@ -403,5 +410,28 @@ class Service
     public function getListePostes()
     {
         return $this->listePostes;
+    }
+
+    /**
+     * Set existeBaza
+     *
+     * @param boolean $existeBaza
+     * @return Service
+     */
+    public function setExisteBaza($existeBaza)
+    {
+        $this->existeBaza = $existeBaza;
+
+        return $this;
+    }
+
+    /**
+     * Get existeBaza
+     *
+     * @return boolean 
+     */
+    public function getExisteBaza()
+    {
+        return $this->existeBaza;
     }
 }

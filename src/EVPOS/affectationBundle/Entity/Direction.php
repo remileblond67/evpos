@@ -37,6 +37,13 @@ class Direction
      * @ORM\JoinColumn(name="mat_criu", referencedColumnName="mat_util", nullable=true)
      */
     private $criu;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe_baza", type="boolean", nullable=true)
+     */
+    private $existeBaza;
 
     /**
      * Set codeDirection
@@ -145,5 +152,28 @@ class Direction
     public function getCriu()
     {
         return $this->criu;
+    }
+
+    /**
+     * Set existeBaza
+     *
+     * @param boolean $existeBaza
+     * @return Direction
+     */
+    public function setExisteBaza($existeBaza)
+    {
+        $this->existeBaza = $existeBaza;
+
+        return $this;
+    }
+
+    /**
+     * Get existeBaza
+     *
+     * @return boolean 
+     */
+    public function getExisteBaza()
+    {
+        return $this->existeBaza;
     }
 }
