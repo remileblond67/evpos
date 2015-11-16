@@ -117,6 +117,18 @@ class UtilisateurRepository extends EntityRepository
 
         return $query->getSingleScalarResult();
     }
+    
+    /**
+     * Retourne la liste des utilisateurs qui n'ont pas été repérés dans BAZA
+     */
+    public function getUtilisateursSuppr() {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.existeBaza = FALSE')
+            ->getQuery()
+        ;
+        
+        return $query->getResult();
+    }
         
     /**
      * Retourne la liste de tous les CPI

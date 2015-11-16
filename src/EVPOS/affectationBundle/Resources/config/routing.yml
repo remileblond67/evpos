@@ -50,16 +50,15 @@ evpos_listeDirection:
 evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
+    
+evpos_listeTypePosteExclus:
+    path: /type_poste_exclus
+    defaults: { _controller: EVPOSaffectationBundle:Poste:listeTypePosteExclus }
 
 evpos_fichePoste:
     path: /poste/{hostname}
     defaults: { _controller: EVPOSaffectationBundle:Poste:fichePoste }
     
-evpos_importPoste:
-    path: /import_poste
-    defaults: { _controller: EVPOSaffectationBundle:Poste:importPoste }
-    
-
 evpos_ficheDirection:
     path: /direction/{codeDirection}
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheDirection }

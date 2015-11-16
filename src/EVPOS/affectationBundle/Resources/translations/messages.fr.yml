@@ -42,6 +42,7 @@ poste:
     infoGAP: Informations issues de GAP
     licenceW8: Licence EOM Windows 8
     equipementLie: Equipements liés
+    listeExclus: Types de poste exclus
 
 applications:
     liste: Applications à migrer

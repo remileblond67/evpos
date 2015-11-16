@@ -136,11 +136,21 @@ class EVPOSUpdateBaza {
      * Mise à jour de la liste des utilisateurs à partir de BAZA
      */
     public function importUtilisateurs() {
+        $em = $this->doctrine->getManager();
+        
+        // Marquage des utilisateurs existants
+        $listeUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->findAll();
+        foreach($listeUtil as $util) {
+            $util->setExisteBaza(FALSE);
+            $em->persist($util);
+        }
+        $em->flush();
+        unset($listeUtil);
+        
         $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;
-        $em = $this->doctrine->getManager();
         $nb = 0;
          
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
@@ -164,6 +174,7 @@ class EVPOSUpdateBaza {
             } else {
                 $utilisateur->setLastLogin(new \DateTime("1/1/1900"));
             }
+            $utilisateur->setExisteBaza(TRUE);
             
             $em->persist($utilisateur);
             
@@ -175,6 +186,26 @@ class EVPOSUpdateBaza {
         unset($csr);
         
         $message = "Import de ".$nb." utilisateurs";
+        
+        // Suppression des utilisateurs qui n'existaient pas dans BAZA
+        $listeUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateursSuppr();
+        foreach($listeUtil as $util) {
+            $em->remove($util);
+        }
+        $em->flush();
+        unset($listeUtil);
+        
+        // Création des utilisateurs "libre service"
+        $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
+        foreach($listeService as $service) {
+            $util = new Utilisateur();
+            $util->setMatUtil("LS_".$service->getCodeService());
+            $util->setNomUtil("Libre service ".$service->getCodeService());
+            $util->setServiceUtil($service);
+            $em->persist($util);
+        }
+        $em->flush();
+        unset($listeService);
         
         return $message;
     }

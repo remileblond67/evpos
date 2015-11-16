@@ -40,9 +40,11 @@
 		<div class="row">
 			<div class="col-lg-2">
 				<h4>{{'poste.service'|trans}}</h4>
-				<a href="{{ path('evpos_ficheService', { 'codeService' : poste.service.codeService }) }}" alt="{{ 'poste.service.nom'|trans }}">
+				{% if poste.service %}
+                <a href="{{ path('evpos_ficheService', { 'codeService' : poste.service.codeService }) }}" alt="{{ 'poste.service.nom'|trans }}">
 					{{poste.service.codeService}} : {{poste.service.libService}}
 				</a>
+                {% endif %}
 			</div>
             <div class="col-lg-3">
 				<h4>{{'poste.localisation'|trans}}</h4>

@@ -53,11 +53,27 @@ class PosteController extends Controller
                                    'nbPages' => $nbPages,
                                    'page' => $page));
     }
-    
+
     /**
-     * Import des postes depuis fichier CSV
+     * Liste des types de postes à exclure
      */
-    public function importPosteAction() {
-        return $this->redirect($this->generateUrl('evpos_listePoste'));
+    public function listeTypePosteExclusAction() {
+        // Réparition des postes par type d'usage
+        $nbPosteUsage = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getNbPosteUsage()
+        ;
+        
+        // Type de poste exclus
+        $typeExclus = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:TypeUsageExclus')
+            ->findAll()
+        ;
+        
+        return $this->render('EVPOSaffectationBundle:Poste:liste_type_poste_exclus.html.twig',
+                             array('nbPosteUsage' => $nbPosteUsage,
+                                   'typeExclus' => $typeExclus));
     }
 }

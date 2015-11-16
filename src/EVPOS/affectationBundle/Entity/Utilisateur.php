@@ -46,25 +46,33 @@ class Utilisateur
     * @ORM\JoinColumn(name="service_util", referencedColumnName="code_service", nullable=true)
     */
     private $serviceUtil;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe_baza", type="boolean", nullable=true)
+     */
+    private $existeBaza;
+
         
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="utilAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="utilAcces", cascade={"remove"})
      */
     private $listeAcces;
     
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="utilAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="utilAcces", cascade={"remove"})
      */
     private $listeAccesUo;
     
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\Application", mappedBy="cpi")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\Application", mappedBy="cpi", cascade={"remove"})
      * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli")
      */
     private $listeAppliCpi;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUtilisateurs")
+     * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUtilisateurs", cascade={"detach"})
      */
     private $listePostes;
     
@@ -297,5 +305,28 @@ class Utilisateur
     public function getLastLogin()
     {
         return $this->lastLogin;
+    }
+
+    /**
+     * Set existeBaza
+     *
+     * @param boolean $existeBaza
+     * @return Utilisateur
+     */
+    public function setExisteBaza($existeBaza)
+    {
+        $this->existeBaza = $existeBaza;
+
+        return $this;
+    }
+
+    /**
+     * Get existeBaza
+     *
+     * @return boolean 
+     */
+    public function getExisteBaza()
+    {
+        return $this->existeBaza;
     }
 }

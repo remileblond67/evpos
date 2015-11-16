@@ -92,7 +92,7 @@ class Poste
     private $service;    
     
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="listePostes")
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="listePostes", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_poste_util",
      *      joinColumns={@ORM\JoinColumn(name="hostname", referencedColumnName="hostname")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="mat_util", referencedColumnName="mat_util")}
@@ -101,7 +101,7 @@ class Poste
     private $listeUtilisateurs;
     
     /**
-     * @ORM\ManyToMany(targetEntity="UO", inversedBy="listePostes")
+     * @ORM\ManyToMany(targetEntity="UO", inversedBy="listePostes", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_poste_uo",
      *      joinColumns={@ORM\JoinColumn(name="hostname", referencedColumnName="hostname")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo")}
@@ -110,7 +110,7 @@ class Poste
     private $listeUo;
     
     /**
-     * @ORM\OneToMany(targetEntity="Equipement", mappedBy="poste")
+     * @ORM\OneToMany(targetEntity="Equipement", mappedBy="poste", cascade={"remove"})
      */
     private $listeEquipement;
     

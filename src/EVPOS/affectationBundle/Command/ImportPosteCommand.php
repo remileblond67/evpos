@@ -49,6 +49,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                 $hostname = strtoupper(trim($data[3]));   
                 if ($hostname != "-") {
                     // $output->writeln($nbLine . " " . $hostname);
+                    $codeService = $data[1];
                     $codeMateriel = $data[2];
                     $statut = $data[4];
                     $modele = $data[6];
@@ -92,8 +93,17 @@ class ImportPosteCommand extends ContainerAwareCommand
                                 $poste->setLicenceW8(FALSE);
                         }
                         
+                        // Mise à jour du service
+                        $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+                        if ($service !== NULL) {
+                            $poste->setService($service);
+                        }
+                        
                         // Recherche de l'utilisateur
                         $util = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->find($matUtil);
+                        if ($util === NULL & $service !== NULL) {
+                            $util = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->find("LS_".$service->getCodeService());
+                        }
                         if ($util !== NULL) {
                             $poste->addListeUtilisateur($util);
                         }
