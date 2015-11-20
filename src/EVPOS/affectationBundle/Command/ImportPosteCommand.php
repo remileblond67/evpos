@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\Poste;
 use EVPOS\affectationBundle\Entity\Equipement;
+use EVPOS\affectationBundle\Entity\CtrlUtilisateurInconnu;
 
 /**
  * Import des postes à partir de GPARC
@@ -43,6 +44,8 @@ class ImportPosteCommand extends ContainerAwareCommand
         $fileName = "/home/data/evpos/dev/gparc/materiel.csv";
         $csvFile = fopen($fileName, 'r');
         $nbLine = 0;
+        
+        $listeUtilisateurInconnu = [];
         
         while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
             if ($nbLine>0) {
@@ -106,6 +109,8 @@ class ImportPosteCommand extends ContainerAwareCommand
                         }
                         if ($util !== NULL) {
                             $poste->addListeUtilisateur($util);
+                        } else {
+                            $listeUtilisateurInconnu[] = $matUtil;
                         }
                         
                         $em->persist($poste);
@@ -117,6 +122,24 @@ class ImportPosteCommand extends ContainerAwareCommand
         fclose($csvFile);
         $em->flush();
         $output->writeln("OK (".$nbLine." lignes)");
+        
+        // Enregistrement des utilisateurs inconnus
+        $output->write("Enregistrement des erreurs... ");
+        $listeErreur = $em->getRepository('EVPOS\affectationBundle\Entity\CtrlUtilisateurInconnu')->findAll();
+        foreach ($listeErreur as $erreur) {
+            $em->remove($erreur);
+        }
+        $em->flush();
+        unset($listeErreur);
+        foreach (array_unique($listeUtilisateurInconnu) as $matErreur) {
+            $erreur = new CtrlUtilisateurInconnu();
+            $erreur->setMatUtil($matErreur);
+            $erreur->setCommentaire("Matricule trouvé lors de l'import des postes GPARC, mais pas dans BAZA.");
+            $em->persist($erreur);
+        }
+        $em->flush();
+        unset($listeUtilisateurInconnu);
+        $output->writeln("OK");
         
         // Suppression des postes ne figurant pas dans la liste extraite de GPARC
         $output->write("Suppression des postes non référencés dans GPARC... ");

@@ -21,6 +21,8 @@ ctrl:
     posteInconnu: Postes inconnus trouvés dans les fichiers de licence
     uoInconnue: UO inconnues trouvées dans les fichiers de licence
     nb: Nombre d'occurences
+    utilisateurInconnu: Utilisateurs GPARC inconnus de BAZA
+    remarque: Remarque
     
 poste:
     titre: Postes

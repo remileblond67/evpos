@@ -169,3 +169,7 @@ evpos_ctrl_uo_inconnue:
 evpos_ctrl_corresp_uo:
     path: /ctrl_corresp_uo
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeCorrespUo }
+    
+evpos_ctrl_util:
+    path: /ctrl_util
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUtilisateurInconnu }

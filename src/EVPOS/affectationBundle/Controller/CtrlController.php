@@ -29,4 +29,12 @@ class CtrlController extends Controller
         $listeCorresp = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:CorrespUo')->findAll();
 		return $this->render('EVPOSaffectationBundle:Ctrl:liste_corresp_uo.html.twig', array('listeCorresp' => $listeCorresp));
     }
+    
+    /**
+     * Affiche la liste des utilisateurs GPARC non trouvés dans BAZA
+     */
+    public function listeUtilisateurInconnuAction() {
+        $listeErreur = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:CtrlUtilisateurInconnu')->listeUtil();
+        return $this->render('EVPOSaffectationBundle:Ctrl:liste_utilisateur_inconnu.html.twig', array('listeErreur' => $listeErreur));
+    }
 }
