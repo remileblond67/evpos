@@ -60,7 +60,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
         $listeCorresp = $em->getRepository('EVPOSaffectationBundle:CorrespUo')->findAll();
         foreach($listeCorresp as $cor) {
             $correspCode[$cor->getOldCodeUo()] = $cor->getNewUo()->getCodeUo();
-            $output->writeln("- " . $cor->getOldCodeUo() . " -> " . $cor->getNewUo()->getCodeUo());
+            //$output->writeln("- " . $cor->getOldCodeUo() . " -> " . $cor->getNewUo()->getCodeUo());
         }
         unset($listeCorresp);
         

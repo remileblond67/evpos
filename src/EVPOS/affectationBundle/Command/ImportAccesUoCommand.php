@@ -64,13 +64,13 @@ class ImportAccesUoCommand extends ContainerAwareCommand
 							  CODE_UO
 					  FROM baz_member
 					 WHERE     UPPER (ntmgname) LIKE 'GA\_%\_P' ESCAPE '\'
-						   AND ntmuid = :matricule
+						   AND upper(ntmuid) = :matricule
 					UNION
 					SELECT REGEXP_REPLACE (REGEXP_REPLACE (nom_role_util, '^._[^_]+_'),
 										   '_.*')
 							  code_uo
 					  FROM baz_role_a_util
-					 WHERE nom_util = :matricule
+					 WHERE upper(nom_util) = :matricule
 					UNION
 					SELECT a.id_module code_uo
 					  FROM app_role_appli a, baz_member m

@@ -131,7 +131,7 @@ class ImportBazaSuappCommand extends ContainerAwareCommand
         $em->flush();
         unset($listeUtil);
         
-        $requeteBaza = "select ntuid matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
+        $requeteBaza = "select upper(ntuid) matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
         
         $csr = oci_parse ( $this->ORA , $requeteBaza) ;
         oci_execute ($csr) ;

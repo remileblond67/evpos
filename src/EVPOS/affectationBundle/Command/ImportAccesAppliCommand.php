@@ -58,7 +58,7 @@ class ImportAccesAppliCommand extends ContainerAwareCommand
             
             $output->writeln("Import des accès aux applications à partir de GAP");
             
-            $requeteBaza = "select distinct code_application from gap_user_application where matricule=:matricule";
+            $requeteBaza = "select distinct code_application from gap_user_application where upper(matricule)=:matricule";
             $csr = oci_parse ( $this->ORA , $requeteBaza) ;
 
             foreach ($listeUtil as $utilisateur) {

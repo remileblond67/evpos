@@ -53,6 +53,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                 if ($hostname != "-") {
                     // $output->writeln($nbLine . " " . $hostname);
                     $codeService = $data[1];
+                    $numService = $data[13];
                     $codeMateriel = $data[2];
                     $statut = $data[4];
                     $modele = $data[6];
@@ -62,10 +63,15 @@ class ImportPosteCommand extends ContainerAwareCommand
                     } else {
                         $licenceW8 = "NON";
                     }
-                    $localisation = $data[11];
-                    $matUtil = $data[12];
-                    $commentaire = $data[14];
-                    $typeUsage = $data[15];
+                    if ($data[10] == "SSD") {
+                        $ssd = $data[11];
+                    } else {
+                        $ssd = "NON";
+                    }
+                    $localisation = $data[14];
+                    $matUtil = strtoupper($data[15]);
+                    $commentaire = $data[17];
+                    $typeUsage = $data[18];
                                     
                     if ($hostname !== "") {
                         // Recherche si le poste existe
@@ -95,7 +101,13 @@ class ImportPosteCommand extends ContainerAwareCommand
                             default:
                                 $poste->setLicenceW8(FALSE);
                         }
-                        
+                        switch ($ssd) {
+                            case "OUI":
+                                $poste->setSSD(TRUE);
+                                break;
+                            default:
+                                $poste->setSSD(FALSE);
+                        }
                         // Mise à jour du service
                         $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
                         if ($service !== NULL) {
@@ -112,7 +124,6 @@ class ImportPosteCommand extends ContainerAwareCommand
                         } else {
                             $listeUtilisateurInconnu[] = $matUtil;
                         }
-                        
                         $em->persist($poste);
                     }
                 }
@@ -165,45 +176,52 @@ class ImportPosteCommand extends ContainerAwareCommand
         
         // Lecture du fichier CSV extrait de GPARC
         $output->write("Lecture du fichier des équipements liés... ");
-        $fileName = "/home/data/evpos/dev/gparc/materiel-lies.csv";
-        $csvFile = fopen($fileName, 'r');
-        $nbLine = 0;
+        $fileName = [];
+        $fileName[] = "/home/data/evpos/dev/gparc/materiel-lie.csv";
+        $fileName[] = "/home/data/evpos/dev/gparc/materiel-lie-montant.csv";
         
         $listeCodeMateriel = [];
         
-        while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
-            if ($nbLine > 0) {
-                $hostname = strtoupper(trim($data[0]));
-                if ($hostname != "") {
-                    $codeMateriel = strtoupper(trim($data[1]));
-                    if (in_array($codeMateriel, $listeCodeMateriel)) {
-                        // Le code a déjà été rencontré
-                        $output->write(" Doublon:".$codeMateriel);
-                    } else {
-                        // Le code matériel n'avais jamais été rencontré
-                        $listeCodeMateriel[] = $codeMateriel;
+        foreach ($fileName as $file) {
+            $output->write($file." ");
+            $csvFile = fopen($file, 'r');
+            $nbLine = 0;
+            
+            while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
+                if ($nbLine > 0) {
+                    $hostname = strtoupper(trim($data[0]));
+                    if ($hostname != "") {
+                        $codeMateriel = strtoupper(trim($data[1]));
+                        if (in_array($codeMateriel, $listeCodeMateriel)) {
+                            // Le code a déjà été rencontré
+                            $output->write(" Doublon:".$codeMateriel);
+                        } else {
+                            // Le code matériel n'avais jamais été rencontré
+                            $listeCodeMateriel[] = $codeMateriel;
+                            
+                            $categorie = trim($data[2]);
+                            $modele = trim($data[3]);
+                            
+                            $equipement = new Equipement();
+                            $equipement->setCodeMateriel($codeMateriel);
+                            $equipement->setCategorie($categorie);
+                            $equipement->setModele($modele);
                         
-                        $categorie = trim($data[2]);
-                        $modele = trim($data[3]);
-                        
-                        $equipement = new Equipement();
-                        $equipement->setCodeMateriel($codeMateriel);
-                        $equipement->setCategorie($categorie);
-                        $equipement->setModele($modele);
-                        
-                        // recherche du poste lié
-                        $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);
-                        if ($poste !== NULL) {
-                            $equipement->setPoste($poste);
-                            $em->persist($equipement);
+                            // recherche du poste lié
+                            $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);
+                            if ($poste !== NULL) {
+                                $equipement->setPoste($poste);
+                                $em->persist($equipement);
+                            }
                         }
                     }
                 }
+                $nbLine++;
             }
-            $nbLine++;
+            fclose($csvFile);
         }
         unset($listeCodeMateriel);
-        fclose($csvFile);
+
         $em->flush();
         $output->writeln("OK");
         

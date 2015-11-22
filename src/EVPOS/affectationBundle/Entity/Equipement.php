@@ -15,7 +15,7 @@ class Equipement
     /**
      * @var string
      *
-     * @ORM\Column(name="codeMateriel", type="string", length=25)
+     * @ORM\Column(name="codeMateriel", type="string", length=255)
      * @ORM\Id
      */
     private $codeMateriel;
@@ -30,7 +30,7 @@ class Equipement
     /**
      * @var string
      *
-     * @ORM\Column(name="modele", type="string", length=255)
+     * @ORM\Column(name="modele", type="string", length=255, nullable=true)
      */
     private $modele;
     

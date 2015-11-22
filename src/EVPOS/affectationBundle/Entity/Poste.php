@@ -57,6 +57,13 @@ class Poste
     private $licenceW8;
     
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ssd", type="boolean", nullable=true)
+     */
+    private $ssd;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
@@ -561,5 +568,28 @@ class Poste
             }
         }
         return $liste;
+    }
+
+    /**
+     * Set ssd
+     *
+     * @param boolean $ssd
+     * @return Poste
+     */
+    public function setSsd($ssd)
+    {
+        $this->ssd = $ssd;
+
+        return $this;
+    }
+
+    /**
+     * Get ssd
+     *
+     * @return boolean 
+     */
+    public function getSsd()
+    {
+        return $this->ssd;
     }
 }
