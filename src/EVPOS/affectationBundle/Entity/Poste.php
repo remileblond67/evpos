@@ -592,4 +592,35 @@ class Poste
     {
         return $this->ssd;
     }
+    
+    public function getSsdIcon()
+    {
+        switch ($this->ssd) {
+            case 1:
+                $icon = "glyphicon glyphicon-ok ok";
+                break;
+            case 0:
+                $icon = "glyphicon glyphicon-remove ko";
+                break;
+            default:
+                $icon = "glyphicon glyphicon-minus";
+        }
+       
+        return $icon;
+    }
+    
+    public function getSsdLong() {
+        switch ($this->ssd) {
+            case 1:
+                $retour = "Oui";
+                break;
+            case 0:
+                $retour = "Non";
+                break;
+            default:
+                $retour = "";
+        }
+        return $retour;
+    }
+    
 }

@@ -45,6 +45,7 @@ poste:
     licenceW8: Licence EOM Windows 8
     equipementLie: Equipements liés
     listeExclus: Types de poste exclus
+    ssd: Disque SSD
 
 applications:
     liste: Applications à migrer
