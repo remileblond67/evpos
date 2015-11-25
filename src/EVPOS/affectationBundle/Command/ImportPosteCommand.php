@@ -49,7 +49,7 @@ class ImportPosteCommand extends ContainerAwareCommand
         
         while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
             if ($nbLine>0) {
-                $hostname = strtoupper(trim($data[3]));   
+                $hostname = strtoupper($data[3]);   
                 if ($hostname != "-") {
                     // $output->writeln($nbLine . " " . $hostname);
                     $codeService = $data[1];
@@ -112,6 +112,8 @@ class ImportPosteCommand extends ContainerAwareCommand
                         $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
                         if ($service !== NULL) {
                             $poste->setService($service);
+                        } else {
+                            $output->writeln("Service ".$codeService." inconnu");
                         }
                         
                         // Recherche de l'utilisateur
