@@ -34,14 +34,14 @@ class Service
     private $libService;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Direction", inversedBy="listeServices", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Direction", inversedBy="listeServices", cascade={"persist", "detach"})
      * @ORM\JoinColumn(name="code_direction", referencedColumnName="code_direction",
      *                 nullable=true)
      */
     private $direction;
 	
 	/**
-     * @ORM\ManyToMany(targetEntity="Utilisateur")
+     * @ORM\ManyToMany(targetEntity="Utilisateur", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_riu_service",
      *      joinColumns={@ORM\JoinColumn(name="service_riu", referencedColumnName="code_service")},
      *      inverseJoinColumns={
@@ -52,26 +52,26 @@ class Service
 	private $listeRiu;
 
     /**
-     * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli")
+     * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli", cascade={"remove"})
      */
     private $listeAppliService;
     
     /**
-     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil")
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil", cascade={"persist", "remove"})
      */
     private $listeUtilisateurs;
     
     /**
-     * @ORM\OneToMany(targetEntity="Poste", mappedBy="service")
+     * @ORM\OneToMany(targetEntity="Poste", mappedBy="service", cascade={"remove"})
      */
     private $listePostes;    
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="serviceAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="serviceAcces", cascade={"remove"})
      */
     private $listeAcces;
 
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces")
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces", cascade={"detach"})
      */
     private $listeAccesUo;
     

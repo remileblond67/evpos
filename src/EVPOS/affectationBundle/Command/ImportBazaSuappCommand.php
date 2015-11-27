@@ -6,6 +6,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\AccesUtilAppli;
+use EVPOS\affectationBundle\Entity\Direction;
+use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\Utilisateur;
 
 /**
@@ -69,7 +71,6 @@ class ImportBazaSuappCommand extends ContainerAwareCommand
         
         $output->writeln("Import de ".$nb." directions");
         
-        
         $output->writeln("*** Import des services ***");
         // Marquage des services existants
         $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
@@ -119,6 +120,27 @@ class ImportBazaSuappCommand extends ContainerAwareCommand
         unset($csr);
         
         $output->writeln("Import de ".$nb." services");
+        
+        $output->write("Création Direction et service inconnus... ");
+        // Création d'une direction inconnue
+        if (! $em->getRepository('EVPOS\affectationBundle\Entity\Direction')->isDirection("?")) {
+            $dirInconnue = new Direction();
+            $dirInconnue->setCodeDirection("?");
+            $dirInconnue->setLibDirection("Direction inconnue");
+            $em->persist($dirInconnue);
+        }
+        $em->flush();
+        // Création d'un service inconnu
+        if (! $em->getRepository('EVPOS\affectationBundle\Entity\Service')->isService("?")) {
+            $servInconnu = new Service();
+            $servInconnu->setCodeService("?");
+            $servInconnu->setLibService("Service inconnu");
+            $dirInconnue = $em->getRepository('EVPOS\affectationBundle\Entity\Direction')->getDirection("?");
+            $servInconnu->setDirection($dirInconnue);
+            $em->persist($servInconnu);
+        }   
+        $em->flush();
+        $output->writeln("OK");
         
         
         $output->writeln("*** Import des utilisateurs ***");
@@ -172,6 +194,7 @@ class ImportBazaSuappCommand extends ContainerAwareCommand
         $output->writeln("Import de ".$nb." utilisateurs");
         
         // Suppression des utilisateurs qui n'existaient pas dans BAZA
+        $output->write("Suppression des utilisateurs qui n'existaient pas dans BAZA... ");
         $listeUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateursSuppr();
         foreach($listeUtil as $util) {
             $em->remove($util);
@@ -179,6 +202,7 @@ class ImportBazaSuappCommand extends ContainerAwareCommand
         }
         $em->flush();
         unset($listeUtil);
+        $output->writeln("OK");
         
         // Création des utilisateurs "libre service"
         $output->write("Création des utilisateurs libre service... ");
