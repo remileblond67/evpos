@@ -145,6 +145,7 @@ class EVPOSUpdateSuapp {
                 $uo->setNomUo($nomUo);
                 $uo->setMigMoca($migMoca);
                 $uo->setTypePoste("");
+                $uo->setAncienCitrix(FALSE);
                 
                 $em->persist($uo);
                 $nbUo++;
@@ -164,6 +165,22 @@ class EVPOSUpdateSuapp {
             if($em->getRepository('EVPOSaffectationBundle:Uo')->isUo($codeUo)) {
                 $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
                 $uo->appendTypePoste($typePoste);
+                $em->persist($uo);
+            }
+        }
+        $em->flush();
+        oci_free_statement($csr);
+        
+        // Mise à jour de la disponibilité dans l'ancienne ferme Citrix
+        $requeteSUAPP = "SELECT m.id_module FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'CITRIX_XA5'";
+        $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
+        oci_execute ($csr) ;
+        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
+            $codeUo = strtoupper($row["ID_MODULE"]) ;
+            
+            if($em->getRepository('EVPOSaffectationBundle:Uo')->isUo($codeUo)) {
+                $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
+                $uo->setAncienCitrix(TRUE);
                 $em->persist($uo);
             }
         }

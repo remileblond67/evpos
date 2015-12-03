@@ -32,9 +32,18 @@
 				<h4>{{ 'uo.avancementMigMoca'|trans}}</h4>
                 {{ uo.avancementMoca }}
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-1">
                 <h4>Type de poste</h4>
                 {{ uo.typePoste }}
+            </div>
+            <div class="col-lg-1">
+                <h4>{{'uo.ancienCitrix'|trans}}</h4>
+                {% if uo.ancienCitrix %}
+                <span class="ok glyphicon glyphicon-ok"></span>
+                {% else %}
+                <span class="ko glyphicon glyphicon-remove"></span>
+                {% endif %}
+                {{ uo.ancienCitrixLong }}
             </div>
             <div class="col-lg-1">
                 <h4>FIA</h4>

@@ -56,6 +56,7 @@
                     <td class="row">{{ 'uo.nom'|trans }}</td>
                     <td class="row">{{ 'uo.migMoca'|trans }}</td>
                     <td class="row">{{ 'uo.avancementMigMoca'|trans}}</td>
+                    <td class="row">{{ 'uo.ancienCitrix'|trans }}</td>
                     <td class="row">{{ 'uo.nbUtil'|trans }}</td>
                     <td class="row">{{ 'uo.nbPoste'|trans }}</td>
                 </tr>
@@ -80,6 +81,14 @@
                             <span class="glyphicon glyphicon-file"></span>
                         </a>
                         {% endif %}
+                    </td>
+                    <td>
+                        {% if uo.ancienCitrix %}
+                        <span class="ok glyphicon glyphicon-ok"></span>
+                        {% else %}
+                        <span class="ko glyphicon glyphicon-remove"></span>
+                        {% endif %}
+                        {{ uo.ancienCitrixLong }}
                     </td>
                     <td class="">{{uo.listeAcces|length}}</td>
                     <td>{{ uo.listePostes|length }}</td>

@@ -98,6 +98,7 @@ uo:
     corresp: Correspondance des codes UO
     codeOld: Ancien code
     codeNew: Nouveau code
+    ancienCitrix: Ancienne ferme Citrix
 
 service:
     code: Code du service

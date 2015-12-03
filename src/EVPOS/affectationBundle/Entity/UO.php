@@ -44,6 +44,13 @@ class UO
      * @ORM\Column(name="mig_moca", type="boolean", nullable=true)
      */
     private $migMoca;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ancien_citrix", type="boolean", nullable=true)
+     */
+    private $ancienCitrix;
 
     /**
      * @var boolean
@@ -363,4 +370,43 @@ class UO
         return "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx";
     }
      
+
+    /**
+     * Set ancienCitrix
+     *
+     * @param boolean $ancienCitrix
+     * @return UO
+     */
+    public function setAncienCitrix($ancienCitrix)
+    {
+        $this->ancienCitrix = $ancienCitrix;
+
+        return $this;
+    }
+
+    /**
+     * Get ancienCitrix
+     *
+     * @return boolean 
+     */
+    public function getAncienCitrix()
+    {
+        return $this->ancienCitrix;
+    }
+    
+    public function getAncienCitrixLong()
+    {
+        switch ($this->ancienCitrix) {
+            case 1:
+                $retour = "Oui";
+                break;
+            case 0:
+                $retour = "Non";
+                break;
+            default:
+                $retour = "";
+        }
+        return $retour;
+    }
+
 }
