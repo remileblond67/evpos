@@ -52,7 +52,7 @@ class Service
 	private $listeRiu;
 
     /**
-     * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli", cascade={"detach"})
      */
     private $listeAppliService;
     
@@ -71,7 +71,7 @@ class Service
     private $listeAcces;
 
     /**
-     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces", cascade={"detach"})
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces", cascade={"remove"})
      */
     private $listeAccesUo;
     

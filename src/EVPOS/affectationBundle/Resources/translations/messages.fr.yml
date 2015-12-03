@@ -35,7 +35,7 @@ poste:
     modele: Modèle de poste
     ecran: Ecran
     statut: Statut
-    utilisateurs: Utilisateurs du poste
+    utilisateurs: Utilisateur principal du poste
     uo: UO locales
     localisation: Localisation du poste
     commentaire: Commentaire (GPARC)
