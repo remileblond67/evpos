@@ -52,6 +52,23 @@ class DirectionRepository extends EntityRepository
     }
     
     /**
+     * Récupération de la liste des directions et de leurs services pour l'état d'avancement des services
+     */
+    public function getDirectionsServicesAvancement() {
+        $query = $this->createQueryBuilder('d')
+            ->leftJoin('d.listeServices', 's')
+            ->leftJoin('s.listeAccesUo', 'a')
+            ->leftJoin('a.uoAcces', 'uo')
+            ->addSelect('s')
+            ->orderBy('d.codeDirection, s.codeService')
+            ->where('d.codeDirection is not null and uo.migMoca = true')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+    
+    /**
      * Retourne la liste des directions, des services et des applications utilisées
      */
     public function getListeDirServAppli() {

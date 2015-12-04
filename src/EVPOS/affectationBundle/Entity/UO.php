@@ -53,11 +53,18 @@ class UO
     private $ancienCitrix;
 
     /**
-     * @var boolean
+     * @var string
      *
      * @ORM\Column(name="avancement_moca", type="string", length=50, nullable=true)
      */
     private $avancementMoca;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
+     */
+    private $noteAvancementMoca;
     
     /** 
      * @var string
@@ -203,7 +210,7 @@ class UO
     /**
      * Get avancementMoca
      *
-     * @return boolean
+     * @return string
      */
     public function getAvancementMoca()
     {
@@ -409,4 +416,27 @@ class UO
         return $retour;
     }
 
+
+    /**
+     * Set noteAvancementMoca
+     *
+     * @param integer $noteAvancementMoca
+     * @return UO
+     */
+    public function setNoteAvancementMoca($noteAvancementMoca)
+    {
+        $this->noteAvancementMoca = $noteAvancementMoca;
+
+        return $this;
+    }
+
+    /**
+     * Get noteAvancementMoca
+     *
+     * @return integer 
+     */
+    public function getNoteAvancementMoca()
+    {
+        return $this->noteAvancementMoca;
+    }
 }
