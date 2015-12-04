@@ -16,6 +16,11 @@
                             <codeAppli>{{acces.appliAcces.codeAppli}}</codeAppli>
                             <dispoMoca>{{acces.appliAcces.dispoMocaLong}}</dispoMoca>
                             <nomAppli>{{acces.appliAcces.nomAppli}}</nomAppli>
+                            <secteur>
+                            {% if appli.secteur %}
+                            {{ appli.secteur.libSecteur }}
+                            {% endif %}
+                            </secteur>
                         </application>
                     {% endfor %}
                     </applications>

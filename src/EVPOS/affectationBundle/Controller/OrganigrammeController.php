@@ -45,7 +45,6 @@ class OrganigrammeController extends Controller
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_service.html.twig', array('listeService' => $listeService));
     }
 
-
     /**
      * Affiche la fiche d'un service dont le code est passé en paramètre
      */
@@ -64,5 +63,4 @@ class OrganigrammeController extends Controller
     public function listeEcAction() {
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
     }
-
 }

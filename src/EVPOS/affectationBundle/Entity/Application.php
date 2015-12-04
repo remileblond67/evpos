@@ -74,6 +74,14 @@ class Application
     private $cpi;
     
     /**
+     * Secteur en charge de l'application
+     * Attention: si l'application comporte plusieurs secteurs actifs, seul l'un d'eux est pris en compte
+     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Secteur", inversedBy="listeAppli" )
+     * @ORM\JoinColumn(name="codeSecteur", referencedColumnName="codeSecteur")
+     */
+    private $secteur;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="existe_suapp", type="boolean", nullable=true)
@@ -429,5 +437,28 @@ class Application
     public function getExisteSuapp()
     {
         return $this->existeSuapp;
+    }
+
+    /**
+     * Set secteur
+     *
+     * @param \EVPOS\affectationBundle\Entity\Secteur $secteur
+     * @return Application
+     */
+    public function setSecteur(\EVPOS\affectationBundle\Entity\Secteur $secteur = null)
+    {
+        $this->secteur = $secteur;
+
+        return $this;
+    }
+
+    /**
+     * Get secteur
+     *
+     * @return \EVPOS\affectationBundle\Entity\Secteur 
+     */
+    public function getSecteur()
+    {
+        return $this->secteur;
     }
 }

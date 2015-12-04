@@ -156,6 +156,15 @@ evpos_updateAvancement:
 evpos_purgeBase:
     path: /purge_base
     defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }
+    
+# Etat d'avancement des services
+evpos_serviceAvancement:
+    path: /service_avancement
+    defaults: { _controller: EVPOSaffectationBundle:Etat:etatAvancementService }
+
+evpos_serviceAvancementXml:
+    path: /service_avancement_xml
+    defaults: { _controller: EVPOSaffectationBundle:Etat:etatAvancementServiceXml }
 
 # Pages de contrôle
 evpos_ctrl_poste_inconnu:

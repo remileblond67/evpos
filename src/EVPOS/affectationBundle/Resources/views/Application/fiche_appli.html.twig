@@ -34,7 +34,9 @@
             </div>
             <div class="col-lg-2">
                 <h4>{{ 'application.secteur'|trans }}</h4>
-                
+                {% if appli.secteur %}
+                {{ appli.secteur.libSecteur }}
+                {% endif %}
             </div>
             <div class="col-lg-2">
                 <h4>{{ 'application.dispoMoca'|trans }}</h4>

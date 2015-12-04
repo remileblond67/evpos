@@ -99,6 +99,7 @@ uo:
     codeOld: Ancien code
     codeNew: Nouveau code
     ancienCitrix: Ancienne ferme Citrix
+    noteAvancement: Note d'avancement de la migration
 
 service:
     code: Code du service
@@ -107,6 +108,8 @@ service:
     nbAgent: Nombre d'agents
     nbAcces: Nombre d'applications utilisées
     nbAccesUo: Nombre d'UO utilisées
+    etatAvancement: Etat d'avancement des services
+    noteAvancement: Note d'avancement de la migration
     
 riu:
     nom: Nom RIU

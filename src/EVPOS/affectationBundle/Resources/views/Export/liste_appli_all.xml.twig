@@ -11,6 +11,12 @@
             <codeServiceAppli>{{ appli.serviceAppli.codeService }}</codeServiceAppli>
             <libServiceAppli>{{ appli.serviceAppli.libService }}</libServiceAppli>
         {% endif %}
+        <secteur>
+        {% if appli.secteur %}
+        {{ appli.secteur.libSecteur }}
+        {% endif %}
+        </secteur>
+
         <cpi>
             {% if appli.cpi %}
             {{appli.cpi.nomUtil}}
