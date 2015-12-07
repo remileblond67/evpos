@@ -43,6 +43,13 @@ class AccesServiceUo
      * @ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo", nullable=false)
      */
     private $uoAcces;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_util", type="integer", nullable=true)
+     */
+    private $nbUtil;
 
     /**
      * Set dateImport
@@ -134,5 +141,28 @@ class AccesServiceUo
     public function getUoAcces()
     {
         return $this->uoAcces;
+    }
+
+    /**
+     * Set nbUtil
+     *
+     * @param integer $nbUtil
+     * @return AccesServiceUo
+     */
+    public function setNbUtil($nbUtil)
+    {
+        $this->nbUtil = $nbUtil;
+
+        return $this;
+    }
+
+    /**
+     * Get nbUtil
+     *
+     * @return integer 
+     */
+    public function getNbUtil()
+    {
+        return $this->nbUtil;
     }
 }

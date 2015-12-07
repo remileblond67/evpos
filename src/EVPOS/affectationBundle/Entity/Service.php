@@ -81,6 +81,15 @@ class Service
      * @ORM\Column(name="existe_baza", type="boolean", nullable=true)
      */
     private $existeBaza;
+    
+    /**
+     * Moyenne des notes des UO utilisées par le service, pondérée par leur nombre d'utilisateurs
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
+     */
+    private $noteAvancementMoca;
 
     /**
      * Retourne le nombre d'agents affectés au service
@@ -433,5 +442,28 @@ class Service
     public function getExisteBaza()
     {
         return $this->existeBaza;
+    }
+
+    /**
+     * Set noteAvancementMoca
+     *
+     * @param integer $noteAvancementMoca
+     * @return Service
+     */
+    public function setNoteAvancementMoca($noteAvancementMoca)
+    {
+        $this->noteAvancementMoca = $noteAvancementMoca;
+
+        return $this;
+    }
+
+    /**
+     * Get noteAvancementMoca
+     *
+     * @return integer 
+     */
+    public function getNoteAvancementMoca()
+    {
+        return $this->noteAvancementMoca;
     }
 }

@@ -36,12 +36,13 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
         foreach($listeAcces as $acces) {
             $em->remove($acces);
         }
+        unset($listeAcces);
         
 		$listeAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesServiceUo')->getListeAccesServiceUo();
         foreach($listeAccesUo as $acces) {
             $em->remove($acces);
         }
-        unset($listeAcces);
+        unset($listeAccesUo);
 		$em->flush();
         $output->writeln("OK");        
         
@@ -96,10 +97,20 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
 			unset($listeUo);
         }
         $em->flush();
-        unset($listeServices);
-        
         $output->writeln("Fin d'import");
+        
+        $output->write("Mise à jour des comptages d'utilisateurs... ");
+        // Mise à jour des comptages
+        $listeAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesServiceUo')->getListeAccesServiceUo();
+        foreach($listeAccesUo as $acces) {
+            $nbUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur')
+                ->nbUtilUoService($acces->getUoAcces()->getCodeUo(), $acces->getServiceAcces()->getCodeService());
+            $acces->setNbUtil($nbUtil);
+            $em->persist($acces);
+        }
         $em->flush();
+        $output->writeln("OK");
         $output->writeln("Import validé");
+        unset($listeServices);
     }
 }

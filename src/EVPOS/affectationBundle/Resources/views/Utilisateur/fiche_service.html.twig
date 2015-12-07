@@ -21,7 +21,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-3"><h4>Code service</h4>{{service.codeService}}</div>
+            <div class="col-lg-1"><h4>Code service</h4>{{service.codeService}}</div>
             <div class="col-lg-3"><h4>Nom service</h4>{{service.libService}}</div>
             <div class="col-lg-3">
                 <h4>Direction</h4>
@@ -39,6 +39,10 @@
 					</li>
                 {% endfor %}
                 </li>
+            </div>
+            <div class="col-lg-2">
+                <h4>{{'service.noteAvancement'|trans}}</h4>
+                {{service.noteAvancementMoca}}%
             </div>
         </div>
     </div>
@@ -157,11 +161,12 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                     <tr>
-                        <td class="row" >{{ 'uo.code'|trans }}</td>
-                        <td class="row" >{{ 'uo.nom'|trans }}</td>
-                        <td class="row" >{{ 'uo.migMoca'|trans }}</td>
-                        <td class="row" >{{ 'uo.avancementMigMoca'|trans }}</td>
-                        <td class="row" >{{ 'app.source'|trans }}</td>
+                        <td class="row">{{ 'uo.code'|trans }}</td>
+                        <td class="row">{{ 'uo.nom'|trans }}</td>
+                        <td class="row">{{ 'uo.migMoca'|trans }}</td>
+                        <td class="row">{{ 'uo.avancementMigMoca'|trans }}</td>
+                        <td class="row">{{ 'app.source'|trans }}</td>
+                        <td class="row">{{ 'uo.nbUtilService'|trans }}</td>
                     </tr>
 
                 </thead>
@@ -180,6 +185,7 @@
                             {{ acces.uoAcces.avancementMoca }}
                         </td>
                         <td class="gradeA odd">{{ acces.sourceImport }}</td>
+                        <td class="gradeA odd">{{ acces.nbUtil }} </td>
                     </tr>
                     {% endfor %}
                 </tbody>
