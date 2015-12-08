@@ -22,7 +22,7 @@ class DirectionRepository extends EntityRepository
 
         return $query->getSingleScalarResult();
     }
-    
+
     /**
      * Récupération de la liste des directions
      */
@@ -50,7 +50,7 @@ class DirectionRepository extends EntityRepository
 
         return $query->getResult();
     }
-    
+
     /**
      * Récupération de la liste des directions et de leurs services pour l'état d'avancement des services
      */
@@ -60,14 +60,16 @@ class DirectionRepository extends EntityRepository
             ->leftJoin('s.listeAccesUo', 'a')
             ->leftJoin('a.uoAcces', 'uo')
             ->addSelect('s')
+            ->addSelect('a')
+            ->addSelect('uo')
             ->orderBy('d.codeDirection, s.codeService')
-            ->where('d.codeDirection is not null and uo.migMoca = true')
+            ->where('d.codeDirection is not null and uo.migMoca != false and uo.migMoca is not null')
             ->getQuery()
         ;
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne la liste des directions, des services et des applications utilisées
      */
@@ -96,7 +98,7 @@ class DirectionRepository extends EntityRepository
 
         return $query->getSingleResult();
     }
-    
+
     /**
      * Vérifie si la direction existe
      */
@@ -108,15 +110,15 @@ class DirectionRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        
+
         if ($nbDirection >= 1)
             $retour = true;
-        else 
+        else
             $retour = false;
-            
+
         return $retour;
     }
-    
+
     /**
      * Liste des directions, services, utilisateurs et de leurs applications
      */
@@ -133,10 +135,10 @@ class DirectionRepository extends EntityRepository
             ->addSelect('app')
             ->getQuery()
         ;
-        
-        return $query->getResult(); 
+
+        return $query->getResult();
     }
-	
+
     /**
      * Liste des directions, services, utilisateurs et de leurs applications
      */
@@ -155,10 +157,10 @@ class DirectionRepository extends EntityRepository
             ->where('s.codeService = :code')
             ->getQuery()
         ;
-        
-        return $query->getResult(); 
-    }	
-    
+
+        return $query->getResult();
+    }
+
     /**
      * Liste des directions, services, utilisateurs
      */
@@ -171,10 +173,10 @@ class DirectionRepository extends EntityRepository
             ->addSelect('u')
             ->getQuery()
         ;
-        
-        return $query->getResult(); 
+
+        return $query->getResult();
     }
-    
+
     /**
      * Liste des postes et de leurs utilisateurs par service / direction
      */
@@ -189,7 +191,7 @@ class DirectionRepository extends EntityRepository
             ->addSelect('u')
             ->getQuery()
         ;
-        
+
         return $query->getResult();
     }
 }

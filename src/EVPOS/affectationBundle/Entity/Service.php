@@ -27,6 +27,11 @@ class Service
     private $codeService;
 
     /**
+     * @ORM\Column(name="nb_agent", type="integer", nullable=true)
+     */
+    private $nbAgent;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="lib_service", type="string", length=255)
@@ -39,32 +44,32 @@ class Service
      *                 nullable=true)
      */
     private $direction;
-	
+
 	/**
      * @ORM\ManyToMany(targetEntity="Utilisateur", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_riu_service",
      *      joinColumns={@ORM\JoinColumn(name="service_riu", referencedColumnName="code_service")},
      *      inverseJoinColumns={
-     *      @ORM\JoinColumn(name="mat_riu", referencedColumnName="mat_util")
+     *        @ORM\JoinColumn(name="mat_riu", referencedColumnName="mat_util", onDelete="cascade")
      *      }
      * )
 	 */
-	private $listeRiu;
+	 private $listeRiu;
 
     /**
      * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli", cascade={"detach"})
      */
     private $listeAppliService;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil", cascade={"persist", "remove"})
      */
     private $listeUtilisateurs;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Poste", mappedBy="service", cascade={"remove"})
      */
-    private $listePostes;    
+    private $listePostes;
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="serviceAcces", cascade={"remove"})
      */
@@ -74,14 +79,14 @@ class Service
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="serviceAcces", cascade={"remove"})
      */
     private $listeAccesUo;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="existe_baza", type="boolean", nullable=true)
      */
     private $existeBaza;
-    
+
     /**
      * Moyenne des notes des UO utilisées par le service, pondérée par leur nombre d'utilisateurs
      *
@@ -95,23 +100,27 @@ class Service
      * Retourne le nombre d'agents affectés au service
      */
     public function getNbAgent() {
-        return $this->listeUtilisateurs->count();
+        return $this->nbAgent;
     }
-    
+
+    public function setNbAgent($nb) {
+      $this->nbAgent = $nb;
+    }
+
     /**
      * Retourne le nombre d'accès applicatif affectés au service
      */
     public function getNbAcces() {
         return $this->listeAcces->count();
     }
-	
+
 	/**
      * Retourne le nombre d'accès UO affectés au service
      */
     public function getNbAccesUo() {
         return $this->listeAccesUo->count();
     }
-    
+
     /**
      * Set codeService
      *
@@ -258,7 +267,7 @@ class Service
     /**
      * Get listeAcces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAcces()
     {
@@ -315,7 +324,7 @@ class Service
     /**
      * Get listeRiu
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeRiu()
     {
@@ -348,7 +357,7 @@ class Service
     /**
      * Get listeAccesUo
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAccesUo()
     {
@@ -381,7 +390,7 @@ class Service
     /**
      * Get listeAppliService
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAppliService()
     {
@@ -414,7 +423,7 @@ class Service
     /**
      * Get listePostes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListePostes()
     {
@@ -437,7 +446,7 @@ class Service
     /**
      * Get existeBaza
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExisteBaza()
     {
@@ -460,7 +469,7 @@ class Service
     /**
      * Get noteAvancementMoca
      *
-     * @return integer 
+     * @return integer
      */
     public function getNoteAvancementMoca()
     {

@@ -33,14 +33,14 @@ class AccesUtilAppli
     /**
      * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Utilisateur", inversedBy="listeAcces" )
      * @ORM\Id
-     * @ORM\JoinColumn(name="mat_util", referencedColumnName="mat_util", nullable=false)
+     * @ORM\JoinColumn(name="mat_util", referencedColumnName="mat_util", nullable=false, onDelete="cascade")
      */
     private $utilAcces;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeAcces")
      * @ORM\Id
-     * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false)
+     * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false, onDelete="cascade")
      */
     private $appliAcces;
 
@@ -60,7 +60,7 @@ class AccesUtilAppli
     /**
      * Get dateImport
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateImport()
     {
@@ -83,7 +83,7 @@ class AccesUtilAppli
     /**
      * Get source
      *
-     * @return string 
+     * @return string
      */
     public function getSourceImport()
     {
@@ -106,7 +106,7 @@ class AccesUtilAppli
     /**
      * Get utilAcces
      *
-     * @return \EVPOS\affectationBundle\Entity\Utilisateur 
+     * @return \EVPOS\affectationBundle\Entity\Utilisateur
      */
     public function getUtilAcces() {
         return $this->utilAcces;
@@ -128,7 +128,7 @@ class AccesUtilAppli
     /**
      * Get appliAcces
      *
-     * @return \EVPOS\affectationBundle\Entity\Application 
+     * @return \EVPOS\affectationBundle\Entity\Application
      */
     public function getAppliAcces()
     {

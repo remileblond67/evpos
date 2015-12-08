@@ -34,7 +34,7 @@
                 <ul>
                 {% for riu in service.listeRiu %}
                     <li>
-						{{ riu.nomUtil }} 
+						{{ riu.nomUtil }}
 						(<a href="{{ path('evpos_ficheService', { 'codeService' : riu.serviceUtil.codeService }) }}" title="{{riu.serviceUtil.libService}}">{{riu.serviceUtil.codeService}}</a>)
 					</li>
                 {% endfor %}
@@ -42,7 +42,7 @@
             </div>
             <div class="col-lg-2">
                 <h4>{{'service.noteAvancement'|trans}}</h4>
-                {{service.noteAvancementMoca}}%
+                <progress value="{{ service.noteAvancementMoca }}" max="100"></progress>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@
                         <td class="row">{{'application.nom'|trans}}</td>
 						<td class="row">{{'application.nature'|trans}}</td>
 						<td class="row">{{'application.listeUo'|trans}}</td>
-						
+
                     </tr>
                 </thead>
                 <tbody>
@@ -199,7 +199,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordionUtils" href="#collapseUtil" aria-expanded="true" aria-controls="collapseOne">
-            Liste des agents    
+            Liste des agents
             <div class="badge">{{service.listeUtilisateurs|length}}</div>
             </a>
         </h3>
@@ -238,7 +238,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordionPoste" href="#collapsePoste" aria-expanded="true" aria-controls="collapseOne">
-            {{'poste.listeUsage'|trans}} 
+            {{'poste.listeUsage'|trans}}
             <div class="badge">{{service.listePostes|length}}</div>
             </a>
         </h3>
@@ -288,7 +288,7 @@
 								<a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
 								{{ uo.appli.codeAppli }}
 								</a>
-								: 
+								:
 								<a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
 								{{ uo.codeUo }}
 								</a>- {{ uo.nomUo }}</li>

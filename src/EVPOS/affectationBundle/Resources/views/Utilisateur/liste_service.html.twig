@@ -47,7 +47,9 @@
                     <td class="">{{service.nbAgent}}</td>
                     <td class="">{{service.nbAcces}}</td>
 					<td class="">{{service.nbAccesUo}}</td>
-                    <td class="">{{service.noteAvancementMoca}}%</td>
+                    <td class="">
+                        <progress value="{{ service.noteAvancementMoca }}" max="100"></progress>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

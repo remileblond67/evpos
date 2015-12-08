@@ -16,7 +16,7 @@ class Utilisateur
 {
     public function __construct() {
         $this->listeAccesUo = new ArrayCollection() ;
-		$this->listeAcces = new ArrayCollection() ;
+		    $this->listeAcces = new ArrayCollection() ;
     }
 
     /**
@@ -33,7 +33,7 @@ class Utilisateur
      * @ORM\Column(name="nom_util", type="string", length=255)
      */
     private $nomUtil;
-    
+
     /**
      * @var string
      *
@@ -46,7 +46,7 @@ class Utilisateur
     * @ORM\JoinColumn(name="service_util", referencedColumnName="code_service", nullable=true)
     */
     private $serviceUtil;
-    
+
     /**
      * @var boolean
      *
@@ -54,35 +54,34 @@ class Utilisateur
      */
     private $existeBaza;
 
-        
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="utilAcces", cascade={"remove"})
      */
     private $listeAcces;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="utilAcces", cascade={"remove"})
      */
     private $listeAccesUo;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\Application", mappedBy="cpi", cascade={"remove"})
      * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli")
      */
     private $listeAppliCpi;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUtilisateurs", cascade={"detach"})
      */
     private $listePostes;
-    
+
     /**
      * Retourne le nombre d'applications auquel l'utilisateur a accès
      */
     public function getNbAcces() {
         return $this->listeAcces->count();
     }
-    
+
     /**
      * Set matUtil
      *
@@ -178,7 +177,7 @@ class Utilisateur
     /**
      * Get listeAcces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAcces()
     {
@@ -211,7 +210,7 @@ class Utilisateur
     /**
      * Get listeAppliCpi
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAppliCpi()
     {
@@ -244,7 +243,7 @@ class Utilisateur
     /**
      * Get listeAccesUo
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAccesUo()
     {
@@ -277,7 +276,7 @@ class Utilisateur
     /**
      * Get listePostes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListePostes()
     {
@@ -300,7 +299,7 @@ class Utilisateur
     /**
      * Get lastLogin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastLogin()
     {
@@ -323,7 +322,7 @@ class Utilisateur
     /**
      * Get existeBaza
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExisteBaza()
     {
