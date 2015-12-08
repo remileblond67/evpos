@@ -35,8 +35,10 @@
                 {% for riu in service.listeRiu %}
                     <li>
           						{{ riu.nomUtil }}
-          						(<a href="{{ path('evpos_ficheService', { 'codeService' : riu.serviceUtil.codeService }) }}" title="{{riu.serviceUtil.libService}}">{{riu.serviceUtil.codeService}}</a>)
-          					</li>
+                      {% if riu.serviceUtil %}
+                      (<a href="{{ path('evpos_ficheService', { 'codeService' : riu.serviceUtil.codeService }) }}" title="{{riu.serviceUtil.libService}}">{{riu.serviceUtil.codeService}}</a>)
+                      {% endif %}
+                    </li>
                 {% endfor %}
             </div>
             <div class="col-lg-2">
