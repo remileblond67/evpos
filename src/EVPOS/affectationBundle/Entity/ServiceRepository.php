@@ -23,7 +23,7 @@ class ServiceRepository extends EntityRepository
 
         return $query->getSingleScalarResult();
     }
-    
+
     /**
      * Retourne la liste de tous les services
      */
@@ -36,7 +36,7 @@ class ServiceRepository extends EntityRepository
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne la liste de tous les services avec les informations liées
      */
@@ -46,14 +46,14 @@ class ServiceRepository extends EntityRepository
             ->addSelect('d')
             ->leftJoin('s.listeRiu', 'r')
             ->addSelect('r')
-            ->orderBy('s.codeService')
-            ->where('s.codeService is not null')
+            ->orderBy('s.noteAvancementMoca desc, s.codeService')
+            ->where('s.codeService is not null and s.nbAgent > 0')
             ->getQuery()
         ;
 
         return $query->getResult();
     }
-    
+
     /**
      * Liste des services non trouvés dans BAZA
      */
@@ -62,7 +62,7 @@ class ServiceRepository extends EntityRepository
             ->where('s.existeBaza = FALSE')
             ->getQuery()
         ;
-        
+
         return $query->getResult();
     }
 
@@ -91,13 +91,13 @@ class ServiceRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        
+
         if ($nbService >= 1)
             $retour = true;
-        else 
+        else
             $retour = false;
-            
+
         return $retour;
     }
-    
+
 }

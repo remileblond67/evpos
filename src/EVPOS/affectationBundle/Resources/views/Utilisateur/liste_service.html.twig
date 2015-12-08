@@ -15,19 +15,20 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer">
             <thead>
                 <tr>
+                    <td class="row">{{ 'direction.nom'|trans }}</td>
                     <td class="row">{{ 'service.code'|trans }}</td>
                     <td class="row">{{ 'service.nom'|trans }}</td>
-                    <td class="row">{{ 'direction.nom'|trans }}</td>
-					<td class="row">{{ 'riu.nom'|trans }}</td>
+					          <td class="row">{{ 'riu.nom'|trans }}</td>
                     <td class="row">{{ 'service.nbAgent'|trans }}</td>
                     <td class="row">{{ 'service.nbAcces'|trans }}</td>
-					<td class="row">{{ 'service.nbAccesUo'|trans }}</td>
+					          <td class="row">{{ 'service.nbAccesUo'|trans }}</td>
                     <td class="row">{{ 'service.noteAvancement'|trans }}</div>
                 </tr>
             </thead>
             <tbody>
                 {% for service in listeService %}
                 <tr class="gradeA odd">
+                    <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a></td>
                     <td class="">
                         {% if service.codeService != '' %}
                         <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
@@ -36,8 +37,7 @@
                         {% endif %}
                     </td>
                     <td class="">{{service.libService }}</td>
-                    <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">{{service.direction.libDirection}}</a></td>
-					<td class="">
+					          <td class="">
                         <ul>
                         {% for riu in service.listeRiu %}
                             <li>{{ riu.nomUtil }}</li>
@@ -48,7 +48,7 @@
                     <td class="">{{service.nbAcces}}</td>
 					<td class="">{{service.nbAccesUo}}</td>
                     <td class="">
-                        <progress value="{{ service.noteAvancementMoca }}" max="100"></progress>
+                        <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%"></progress>
                     </td>
                 </tr>
                 {% endfor %}
