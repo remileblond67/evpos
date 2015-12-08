@@ -32,6 +32,8 @@
 				<h4>{{ 'uo.avancementMigMoca'|trans}}</h4>
                 {{ uo.avancementMoca }}
                 <br/>
+                {{ uo.avancementMocaDetail}}
+                <br/>
                 {{ uo.noteAvancementMoca }}%
             </div>
             <div class="col-lg-1">
@@ -208,7 +210,7 @@
                                 <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
                                 {{ uo.appli.codeAppli }}
                                 </a>
-                                : 
+                                :
                                 <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
                                 {{ uo.codeUo }}
                                 </a>- {{ uo.nomUo }}</li>

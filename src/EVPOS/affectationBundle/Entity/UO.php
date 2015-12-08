@@ -16,7 +16,7 @@ class UO
     public function __construct() {
         $this->listeUtilAcces = new ArrayCollection() ;
     }
-    
+
     /**
     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeUO")
     * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false)
@@ -44,7 +44,7 @@ class UO
      * @ORM\Column(name="mig_moca", type="boolean", nullable=true)
      */
     private $migMoca;
-    
+
     /**
      * @var boolean
      *
@@ -58,30 +58,37 @@ class UO
      * @ORM\Column(name="avancement_moca", type="string", length=50, nullable=true)
      */
     private $avancementMoca;
-    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avancement_moca_detail", type="string", length=50, nullable=true)
+     */
+    private $avancementMocaDetail;
+
     /**
      * @var integer
      *
      * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
      */
     private $noteAvancementMoca;
-    
-    /** 
+
+    /**
      * @var string
      * @ORM\Column(name="type_poste", type="string", length=50, nullable=true)
      */
     private $typePoste;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilUo", mappedBy="uoAcces", cascade={"persist", "remove"})
      */
     private $listeAcces;
-       
+
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="uoAcces", cascade={"persist", "remove"})
      */
     private $listeServiceAcces;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUo")
      */
@@ -216,7 +223,30 @@ class UO
     {
         return $this->avancementMoca;
     }
-    
+
+    /**
+     * Set avancementMocaDetail
+     *
+     * @param boolean $avancementMocaDetail
+     * @return UO
+     */
+    public function setAvancementMocaDetail($avancementMocaDetail)
+    {
+        $this->avancementMocaDetail = $avancementMocaDetail;
+
+        return $this;
+    }
+
+    /**
+     * Get avancementMocaDetail
+     *
+     * @return string
+     */
+    public function getAvancementMocaDetail()
+    {
+        return $this->avancementMocaDetail;
+    }
+
     /**
      * Get avancementMocaIcon
      *
@@ -237,10 +267,10 @@ class UO
             default:
                 $icon = "glyphicon glyphicon-minus";
         }
-        
+
         return $icon;
     }
-    
+
     public function getEnCours() {
         switch ($this->avancementMoca) {
             case "3. Validé":
@@ -254,7 +284,7 @@ class UO
         }
         return $enCours;
     }
-    
+
 
     /**
      * Add listeAcces
@@ -282,7 +312,7 @@ class UO
     /**
      * Get listeAcces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAcces()
     {
@@ -315,21 +345,21 @@ class UO
     /**
      * Get listeServiceAcces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeServiceAcces()
     {
         return $this->listeServiceAcces;
     }
-    
+
     public function setTypePoste($type) {
         $this->typePoste = $type;
     }
-    
+
     public function getTypePoste() {
         return $this->typePoste;
     }
-    
+
     /**
      * Ajoute un nouveau type de poste pour l'UO
      */
@@ -363,20 +393,20 @@ class UO
     /**
      * Get listePostes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListePostes()
     {
         return $this->listePostes;
     }
-    
+
     /**
      * Retourne le lien vers la FIA de l'application
      */
     public function getLienFia() {
         return "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx";
     }
-     
+
 
     /**
      * Set ancienCitrix
@@ -394,13 +424,13 @@ class UO
     /**
      * Get ancienCitrix
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAncienCitrix()
     {
         return $this->ancienCitrix;
     }
-    
+
     public function getAncienCitrixLong()
     {
         switch ($this->ancienCitrix) {
@@ -433,7 +463,7 @@ class UO
     /**
      * Get noteAvancementMoca
      *
-     * @return integer 
+     * @return integer
      */
     public function getNoteAvancementMoca()
     {
