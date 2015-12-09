@@ -42,6 +42,13 @@
                 <h4>{{ 'application.dispoMoca'|trans }}</h4>
                 {{appli.dispoMocaLong}}
             </div>
+            <div class="col-lg-4">
+              <h4>{{'application.noteAvancement'|trans}}</h4>
+              <progress value="{{appli.noteAvancementMoca}}" max="100" title="{{appli.noteAvancementMoca}}%">
+                {{appli.noteAvancementMoca}}%
+              </progress>
+              {{appli.noteAvancementMoca}}%
+            </div>
         </div>
     </div>
 </div>
@@ -85,7 +92,9 @@
                         {% endif %}
                     </td>
                     <td>
+                      {% if uo.migMoca %}
                       <progress value="{{ uo.noteAvancementMoca }}" max="100"></progress>
+                      {% endif %}
                     </td>
                     <td>
                         {% if uo.ancienCitrix %}

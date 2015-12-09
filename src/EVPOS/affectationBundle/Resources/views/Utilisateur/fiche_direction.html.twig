@@ -10,6 +10,14 @@
         <div class="row">
             <div class="col-lg-4"><h4>Code direction</h4>{{direction.codeDirection}}</div>
             <div class="col-lg-4"><h4>Nom direction</h4>{{direction.libDirection}}</div>
+            <div class="col-lg-4">
+              <h4>{{'direction.noteAvancement'|trans}}</h4>
+              <progress value="{{direction.noteAvancementMoca}}" max="100" title="{{direction.noteAvancementMoca}}%">
+                {{direction.noteAvancementMoca}}%
+              </progress>
+              <br>
+              {{direction.noteAvancementMoca}}%
+            </div>
         </div>
     </div>
 </div>
@@ -24,6 +32,9 @@
                 <tr>
                     <td>Code service</td>
                     <td>Nom service</td>
+                    <td>{{'service.nbAgent'|trans}}</td>
+                    <td>{{'service.nbPoste'|trans}}</td>
+                    <td>{{'service.noteAvancement'|trans}}</td>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +48,15 @@
                         {% endif %}
                     </td>
                     <td class="gradeA odd">{{service.libService}}</td>
+                    <td class="gradeA odd">{{service.nbAgent}}</td>
+                    <td class="gradeA odd">{{service.listePostes|length}}</td>
+                    <td class="gradeA odd">
+                      <progress value="{{service.noteAvancementMoca}}" max="100" title="{{service.noteAvancementMoca}}%">
+                        {{service.noteAvancementMoca}}%
+                      </progress>
+                      {{service.noteAvancementMoca}}%
+                    </td>
+
                 </tr>
                 {% endfor %}
             </tbody>

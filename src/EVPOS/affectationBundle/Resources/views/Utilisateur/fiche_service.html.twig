@@ -165,6 +165,7 @@
                         <td class="row">{{ 'uo.nom'|trans }}</td>
                         <td class="row">{{ 'uo.migMoca'|trans }}</td>
                         <td class="row" colspan="2">{{ 'uo.avancementMigMoca'|trans }}</td>
+                        <td class="row">{{ 'uo.ancienCitrix'|trans}}</td>
                         <td class="row">{{ 'uo.nbUtilService'|trans }}</td>
                     </tr>
 
@@ -183,9 +184,14 @@
                             <span class="{{acces.uoAcces.avancementMocaIcon}}"></span>
                             {{ acces.uoAcces.avancementMoca }}
                         </td>
-                        <td class="gradeA">
+                        <td class="gradeA odd">
                           {% if acces.uoAcces.migMoca == true %}
                           <progress value="{{acces.uoAcces.noteAvancementMoca}}" max="100" title="{{acces.uoAcces.noteAvancementMoca}}%"></progress>
+                          {% endif %}
+                        </td>
+                        <td class="gradeA odd">
+                          {% if acces.uoAcces.ancienCitrix %}
+                          <span class="ok glyphicon glyphicon-ok"></span>
                           {% endif %}
                         </td>
                         <td class="gradeA odd">{{ acces.nbUtil }} </td>

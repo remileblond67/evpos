@@ -23,7 +23,7 @@ ctrl:
     nb: Nombre d'occurences
     utilisateurInconnu: Utilisateurs GPARC inconnus de BAZA
     remarque: Remarque
-    
+
 poste:
     titre: Postes
     liste: Liste des postes
@@ -78,12 +78,13 @@ application:
     service: Service gestionnaire
     secteur: Secteur gestionnaire
     purge: Purge de la base de données
+    noteAvancement: Avancement intégration
 
 uo:
     code: Code de l'UO
     nom: Nom de l'UO
     migMoca: À migrer dans MOCA ?
-    avancementMigMoca: Etat migration MOCA
+    avancementMigMoca: Etat intégration MOCA
     utils: Utilisateurs de l'UO
     services: Services utilisateurs de l'UO
     postes: Postes sur lesquels l'UO est distribuée
@@ -100,7 +101,7 @@ uo:
     codeOld: Ancien code
     codeNew: Nouveau code
     ancienCitrix: Ancienne ferme Citrix
-    noteAvancement: Avancement de la migration
+    noteAvancement: Avancement intégration
 
 service:
     code: Code du service
@@ -110,8 +111,9 @@ service:
     nbAcces: Nombre d'applications utilisées
     nbAccesUo: Nombre d'UO utilisées
     etatAvancement: Etat d'avancement des services
-    noteAvancement: Avancement de la migration
-    
+    noteAvancement: Avancement intégration
+    nbPoste: Nb postes service
+
 riu:
     nom: Nom RIU
     liste: Liste des RIU
@@ -120,6 +122,10 @@ direction:
     code: Code de la direction
     nom: Nom de la direction
     liste: Liste des directions
+    noteAvancement: Avancement intégration
+    nbAgent: Nb agents direction
+    nbPoste: Nb postes direction
+
 
 utilisateur:
     matricule: Matricule de l'utilisateur
@@ -137,7 +143,7 @@ poste:
     listeUsage: Liste des postes utilisés
     hostname: Hostname
     categorie: Catégorie
-    
+
 equipement:
     codeMateriel: Code matériel
     categorie: Catégorie
@@ -163,13 +169,13 @@ baza:
     updateDS: Mise à jour directions et services
     updateUtil: Mise à jour utilisateurs
     importAcces: Import des accès depuis GAP
-    
+
 sharecan:
     update: Mise à jour de l'avancement (Sharecan)
 
 xml:
     export: Exporter en XML
     import: Importer du XML
-      
+
 cpi:
     export: Export des CPI

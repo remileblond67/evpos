@@ -23,6 +23,7 @@
               {{ 'service.noteAvancement'|trans }}
             </td>
             <td class="row">{{ 'service.nbAgent'|trans }}</td>
+            <td class="row">{{ 'service.nbPoste'|trans }}</td>
             <td class="row">{{ 'application.code'|trans }}</td>
             <td class="row">{{ 'uo.code'|trans }}</td>
             <td class="row">{{ 'uo.avancementMigMoca'|trans }}</td>
@@ -35,15 +36,31 @@
         {% for service in direction.listeServices %}
             {% for acces in service.listeAccesUo %}
                 <tr class="gradeA odd {% if acces.uoAcces.migMoca != true %}nonMoca{% endif %}">
-                <td>{{direction.codeDirection}}</td>
-                <td>{{direction.libDirection}}</td>
-                <td>{{service.codeService}}</td>
                 <td>
-                  {{service.libService}}
+                  <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
+                    {{direction.codeDirection}}
+                  </a>
+                </td>
+                <td>
+                  <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
+                    {{direction.libDirection}}
+                  </a>
+                </td>
+                <td>
+                  <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+                  {{service.codeService}}
+                  </a>
+                </td>
+                <td>
+                  <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+                    {{service.libService}}
+                  </a>
                   <br>
-                  <progress value="{{service.noteAvancementMoca}}" max="100"></progress>
+                  <progress value="{{service.noteAvancementMoca}}" max="100" title="{{service.noteAvancementMoca}}%"></progress>
+                  {{service.noteAvancementMoca}}%
                 </td>
                 <td>{{service.nbAgent}}</td>
+                <td>{{ service.listePostes|length }}</td>
                 <td>
                     <a href="{{ path('evpos_ficheAppli', { 'codeAppli': acces.uoAcces.appli.codeAppli }) }}">
                       {{acces.uoAcces.appli.codeAppli}}
@@ -53,12 +70,15 @@
                   <a href="{{path('evpos_ficheUo', {'codeUo': acces.uoAcces.codeUo})}}">
                     {{acces.uoAcces.codeUo}}
                   </a>
+                  : {{acces.uoAcces.nomUo}}
                 </td>
                 <td>
                     <div class="{{ acces.uoAcces.avancementMocaIcon }}" title="{{ acces.uoAcces.avancementMocaDetail }}"></div>
-                    {{acces.uoAcces.avancementMoca}}
+                    {{acces.uoAcces.avancementMoca}} - {{acces.uoAcces.noteAvancementMoca}}%
                     <br>
                     <progress value="{{ acces.uoAcces.noteAvancementMoca }}" max="100" title="{{acces.uoAcces.noteAvancementMoca}}%"></progress>
+                    <br>
+                    {{ acces.uoAcces.avancementMocaDetail }}
                 </td>
                 <td>
                     {% if acces.uoAcces.ancienCitrix %}

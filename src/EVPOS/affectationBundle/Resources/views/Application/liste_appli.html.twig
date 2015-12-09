@@ -29,7 +29,14 @@
         {% for appli in listeAppli %}
         <tr class="gradeA odd">
             <td class=""><a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.codeAppli }) }}">{{appli.codeAppli }}</a></td>
-            <td class="">{{appli.nomAppli }}</td>
+            <td class="">
+              {{appli.nomAppli }}
+              <br>
+              <progress value="{{appli.noteAvancementMoca}}" max="100" title="{{appli.noteAvancementMoca}}%">
+                {{appli.noteAvancementMoca}}%
+              </progress>
+              {{appli.noteAvancementMoca}}%
+            </td>
             <td class="">{{appli.natAppliLong }}</td>
             <td class="">
                 {% if appli.serviceAppli %}
@@ -64,7 +71,7 @@
                 {% if appli.dispoMoca %}
                     <span class="ok glyphicon glyphicon-ok"></span>
                     {% else %}
-                    <span class="ko glyphicon glyphicon-remove"></span> 
+                    <span class="ko glyphicon glyphicon-remove"></span>
                 {% endif %}
                 {{appli.dispoMocaLong}}
             </td>

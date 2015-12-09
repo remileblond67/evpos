@@ -10,24 +10,17 @@
                 <codeService>{{service.codeService}}</codeService>
                 <libService>{{service.libService}}</libService>
                 <nbAgentService>{{service.nbAgent}}</nbAgentService>
-                <listeApplication>
-                {% for appli in service.listeAcces %}
-                    <application>
-                        <codeAppli>{{appli.appliAcces.codeAppli}}</codeAppli>
-                        <listeUo>
-                        {% for uo in appli.appliAcces.listeUO %}
-                            <uo>
-                                <codeUo>{{ uo.codeUo }}</codeUo>
-                                <ancienCitrix>{{ uo.ancienCitrixLong }}</ancienCitrix>
-                                <nbUtil></nbUtil>
-                                <noteAvancementMoca>{{ uo.noteAvancementMoca }}%</noteAvancementMoca>
-                            </uo>
-                        {% endfor %}
-                        </listeUo>
-                        
-                    </application>
+                <listeUo>
+                {% for acces in service.listeAccesUo %}
+                    <Uo>
+                        <codeAppli>{{acces.uoAcces.appli.codeAppli}}</codeAppli>
+                        <codeUo>{{ acces.uoAcces.codeUo }}</codeUo>
+                        <ancienCitrix>{{ acces.uoAcces.ancienCitrixLong }}</ancienCitrix>
+                        <nbUtil>{{ acces.nbUtil }}</nbUtil>
+                        <noteAvancementMoca>{{ acces.uoAcces.noteAvancementMoca }}%</noteAvancementMoca>
+                    </Uo>
                 {% endfor %}
-                </listeApplication>
+              </listeUo>
             </service>
         {% endfor %}
         </listeService>

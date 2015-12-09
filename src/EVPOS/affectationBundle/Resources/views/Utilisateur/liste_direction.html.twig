@@ -18,6 +18,9 @@
             <tr>
                 <td class="row">{{ 'direction.code'|trans }}</td>
                 <td class="row">{{ 'direction.nom'|trans }}</td>
+                <td class="row">{{ 'direction.nbAgent'|trans }}</td>
+                <td class="row">{{ 'direction.nbPoste'|trans }}</td>
+                <td class="row">{{ 'direction.noteAvancement'|trans }}</td>
                 <td class="row">{{ 'service.liste'|trans }}</td>
             </tr>
         </thead>
@@ -26,10 +29,24 @@
             <tr class="gradeA odd">
                 <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': direction.codeDirection})}}">{{ direction.codeDirection }}</a></td>
                 <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': direction.codeDirection})}}">{{direction.libDirection }}</a></td>
+                <td>{{direction.nbAgent}}</td>
+                <td></td>
+                <td>
+                  <progress value="{{direction.noteAvancementMoca}}" max="100" title="{{direction.noteAvancementMoca}}%">
+                    {{direction.noteAvancementMoca}}%
+                  </progress>
+                  <br>
+                  {{direction.noteAvancementMoca}}%
+                </td>
                 <td class="">
                     <ul>
                         {% for service in direction.listeServices %}
-                        <li><a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">{{service.codeService}} : {{service.libService }}</a></li>
+                        <li>
+                          <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+                            {{service.codeService}}
+                          </a>
+                           : {{service.libService }}
+                        </li>
                         {% endfor %}
                     </ul>
                 </td>

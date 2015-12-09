@@ -28,6 +28,12 @@ class Direction
     private $libDirection;
 
     /**
+     * @ORM\Column(name="nb_agent", type="integer", nullable=true)
+     */
+    private $nbAgent;
+
+
+    /**
      * @ORM\OneToMany(targetEntity="Service", mappedBy="direction")
      */
     private $listeServices;
@@ -37,13 +43,22 @@ class Direction
      * @ORM\JoinColumn(name="mat_criu", referencedColumnName="mat_util", nullable=true)
      */
     private $criu;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="existe_baza", type="boolean", nullable=true)
      */
     private $existeBaza;
+
+    /**
+     * Moyenne des notes d'avancement des services, pondérée par leur nombre d'agents
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
+     */
+    private $noteAvancementMoca;
 
     /**
      * Set codeDirection
@@ -170,10 +185,56 @@ class Direction
     /**
      * Get existeBaza
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExisteBaza()
     {
         return $this->existeBaza;
+    }
+
+    /**
+     * Set noteAvancementMoca
+     *
+     * @param integer $noteAvancementMoca
+     * @return Direction
+     */
+    public function setNoteAvancementMoca($noteAvancementMoca)
+    {
+        $this->noteAvancementMoca = $noteAvancementMoca;
+
+        return $this;
+    }
+
+    /**
+     * Get noteAvancementMoca
+     *
+     * @return integer
+     */
+    public function getNoteAvancementMoca()
+    {
+        return $this->noteAvancementMoca;
+    }
+
+    /**
+     * Set nbAgent
+     *
+     * @param integer $nbAgent
+     * @return Direction
+     */
+    public function setNbAgent($nbAgent)
+    {
+        $this->nbAgent = $nbAgent;
+
+        return $this;
+    }
+
+    /**
+     * Get nbAgent
+     *
+     * @return integer 
+     */
+    public function getNbAgent()
+    {
+        return $this->nbAgent;
     }
 }

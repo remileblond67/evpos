@@ -19,7 +19,7 @@ class Application
         $this->listeAcces = new ArrayCollection() ;
         $this->listeServiceAcces = new ArrayCollection() ;
     }
-    
+
     /**
      * @var string
      *
@@ -41,7 +41,7 @@ class Application
      * @ORM\Column(name="desc_appli", type="string", length=2000, nullable=true)
      */
     private $descAppli;
-    
+
     /**
      * Service en charge de l'application
      *
@@ -63,7 +63,7 @@ class Application
      * @ORM\Column(name="nat_appli", type="string", length=2, nullable=true)
      */
     private $natAppli;
-    
+
     /**
      * CPI de l'application (premier CPI récupéré de SUAPP)
      * Attention: si l'application comporte plusieurs CPI actifs, seul l'un d'eux est pris en compte
@@ -72,7 +72,7 @@ class Application
      * @ORM\JoinColumn(name="mat_cpi", referencedColumnName="mat_util")
      */
     private $cpi;
-    
+
     /**
      * Secteur en charge de l'application
      * Attention: si l'application comporte plusieurs secteurs actifs, seul l'un d'eux est pris en compte
@@ -80,7 +80,7 @@ class Application
      * @ORM\JoinColumn(name="codeSecteur", referencedColumnName="codeSecteur")
      */
     private $secteur;
-    
+
     /**
      * @var boolean
      *
@@ -89,15 +89,22 @@ class Application
     private $existeSuapp;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
+     */
+    private $noteAvancementMoca;
+
+    /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\UO", mappedBy="appli", cascade={"persist", "remove"})
      */
     private $listeUO;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="appliAcces", cascade={"persist", "remove"})
      */
     private $listeAcces;
-       
+
     /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceAppli", mappedBy="appliAcces", cascade={"persist", "remove"})
      */
@@ -109,7 +116,7 @@ class Application
     public function getNbAcces() {
         return $this->listeAcces->count();
     }
-    
+
     /**
      * Set codeAppli
      *
@@ -316,7 +323,7 @@ class Application
     /**
      * Get listeAcces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAcces()
     {
@@ -372,7 +379,7 @@ class Application
     /**
      * Get listeServiceAcces
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeServiceAcces()
     {
@@ -401,14 +408,14 @@ class Application
     {
         $this->listeServiceAcces->removeElement($listeServiceAcces);
     }
-    
+
     /**
      * Set serviceAppli
      */
     public function setServiceAppli($codeAppli) {
         $this->serviceAppli = $codeAppli;
     }
-    
+
     /**
      * Get serviceAppli
      */
@@ -432,7 +439,7 @@ class Application
     /**
      * Get existeSuapp
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExisteSuapp()
     {
@@ -455,10 +462,33 @@ class Application
     /**
      * Get secteur
      *
-     * @return \EVPOS\affectationBundle\Entity\Secteur 
+     * @return \EVPOS\affectationBundle\Entity\Secteur
      */
     public function getSecteur()
     {
         return $this->secteur;
+    }
+
+    /**
+     * Set noteAvancementMoca
+     *
+     * @param integer $noteAvancementMoca
+     * @return UO
+     */
+    public function setNoteAvancementMoca($noteAvancementMoca)
+    {
+        $this->noteAvancementMoca = $noteAvancementMoca;
+
+        return $this;
+    }
+
+    /**
+     * Get noteAvancementMoca
+     *
+     * @return integer
+     */
+    public function getNoteAvancementMoca()
+    {
+        return $this->noteAvancementMoca;
     }
 }
