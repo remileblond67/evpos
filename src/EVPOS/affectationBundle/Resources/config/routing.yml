@@ -10,15 +10,23 @@ evpos_indicateurs:
 evpos_listeAppli:
     path:   /application
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppli }
-    
+
 evpos_cherche_appli:
     path: /application_cherche
     defaults: { _controller: EVPOSaffectationBundle:Application:chercheAppli }
 
+evpos_cherche_uo:
+    path: /uo_cherche
+    defaults: { _controller: EVPOSaffectationBundle:Application:chercheUo }
+
+evpos_cherche_service:
+    path: /service_cherche
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:chercheService }
+
 evpos_listeServiceAppli:
     path:   /service_appli
     defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliService }
-    
+
 evpos_ficheAppli:
     path:  /application/{codeAppli}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheAppli }
@@ -46,11 +54,11 @@ evpos_ficheService:
 evpos_listeDirection:
     path: /direction
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeDirection }
-    
+
 evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
-    
+
 evpos_listeTypePosteExclus:
     path: /type_poste_exclus
     defaults: { _controller: EVPOSaffectationBundle:Poste:listeTypePosteExclus }
@@ -58,7 +66,7 @@ evpos_listeTypePosteExclus:
 evpos_fichePoste:
     path: /poste/{hostname}
     defaults: { _controller: EVPOSaffectationBundle:Poste:fichePoste }
-    
+
 evpos_ficheDirection:
     path: /direction/{codeDirection}
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheDirection }
@@ -66,32 +74,32 @@ evpos_ficheDirection:
 evpos_listeEc:
     path:   /ec
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeEc }
-    
+
 evpos_listeCPI:
     path: /liste_cpi
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeCpi }
- 
+
 # Fonctions de mise à jour
 evpos_updateUtilFromBAZA:
     path: /update_util_from_baza
-    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaUtil } 
-    
+    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaUtil }
+
 evpos_updateRiu:
     path: /update_riu
-    defaults: { _controller: EVPOSaffectationBundle:Update:majRiu } 
+    defaults: { _controller: EVPOSaffectationBundle:Update:majRiu }
 
 evpos_updateDirServFromBAZA:
     path: /update_ds_from_baza
-    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaDirServ } 
+    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaDirServ }
 
 evpos_updateFromSUAPP:
     path: /update_from_suapp
     defaults: { _controller: EVPOSaffectationBundle:Update:majSUAPP }
-    
+
 evpos_updateAccesService:
     path: /update_acces_service_{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Update:updateAccesService }
-    
+
 evpos_updateFromShareCan:
     path: /update_sharecan
     defaults: { _controller: EVPOSaffectationBundle:Update:updateShareCan }
@@ -112,11 +120,11 @@ evpos_exportService:
 evpos_exportServiceUtil:
     path: /export_service_util
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilXml }
-    
+
 evpos_exportServiceRiu:
     path: /export_service_riu
     defaults: { _controller: EVPOSaffectationBundle:Export:exportXmlServiceRiu }
-    
+
 evpos_listeAppliUoXml:
     path:   /application_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliUoXml }
@@ -131,32 +139,32 @@ evpos_listeAppliXml:
 
 evpos_listeServiceAppliXml:
     path:   /service_appli_xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliServiceXml }  
+    defaults: { _controller: EVPOSaffectationBundle:Export:listeAppliServiceXml }
 
 evpos_listeDirServicePosteUtilXml:
     path:   /direction_service_poste_util.xml
     defaults: { _controller: EVPOSaffectationBundle:Export:exportDirServicePosteUtilXml }
 
-evpos_exportDirServUtilAppliXml:  
-    path:  /direction_service_util_appli_xml  
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }  
+evpos_exportDirServUtilAppliXml:
+    path:  /direction_service_util_appli_xml
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
 
-evpos_exportDirServUtilUoXml:  
-    path:  /direction_service_util_uo_xml  
+evpos_exportDirServUtilUoXml:
+    path:  /direction_service_util_uo_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXml }
 
-evpos_exportDirServUtilUoXml_service:  
+evpos_exportDirServUtilUoXml_service:
     path:  /direction_service_util_uo_xml/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXmlService }
-    
+
 evpos_updateAvancement:
     path: /update_avancement
     defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancementUo }
-    
+
 evpos_purgeBase:
     path: /purge_base
     defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }
-    
+
 # Etat d'avancement des services
 evpos_serviceAvancement:
     path: /service_avancement
@@ -174,11 +182,11 @@ evpos_ctrl_poste_inconnu:
 evpos_ctrl_uo_inconnue:
     path: /ctrl_uo_inconnue
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUoInconnue }
-    
+
 evpos_ctrl_corresp_uo:
     path: /ctrl_corresp_uo
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeCorrespUo }
-    
+
 evpos_ctrl_util:
     path: /ctrl_util
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUtilisateurInconnu }

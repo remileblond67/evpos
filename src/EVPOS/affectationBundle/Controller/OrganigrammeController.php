@@ -4,9 +4,27 @@ namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use EVPOS\affectationBundle\Entity\Service;
 
 class OrganigrammeController extends Controller
 {
+    // Cherche un service par son code
+    public function chercheServiceAction() {
+      $request = $this->get('request');
+      $service = new Service;
+
+      $form = $this->createFormBuilder($service)
+        ->add('codeService')
+        ->getForm();
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        return $this->redirect($this->generateUrl('evpos_ficheService', array('codeService'=>strtoupper(trim($form['codeService']->getData())))));
+      }
+      return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_service.html.twig', array('form' => $form->createView()));
+    }
+
     /**
      * Affiche la liste des directions
      */
@@ -21,7 +39,7 @@ class OrganigrammeController extends Controller
     }
 
     /**
-     * Affiche la fiche d'une direction dont le code est passé en paramètre
+     * Affiche la fiche d'une direction dont le code est passï¿½ en paramï¿½tre
      */
     public function ficheDirectionAction($codeDirection) {
         $direction = $this->getDoctrine()
@@ -46,7 +64,7 @@ class OrganigrammeController extends Controller
     }
 
     /**
-     * Affiche la fiche d'un service dont le code est passé en paramètre
+     * Affiche la fiche d'un service dont le code est passï¿½ en paramï¿½tre
      */
     public function ficheServiceAction($codeService) {
         $service = $this->getDoctrine()
@@ -56,9 +74,9 @@ class OrganigrammeController extends Controller
         ;
         return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_service.html.twig', array('service' => $service));
     }
-    
+
     /**
-     * Affiche la liste des ensembles cohérents
+     * Affiche la liste des ensembles cohï¿½rents
      */
     public function listeEcAction() {
         return $this->render('EVPOSaffectationBundle:Utilisateur:liste_ec.html.twig');
