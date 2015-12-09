@@ -13,7 +13,7 @@ use EVPOS\affectationBundle\Entity\CtrlUtilisateurInconnu;
  * Import des postes à partir de GPARC
  */
 class ImportPosteCommand extends ContainerAwareCommand
-{   
+{
     protected function configure() {
         parent::configure();
         $this
@@ -21,12 +21,12 @@ class ImportPosteCommand extends ContainerAwareCommand
             ->setDescription('Import des postes et de leurs équipements depuis la base GPARC')
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output) {
 		$em = $this->getContainer()->get('doctrine')->getManager();
-        
+
         $output->writeln("*** Import des postes ***");
-        
+
         // Préparation des données
         $output->write("Préparation des données existantes... ");
         $listePoste = $em->getRepository('EVPOSaffectationBundle:Poste')->findAll();
@@ -38,20 +38,20 @@ class ImportPosteCommand extends ContainerAwareCommand
         $em->flush();
         unset($listePoste);
         $output->writeln("OK");
-        
+
         // Lecture du fichier CSV extrait de GPARC
         $output->write("Lecture du fichier des postes... ");
         $fileName = "/home/data/evpos/dev/gparc/materiel.csv";
         $csvFile = fopen($fileName, 'r');
         $nbLine = 0;
-        
+
         $serviceInconnu = $em->getRepository('EVPOSaffectationBundle:Service')->getService("?");
-        
+
         $listeUtilisateurInconnu = [];
-        
+
         while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
             if ($nbLine>0) {
-                $hostname = trim(strtoupper($data[3]));   
+                $hostname = trim(strtoupper($data[3]));
                 if ($hostname != "-") {
                     // $output->writeln($nbLine . " " . $hostname);
                     $codeService = $data[1];
@@ -74,7 +74,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                     $matUtil = strtoupper($data[15]);
                     $commentaire = $data[17];
                     $typeUsage = $data[18];
-                                    
+
                     if ($hostname !== "") {
                         // Recherche si le poste existe
                         $poste = $em->getRepository('EVPOSaffectationBundle:Poste')->find($hostname);
@@ -83,7 +83,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                             $poste = new Poste();
                             $poste->setHostname($hostname);
                         }
-                        
+
                         // Update des caractéristiques du poste
                         $poste->setCodeMateriel($codeMateriel);
                         $poste->setCategorie($categorie);
@@ -115,7 +115,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                         } else {
                             $poste->setService($serviceInconnu);
                         }
-                        
+
                         // Recherche de l'utilisateur
                         $util = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->find($matUtil);
                         if ($util === NULL & $service !== NULL) {
@@ -135,7 +135,7 @@ class ImportPosteCommand extends ContainerAwareCommand
         fclose($csvFile);
         $em->flush();
         $output->writeln("OK (".$nbLine." lignes)");
-        
+
         // Enregistrement des utilisateurs inconnus
         $output->write("Enregistrement des erreurs... ");
         $listeErreur = $em->getRepository('EVPOS\affectationBundle\Entity\CtrlUtilisateurInconnu')->findAll();
@@ -153,7 +153,7 @@ class ImportPosteCommand extends ContainerAwareCommand
         $em->flush();
         unset($listeUtilisateurInconnu);
         $output->writeln("OK");
-        
+
         // Suppression des postes ne figurant pas dans la liste extraite de GPARC
         $output->write("Suppression des postes non référencés dans GPARC... ");
         $listePoste = $em->getRepository('EVPOSaffectationBundle:Poste')->findNonGparc();
@@ -164,7 +164,7 @@ class ImportPosteCommand extends ContainerAwareCommand
         $em->flush();
         unset($listePoste);
         $output->writeln("OK");
-        
+
         // Import des équipements liés
         $output->writeln("*** Import des équipements liés ***");
         $output->write("Suppression des équipements existants... ");
@@ -175,20 +175,21 @@ class ImportPosteCommand extends ContainerAwareCommand
         $em->flush();
         unset($listeEquipement);
         $output->writeln("OK");
-        
+
         // Lecture du fichier CSV extrait de GPARC
         $output->write("Lecture du fichier des équipements liés... ");
         $fileName = [];
         $fileName[] = "/home/data/evpos/dev/gparc/materiel-lie.csv";
         $fileName[] = "/home/data/evpos/dev/gparc/materiel-lie-montant.csv";
-        
+
         $listeCodeMateriel = [];
-        
+
         foreach ($fileName as $file) {
             $output->write($file." ");
             $csvFile = fopen($file, 'r');
             $nbLine = 0;
-            
+            $nbDoublon = 0;
+
             while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
                 if ($nbLine > 0) {
                     $hostname = strtoupper(trim($data[0]));
@@ -196,19 +197,19 @@ class ImportPosteCommand extends ContainerAwareCommand
                         $codeMateriel = strtoupper(trim($data[1]));
                         if (in_array($codeMateriel, $listeCodeMateriel)) {
                             // Le code a déjà été rencontré
-                            $output->write(" Doublon:".$codeMateriel);
+                            $nbDoublon++;
                         } else {
                             // Le code matériel n'avais jamais été rencontré
                             $listeCodeMateriel[] = $codeMateriel;
-                            
+
                             $categorie = trim($data[2]);
                             $modele = trim($data[3]);
-                            
+
                             $equipement = new Equipement();
                             $equipement->setCodeMateriel($codeMateriel);
                             $equipement->setCategorie($categorie);
                             $equipement->setModele($modele);
-                        
+
                             // recherche du poste lié
                             $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);
                             if ($poste !== NULL) {
@@ -225,8 +226,32 @@ class ImportPosteCommand extends ContainerAwareCommand
         unset($listeCodeMateriel);
 
         $em->flush();
+        $output->writeln("OK (".$nbDoublon." doublons)");
+
+        $output->write("Mise à jour du nombre de poste par service... ");
+        $listeService = $em->getRepository('EVPOS\affectationBundle\Entity\Service')->findAll();
+        foreach ($listeService as $service) {
+          $service->setNbPoste($service->getListePostes()->count());
+          $em->persist($service);
+        }
+        unset($listeService);
+        $em->flush();
         $output->writeln("OK");
-        
+
+        $output->write("Mise à jour du nombre de poste par direction... ");
+        $listeDirection = $em->getRepository('EVPOS\affectationBundle\Entity\direction')->findAll();
+        foreach ($listeDirection as $direction) {
+          $nbPoste = 0;
+          foreach ($direction->getListeServices() as $service) {
+            $nbPoste += $service->getNbPoste();
+          }
+          $direction->setNbPoste($nbPoste);
+          $em->persist($direction);
+        }
+        unset($listeDirection);
+        $em->flush();
+        $output->writeln("OK");
+
 		$output->writeln("Fin du traitement");
 	}
 }

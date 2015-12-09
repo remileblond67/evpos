@@ -43,10 +43,11 @@ class ServiceRepository extends EntityRepository
     public function getServicesFull() {
         $query = $this->createQueryBuilder('s')
             ->leftJoin('s.direction', 'd')
-            ->addSelect('d')
             ->leftJoin('s.listeRiu', 'r')
+            ->addSelect('d')
+            ->addSelect('s')
             ->addSelect('r')
-            ->orderBy('s.noteAvancementMoca desc, s.codeService')
+            ->orderBy('d.codeDirection, s.codeService')
             ->where('s.codeService is not null and s.nbAgent > 0')
             ->getQuery()
         ;

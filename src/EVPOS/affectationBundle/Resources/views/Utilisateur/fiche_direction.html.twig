@@ -8,9 +8,17 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-4"><h4>Code direction</h4>{{direction.codeDirection}}</div>
+            <div class="col-lg-2"><h4>Code direction</h4>{{direction.codeDirection}}</div>
             <div class="col-lg-4"><h4>Nom direction</h4>{{direction.libDirection}}</div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
+              <h4>Nombre agents</h4>
+              {{direction.nbAgent}}
+            </div>
+            <div class="col-lg-2">
+              <h4>Nombre postes</h4>
+              {{direction.nbPoste}}
+            </div>
+            <div class="col-lg-2">
               <h4>{{'direction.noteAvancement'|trans}}</h4>
               <progress value="{{direction.noteAvancementMoca}}" max="100" title="{{direction.noteAvancementMoca}}%">
                 {{direction.noteAvancementMoca}}%

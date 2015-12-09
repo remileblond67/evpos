@@ -198,7 +198,7 @@ class ImportBazaCommand extends ContainerAwareCommand
         $listeUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateursSuppr();
         foreach($listeUtil as $util) {
             $em->remove($util);
-            $output->writeln("- Suppression de ".$util->getNomUtil());
+            $output->write($util->getNomUtil()." ");
         }
         $em->flush();
         unset($listeUtil);
@@ -213,6 +213,22 @@ class ImportBazaCommand extends ContainerAwareCommand
           $em->persist($service);
         }
         unset($listeService);
+        $em->flush();
+        $output->writeln("OK");
+
+        // Comptage des utilisateurs de chaque direction
+        $output->write("Comptage des utilisateurs de chaque direction... ");
+        $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->findAll();
+        foreach ($listeDirection as $direction) {
+          $nbUtil = 0;
+          foreach ($direction->getListeServices() as $service) {
+            $nbUtil += $service->getListeUtilisateurs()->count();
+          }
+          $direction->setNbAgent($nbUtil);
+          $em->persist($direction);
+        }
+        unset($listeDirection);
+        $em->flush();
         $output->writeln("OK");
 
         // Création des utilisateurs "libre service"

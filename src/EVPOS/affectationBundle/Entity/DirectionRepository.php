@@ -42,6 +42,7 @@ class DirectionRepository extends EntityRepository
     public function getDirectionsServices() {
         $query = $this->createQueryBuilder('d')
             ->leftJoin('d.listeServices', 's')
+            ->addSelect('d')
             ->addSelect('s')
             ->orderBy('d.codeDirection, s.codeService')
             ->where('d.codeDirection is not null')
@@ -59,6 +60,7 @@ class DirectionRepository extends EntityRepository
             ->leftJoin('d.listeServices', 's')
             ->leftJoin('s.listeAccesUo', 'a')
             ->leftJoin('a.uoAcces', 'uo')
+            ->addSelect('d')
             ->addSelect('s')
             ->addSelect('a')
             ->addSelect('uo')

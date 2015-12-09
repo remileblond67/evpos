@@ -32,6 +32,11 @@ class Service
     private $nbAgent;
 
     /**
+     * @ORM\Column(name="nb_poste", type="integer", nullable=true)
+     */
+    private $nbPoste;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="lib_service", type="string", length=255)
@@ -474,5 +479,28 @@ class Service
     public function getNoteAvancementMoca()
     {
         return $this->noteAvancementMoca;
+    }
+
+    /**
+     * Set nbPoste
+     *
+     * @param integer $nbPoste
+     * @return Service
+     */
+    public function setNbPoste($nbPoste)
+    {
+        $this->nbPoste = $nbPoste;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPoste
+     *
+     * @return integer 
+     */
+    public function getNbPoste()
+    {
+        return $this->nbPoste;
     }
 }

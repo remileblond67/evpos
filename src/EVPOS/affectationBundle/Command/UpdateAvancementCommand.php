@@ -39,20 +39,6 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         // Notes d'avancement des UO
         $output->write("Mise à jour de la note d'avancement des UO... ");
 
-        $baremeNote = array(
-
-          "06"=>30,
-          "07"=>10,
-          "08"=>80,
-          "09"=>90,
-          "10"=>80,
-          "11"=>50,
-          "12"=>90,
-          "13"=>100,
-          "14"=>100,
-          "15"=>100,
-          "00"=>100
-        );
         $listeUo = $em->getRepository('EVPOSaffectationBundle:UO')->findAll();
         foreach($listeUo as $uo) {
             if (strlen($uo->getAvancementMocaDetail()) > 2) {

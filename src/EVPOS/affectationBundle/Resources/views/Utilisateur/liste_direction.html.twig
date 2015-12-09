@@ -30,7 +30,7 @@
                 <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': direction.codeDirection})}}">{{ direction.codeDirection }}</a></td>
                 <td class=""><a href="{{path('evpos_ficheDirection', {'codeDirection': direction.codeDirection})}}">{{direction.libDirection }}</a></td>
                 <td>{{direction.nbAgent}}</td>
-                <td></td>
+                <td>{{direction.nbPoste}}</td>
                 <td>
                   <progress value="{{direction.noteAvancementMoca}}" max="100" title="{{direction.noteAvancementMoca}}%">
                     {{direction.noteAvancementMoca}}%

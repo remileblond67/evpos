@@ -17,7 +17,7 @@ class EtatController extends Controller
             ->getDirectionsServicesAvancement()
         ;
 
-        return $this->render('EVPOSaffectationBundle:Etat:avancementService.thml.twig', array('listeDirection' => $listeDirection));
+        return $this->render('EVPOSaffectationBundle:Etat:avancementService.html.twig', array('listeDirection' => $listeDirection));
     }
 
     /**
