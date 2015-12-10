@@ -1,0 +1,152 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}
+  Secteur {{secteur.codeSecteur}}
+{% endblock%}
+
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Informations générales</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-2">
+              <h4>{{'secteur.code'|trans}}</h4>
+              {{secteur.codeSecteur}}
+            </div>
+            <div class="col-lg-4">
+              <h4>{{'secteur.nom'|trans}}</h4>
+              {{secteur.libSecteur}}
+            </div>
+            <div class="col-lg-2">
+              <h4>{{'secteur.noteAvancement'|trans}}</h4>
+              <progress value="{{secteur.noteAvancementMoca}}" max="100" title="{{secteur.noteAvancementMoca}}%">
+                {{secteur.noteAvancementMoca}}%
+              </progress>
+              <br>
+              {{secteur.noteAvancementMoca}}%
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-group panel-default" id="accordionAI" role="tablist" aria-multiselectable="true">
+    <div class="panel-heading">
+        <a role="button" data-toggle="collapse" data-parent="#accordionAI" href="#collapseAI" aria-expanded="true" aria-controls="collapseOne">
+          <h3 class="panel-title">{{'secteur.listeAppliInfo'|trans}} <div class="badge">{{secteur.listeAppliInfo|length}}</div></h3>
+        </a>
+    </div>
+    <div id="collapseAI" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+              <tr>
+                <td class="row">{{'application.code'|trans}}</td>
+                <td class="row">{{'application.nom'|trans}}</td>
+                <td class="row">{{'application.nature'|trans}}</td>
+                <td class="row">{{'application.noteAvancement'|trans}}</td>
+                <td class="row">{{'application.listeUo'|trans}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for appli in secteur.listeAppliInfo | sort %}
+              <tr>
+                  <td class="gradeA odd">
+                      <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.codeAppli }) }}">
+                      {{appli.codeAppli}}
+                      </a>
+                  </td>
+                  <td class="gradeA odd">{{appli.nomAppli}}</td>
+                  <td class="gradeA odd">{{appli.natAppli}}</td>
+                  <td class="gradeA odd">
+                    <progress max="100" value="{{appli.noteAvancementMoca}}" title="{{appli.noteAvancementMoca}}%">
+                      {{appli.noteAvancementMoca}}%
+                    </progress>
+                  </td>
+                  <td class="gradeA odd">
+                    <table>
+                      {% for uo in appli.listeUo%}
+                        <tr class="{% if uo.migMoca != true %}nonMoca{% endif %}">
+                          <td>
+                            <span class="{{uo.avancementMocaIcon}}"></span>
+                          </td>
+                          <td>
+                            <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a>
+                          </td>
+                          <td>
+                            {% if uo.migMoca == true %}
+                            <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.noteAvancementMoca}}%</progress>
+                            {% endif %}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    </table>
+                  </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a role="button" data-toggle="collapse" data-parent="#accordionAS" href="#collapseAS" aria-expanded="true" aria-controls="collapseOne">
+          <h3 class="panel-title">{{'secteur.listeAppliService'|trans}} <div class="badge">{{secteur.listeAppliService|length}}</div></h3>
+        </a>
+    </div>
+    <div id="collapseAS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+              <tr>
+                <td class="row">{{'application.code'|trans}}</td>
+                <td class="row">{{'application.nom'|trans}}</td>
+                <td class="row">{{'application.nature'|trans}}</td>
+                <td class="row">{{'application.noteAvancement'|trans}}</td>
+                <td class="row">{{'application.listeUo'|trans}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for appli in secteur.listeAppliService | sort %}
+              <tr>
+                  <td class="gradeA odd">
+                      <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.codeAppli }) }}">
+                      {{appli.codeAppli}}
+                      </a>
+                  </td>
+                  <td class="gradeA odd">{{appli.nomAppli}}</td>
+                  <td class="gradeA odd">{{appli.natAppli}}</td>
+                  <td class="gradeA odd">
+                    <progress max="100" value="{{appli.noteAvancementMoca}}" title="{{appli.noteAvancementMoca}}%">
+                      {{appli.noteAvancementMoca}}%
+                    </progress>
+                  </td>
+                  <td class="gradeA odd">
+                    <table>
+                    {% for uo in appli.listeUo%}
+                      <tr class="{% if uo.migMoca != true %}nonMoca{% endif %}">
+                        <td>
+                          <span class="{{uo.avancementMocaIcon}}"></span>
+                        </td>
+                        <td>
+                          <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a>
+                        </td>
+                        <td>
+                          {% if uo.migMoca == true %}
+                          <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.noteAvancementMoca}}%</progress>
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </table>
+                  </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
