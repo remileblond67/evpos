@@ -35,6 +35,14 @@ evpos_ficheUo:
     path:   /uo/{codeUo}
     defaults: { _controller: EVPOSaffectationBundle:Application:ficheUo }
 
+evpos_listeSecteur:
+    path: /secteur
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeSecteur }
+
+evpos_ficheSecteur:
+    path: /secteur/{codeSecteur}
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheSecteur }
+
 evpos_listeUtil:
     path:   /utilisateur
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeUtilisateur }

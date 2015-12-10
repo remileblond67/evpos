@@ -25,7 +25,15 @@ class Secteur
      * @ORM\Column(name="libSecteur", type="string", length=255)
      */
     private $libSecteur;
-    
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
+     */
+    private $noteAvancementMoca;
+
+
     /**
      * @ORM\OneToMany(targetEntity="Application", mappedBy="secteur", cascade={"detach"})
      */
@@ -34,7 +42,7 @@ class Secteur
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +65,7 @@ class Secteur
     /**
      * Get codeSecteur
      *
-     * @return string 
+     * @return string
      */
     public function getCodeSecteur()
     {
@@ -80,7 +88,7 @@ class Secteur
     /**
      * Get libSecteur
      *
-     * @return string 
+     * @return string
      */
     public function getLibSecteur()
     {
@@ -120,10 +128,64 @@ class Secteur
     /**
      * Get listeAppli
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeAppli()
     {
         return $this->listeAppli;
     }
+
+    /**
+     * Retourne la liste des applications informatiques
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     **/
+    public function getListeAppliInfo() {
+      $liste = [];
+      foreach ($this->listeAppli as $appli) {
+        if ($appli->getNatAppli() == "AI") {
+          $liste[] = $appli;
+        }
+      }
+      return $liste;
+    }
+
+    /**
+     * Retourne la liste des applications informatiques
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     **/
+    public function getListeAppliService() {
+      $liste = [];
+      foreach ($this->listeAppli as $appli) {
+        if ($appli->getNatAppli() == "AS") {
+          $liste[] = $appli;
+        }
+      }
+      return $liste;
+    }
+
+    /**
+     * Set noteAvancementMoca
+     *
+     * @param integer $noteAvancementMoca
+     * @return UO
+     */
+    public function setNoteAvancementMoca($noteAvancementMoca)
+    {
+        $this->noteAvancementMoca = $noteAvancementMoca;
+
+        return $this;
+    }
+
+    /**
+     * Get noteAvancementMoca
+     *
+     * @return integer
+     */
+    public function getNoteAvancementMoca()
+    {
+        return $this->noteAvancementMoca;
+    }
+
 }

@@ -35,7 +35,9 @@
             <div class="col-lg-2">
                 <h4>{{ 'application.secteur'|trans }}</h4>
                 {% if appli.secteur %}
-                {{ appli.secteur.libSecteur }}
+                <a href="{{ path('evpos_ficheSecteur', {'codeSecteur': appli.secteur.codeSecteur}) }}">
+                  {{ appli.secteur.libSecteur }}
+                </a>
                 {% endif %}
             </div>
             <div class="col-lg-2">

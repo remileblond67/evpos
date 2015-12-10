@@ -175,5 +175,31 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         unset($listeDirection);
         $em->flush();
         $output->writeln("OK");
+
+        // Note d'avancement des secteurs
+        $output->write("Mise à jour de la note d'avancement des secteurs... ");
+        $listeSecteur = $em->getRepository('EVPOSaffectationBundle:Secteur')->findAll();
+        foreach ($listeSecteur as $secteur) {
+          $sommeNote = 0;
+          $nbUtil = 0;
+          foreach ($secteur->getListeAppli() as $appli) {
+            foreach ($appli->getListeUo() as $uo) {
+              if ($uo->getMigMoca() == "1") {
+                $nb = $uo->getListeAcces()->count();
+                $nbUtil += $nb ;
+                $sommeNote += $uo->getNoteAvancementMoca() * $nb ;
+              }
+            }
+          }
+          if ($nbUtil == 0) {
+            $secteur->setNoteAvancementMoca(NULL);
+          } else {
+            $secteur->setNoteAvancementMoca($sommeNote / $nbUtil);
+          }
+          $em->persist($secteur);
+        }
+        unset($listeSecteur);
+        $em->flush();
+        $output->writeln("OK");
     }
 }

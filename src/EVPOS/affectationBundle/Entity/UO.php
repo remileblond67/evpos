@@ -189,10 +189,10 @@ class UO
     public function getMigMocaLong()
     {
         switch ($this->migMoca) {
-            case 1:
+            case "1":
                 $retour = "Oui";
                 break;
-            case 0:
+            case "0":
                 $retour = "Non";
                 break;
             default:

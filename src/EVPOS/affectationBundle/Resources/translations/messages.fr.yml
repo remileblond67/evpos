@@ -103,6 +103,15 @@ uo:
     ancienCitrix: Ancienne ferme Citrix
     noteAvancement: Avancement intégration
 
+secteur:
+    nom: Nom du secteur
+    code: Code secteur
+    liste: Liste des secteurs
+    noteAvancement: Avancement intégration secteur
+    nbAppli: Nombre d'applications
+    listeAppliInfo: Liste des applications informatiques du secteur
+    listeAppliService: Liste des applications service du secteur
+
 service:
     code: Code du service
     nom: Nom du service
