@@ -188,4 +188,42 @@ class Secteur
         return $this->noteAvancementMoca;
     }
 
+
+    /**
+     * Calcul de la note d'avancement du secteur
+     */
+   public function calculeNoteAvancement() {
+     // Somme des notes
+     $sommeNote = 0;
+     // Somme des notes pondérées par le nombre d'utilisateurs
+     $sommeNotePonderee = 0;
+     // Somme des nombres d'utilisateurs des UO de l'application
+     $nbUtil = 0;
+     // Nombre d'UO de l'application
+     $nbUo = 0;
+     foreach ($this->listeAppli as $appli) {
+       foreach ($appli->getListeUo() as $uo) {
+         if ($uo->getMigMoca() == "1") {
+           $nb = $uo->getListeAcces()->count();
+           $nbUtil += $nb ;
+           $nbUo++;
+           $sommeNotePonderee += $uo->getNoteAvancementMoca() * $nb ;
+           $sommeNote += $uo->getNoteAvancementMoca() ;
+         }
+       }
+     }
+     if ($nbUo != 0) {
+       if ($nbUtil == 0) {
+         // On fait simplement la moyenne de la note d'avancement des applications
+         $this->noteAvancementMoca = $sommeNote / $nbUo ;
+       } else {
+         // On fait la moyenne pondérée en fonction du nombre d'utilisateur
+         // de chaque application
+         $this->noteAvancementMoca = $sommeNotePonderee / $nbUtil;
+       }
+     } else {
+       $this->noteAvancementMoca = NULL;
+     }
+   }
+
 }

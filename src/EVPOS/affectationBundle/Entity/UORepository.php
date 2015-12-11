@@ -58,7 +58,7 @@ class UORepository extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
-    
+
     /**
      * Teste si l'UO dont le code est passé en parametre existe
      */
@@ -70,12 +70,12 @@ class UORepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        
+
         if ($nbUo >= 1)
             $retour = true;
-        else 
+        else
             $retour = false;
-            
+
         return $retour;
     }
 }

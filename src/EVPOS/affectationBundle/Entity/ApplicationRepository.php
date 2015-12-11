@@ -38,7 +38,7 @@ class ApplicationRepository extends EntityRepository
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne la liste de toutes les applications, avec leurs UO à migrer
      */
@@ -91,8 +91,8 @@ class ApplicationRepository extends EntityRepository
         ;
 
         return $query->getOneOrNullResult();
-    }   
-    
+    }
+
     /**
      * Teste si l'application dont le code est passé en parametre existe
      */
@@ -104,12 +104,12 @@ class ApplicationRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        
+
         if ($nbAppli >= 1)
             $retour = true;
-        else 
+        else
             $retour = false;
-            
+
         return $retour;
     }
 
@@ -126,8 +126,8 @@ class ApplicationRepository extends EntityRepository
 
         return $query->getResult();
     }
-    
-    /** 
+
+    /**
      * Retourne la liste des applications non identifiées dans SUAPP
      */
     public function getAppliNonSuapp() {
@@ -135,8 +135,27 @@ class ApplicationRepository extends EntityRepository
             ->where('a.existeSuapp = FALSE')
             ->getQuery()
         ;
-        
+
         return $query->getResult();
     }
-}
 
+    /**
+     * Retourne la note moyenne d'avancement par nature d'application
+     */
+    public function getAvancementNature() {
+      $notes = [];
+
+      $listeNature = ["AS", "AI"];
+      foreach ($listeNature as $nature) {
+        $query = $this->createQueryBuilder('ap')
+          ->leftJoin('ap.listeUo', 'uo')
+          ->leftJoin('uo.listeAcces', 'ac')
+          ->addSelect('count(ac.utilisateur)')
+          ->setParameter('nature', $nature)
+          ->where('uo.migMoca = true and ap.natAppli = :nature')
+          ->getQuery()
+        ;
+      }
+      return $query->getResult();
+    }
+}

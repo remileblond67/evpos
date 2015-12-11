@@ -244,25 +244,21 @@ class Direction
     }
 
     /**
-     * Set nbPoste
-     *
-     * @param integer $nbPoste
-     * @return Direction
+     * Calcule la note d'avancement de la direction
+     * Moyenne des notes de service, pondérée par le nombre d'agents de
+     * chacun d'entre eux.
      */
-    public function setNbPoste($nbPoste)
-    {
-        $this->nbPoste = $nbPoste;
-
-        return $this;
-    }
-
-    /**
-     * Get nbPoste
-     *
-     * @return integer 
-     */
-    public function getNbPoste()
-    {
-        return $this->nbPoste;
+    public function calculeNoteAvancement() {
+      $sommeNote = 0;
+      $nbUtil = 0;
+      foreach ($this->listeServices as $service) {
+        $nbUtil += $service->getNbAgent();
+        $sommeNote += $service->getNoteAvancementMoca() * $service->getNbAgent();
+      }
+      if ($nbUtil == 0) {
+        $this->noteAvancementMoca = 100;
+      } else {
+        $this->noteAvancementMoca = $sommeNote / $nbUtil;
+      }
     }
 }

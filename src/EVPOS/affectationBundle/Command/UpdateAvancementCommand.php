@@ -41,92 +41,19 @@ class UpdateAvancementCommand extends ContainerAwareCommand
 
         $listeUo = $em->getRepository('EVPOSaffectationBundle:UO')->findAll();
         foreach($listeUo as $uo) {
-            if (strlen($uo->getAvancementMocaDetail()) > 2) {
-              $code = substr($uo->getAvancementMocaDetail(),0,2);
-              switch ($code) {
-                case "01":
-                  $note = 5;
-                  break;
-                case "02":
-                  $note = 10;
-                  break;
-                case "03":
-                  $note = 20;
-                  break;
-                case "04":
-                  $note = 10;
-                  break;
-                case "05":
-                  $note = 30;
-                  break;
-                case "06":
-                  $note = 30;
-                  break;
-                case "07":
-                  $note = 10;
-                  break;
-                case "08":
-                  $note = 80;
-                  break;
-                case "09":
-                  $note = 90;
-                  break;
-                case "10":
-                  $note = 80;
-                  break;
-                case "11":
-                  $note = 50;
-                  break;
-                case "12":
-                  $note = 90;
-                  break;
-                case "13":
-                  $note = 100;
-                  break;
-                case "14":
-                  $note = 100;
-                  break;
-                case "15":
-                  $note = 100;
-                  break;
-                case "00":
-                  $note = 100;
-                  break;
-                default:
-                  $note = 0;
-                  break;
-              }
-              if (($note != 100) && ($uo->getAncienCitrix() === TRUE)) {
-                $note = 80;
-              }
-              $uo->setNoteAvancementMoca($note);
-              $em->persist($uo);
-            }
+          $uo->calculeNoteAvancement();
+          $em->persist($uo);
         }
-        $em->flush();
         unset($listeUo);
+        $em->flush();
         $output->writeln("OK");
 
         // Note d'avancement des applications
         $output->write("Mise à jour de la note d'avancement des applications... ");
         $listeAppli = $em->getRepository('EVPOSaffectationBundle:application')->findAll();
         foreach ($listeAppli as $appli) {
-          $sommeNote = 0;
-          $nbUtil = 0;
-          foreach ($appli->getListeUO() as $uo) {
-            if ($uo->getMigMoca()) {
-              $nbUtilUo = $uo->getListeAcces()->count();
-              $sommeNote += $uo->getNoteAvancementMoca() * $nbUtilUo;
-              $nbUtil += $nbUtilUo ;
-            }
-            if ($nbUtil == 0) {
-              $note = 100;
-            } else {
-              $note = $sommeNote / $nbUtil ;
-            }
-            $appli->setNoteAvancementMoca($note);
-            $em->persist($appli);
-          }
+          $appli->calculeNoteAvancement();
+          $em->persist($appli);
         }
         unset($listeAppli);
         $output->writeln("OK");
@@ -135,20 +62,8 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         $output->write("Mise à jour de la note d'avancement des services... ");
         $listeServices = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
         foreach ($listeServices as $service) {
-            $sommeNote = 0;
-            $nbUtil = 0;
-            foreach ($service->getListeAccesUo() as $acces) {
-                if ($acces->getUoAcces()->getMigMoca()) {
-                    $sommeNote += $acces->getUoAcces()->getNoteAvancementMoca() * $acces->getNbUtil();
-                    $nbUtil += $acces->getNbUtil();
-                }
-            }
-            if ($nbUtil == 0) {
-                $service->setNoteAvancementMoca(100);
-            } else {
-                $service->setNoteAvancementMoca(round($sommeNote / $nbUtil));
-            }
-            $em->persist($service);
+          $service->calculeNoteAvancement();
+          $em->persist($service);
         }
         unset($listeServices);
         $em->flush();
@@ -159,17 +74,7 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         $output->write("Mise à jour de la note d'avancement des directions... ");
         $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->findAll();
         foreach ($listeDirection as $direction) {
-          $sommeNote = 0;
-          $nbUtil = 0;
-          foreach ($direction->getListeServices() as $service) {
-            $nbUtil += $service->getNbAgent();
-            $sommeNote += $service->getNoteAvancementMoca() * $service->getNbAgent();
-          }
-          if ($nbUtil == 0) {
-            $direction->setNoteAvancementMoca(100);
-          } else {
-            $direction->setNoteAvancementMoca($sommeNote / $nbUtil);
-          }
+          $direction->calculeNoteAvancement();
           $em->persist($direction);
         }
         unset($listeDirection);
@@ -180,22 +85,7 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         $output->write("Mise à jour de la note d'avancement des secteurs... ");
         $listeSecteur = $em->getRepository('EVPOSaffectationBundle:Secteur')->findAll();
         foreach ($listeSecteur as $secteur) {
-          $sommeNote = 0;
-          $nbUtil = 0;
-          foreach ($secteur->getListeAppli() as $appli) {
-            foreach ($appli->getListeUo() as $uo) {
-              if ($uo->getMigMoca() == "1") {
-                $nb = $uo->getListeAcces()->count();
-                $nbUtil += $nb ;
-                $sommeNote += $uo->getNoteAvancementMoca() * $nb ;
-              }
-            }
-          }
-          if ($nbUtil == 0) {
-            $secteur->setNoteAvancementMoca(NULL);
-          } else {
-            $secteur->setNoteAvancementMoca($sommeNote / $nbUtil);
-          }
+          $secteur->calculeNoteAvancement();
           $em->persist($secteur);
         }
         unset($listeSecteur);

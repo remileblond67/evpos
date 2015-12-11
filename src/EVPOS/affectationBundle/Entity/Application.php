@@ -491,4 +491,44 @@ class Application
     {
         return $this->noteAvancementMoca;
     }
+
+  /**
+   * Calcul de la note d'avancement de l'intégration de l'application
+   * Cette note est calculée de la façon suivante :
+   * - si les UO de l'application comportent des utilisateurs, la note est
+   *   à la moyenne de la note des UO pondérée par le nombre d'utilisateurs
+   * - si aucune UO ne comportent d'utilisateurs, on calcule une moyenne
+   *   simple des notes des UO
+   */
+  public function calculeNoteAvancement() {
+    // Somme des notes
+    $sommeNote = 0;
+    // Somme des notes pondérées par le nombre d'utilisateurs
+    $sommeNotePonderee = 0;
+    // Somme des nombres d'utilisateurs des UO de l'application
+    $nbUtil = 0;
+    // Nombre d'UO de l'application
+    $nbUo = 0;
+    foreach ($this->listeUO as $uo) {
+      if ($uo->getMigMoca() == "1") {
+        $nb = $uo->getListeAcces()->count();
+        $nbUtil += $nb ;
+        $nbUo++;
+        $sommeNotePonderee += $uo->getNoteAvancementMoca() * $nb ;
+        $sommeNote += $uo->getNoteAvancementMoca() ;
+      }
+    }
+    if ($nbUo != 0) {
+      if ($nbUtil == 0) {
+        // On fait simplement la moyenne de la note d'avancement des UO
+        $this->noteAvancementMoca = $sommeNote / $nbUo ;
+      } else {
+        // On fait la moyenne pondérée en fonction du nombre d'utilisateur
+        // de chaque UO
+        $this->noteAvancementMoca = $sommeNotePonderee / $nbUtil;
+      }
+    } else {
+      $this->noteAvancementMoca = NULL;
+    }
+  }
 }

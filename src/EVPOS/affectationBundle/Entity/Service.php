@@ -497,10 +497,29 @@ class Service
     /**
      * Get nbPoste
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbPoste()
     {
         return $this->nbPoste;
+    }
+
+    /**
+     * Calcul de la note d'avancement du service
+     */
+    public function calculeNoteAvancement() {
+      $sommeNote = 0;
+      $nbUtil = 0;
+      foreach ($this->listeAccesUo as $acces) {
+          if ($acces->getUoAcces()->getMigMoca()) {
+              $sommeNote += $acces->getUoAcces()->getNoteAvancementMoca() * $acces->getNbUtil();
+              $nbUtil += $acces->getNbUtil();
+          }
+      }
+      if ($nbUtil == 0) {
+          $this->noteAvancementMoca = 100;
+      } else {
+          $this->noteAvancementMoca = round($sommeNote / $nbUtil);
+      }
     }
 }

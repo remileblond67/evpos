@@ -44,6 +44,7 @@
                 <td class="row">{{'application.code'|trans}}</td>
                 <td class="row">{{'application.nom'|trans}}</td>
                 <td class="row">{{'application.nature'|trans}}</td>
+                <td class="row">{{'application.nbUtil'|trans}}</td>
                 <td class="row">{{'application.noteAvancement'|trans}}</td>
                 <td class="row">{{'application.listeUo'|trans}}</td>
               </tr>
@@ -58,6 +59,7 @@
                   </td>
                   <td class="gradeA odd">{{appli.nomAppli}}</td>
                   <td class="gradeA odd">{{appli.natAppli}}</td>
+                  <td class="gradeA odd">{{appli.listeAcces | length}}</td>
                   <td class="gradeA odd">
                     <progress max="100" value="{{appli.noteAvancementMoca}}" title="{{appli.noteAvancementMoca}}%">
                       {{appli.noteAvancementMoca}}%

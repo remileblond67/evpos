@@ -19,49 +19,66 @@ class DefaultController extends Controller
             ->getRepository('EVPOSaffectationBundle:Direction')
             ->getNbDirections()
         ;
-        
+
         // Récupération du nombre de services
         $nbServices = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Service')
             ->getNbServices()
         ;
-        
+
         // Récupération du nombre d'applications par nature
         $nbAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
             ->getNbAppliNat()
         ;
-        
+
         // Récupération du nombre d'applications
         $nbUtil = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Utilisateur')
             ->getNbUtilisateurs()
         ;
-        
+
         // Récupération du nombre d'accès GAP
         $nbAccesUtilAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:AccesUtilAppli')
             ->getNbAccesUtilAppli()
         ;
-        
+
         // Récupération du nombre de postes
         $nbPoste = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Poste')
             ->getNbPoste()
         ;
-        
+
         // Réparition des postes par type d'usage
         $nbPosteUsage = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Poste')
             ->getNbPosteUsage()
         ;
-        
-        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array('nbAppli' => $nbAppli, 'nbUtil' => $nbUtil, 'nbAccesUtilAppli' => $nbAccesUtilAppli, 'nbService' => $nbServices, 'nbDirection' => $nbDirections, 'nbPoste' => $nbPoste, 'nbPosteUsage' => $nbPosteUsage));
+
+        // Note d'avancement par nature d'Application
+        // $avancementNature = $this->getDoctrine()
+        //     ->getManager()
+        //     ->getRepository('EVPOSaffectationBundle:Application')
+        //     ->getAvancementNature()
+        // ;
+        $avancementNature = NULL;
+
+        return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array(
+          'nbAppli' => $nbAppli,
+          'nbUtil' => $nbUtil,
+          'nbAccesUtilAppli' => $nbAccesUtilAppli,
+          'nbService' => $nbServices,
+          'nbDirection' => $nbDirections,
+          'nbPoste' => $nbPoste,
+          'nbPosteUsage' => $nbPosteUsage,
+          'avancementNature'=>$avancementNature)
+        );
     }
 }

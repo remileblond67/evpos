@@ -469,4 +469,71 @@ class UO
     {
         return $this->noteAvancementMoca;
     }
+
+    /**
+     * Calcule de la note d'avancement de l'UO
+     */
+    public function calculeNoteAvancement() {
+      $note = NULL;
+      if (strlen($this->avancementMocaDetail) > 2) {
+        $code = substr($this->avancementMocaDetail, 0, 2);
+        switch ($code) {
+          case "01":
+            $note = 5;
+            break;
+          case "02":
+            $note = 10;
+            break;
+          case "03":
+            $note = 20;
+            break;
+          case "04":
+            $note = 10;
+            break;
+          case "05":
+            $note = 30;
+            break;
+          case "06":
+            $note = 30;
+            break;
+          case "07":
+            $note = 10;
+            break;
+          case "08":
+            $note = 80;
+            break;
+          case "09":
+            $note = 90;
+            break;
+          case "10":
+            $note = 80;
+            break;
+          case "11":
+            $note = 50;
+            break;
+          case "12":
+            $note = 90;
+            break;
+          case "13":
+            $note = 100;
+            break;
+          case "14":
+            $note = 100;
+            break;
+          case "15":
+            $note = 100;
+            break;
+          case "00":
+            $note = 100;
+            break;
+          default:
+            $note = 0;
+            break;
+        }
+        if (($note != 100) && ($this->ancienCitrix === TRUE)) {
+          $note = 80;
+        }
+      }
+    $this->noteAvancementMoca = $note;
+  }
 }
