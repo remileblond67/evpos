@@ -45,6 +45,10 @@
                 {{appli.dispoMocaLong}}
             </div>
             <div class="col-lg-4">
+              <h4>{{'application.nbUtil'|trans}}</h4>
+              {{ appli.listeAcces | length }}
+            </div>
+            <div class="col-lg-2">
               <h4>{{'application.noteAvancement'|trans}}</h4>
               <progress value="{{appli.noteAvancementMoca}}" max="100" title="{{appli.noteAvancementMoca}}%">
                 {{appli.noteAvancementMoca}}%
