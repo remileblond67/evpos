@@ -137,6 +137,7 @@
                         <td class="row">{{ 'service.nom'|trans }}</td>
                         <td class="row">{{ 'utilisateur.matricule'|trans }}</td>
                         <td class="row">{{ 'utilisateur.nom'|trans }}</td>
+                        <td class="row">{{ 'utilisateur.sourceAcces'|trans}}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -158,6 +159,7 @@
                         </td>
                         <td class="row"><a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a></td>
                         <td class="row">{{ acces.utilAcces.nomUtil }}</td>
+                        <td class="row">{{ acces.sourceImport }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

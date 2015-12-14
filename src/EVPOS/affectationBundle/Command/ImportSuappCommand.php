@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\Secteur;
+use EVPOS\affectationBundle\Entity\Application;
 use EVPOS\affectationBundle\Entity\UO;
 
 /**

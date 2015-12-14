@@ -3,6 +3,7 @@
 namespace EVPOS\affectationBundle\Entity;
 
 use EVPOS\affectationBundle\Entity\UO;
+use EVPOS\affectationBundle\Entity\Utilisateur;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -493,7 +494,7 @@ class Application
     }
 
   /**
-   * Calcul de la note d'avancement de l'intégration de l'application
+   * CALCUL DE LA NOTE D'AVANCEMENT DE L'INTÉGRATION DE L'APPLICATION
    * Cette note est calculée de la façon suivante :
    * - si les UO de l'application comportent des utilisateurs, la note est
    *   à la moyenne de la note des UO pondérée par le nombre d'utilisateurs
@@ -529,6 +530,43 @@ class Application
       }
     } else {
       $this->noteAvancementMoca = NULL;
+    }
+  }
+
+  /**
+   * REPORT DES ACCÈS UO SUR LES APPLICATIONS
+   *
+   * On reporte au niveau de l'application la liste des utilisateurs des UO
+   * actives de cette dernière
+   */
+  public function reportAccesUo() {
+    $listeUtilAppli = [];
+
+    // Récupération de la liste des matricules existants
+    foreach ($this->listeAcces as $acces) {
+      $util = $acces->getUtilAcces();
+      $listeUtilAppli[$util->getMatUtil()] = $util;
+    }
+
+    // Récupération de la liste des matricules des utilisateurs d'UO actives
+    foreach ($this->listeUO as $uo) {
+      if ($uo->getMigMoca()) {
+        foreach ($uo->getListeAcces() as $acces) {
+          $utilAcces = $acces->getUtilAcces();
+          // Si l'utilisateur de l'UO ne se retrouve pas dans l'application
+          if (array_search($utilAcces->getMatUtil(), array_keys($listeUtilAppli)) === FALSE) {
+            $listeUtilAppli[$utilAcces->getMatUtil()] = $utilAcces;
+
+            // Ajout de l'utilisateur de l'UO à la liste des utilisateurs de l'application
+            $newAcces = new AccesUtilAppli();
+            $newAcces->setSourceImport("Report accès UO");
+            $newAcces->setUtilAcces($utilAcces);
+            $newAcces->setAppliAcces($this);
+
+            $this->listeAcces[] = $newAcces;
+          }
+        }
+      }
     }
   }
 }

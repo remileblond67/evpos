@@ -146,6 +146,7 @@ utilisateur:
     listeAccesUo: Liste des accès utilisateurs aux UO
     lastLogin: Date de dernière connexion
     poste: Poste de travail
+    sourceAcces: Source de l'accès
 
 poste:
     titre: Postes

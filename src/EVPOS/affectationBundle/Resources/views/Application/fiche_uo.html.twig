@@ -196,7 +196,9 @@
                         <td class=""><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname }}</a></td>
                         <td class="">{{poste.categorieCourt }}</td>
                         <td class="">{{poste.modele }}</td>
-                        <td class="">{{poste.statut }}</td>
+                        <td class="">
+                          {{poste.statut }} {{poste.typeUsage}}
+                        </td>
                         <td class=""></td>
                         <td class="">
                         <ul>
@@ -222,7 +224,7 @@
                         </ul>
                         </td>
                         <td><span class="{{poste.licenceW8Icon}}"></span> {{ poste.licenceW8Long}}</td>
-                        <td>{{ poste.commentaire }}</td>
+                        <td>{{ poste.commentaire | raw}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

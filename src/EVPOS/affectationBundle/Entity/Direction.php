@@ -261,4 +261,27 @@ class Direction
         $this->noteAvancementMoca = $sommeNote / $nbUtil;
       }
     }
+
+    /**
+     * Set nbPoste
+     *
+     * @param integer $nbPoste
+     * @return Direction
+     */
+    public function setNbPoste($nbPoste)
+    {
+        $this->nbPoste = $nbPoste;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPoste
+     *
+     * @return integer 
+     */
+    public function getNbPoste()
+    {
+        return $this->nbPoste;
+    }
 }

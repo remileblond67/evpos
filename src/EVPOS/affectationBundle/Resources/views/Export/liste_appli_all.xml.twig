@@ -2,34 +2,34 @@
 <listeAppli xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 {% for appli in listeAppli %}
     <appli>
-        <codeAppli>{{appli.codeAppli}}</codeAppli>
-        <nomAppli>{{appli.nomAppli}}</nomAppli>
-        <descAppli>{{appli.descAppli}}</descAppli>
-        <dispoMoca>{{appli.dispoMocaLong}}</dispoMoca>
-        <natAppli>{{appli.natAppli}}</natAppli>
+        <codeAppli>{{ appli.codeAppli }}</codeAppli>
+        <nomAppli>{{ appli.nomAppli }}</nomAppli>
+        <descAppli>{{ appli.descAppli }}</descAppli>
+        <dispoMoca>{{ appli.dispoMocaLong }}</dispoMoca>
+        <natAppli>{{ appli.natAppli }}</natAppli>
         {% if appli.serviceAppli %}
             <codeServiceAppli>{{ appli.serviceAppli.codeService }}</codeServiceAppli>
             <libServiceAppli>{{ appli.serviceAppli.libService }}</libServiceAppli>
         {% endif %}
         <secteur>
         {% if appli.secteur %}
-        {{ appli.secteur.libSecteur }}
+          {{ appli.secteur.libSecteur }}
         {% endif %}
         </secteur>
 
         <cpi>
             {% if appli.cpi %}
-            {{appli.cpi.nomUtil}}
+              {{ appli.cpi.nomUtil }}
             {% endif %}
         </cpi>
-        <nbUtil>{{appli.listeAcces| length}}</nbUtil>
+        <nbUtil>{{ appli.listeAcces| length }}</nbUtil>
         <listeUo>
         {% for uo in appli.listeUo %}
             <uo>
-                <codeUo>{{uo.codeUO }}</codeUo>
+                <codeUo>{{ uo.codeUO }}</codeUo>
                 <nomUo>{{ uo.nomUo }}</nomUo>
-                <migMoca>{{uo.migMocaLong}}</migMoca>
-                <avancementMoca>{{uo.avancementMoca}}</avancementMoca>
+                <migMoca>{{ uo.migMocaLong }}</migMoca>
+                <avancementMoca>{{ uo.avancementMoca }}</avancementMoca>
                 <typePoste>{{ uo.typePoste }}</typePoste>
                 <ancienCitrix>{{ uo.ancienCitrixLong }}</ancienCitrix>
             </uo>
