@@ -36,7 +36,9 @@
                 <span class="{{uo.avancementMocaIcon}}" title="{{uo.avancementMocaDetail}}"></span>
                 {{ uo.avancementMoca }}
                 <br/>
-                <progress value="{{ uo.noteAvancementMoca }}" max="100"></progress>
+                <progress value="{{ uo.noteAvancementMoca }}" max="100" title="{{ uo.noteAvancementMoca }}%">
+                  {{ uo.noteAvancementMoca }}%
+                </progress>
                 <br/>
                 <i>{{ uo.avancementMocaDetail}}</i>
             </div>
@@ -84,6 +86,7 @@
                         <td class="row">{{ 'service.code'|trans }}</td>
                         <td class="row">{{ 'service.nom'|trans }}</td>
                         <td class="row">{{ 'service.noteAvancement'|trans}}</td>
+                        <td class="row">{{ 'uo.nbUtil'|trans}}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,6 +118,9 @@
                                 title="{{accesServ.serviceAcces.noteAvancementMoca}}%">
                         {{accesServ.serviceAcces.noteAvancementMoca}}%
                       </progress>
+                    </td>
+                    <td>
+                      {{accesServ.nbUtil}}
                     </td>
                 </tr>
                 {% endfor %}

@@ -44,6 +44,8 @@
             <div class="col-lg-2">
                 <h4>{{'service.noteAvancement'|trans}}</h4>
                 <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%"></progress>
+                <br>
+                {{ service.noteAvancementMoca }}%
             </div>
         </div>
     </div>
@@ -80,7 +82,11 @@
                           {{appli.codeAppli}}
                           </a>
                       </td>
-                      <td class="gradeA odd">{{appli.nomAppli}}</td>
+                      <td class="gradeA odd">
+                        <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.codeAppli }) }}">
+                          {{appli.nomAppli}}
+                        </a>
+                      </td>
                       <td class="gradeA odd">{{appli.natAppli}}</td>
                       <td class="gradeA odd">
                         <progress max="100" value="{{appli.noteAvancementMoca}}" title="{{appli.noteAvancementMoca}}%">
@@ -103,6 +109,8 @@
     </div>
 </div>
 
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="row">
@@ -116,28 +124,54 @@
             </div>
         </div>
     </div>
+    <script>
+    function hideAppliUsageDone() {
+      $('#tabAppliUsage').find('tr.done').hide();
+    }
+    function showAppliUsageDone() {
+      $('#tabAppliUsage').find('tr.done').show();
+    }
+    </script>
+
     <div id="collapseAppli" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <table id="tabAppliUsage" class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                     <tr>
                         <td class="row">{{'application.code'|trans}}</td>
                         <td class="row">{{'application.nom'|trans}}</td>
             						<td class="row">{{'application.nature'|trans}}</td>
-                        <td class="row">{{'application.noteAvancement'|trans}}</td>
+                        <td class="row">
+                          {{'application.noteAvancement'|trans}}
+                          <br>
+                          <button type="button" onclick="showAppliUsageDone()" title="">
+                            {{'app.all'|trans}}
+                          </button>
+                          <button type="button" onclick="hideAppliUsageDone()" title="{{'app.todo'|trans}}">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                          </button>
+                        </td>
             						<td class="row">{{'application.listeUo'|trans}}</td>
                     </tr>
                 </thead>
                 <tbody>
                     {% for appli in service.listeAcces | sort %}
-                    <tr>
+                    <tr class="{% if (appli.appliAcces.noteAvancementMoca == "100" or appli.appliAcces.noteAvancementMoca == null) %}
+                              done
+                              {% endif %}">
                         <td class="gradeA odd">
                             <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.appliAcces.codeAppli }) }}">
                             {{appli.appliAcces.codeAppli}}
                             </a>
                         </td>
-                        <td class="gradeA odd">{{appli.appliAcces.nomAppli}}</td>
-            						<td class="gradeA odd">{{appli.appliAcces.natAppli}}</td>
+                        <td class="gradeA odd">
+                          <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.appliAcces.codeAppli }) }}">
+                            {{appli.appliAcces.nomAppli}}
+                          </a>
+                        </td>
+            						<td class="gradeA odd">
+                          {{appli.appliAcces.natAppli}}
+                        </td>
                         <td class="gradeA odd">
                           <progress max="100" value="{{appli.appliAcces.noteAvancementMoca}}" title="{{appli.appliAcces.noteAvancementMoca}}%">
                             {{appli.appliAcces.noteAvancementMoca}}%
@@ -146,7 +180,8 @@
             						<td class="gradeA odd">
             							{% for uo in appli.appliAcces.listeUo%}
             							<span class="{% if uo.migMoca != true %}nonMoca{% endif %}">
-            								<span class="{{uo.avancementMocaIcon}}"></span>
+            								<span class="{{uo.avancementMocaIcon}}" title="{{uo.avancementMocaDetail}}">
+                            </span>
             								<a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a>
             							</span>
             							{% endfor %}
@@ -158,6 +193,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div class="panel panel-group panel-default" id="accordionUo" role="tablist" aria-multiselectable="true">
     <div class="row">
@@ -176,10 +213,10 @@
         <div class="panel-body">
           <div>
             <script>
-            function hideDone() {
+            function hideUoDone() {
               $('#tabUo').find('tr.done').hide();
             }
-            function showDone() {
+            function showUoDone() {
               $('#tabUo').find('tr.done').show();
             }
             </script>
@@ -194,8 +231,12 @@
                         <td class="row" colspan="2">
                           {{ 'uo.avancementMigMoca'|trans }}
                           <br>
-                          <button type="button" onclick="showDone()">{{'app.all'|trans}}</button>
-                          <button type="button" onclick="hideDone()">{{'app.todo'|trans}}</button>
+                          <button type="button" onclick="showUoDone()" title="">
+                            {{'app.all'|trans}}
+                          </button>
+                          <button type="button" onclick="hideUoDone()" title="{{'app.todo'|trans}}">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                          </button>
                         </td>
                         <td class="row">{{ 'uo.ancienCitrix'|trans}}</td>
                         <td class="row">{{ 'uo.nbUtilService'|trans }}</td>
@@ -212,7 +253,11 @@
                         done
                         {% endif %}
                         ">
-                        <td class="gradeA odd">{{ acces.uoAcces.appli.codeAppli }}</td>
+                        <td class="gradeA odd">
+                          <a href="{{ path('evpos_ficheAppli', { 'codeAppli': acces.uoAcces.appli.codeAppli }) }}">
+                            {{ acces.uoAcces.appli.codeAppli }}
+                          </a>
+                        </td>
                         <td class="gradeA odd">
                             <a href="{{ path('evpos_ficheUo', { 'codeUo': acces.uoAcces.codeUo }) }}">
                                 {{ acces.uoAcces.codeUo }}
@@ -221,7 +266,7 @@
                         <td class="gradeA odd">{{ acces.uoAcces.nomUo }}</td>
                         <td class="gradeA odd">{{ acces.uoAcces.migMocaLong }}</td>
                         <td class="gradeA odd">
-                            <span class="{{acces.uoAcces.avancementMocaIcon}}"></span>
+                            <span class="{{acces.uoAcces.avancementMocaIcon}}" title="{{acces.uoAcces.avancementMocaDetail}}"></span>
                             {{ acces.uoAcces.avancementMoca }}
                         </td>
                         <td class="gradeA odd">
