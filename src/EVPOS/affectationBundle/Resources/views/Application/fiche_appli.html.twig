@@ -18,8 +18,8 @@
             <div class="col-lg-2"><h4>{{ 'application.nature'|trans }}</h4>{{appli.natAppliLong}}</div>
             <div class="col-lg-2"><h4>{{ 'application.code'|trans }}</h4>{{appli.codeAppli}}</div>
             <div class="col-lg-2"><h4>{{ 'application.nom'|trans }}</h4>{{appli.nomAppli}}</div>
-            <div class="col-lg-4"><h4>{{ 'application.desc'|trans }}</h4>{{appli.descAppli}}</div>
-            <div class="col-lg-2"><h4>{{ 'application.cpi'|trans }}</h4>
+            <div class="col-lg-3"><h4>{{ 'application.desc'|trans }}</h4>{{appli.descAppli}}</div>
+            <div class="col-lg-3"><h4>{{ 'application.cpi'|trans }}</h4>
                 {% if appli.cpi %}
                 {{appli.cpi.nomUtil}}
                 {% endif %}
@@ -44,11 +44,11 @@
                 <h4>{{ 'application.dispoMoca'|trans }}</h4>
                 {{appli.dispoMocaLong}}
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <h4>{{'application.nbUtil'|trans}}</h4>
               {{ appli.listeAcces | length }}
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
               <h4>{{'application.noteAvancement'|trans}}</h4>
               <progress value="{{appli.noteAvancementMoca}}" max="100" title="{{appli.noteAvancementMoca}}%">
                 {{appli.noteAvancementMoca}}%

@@ -108,7 +108,10 @@
         <div class="row">
             <div class="col-lg-6">
                 <a role="button" data-toggle="collapse" data-parent="#accordionUtils" href="#collapseAppli" aria-expanded="true" aria-controls="collapseOne">
-                <h3 class="panel-title">{{'applications.listeUsage'|trans}} <div class="badge">{{service.listeAcces|length}}</div></h3>
+                <h3 class="panel-title">
+                  {{'applications.listeUsage'|trans}}
+                  <div class="badge">{{service.listeAcces|length}}</div>
+                </h3>
                 </a>
             </div>
         </div>
@@ -157,24 +160,43 @@
 </div>
 
 <div class="panel panel-group panel-default" id="accordionUo" role="tablist" aria-multiselectable="true">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordionUo" href="#collapseUo" aria-expanded="true" aria-controls="collapseOne">
-            {{ 'uo.listeUsage'|trans }}
-            <div class="badge">{{service.listeAccesUo|length}}</div>
-        </a>
-        </h3>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordionUo" href="#collapseUo" aria-expanded="true" aria-controls="collapseOne">
+                {{ 'uo.listeUsage'|trans }}
+                <div class="badge">{{service.listeAccesUo|length}}</div>
+            </a>
+            </h3>
+        </div>
+      </div>
     </div>
     <div id="collapseUo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+          <div>
+            <script>
+            function hideDone() {
+              $('#tabUo').find('tr.done').hide();
+            }
+            function showDone() {
+              $('#tabUo').find('tr.done').show();
+            }
+            </script>
+          </div>
+            <table id="tabUo" class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                     <tr>
                         <td class="row">{{ 'application.code'|trans }}</td>
                         <td class="row">{{ 'uo.code'|trans }}</td>
                         <td class="row">{{ 'uo.nom'|trans }}</td>
                         <td class="row">{{ 'uo.migMoca'|trans }}</td>
-                        <td class="row" colspan="2">{{ 'uo.avancementMigMoca'|trans }}</td>
+                        <td class="row" colspan="2">
+                          {{ 'uo.avancementMigMoca'|trans }}
+                          <br>
+                          <button type="button" onclick="showDone()">{{'app.all'|trans}}</button>
+                          <button type="button" onclick="hideDone()">{{'app.todo'|trans}}</button>
+                        </td>
                         <td class="row">{{ 'uo.ancienCitrix'|trans}}</td>
                         <td class="row">{{ 'uo.nbUtilService'|trans }}</td>
                     </tr>
@@ -182,7 +204,14 @@
                 </thead>
                 <tbody>
                     {% for acces in service.listeAccesUo | sort %}
-                    <tr class="gradeA odd {% if acces.uoAcces.migMoca != true %}nonMoca{% endif %}">
+                    <tr class="gradeA odd
+                        {% if acces.uoAcces.migMoca != true %}
+                        nonMoca
+                        {% endif %}
+                        {% if (acces.uoAcces.noteAvancementMoca == "100" or acces.uoAcces.migMoca == false) %}
+                        done
+                        {% endif %}
+                        ">
                         <td class="gradeA odd">{{ acces.uoAcces.appli.codeAppli }}</td>
                         <td class="gradeA odd">
                             <a href="{{ path('evpos_ficheUo', { 'codeUo': acces.uoAcces.codeUo }) }}">
@@ -218,15 +247,16 @@
 <div class="panel panel-group panel-default" id="accordionUtils" role="tablist" aria-multiselectable="true">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordionUtils" href="#collapseUtil" aria-expanded="true" aria-controls="collapseOne">
-            Liste des agents
+            <a role="button" data-toggle="collapse" data-parent="#accordionUtils"
+               href="#collapseUtil" aria-expanded="true" aria-controls="collapseOne">
+            {{'service.listeAgent'|trans}}
             <div class="badge">{{service.listeUtilisateurs|length}}</div>
             </a>
         </h3>
     </div>
     <div id="collapseUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="tab">
                <thead>
                    <tr>
                        <td class="row">{{'utilisateur.matricule'|trans}}</td>

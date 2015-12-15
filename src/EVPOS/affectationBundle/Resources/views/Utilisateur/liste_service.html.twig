@@ -11,61 +11,89 @@
         <a href="{{path('evpos_exportServiceRiu')}}" class="btn btn-sm btn-default">{{'riu.liste'|trans}}</a>
     </div>
 </div>
-    <ul>
-        <table class="table table-striped table-bordered table-hover dataTable no-footer">
-            <thead>
-                <tr>
-                    <td class="row">{{ 'direction.code'|trans }}</td>
-                    <td class="row">{{ 'direction.nom'|trans }}</td>
-                    <td class="row">{{ 'service.code'|trans }}</td>
-                    <td class="row">{{ 'service.nom'|trans }}</td>
-					          <td class="row">{{ 'riu.nom'|trans }}</td>
-                    <td class="row">{{ 'service.nbAgent'|trans }}</td>
-                    <td class="row">{{ 'service.nbAcces'|trans }}</td>
-					          <td class="row">{{ 'service.nbAccesUo'|trans }}</td>
-                    <td class="row">{{ 'service.noteAvancement'|trans }}</div>
-                </tr>
-            </thead>
-            <tbody>
-                {% for service in listeService %}
-                <tr class="gradeA odd">
-                    <td class="">
-                      <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
-                        {{service.direction.codeDirection}}
-                      </a>
-                    </td>
-                    <td class="">
-                      <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
-                        {{service.direction.libDirection}}
-                      </a>
-                    </td>
-                    <td class="">
-                        {% if service.codeService != '' %}
-                        <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
-                            {{service.codeService }}
-                        </a>
-                        {% endif %}
-                    </td>
-                    <td class="">
-                      <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
-                        {{service.libService }}</td>
-                      </a>
-					          <td class="">
-                        <ul>
-                        {% for riu in service.listeRiu %}
-                            <li>{{ riu.nomUtil }}</li>
-                        {% endfor %}
-                        </ul>
-                    </td>
-                    <td class="">{{service.nbAgent}}</td>
-                    <td class="">{{service.nbAcces}}</td>
-					<td class="">{{service.nbAccesUo}}</td>
-                    <td class="">
-                        <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%"></progress>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </ul>
+<script>
+function showTodo() {
+  $('#tabService').find('tbody').find('tr').show();
+  $('#tabService').find('tr.done').hide();
+}
+function showAll() {
+  $('#tabService').find('tbody').find('tr').show();
+  $('#tabService').find('tr').show();
+}
+function showOk() {
+  $('#tabService').find('tbody').find('tr').hide();
+  $('#tabService').find('tr.done').show();
+}
+</script>
+    <table id="tabService" class="table table-striped table-bordered table-hover dataTable no-footer">
+        <thead>
+            <tr>
+                <td class="row">{{ 'direction.code'|trans }}</td>
+                <td class="row">{{ 'direction.nom'|trans }}</td>
+                <td class="row">{{ 'service.code'|trans }}</td>
+                <td class="row">{{ 'service.nom'|trans }}</td>
+			          <td class="row">{{ 'riu.nom'|trans }}</td>
+                <td class="row">{{ 'service.nbAgent'|trans }}</td>
+                <td class="row">{{ 'service.nbAcces'|trans }}</td>
+			          <td class="row">{{ 'service.nbAccesUo'|trans }}</td>
+                <td class="row">
+                  {{ 'service.noteAvancement'|trans }}
+                  <br>
+                  <button type="button" onclick="showAll()" title="{{'app.all'|trans}}">
+                    {{'app.all'|trans}}
+                  </button>
+                  <button type="button" onclick="showTodo()" title="{{'app.todo'|trans}}">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                  </button>
+                  <button type="button" onclick="showOk()" title="{{'app.ok'|trans}}">
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </button>
+                </div>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in listeService %}
+            <tr class="gradeA odd
+              {% if (service.noteAvancementMoca == "100" or service.nbAgent == 0) %}
+              done
+              {% endif %}
+            ">
+                <td class="">
+                  <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
+                    {{service.direction.codeDirection}}
+                  </a>
+                </td>
+                <td class="">
+                  <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
+                    {{service.direction.libDirection}}
+                  </a>
+                </td>
+                <td class="">
+                    {% if service.codeService != '' %}
+                    <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+                        {{service.codeService }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="">
+                  <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+                    {{service.libService }}</td>
+                  </a>
+			          <td class="">
+                    <ul>
+                    {% for riu in service.listeRiu %}
+                        <li>{{ riu.nomUtil }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td class="">{{service.nbAgent}}</td>
+                <td class="">{{service.nbAcces}}</td>
+          			<td class="">{{service.nbAccesUo}}</td>
+                <td class="">
+                    <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%"></progress>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {%endblock%}

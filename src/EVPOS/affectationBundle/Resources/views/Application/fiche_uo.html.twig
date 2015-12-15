@@ -79,25 +79,16 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                     <tr>
+                        <td class="row">{{ 'direction.nom'|trans }}</td>
+                        <td class="row">{{ 'direction.nom'|trans }}</td>
                         <td class="row">{{ 'service.code'|trans }}</td>
                         <td class="row">{{ 'service.nom'|trans }}</td>
-                        <td class="row">{{ 'direction.nom'|trans }}</td>
-                        <td class="row">{{ 'direction.nom'|trans }}</td>
+                        <td class="row">{{ 'service.noteAvancement'|trans}}</td>
                     </tr>
                 </thead>
                 <tbody>
                 {% for accesServ in uo.listeServiceAcces %}
                 <tr>
-                    <td>
-                        <a href="{{ path('evpos_ficheService', { 'codeService' : accesServ.serviceAcces.codeService }) }}" alt="{{ 'service.nom'|trans }}">
-                        {{ accesServ.serviceAcces.codeService}}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ path('evpos_ficheService', { 'codeService' : accesServ.serviceAcces.codeService }) }}" alt="{{ 'service.nom'|trans }}">
-                        {{ accesServ.serviceAcces.libService}}
-                        </a>
-                    </td>
                     <td>
                         <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
                         {{ accesServ.serviceAcces.direction.codeDirection}}
@@ -107,6 +98,23 @@
                         <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
                         {{ accesServ.serviceAcces.direction.libDirection}}
                         </a>
+                    </td>
+                    <td>
+                      <a href="{{ path('evpos_ficheService', { 'codeService' : accesServ.serviceAcces.codeService }) }}" alt="{{ 'service.nom'|trans }}">
+                        {{ accesServ.serviceAcces.codeService}}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{ path('evpos_ficheService', { 'codeService' : accesServ.serviceAcces.codeService }) }}" alt="{{ 'service.nom'|trans }}">
+                        {{ accesServ.serviceAcces.libService}}
+                      </a>
+                    </td>
+                    <td>
+                      <progress value="{{accesServ.serviceAcces.noteAvancementMoca}}"
+                                max="100"
+                                title="{{accesServ.serviceAcces.noteAvancementMoca}}%">
+                        {{accesServ.serviceAcces.noteAvancementMoca}}%
+                      </progress>
                     </td>
                 </tr>
                 {% endfor %}
