@@ -529,7 +529,8 @@ class Application
         $this->noteAvancementMoca = $sommeNotePonderee / $nbUtil;
       }
     } else {
-      $this->noteAvancementMoca = NULL;
+      // L'application n'a aucune UO
+      $this->noteAvancementMoca = 0;
     }
   }
 

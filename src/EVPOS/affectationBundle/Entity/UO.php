@@ -474,7 +474,7 @@ class UO
      * Calcule de la note d'avancement de l'UO
      */
     public function calculeNoteAvancement() {
-      $note = NULL;
+      $note = 0;
       if (strlen($this->avancementMocaDetail) > 2) {
         $code = substr($this->avancementMocaDetail, 0, 2);
         switch ($code) {

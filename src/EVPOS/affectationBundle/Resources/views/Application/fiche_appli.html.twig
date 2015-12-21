@@ -99,7 +99,9 @@
                     </td>
                     <td>
                       {% if uo.migMoca %}
-                      <progress value="{{ uo.noteAvancementMoca }}" max="100"></progress>
+                      <progress value="{{ uo.noteAvancementMoca }}" max="100" title="{{ uo.noteAvancementMoca }}%">
+                        {{ uo.noteAvancementMoca }}%
+                      </progress>
                       {% endif %}
                     </td>
                     <td>
