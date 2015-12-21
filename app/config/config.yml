@@ -40,7 +40,8 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:
+    - EVPOSaffectationBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

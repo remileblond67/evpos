@@ -28,11 +28,10 @@ class CtrlPosteInconnu
      */
     private $hostname;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,7 +54,7 @@ class CtrlPosteInconnu
     /**
      * Get hostname
      *
-     * @return string 
+     * @return string
      */
     public function getHostname()
     {

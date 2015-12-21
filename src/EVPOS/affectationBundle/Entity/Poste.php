@@ -20,14 +20,14 @@ class Poste
         $this->listeUo = new ArrayCollection();
         $this->listeEquipementLie = new ArrayCollection();
     }
-    
+
     /**
      * @var string
      * @ORM\Id
      * @ORM\Column(name="hostname", type="string", length=10, nullable=true)
      */
     private $hostname;
-    
+
     /**
      * @var integer
      *
@@ -41,41 +41,55 @@ class Poste
      * @ORM\Column(name="categorie", type="string", length=255, nullable=true)
      */
     private $categorie;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="modele", type="string", length=255, nullable=true)
      */
-    private $modele;  
-	
+    private $modele;
+
 	/**
      * @var boolean
      *
      * @ORM\Column(name="licence_w8", type="boolean", nullable=true)
      */
     private $licenceW8;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="ssd", type="boolean", nullable=true)
      */
     private $ssd;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
      */
     private $localisation;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="statut", type="string", length=255, nullable=true)
      */
-    private $statut; 
+    private $statut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="master", type="string", length=255, nullable=true)
+     */
+    private $master;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_reseau", type="string", length=255, nullable=true)
+     */
+    private $typeReseau;
 
     /**
      * @var string
@@ -84,7 +98,7 @@ class Poste
      */
     private $commentaire;
 
-    
+
     /**
      * @var string
      *
@@ -96,8 +110,8 @@ class Poste
     * @ORM\ManyToOne(targetEntity="Service", inversedBy="listePostes")
     * @ORM\JoinColumn(name="code_service", referencedColumnName="code_service", nullable=true)
     */
-    private $service;    
-    
+    private $service;
+
     /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="listePostes", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_poste_util",
@@ -106,7 +120,7 @@ class Poste
      * )
      */
     private $listeUtilisateurs;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="UO", inversedBy="listePostes", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_poste_uo",
@@ -115,29 +129,29 @@ class Poste
      * )
      */
     private $listeUo;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Equipement", mappedBy="poste", cascade={"remove"})
      */
     private $listeEquipement;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="existe_gparc", type="boolean", nullable=true)
      */
     private $existeGparc;
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeMateriel()
     {
         return $this->codeMateriel;
     }
-    
+
     public function setCodeMateriel($codeMateriel) {
         $this->codeMateriel = $codeMateriel;
         return $this;
@@ -159,7 +173,7 @@ class Poste
     /**
      * Get hostname
      *
-     * @return string 
+     * @return string
      */
     public function getHostname()
     {
@@ -182,7 +196,7 @@ class Poste
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -205,24 +219,24 @@ class Poste
     /**
      * Get categorie
      *
-     * @return string 
+     * @return string
      */
     public function getCategorie()
     {
         return $this->categorie;
     }
-    
+
     /**
      * Get categorie court (sans le préfixe)
      *
-     * @return string 
+     * @return string
      */
     public function getCategorieCourt()
     {
         $tmp = preg_replace('/^Matériel\/Ordinateur\/Poste client\/UC\//', '', $this->categorie);
         return $tmp;
     }
-    
+
 
     /**
      * Set modele
@@ -240,7 +254,7 @@ class Poste
     /**
      * Get modele
      *
-     * @return string 
+     * @return string
      */
     public function getModele()
     {
@@ -263,7 +277,7 @@ class Poste
     /**
      * Get localisation
      *
-     * @return string 
+     * @return string
      */
     public function getLocalisation()
     {
@@ -286,7 +300,7 @@ class Poste
     /**
      * Get statut
      *
-     * @return string 
+     * @return string
      */
     public function getStatut()
     {
@@ -319,14 +333,14 @@ class Poste
     /**
      * Get listeUtilisateurs
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeUtilisateurs()
     {
         return $this->listeUtilisateurs;
     }
-    
-    /** 
+
+    /**
      * Supprime la liste des utilisateurs du poste
      */
     public function delListeUtilisateurs() {
@@ -362,14 +376,14 @@ class Poste
     /**
      * Get listeUo
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeUo()
     {
         return $this->listeUo;
     }
-    
-    /** 
+
+    /**
      * Supprime la liste des UO installées sur le poste
      */
     public function delListeUo() {
@@ -394,7 +408,7 @@ class Poste
     /**
      * Get service
      *
-     * @return \EVPOS\affectationBundle\Entity\Service 
+     * @return \EVPOS\affectationBundle\Entity\Service
      */
     public function getService()
     {
@@ -417,7 +431,7 @@ class Poste
     /**
      * Get commentaire
      *
-     * @return string 
+     * @return string
      */
     public function getCommentaire()
     {
@@ -440,7 +454,7 @@ class Poste
     /**
      * Get typeUsage
      *
-     * @return string 
+     * @return string
      */
     public function getTypeUsage()
     {
@@ -463,13 +477,13 @@ class Poste
     /**
      * Get licenceW8
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getLicenceW8()
     {
         return $this->licenceW8;
     }
-    
+
     public function getLicenceW8Long() {
         switch ($this->licenceW8) {
             case 1:
@@ -483,7 +497,7 @@ class Poste
         }
         return $retour;
     }
-   
+
     public function getLicenceW8Icon()
     {
         switch ($this->licenceW8) {
@@ -496,10 +510,10 @@ class Poste
             default:
                 $icon = "glyphicon glyphicon-minus";
         }
-       
+
         return $icon;
     }
-   
+
 
     /**
      * Add listeEquipement
@@ -527,7 +541,7 @@ class Poste
     /**
      * Get listeEquipement
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeEquipement()
     {
@@ -550,13 +564,13 @@ class Poste
     /**
      * Get existeGparc
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExisteGparc()
     {
         return $this->existeGparc;
     }
-    
+
     /**
      * Retourne les types d'écran reliés au poste
      */
@@ -586,13 +600,13 @@ class Poste
     /**
      * Get ssd
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getSsd()
     {
         return $this->ssd;
     }
-    
+
     public function getSsdIcon()
     {
         switch ($this->ssd) {
@@ -605,10 +619,10 @@ class Poste
             default:
                 $icon = "glyphicon glyphicon-minus";
         }
-       
+
         return $icon;
     }
-    
+
     public function getSsdLong() {
         switch ($this->ssd) {
             case 1:
@@ -622,5 +636,51 @@ class Poste
         }
         return $retour;
     }
-    
+
+
+    /**
+     * Set master
+     *
+     * @param string $master
+     * @return Poste
+     */
+    public function setMaster($master)
+    {
+        $this->master = $master;
+
+        return $this;
+    }
+
+    /**
+     * Get master
+     *
+     * @return string
+     */
+    public function getMaster()
+    {
+        return $this->master;
+    }
+
+    /**
+     * Set type_reseau
+     *
+     * @param string $typeReseau
+     * @return Poste
+     */
+    public function setTypeReseau($typeReseau)
+    {
+        $this->typeReseau = $typeReseau;
+
+        return $this;
+    }
+
+    /**
+     * Get type_reseau
+     *
+     * @return string
+     */
+    public function getTypeReseau()
+    {
+        return $this->typeReseau;
+    }
 }

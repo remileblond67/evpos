@@ -74,6 +74,11 @@ class ImportPosteCommand extends ContainerAwareCommand
                     $matUtil = strtoupper($data[15]);
                     $commentaire = $data[17];
                     $typeUsage = $data[18];
+                    if ($data[23] == "Type Réseau") {
+                        $typeReseau = $data[24];
+                    } else {
+                        $typeReseau = NULL;
+                    }
 
                     if ($hostname !== "") {
                         // Recherche si le poste existe
@@ -94,6 +99,7 @@ class ImportPosteCommand extends ContainerAwareCommand
                         $poste->setCommentaire($commentaire);
                         $poste->setTypeUsage($typeUsage);
                         $poste->setExisteGparc(TRUE);
+                        $poste->setTypeReseau($typeReseau);
                         switch ($licenceW8) {
                             case "OUI":
                                 $poste->setLicenceW8(TRUE);
@@ -135,6 +141,23 @@ class ImportPosteCommand extends ContainerAwareCommand
         fclose($csvFile);
         $em->flush();
         $output->writeln("OK (".$nbLine." lignes)");
+
+        $output->writeln("*** Affectation des postes sans service au service de leur Utilisateur  ***");
+        $postesSansService = $em->getRepository('EVPOSaffectationBundle:Poste')->getPostesSansService();
+        foreach($postesSansService as $poste) {
+            foreach ($poste->getListeUtilisateurs() as $user) {
+                $service = $user->getServiceUtil();
+                $poste->setService($service);
+                $output->write('_');
+            }
+            $em->persist($poste);
+            $output->write('.');
+        }
+    		$output->writeln("OK");
+        unset($postesSansService);
+        $output->writeln("Fin de report");
+        $em->flush();
+        $output->writeln("Validation des modifications");
 
         // Enregistrement des utilisateurs inconnus
         $output->write("Enregistrement des erreurs... ");
@@ -228,7 +251,7 @@ class ImportPosteCommand extends ContainerAwareCommand
         $em->flush();
         $output->writeln("OK (".$nbDoublon." doublons)");
 
-        $output->write("Mise à jour du nombre de poste par service... ");
+        $output->write("Mise à jour du nombre de postes par service... ");
         $listeService = $em->getRepository('EVPOS\affectationBundle\Entity\Service')->findAll();
         foreach ($listeService as $service) {
           $service->setNbPoste($service->getListePostes()->count());

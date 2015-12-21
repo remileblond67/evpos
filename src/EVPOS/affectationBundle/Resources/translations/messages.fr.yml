@@ -49,6 +49,8 @@ poste:
     equipementLie: Equipements liés
     listeExclus: Types de poste exclus
     ssd: Disque SSD
+    master: Master du poste
+    typeReseau: Type de réseau
 
 applications:
     liste: Applications à migrer
