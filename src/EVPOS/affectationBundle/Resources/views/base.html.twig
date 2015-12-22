@@ -2,234 +2,238 @@
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Rémi LEBLOND">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Rémi LEBLOND">
 
-    <title>MOCA : {% block title %}{{ 'Suivi de la migration'|trans }}{% endblock %}</title>
+  <title>MOCA : {% block title %}{{ 'Suivi de la migration'|trans }}{% endblock %}</title>
 
-    {% block stylesheets %}{% endblock %}
+  {% block stylesheets %}{% endblock %}
 
-    <!-- Bootstrap Core CSS -->
-    {% stylesheets output="css/compiled/main.css" filter="cssrewrite"
-            'bundles/bootstrap/css/bootstrap.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
+  <!-- Bootstrap Core CSS -->
+  {% stylesheets output="css/compiled/main.css" filter="cssrewrite"
+  'bundles/bootstrap/css/bootstrap.css' %}
+  <link rel="stylesheet" href="{{ asset_url }}">
+  {% endstylesheets %}
 
-    <style>
-	.nonMoca {
-		text-decoration:line-through;
-	}
-	.ok {
-		color: green;
-	}
+  <style>
+  .nonMoca {
+    text-decoration:line-through;
+  }
+  .ok {
+    color: green;
+  }
 
-	.ko {
-		color: red;
-	}
-	</style>
+  .ko {
+    color: red;
+  }
+  </style>
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/evposaffectation/images/favicon.ico') }}" />
+  <link rel="icon" type="image/x-icon" href="{{ asset('bundles/evposaffectation/images/favicon.ico') }}" />
 
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('evpos_accueil') }}" alt="{{'app.home'|trans}}">
-                <img height="30px" src="{{asset('bundles/evposaffectation/images/MOCA-hcolor50.png')}}" alt="{{ 'app.name'|trans }}"/>
-            </a>
-        </div>
-        <div class="container">
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Organigramme <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                {% render(controller('EVPOSaffectationBundle:Organigramme:chercheService')) %}
-                            </li>
-                            <li role="separator" class="divider"></li><li><a href="{{ path('evpos_listeDirection') }}">
-                              <span class="glyphicon glyphicon-list-alt"></span>
-                              {{'direction.liste'|trans}}</a>
-                            </li>
-                            <li><a href="{{ path('evpos_listeService') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'service.liste'|trans}}</a></li>
-                            <li><a href="{{ path('evpos_listeUtil') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'utilisateur.liste'|trans}}</a></li>
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ path('evpos_accueil') }}" alt="{{'app.home'|trans}}">
+        <img height="30px" src="{{asset('bundles/evposaffectation/images/MOCA-hcolor50.png')}}" alt="{{ 'app.name'|trans }}"/>
+      </a>
+    </div>
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Organigramme <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                {% render(controller('EVPOSaffectationBundle:Organigramme:chercheService')) %}
+              </li>
+              <li role="separator" class="divider"></li><li><a href="{{ path('evpos_listeDirection') }}">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                {{'direction.liste'|trans}}</a>
+              </li>
+              <li><a href="{{ path('evpos_listeService') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'service.liste'|trans}}</a></li>
+              <li><a href="{{ path('evpos_listeUtil') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'utilisateur.liste'|trans}}</a></li>
 
-                            <li role="separator" class="divider"></li>
+              <li role="separator" class="divider"></li>
 
-                            <li><a href="{{ path('evpos_serviceAvancement') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.etatAvancement'|trans }}</a></li>
+              <li><a href="{{ path('evpos_serviceAvancement') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.etatAvancement'|trans }}</a></li>
 
-                            <li role="separator" class="divider"></li>
+              <li role="separator" class="divider"></li>
 
-                            <li>
-                                <a href="{{ path('evpos_listeSecteur') }}">
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    {{ 'secteur.liste'|trans }}
-                                </a>
-                            </li>
+              <li>
+                <a href="{{ path('evpos_listeSecteur') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{ 'secteur.liste'|trans }}
+                </a>
+              </li>
 
-                            <li role="separator" class="divider"></li>
+              <li role="separator" class="divider"></li>
 
-                            <li><a href="{{path('evpos_updateRiu') }}"><span class="glyphicon glyphicon-refresh"></span> {{'gap.updateRiu'|trans}}</a></li>
+              <li><a href="{{path('evpos_updateRiu') }}"><span class="glyphicon glyphicon-refresh"></span> {{'gap.updateRiu'|trans}}</a></li>
 
-                            <li role="separator" class="divider"></li>
+              <li role="separator" class="divider"></li>
 
-                            <li><a href="{{path('evpos_listeCPI') }}"><span class="glyphicon glyphicon-export"></span> {{'cpi.export'|trans}}</a></li>
-                        </ul>
-                    </li>
+              <li><a href="{{path('evpos_listeCPI') }}"><span class="glyphicon glyphicon-export"></span> {{'cpi.export'|trans}}</a></li>
+            </ul>
+          </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'application.titre'|trans}} <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                {% render(controller('EVPOSaffectationBundle:Application:chercheAppli')) %}
-                            </li>
-                            <li>
-                                {% render(controller('EVPOSaffectationBundle:Application:chercheUo')) %}
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('evpos_listeAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliUo'|trans }}</a></li>
-                            <li><a href="{{ path('evpos_listeServiceAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliService'|trans }}</a></li>
-                            <li role="separator" class="divider"></li>
-							<li><a href="{{ path('evpos_ctrl_corresp_uo') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'uo.corresp'|trans }}</a></li>
-                        </ul>
-                    </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'application.titre'|trans}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                {% render(controller('EVPOSaffectationBundle:Application:chercheAppli')) %}
+              </li>
+              <li>
+                {% render(controller('EVPOSaffectationBundle:Application:chercheUo')) %}
+              </li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path('evpos_listeAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliUo'|trans }}</a></li>
+              <li><a href="{{ path('evpos_listeServiceAppli') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'applications.listeAppliService'|trans }}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path('evpos_ctrl_corresp_uo') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'uo.corresp'|trans }}</a></li>
+            </ul>
+          </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">{{'poste.titre'|trans}} <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="{{path('evpos_listeTypePosteExclus')}}">
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    {{'poste.listeExclus'|trans}}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">{{'poste.titre'|trans}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                {% render(controller('EVPOSaffectationBundle:Poste:cherchePoste')) %}
+              </li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="{{path('evpos_listeTypePosteExclus')}}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'poste.listeExclus'|trans}}
+                </a>
+              </li>
+            </ul>
+          </li>
 
-                    </li>
+        </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-							<li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
-                            <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
-                        </ul>
-                    </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
+            <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
+          </ul>
+        </li>
 
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">XML Excel <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-								<a target="_blank" href="{{ path('evpos_exportService') }}">
-									<span class="glyphicon glyphicon-export"></span>
-									11. {{'service.liste'|trans}}
-								</a>
-							</li>
-                            <li><a target="_blank" href="{{ path('evpos_exportServiceUtil') }}"><span class="glyphicon glyphicon-export"></span> 12. {{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportServiceRiu') }}"><span class="glyphicon glyphicon-export"></span> 13. {{'riu.liste'|trans}}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 21. {{'applications.liste'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeAppliUoXml') }}"><span class="glyphicon glyphicon-export"></span> 22. {{'applications.listeAppliUo'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeAppliUoAllXml') }}"><span class="glyphicon glyphicon-export"></span> 23. {{'applications.listeAppliUoAll'|trans}}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 31. {{'applications.listeAppliService'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
-                            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}"><span class="glyphicon glyphicon-export"></span> 33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.liste'|trans}}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a target="_blank" href="{{ path('evpos_serviceAvancementXml') }}"><span class="glyphicon glyphicon-export"></span> 51. {{'service.etatAvancement'|trans}}</a></li>
-                        </ul>
-                    </li>
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">XML Excel <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a target="_blank" href="{{ path('evpos_exportService') }}">
+                <span class="glyphicon glyphicon-export"></span>
+                11. {{'service.liste'|trans}}
+              </a>
+            </li>
+            <li><a target="_blank" href="{{ path('evpos_exportServiceUtil') }}"><span class="glyphicon glyphicon-export"></span> 12. {{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportServiceRiu') }}"><span class="glyphicon glyphicon-export"></span> 13. {{'riu.liste'|trans}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="{{ path('evpos_listeAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 21. {{'applications.liste'|trans}}</a></li>
+            <li><a target="_blank" href="{{ path('evpos_listeAppliUoXml') }}"><span class="glyphicon glyphicon-export"></span> 22. {{'applications.listeAppliUo'|trans}}</a></li>
+            <li><a target="_blank" href="{{ path('evpos_listeAppliUoAllXml') }}"><span class="glyphicon glyphicon-export"></span> 23. {{'applications.listeAppliUoAll'|trans}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 31. {{'applications.listeAppliService'|trans}}</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}"><span class="glyphicon glyphicon-export"></span> 33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.liste'|trans}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="{{ path('evpos_serviceAvancementXml') }}"><span class="glyphicon glyphicon-export"></span> 51. {{'service.etatAvancement'|trans}}</a></li>
+          </ul>
+        </li>
 
-					<li class="dropdown">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown">Contrôles <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-								<a href="{{ path('evpos_ctrl_util') }}">
-									<span class="glyphicon glyphicon-list-alt"></span>
-									{{'ctrl.utilisateurInconnu'|trans}}
-								</a>
-							</li>
-                            <li>
-								<a href="{{ path('evpos_ctrl_poste_inconnu') }}">
-									<span class="glyphicon glyphicon-list-alt"></span>
-									{{'ctrl.posteInconnu'|trans}}
-								</a>
-							</li>
-                            <li>
-								<a href="{{ path('evpos_ctrl_uo_inconnue') }}">
-									<span class="glyphicon glyphicon-list-alt"></span>
-									{{'ctrl.uoInconnue'|trans}}
-								</a>
-							</li>
-						</ul>
-					</li>
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">Contrôles <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{{ path('evpos_ctrl_util') }}">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                {{'ctrl.utilisateurInconnu'|trans}}
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('evpos_ctrl_poste_inconnu') }}">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                {{'ctrl.posteInconnu'|trans}}
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('evpos_ctrl_uo_inconnue') }}">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                {{'ctrl.uoInconnue'|trans}}
+              </a>
+            </li>
+          </ul>
+        </li>
 
-                    <li><a href="{{ path('evpos_indicateurs') }}">Indicateurs</a>
-                    </li>
-                </ul>
+        <li><a href="{{ path('evpos_indicateurs') }}">Indicateurs</a>
+        </li>
+      </ul>
     </nav>
 
     <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                {% for message in app.session.flashbag.get('info') %}
-                <div class="col-lg-3">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Information</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>{{ message }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% for message in app.session.flashbag.get('erreur') %}
-                <div class="col-lg-3">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Information</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>{{ message }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+      <div class="container-fluid">
+        <div class="row">
+          {% for message in app.session.flashbag.get('info') %}
+          <div class="col-lg-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Information</h3>
+              </div>
+              <div class="panel-body">
+                <p>{{ message }}</p>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    {% block content %}
-                    <p>Désolé, mais le contenu n'a pas encore été défini...</p>
-                    {% endblock%}
-                </div>
+          </div>
+          {% endfor %}
+          {% for message in app.session.flashbag.get('erreur') %}
+          <div class="col-lg-3">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">Information</h3>
+              </div>
+              <div class="panel-body">
+                <p>{{ message }}</p>
+              </div>
             </div>
+          </div>
+          {% endfor %}
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            {% block content %}
+            <p>Désolé, mais le contenu n'a pas encore été défini...</p>
+            {% endblock%}
+          </div>
+        </div>
+      </div>
     </div>
 
     {% javascripts output="js/compiled/core.js"
-       'bundles/jquery/js/jquery*.js'
-       'bundles/bootstrap/js/bootstrap.js'
+    'bundles/jquery/js/jquery*.js'
+    'bundles/bootstrap/js/bootstrap.js'
     %}
-        <script src="{{ asset_url }}" charset="utf-8"></script>
+    <script src="{{ asset_url }}" charset="utf-8"></script>
     {% endjavascripts %}
 
     {% block javascripts %} {% endblock %}
-</body>
+  </body>
 
-</html>
+  </html>

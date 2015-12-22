@@ -63,6 +63,10 @@ evpos_listeDirection:
     path: /direction
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeDirection }
 
+evpos_cherchePoste:
+    path: /cherche_poste
+    defaults: { _controller: EVPOSaffectationBundle:Poste:cherchePoste }
+
 evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
