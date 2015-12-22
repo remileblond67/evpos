@@ -67,7 +67,7 @@ class Service
     private $listeAppliService;
 
     /**
-     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="serviceUtil", cascade={"persist", "detach"})
      */
     private $listeUtilisateurs;
 

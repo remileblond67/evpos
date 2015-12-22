@@ -106,9 +106,13 @@ class ImportBazaCommand extends ContainerAwareCommand
         }
         $em->flush();
 
-        // Suppression des services non retrouv�s dans BAZA
+        // Suppression des services non retrouvés dans BAZA
         $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServicesNonBaza();
         foreach($listeService as $service) {
+            foreach ($service->getListeUtilisateurs() as $utilisateur) {
+              $utilisateur->setServiceUtil(NULL);
+              $em->persist($utilisateur);
+            }
             $em->remove($service);
             $output->writeln("- suppression de ".$service->getCodeService());
         }
