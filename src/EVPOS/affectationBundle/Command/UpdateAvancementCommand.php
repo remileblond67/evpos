@@ -20,7 +20,14 @@ class UpdateAvancementCommand extends ContainerAwareCommand
 
         // Mise à jour de l'avancement de la migration des UO
         $output->write("Lecture du fichier d'avancement des FIA... ");
-        $csvFile = fopen("/home/data/evpos/dev/avancement/MOCA_avancement.csv", "r");
+        // Identification de l'environnement courant
+
+        if (strpos(getcwd(), "prod") !== false) {
+          $env = "prod";
+        } else {
+          $env = "dev";
+        }
+        $csvFile = fopen("/home/data/evpos/".$env."/avancement/MOCA_avancement.csv", "r");
         $titre = fgets($csvFile);
         while (($data = fgetcsv($csvFile, 0, ';', '"')) !== FALSE) {
           $codeUo = $data[0];
