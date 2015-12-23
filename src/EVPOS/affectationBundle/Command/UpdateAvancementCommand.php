@@ -27,7 +27,7 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         } else {
           $env = "dev";
         }
-        $csvFile = fopen("/home/data/evpos/".$env."/avancement/MOCA_avancement.csv", "r");
+        $csvFile = fopen("/home/data/evpos/".$env."/avancement/moca_avancement.csv", "r");
         $titre = fgets($csvFile);
         while (($data = fgetcsv($csvFile, 0, ';', '"')) !== FALSE) {
           $codeUo = $data[0];

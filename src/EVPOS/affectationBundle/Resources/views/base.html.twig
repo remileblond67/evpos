@@ -58,7 +58,11 @@
               <li>
                 {% render(controller('EVPOSaffectationBundle:Organigramme:chercheService')) %}
               </li>
-              <li role="separator" class="divider"></li><li><a href="{{ path('evpos_listeDirection') }}">
+              <li>
+                {% render(controller('EVPOSaffectationBundle:Utilisateur:chercheUtilisateur')) %}
+              </li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path('evpos_listeDirection') }}">
                 <span class="glyphicon glyphicon-list-alt"></span>
                 {{'direction.liste'|trans}}</a>
               </li>
