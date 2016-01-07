@@ -151,6 +151,15 @@ class Utilisateur
         return $this->serviceUtil;
     }
 
+    public function getCodeService() {
+      if ($this->getServiceUtil() !== NULL ) {
+        $codeService = $this->getServiceUtil()->getCodeService();
+      } else {
+        $codeService = "";
+      }
+      return $codeService;
+    }
+
     /**
      * Add listeAcces
      *

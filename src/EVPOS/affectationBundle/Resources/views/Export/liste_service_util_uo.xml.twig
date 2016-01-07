@@ -22,40 +22,37 @@
                                 <natureAppli>{{ uo.uoAcces.appli.natAppli }}</natureAppli>
                                 <codeUo>{{ uo.uoAcces.codeUo }}</codeUo>
                                 <nomUo>{{ uo.uoAcces.nomUo }}</nomUo>
-                                <avancementMoca>{{ uo.uoAcces.avancementMoca }}</avancementMoca>
-                                <typePoste>{{ uo.uoAcces.typePoste }}</typePoste>
                                 <migMoca>{{ uo.uoAcces.migMoca }}</migMoca>
-                                <typePoste>{{ uo.uoAcces.typePoste }}</typePoste>
+                                <avancementMoca>{{ uo.uoAcces.avancementMoca }}</avancementMoca>
                                 <ancienCitrix>{{ uo.uoAcces.ancienCitrixLong }}</ancienCitrix>
+                                <typePoste>{{ uo.uoAcces.typePoste }}</typePoste>
                             </uo>
                             {% endfor %}
                         </uos>
                         <postes>
                             {% for poste in utilisateur.listePostes %}
                             <poste>
-								<hostname>{{poste.hostname}}</hostname>
-								<codeMateriel>{{poste.codeMateriel}}</codeMateriel>
-								<categorie>{{poste.categorie}}</categorie>
-								<modele>{{poste.modele}}</modele>
-								<localisation>{{poste.localisation}}</localisation>
-								<statut>{{poste.statut}}</statut>
-								<commentaire>{{poste.commentaire}}</commentaire>
-								<typeUsage>{{poste.typeUsage}}</typeUsage>
-                                <licenceW8>{{poste.licenceW8Long}}</licenceW8>
-								<utilisateurs>
-                                {% for util in poste.listeUtilisateurs %}
-                                    <utilisateur>
-                                        <matUtil>{{util.matUtil}}</matUtil>
-                                    </utilisateur>
-                                {% endfor %}
-								</utilisateurs>
-								<ecrans>
-								{% for ecran in poste.listeEcran %}
-									<ecran>
-                                        {{ecran}}
-                                    </ecran>
-								{% endfor %}
-								</ecrans>
+              								<hostname>{{poste.hostname}}</hostname>
+              								<codeMateriel>{{poste.codeMateriel}}</codeMateriel>
+              								<categorie>{{poste.categorie}}</categorie>
+              								<modele>{{poste.modele}}</modele>
+              								<localisation>{{poste.localisation}}</localisation>
+              								<statut>{{poste.statut}}</statut>
+              								<typeUsage>{{poste.typeUsage}}</typeUsage>
+                              <licenceW8>{{poste.licenceW8Long}}</licenceW8>
+              								<utilisateurs>
+                              {% for util in poste.listeUtilisateurs %}
+                                  <utilisateur>
+                                      <matUtil>{{util.matUtil}}</matUtil>
+                                  </utilisateur>
+                              {% endfor %}
+              								</utilisateurs>
+              								<ecrans>
+              								{% for ecran in poste.listeEcran %}
+              									<ecran>{{ecran}}</ecran>
+              								{% endfor %}
+              								</ecrans>
+                              <commentaire>{{poste.commentaire}}</commentaire>
                             </poste>
                             {% endfor %}
                         </postes>

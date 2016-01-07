@@ -1,0 +1,6 @@
+hostname;matUtil
+{% for poste in listePoste %}
+{% for util in poste.listeUtilisateurs %}
+{{poste.hostname}};{{util.matUtil}}
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,4 @@
+hostname;categorie;modele;licenceW8;ssd;localisation;statut;master;typeReseau
+{% for poste in listePoste %}
+{{poste.hostname}};{{poste.categorie}};{{poste.modele}};{{poste.licenceW8}};{{poste.ssd}};{{poste.localisation}};{{poste.statut}};{{poste.master}};{{poste.typeReseau}}
+{% endfor %}

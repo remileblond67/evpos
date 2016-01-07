@@ -120,7 +120,7 @@ class ImportPosteCommand extends ContainerAwareCommand
             if ($service !== NULL) {
               $poste->setService($service);
             } else {
-              $poste->setService($serviceInconnu);
+              $poste->setService(NULL);
             }
 
             // Recherche de l'utilisateur
@@ -156,8 +156,11 @@ class ImportPosteCommand extends ContainerAwareCommand
         $poste->setService($service);
         $output->write('_');
       }
+      if ($poste->getService() === NULL) {
+        $poste->setService($serviceInconnu);
+        $output->write('?');
+      }
       $em->persist($poste);
-      $output->write('.');
     }
     $output->writeln("OK");
     unset($postesSansService);

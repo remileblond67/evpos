@@ -120,6 +120,14 @@ evpos_updateFromShareCan:
     path: /update_sharecan
     defaults: { _controller: EVPOSaffectationBundle:Update:updateShareCan }
 
+evpos_updateAvancement:
+    path: /update_avancement
+    defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancementUo }
+
+evpos_purgeBase:
+    path: /purge_base
+    defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }
+
 # Fonctions d'export
 evpos_exportAppliNexthink:
     path:  /appli_ntk
@@ -173,13 +181,26 @@ evpos_exportDirServUtilUoXml_service:
     path:  /direction_service_util_uo_xml/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXmlService }
 
-evpos_updateAvancement:
-    path: /update_avancement
-    defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancementUo }
+# Fonctions d'export CSV
+evpos_exportDirectionCsv:
+    path: /csv/direction
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvDirection }
 
-evpos_purgeBase:
-    path: /purge_base
-    defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }
+evpos_exportServiceCsv:
+    path: /csv/service
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvService }
+
+evpos_exportUtilisateurCsv:
+    path: /csv/utilisateur
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilisateur }
+
+evpos_exportPosteCsv:
+    path: /csv/poste
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvPoste }
+
+evpos_exportPosteUtilCsv:
+    path: /csv/util_poste
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilPoste }
 
 # Etat d'avancement des services
 evpos_serviceAvancement:
