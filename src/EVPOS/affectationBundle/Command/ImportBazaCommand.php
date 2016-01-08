@@ -20,7 +20,7 @@ class ImportBazaCommand extends ContainerAwareCommand
         parent::configure();
         $this
             ->setName('evpos:import_baza')
-            ->setDescription('Import des donn�es BAZA')
+            ->setDescription('Import des données BAZA')
         ;
     }
 
@@ -196,6 +196,31 @@ class ImportBazaCommand extends ContainerAwareCommand
         unset($csr);
 
         $output->writeln("Import de ".$nb." utilisateurs");
+
+        $requeteBaza = "select distinct alias as mat_util, code_service from baz_exchange";
+        $csr = oci_parse ( $this->ORA , $requeteBaza) ;
+        oci_execute ($csr) ;
+        $nb = 0;
+        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
+          $matUtil = $row["MAT_UTIL"];
+          $codeService = $row["CODE_SERVICE"];
+          $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
+          if ($utilisateur !== NULL) {
+            if ($utilisateur->getCodeService() != $codeService) {
+              $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+              if ($service !== NULL) {
+                $utilisateur->setServiceUtil($service);
+                $nb++;
+              }
+            }
+          }
+        }
+        $em->flush();
+        oci_free_statement($csr);
+        unset($csr);
+
+        $output->writeln("Mise à jour du service de ".$nb." utilisateurs");
+
 
         // Suppression des utilisateurs qui n'existaient pas dans BAZA
         $output->write("Suppression des utilisateurs qui n'existaient pas dans BAZA... ");
