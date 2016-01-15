@@ -95,6 +95,36 @@ class UO
     private $listePostes;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe_suapp", type="boolean", nullable=true)
+     */
+    private $existeSuapp;
+
+    /**
+     * Set existeSuapp
+     *
+     * @param boolean $existeSuapp
+     * @return Service
+     */
+    public function setExisteSuapp($existeSuapp)
+    {
+        $this->existeSuapp = $existeSuapp;
+
+        return $this;
+    }
+
+    /**
+     * Get existeSuapp
+     *
+     * @return boolean
+     */
+    public function getExisteSuapp()
+    {
+        return $this->existeSuapp;
+    }
+
+    /**
      * Set codeUo
      *
      * @param string $codeUo

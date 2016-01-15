@@ -240,6 +240,7 @@
                         </td>
                         <td class="row">{{ 'uo.ancienCitrix'|trans}}</td>
                         <td class="row">{{ 'uo.nbUtilService'|trans }}</td>
+                        <td class="row">{{ 'uo.nbUtil'|trans}}</td>
                     </tr>
 
                 </thead>
@@ -280,6 +281,7 @@
                           {% endif %}
                         </td>
                         <td class="gradeA odd">{{ acces.nbUtil }} </td>
+                        <td class="gradeA odd">{{ acces.uoAcces.listeAcces|length}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

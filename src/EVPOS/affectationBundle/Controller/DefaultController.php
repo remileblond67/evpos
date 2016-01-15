@@ -55,11 +55,32 @@ class DefaultController extends Controller
             ->getNbPoste()
         ;
 
+        // Récupération du nombre de postes MOCA
+        $nbPosteMoca = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getNbPosteMoca()
+        ;
+
+        // Récupération du nombre de postes à migrer dans MOCA
+        $nbPosteAMigrer = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getNbPosteAMigrer()
+        ;
+
         // Réparition des postes par type d'usage
         $nbPosteUsage = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Poste')
             ->getNbPosteUsage()
+        ;
+
+        // Répartition des postes par master
+        $nbPosteMaster = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Poste')
+          ->getNbPosteMaster()
         ;
 
         // Note d'avancement par nature d'Application
@@ -77,7 +98,10 @@ class DefaultController extends Controller
           'nbService' => $nbServices,
           'nbDirection' => $nbDirections,
           'nbPoste' => $nbPoste,
+          'nbPosteAMigrer' => $nbPosteAMigrer,
+          'nbPosteMoca' => $nbPosteMoca,
           'nbPosteUsage' => $nbPosteUsage,
+          'nbPosteMaster' => $nbPosteMaster,
           'avancementNature'=>$avancementNature)
         );
     }

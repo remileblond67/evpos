@@ -29,6 +29,10 @@
   .ko {
     color: red;
   }
+
+  .mension {
+    font-size: 0.8em;
+  }
   </style>
 
   <link rel="icon" type="image/x-icon" href="{{ asset('bundles/evposaffectation/images/favicon.ico') }}" />
@@ -138,7 +142,7 @@
         </li>
 
         <li class="dropdown">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown">XML Excel <b class="caret"></b></a>
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">Export Excel <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
               <a target="_blank" href="{{ path('evpos_exportService') }}">
@@ -160,6 +164,12 @@
             <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.liste'|trans}}</a></li>
             <li role="separator" class="divider"></li>
             <li><a target="_blank" href="{{ path('evpos_serviceAvancementXml') }}"><span class="glyphicon glyphicon-export"></span> 51. {{'service.etatAvancement'|trans}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="{{ path('evpos_exportDirectionCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Directions</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportServiceCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Services</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportUtilisateurCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Utilisateurs</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportPosteCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Postes</a></li>
+            <li><a target="_blank" href="{{ path('evpos_exportPosteUtilCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Poste - utilisateur</a></li>
           </ul>
         </li>
 

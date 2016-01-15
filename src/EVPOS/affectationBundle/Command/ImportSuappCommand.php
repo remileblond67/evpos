@@ -26,8 +26,8 @@ class ImportSuappCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
 
         $user = "970595";
-		$password = "M2p4CUS";
-		$sid = "pbaza";
+    		$password = "M2p4CUS";
+    		$sid = "pbaza";
 
         $this->ORA = oci_connect ($user , $password , $sid) ;
 
@@ -160,6 +160,14 @@ class ImportSuappCommand extends ContainerAwareCommand
          */
         $output->write("Mise à jour de la liste des UO à partir de SUAPP... ");
 
+        // Positionnement de l'indicateur d'existance des UO
+        $listeUo = $em->getRepository('EVPOSaffectationBundle:UO')->findAll();
+        foreach ($listeUo as $uo) {
+          $uo->setExisteSuapp(FALSE);
+          $em->persist($uo);
+        }
+        $em->flush();
+
         // Récupération de la liste des UO depuis SUAPP
         $requeteSUAPP = "select m.id_module,code_appli,lib_module,translate(mig_moca, 'on', '10') mig_moca
                          from app_module m";
@@ -188,6 +196,7 @@ class ImportSuappCommand extends ContainerAwareCommand
                 $uo->setMigMoca($migMoca);
                 $uo->setTypePoste("");
                 $uo->setAncienCitrix(FALSE);
+                $uo->setExisteSuapp(TRUE);
 
                 $em->persist($uo);
                 $nbUo++;
@@ -195,6 +204,7 @@ class ImportSuappCommand extends ContainerAwareCommand
         }
         $em->flush();
         oci_free_statement($csr);
+
 
         // Mise à jour du type de poste client
         $requeteSUAPP = "SELECT m.id_module, c.type_poste_client FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'MOCA%'";
@@ -260,5 +270,16 @@ class ImportSuappCommand extends ContainerAwareCommand
         $em->flush();
 
         $output->writeln("Mise à jour du CPI de " . $nb . " applications.");
+
+        // Suppression des UO qui n'existent pas dans SUAPP
+        $output->write("Purge des UO qui n'existent plus dans SUAPP...");
+        $listeUoSupprimees = $em->getRepository('EVPOSaffectationBundle:UO')->getUoSupprimees();
+
+        foreach ($listeUoSupprimees as $uo) {
+          $output->writeln("Suppression ".$uo->getCodeUo());
+          $em->remove($uo);
+        }
+        $em->flush();
+        $output->writeln("OK");
     }
 }

@@ -12,7 +12,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * repository methods below.
  */
 class PosteRepository extends EntityRepository {
-    
+
 	/**
 	 * Retourne le poste correspondant au hostname passé en paramètre
 	 */
@@ -23,9 +23,9 @@ class PosteRepository extends EntityRepository {
             ->getQuery()
         ;
 
-        return $query->getOneOrNullResult();	
+        return $query->getOneOrNullResult();
 	}
-	
+
 	/**
      * Retourne la liste de tous les postes
      */
@@ -50,7 +50,7 @@ class PosteRepository extends EntityRepository {
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne la liste de tous les postes
      */
@@ -64,10 +64,10 @@ class PosteRepository extends EntityRepository {
             ->setFirstResult(($page-1) * $nbParPage)
             ->setMaxResults($nbParPage)
         ;
-        
+
         return new Paginator($query, true);
-    }    
-    
+    }
+
     /**
      * Retourne la liste de tous les postes et de leurs utilisateurs
      */
@@ -81,7 +81,7 @@ class PosteRepository extends EntityRepository {
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne la liste des postes de postes sur lesquels sont installées des applications
      */
@@ -94,10 +94,10 @@ class PosteRepository extends EntityRepository {
             ->where('uo is not null and u is not null')
             ->getQuery()
         ;
-        
+
         return $query->getResult();
     }
-    
+
     /**
      * Retourne la liste des postes non trouvés dans GPARC
      */
@@ -109,7 +109,7 @@ class PosteRepository extends EntityRepository {
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne le nombre de postes
      * Utilisé pour les indicateurs d'avancement
@@ -124,6 +124,35 @@ class PosteRepository extends EntityRepository {
     }
 
     /**
+     * Retourne le nombre de postes MOCA
+     * Utilisé pour les indicateurs d'avancement
+     */
+    public function getNbPosteMoca() {
+        $query = $this->createQueryBuilder('p')
+            ->select('count(p.hostname) nb')
+            ->where("p.master in ('IGEL PC', 'IGEL TL', 'STATION W8.1 BURO', 'STATION W8.1 BURO', 'STATION W8.1 BURO OLD', 'MASTER WIN 8.1', 'MANUEL WINDOWS 8')")
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
+
+    /**
+     * Retourne le nombre de postes à migrer
+     * Utilisé pour les indicateurs d'avancement
+     */
+    public function getNbPosteAMigrer() {
+        $query = $this->createQueryBuilder('p')
+            ->select('count(p.hostname) nb')
+            ->where("p.master not in ('BICOM', 'BICOM MULTIMEDIA') and p.master not like '%ECOLE%' and p.master not like '%MAC%'")
+            ->getQuery()
+        ;
+
+        return $query->getSingleScalarResult();
+    }
+
+
+    /**
      * Retourne le nombre de postes par type d'usage
      * Utilisé pour les indicateurs d'avancement
      */
@@ -136,5 +165,18 @@ class PosteRepository extends EntityRepository {
         ;
 
         return $query->getResult();
+    }
+
+    /**
+     * Retourne le nombre de poste par master
+     */
+    public function getNbPosteMaster() {
+      $query = $this->createQueryBuilder('p')
+        ->select('p.master, count(p.hostname) nb')
+        ->groupBy('p.master')
+        ->orderBy('p.master')
+        ->getQuery()
+      ;
+      return $query->getResult();
     }
 }

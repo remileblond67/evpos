@@ -8,11 +8,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use EVPOS\affectationBundle\Entity\AccesUtilUo;
 
 /**
- * Import des accès applicatifs à partir de la base BAZA 
+ * Import des accès applicatifs à partir de la base BAZA
  * - BAZA : accès aux UO
  */
 class ImportAccesUoCommand extends ContainerAwareCommand
-{   
+{
     protected function configure() {
         parent::configure();
         $this
@@ -20,23 +20,23 @@ class ImportAccesUoCommand extends ContainerAwareCommand
             ->setDescription('Import des accès aux UO depuis la base BAZA')
         ;
     }
-    
+
     protected function execute(InputInterface $input, OutputInterface $output) {
         ini_set('memory_limit', -1);
         gc_enable();
-        
+
         $em = $this->getContainer()->get('doctrine')->getManager();
         $repUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
         $repUo = $em->getRepository('EVPOSaffectationBundle:UO');
         $repAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesUtilUo');
-        
+
         // Connexion à la base de données BAZA
         $user = "970595";
 		$password = "M2p4CUS";
 		$sid = "pbaza";
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
-		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ; 
+		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ;
 		  $output->writeln("Impossible de se connecter à la base de données");
 		} else {
             // Suppression des anciens accès aux UO
@@ -48,17 +48,17 @@ class ImportAccesUoCommand extends ContainerAwareCommand
             $em->flush();
             unset($listeAccesUo);
             $output->writeln("OK");
-            
+
             gc_collect_cycles();
-            
+
             // Récupération de la liste des utilisateurs connus
             $listeUtil = $repUtil->getUtilisateurs();
-            
+
             $nbUtil = 0;
-            
+
             $output->writeln("Import des accès aux UO à partir de BAZA");
             $nbUtil = 0;
-            
+
             $requeteBaza = "SELECT distinct code_uo
 			  FROM (SELECT REGEXP_REPLACE (REGEXP_REPLACE (UPPER (ntmgname), '^GA_', ''), '_P$', '')
 							  CODE_UO
@@ -82,25 +82,25 @@ class ImportAccesUoCommand extends ContainerAwareCommand
 
             foreach ($listeUtil as $utilisateur) {
                 $matUtilisateur = $utilisateur->getMatUtil();
-                
+
                 // Récupération de la liste des accés de l'utilisateur dans GAP
                 oci_bind_by_name($csr, ':matricule', $matUtilisateur);
                 oci_execute ($csr) ;
-                
+
                 while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
                     $codeUo = $row["CODE_UO"] ;
-                    
+
                     if ($repUo->isUo($codeUo)) {
                         $uo = $repUo->getUo($codeUo);
-                        
+
                         // Création de l'accès
                         $newAcces = new AccesUtilUo();
-                        
+
                         $newAcces->setUoAcces($uo);
                         unset($uo);
                         $newAcces->setUtilAcces($utilisateur);
-                        $newAcces->setSourceImport("Import BAZA du ".date("d/m/Y"));
-                        
+                        $newAcces->setSourceImport("Import BAZA ".$codeUo." du ".date("d/m/Y"));
+
                         $em->persist($newAcces);
                         unset($newAcces);
                     }
@@ -108,7 +108,7 @@ class ImportAccesUoCommand extends ContainerAwareCommand
                 $nbUtil++;
                 if ($nbUtil%100 == 0) {
                     $output->write($nbUtil." ");
-                    // if ($nbUtil%1000 == 0) 
+                    // if ($nbUtil%1000 == 0)
                         // $em->flush();
                 }
             }
@@ -117,10 +117,10 @@ class ImportAccesUoCommand extends ContainerAwareCommand
             $output->write("Validation en base...");
             $em->flush();
             $output->writeln("Fin de l'import");
-            
+
             oci_close ($this->ORA) ;
         }
-                
+
         $output->writeln("Fin du traitement");
     }
 }

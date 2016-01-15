@@ -22,7 +22,7 @@
             {{appli.cpi.nomUtil}}
             {% endif %}
         </cpi>
-        <nbUtil>{{appli.listeAcces| length}}</nbUtil>
+        <nbUtilAppli>{{appli.listeAcces| length}}</nbUtilAppli>
         <listeUo>
         {% for uo in appli.listeUo %}
             {% if uo.migMoca %}
@@ -33,6 +33,7 @@
                 <avancementMoca>{{uo.avancementMoca}}</avancementMoca>
                 <typePoste>{{ uo.typePoste }}</typePoste>
                 <ancienCitrix>{{ uo.ancienCitrixLong }}</ancienCitrix>
+                <nbUtilUo>{{uo.listeAcces|length}}</nbUtilUo>
             </uo>
             {% endif %}
         {% endfor %}
