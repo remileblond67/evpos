@@ -36,6 +36,7 @@ function showOk() {
                 <td class="row">{{ 'service.nbAgent'|trans }}</td>
                 <td class="row">{{ 'service.nbAcces'|trans }}</td>
 			          <td class="row">{{ 'service.nbAccesUo'|trans }}</td>
+                <td class="row">{{ 'service.nbPoste'|trans}}</td>
                 <td class="row">
                   {{ 'service.noteAvancement'|trans }}
                   <br>
@@ -89,6 +90,7 @@ function showOk() {
                 <td class="">{{service.nbAgent}}</td>
                 <td class="">{{service.nbAcces}}</td>
           			<td class="">{{service.nbAccesUo}}</td>
+                <td>{{service.nbPoste}}</td>
                 <td class="">
                     <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%"></progress>
                 </td>
