@@ -46,7 +46,7 @@ class ImportPosteCommand extends ContainerAwareCommand
 
     // Lecture du fichier CSV extrait de GPARC
     $output->write("Lecture du fichier des postes... ");
-    $fileName = "/home/data/evpos/".$env."/gparc/materiel.csv";
+    $fileName = "/home/data/evpos/".$env."/gparc/gparc_prod_moca_01_materiel.csv";
     $csvFile = fopen($fileName, 'r');
     $nbLine = 0;
     $nbDoublon = 0;
@@ -211,8 +211,8 @@ class ImportPosteCommand extends ContainerAwareCommand
     // Lecture du fichier CSV extrait de GPARC
     $output->write("Lecture du fichier des équipements liés... ");
     $fileName = [];
-    $fileName[] = "/home/data/evpos/".$env."/gparc/materiel-lie.csv";
-    $fileName[] = "/home/data/evpos/".$env."/gparc/materiel-lie-montant.csv";
+    $fileName[] = "/home/data/evpos/".$env."/gparc/gparc_prod_moca_02_materiels-lies.csv";
+    $fileName[] = "/home/data/evpos/".$env."/gparc/gparc_prod_moca_03_materiels-lies-montant.csv";
 
     // Liste des différents codes matériel, pour éviter les doublons
     $listeCodeMateriel = [];
