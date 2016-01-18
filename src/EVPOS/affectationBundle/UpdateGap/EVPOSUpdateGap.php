@@ -4,24 +4,24 @@ namespace EVPOS\affectationBundle\UpdateGap;
 use EVPOS\affectationBundle\Entity\AccesServiceAppli;
 
 class EVPOSUpdateGap {
-    
+
     private $doctrine;
-    
+
     public function __construct($doctrine) {
         $this->doctrine = $doctrine;
-        
+
         // Connexion à la base de données GAP
-        $user = "970595";
-		$password = "M2p4CUS";
-		$sid = "pgap";
+        $user = $this->getContainer()->getParameter('oracle_user');
+    		$password = $this->getContainer()->getParameter('oracle_pwd');
+    		$sid = "pgap";
         $this->ORA = oci_connect ($user , $password , $sid) ;
     }
-    
+
     public function __destruct() {
         // Fermeture de l'accès à la base GAP
         oci_close ($this->ORA) ;
     }
-    
+
     /**
      * Mise à jour des accès applicatifs d'un service
      */
@@ -29,19 +29,19 @@ class EVPOSUpdateGap {
         $em = $this->doctrine->getManager();
         $nbUtil = 0;
         $nbAcces = 0;
-        
+
         $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
-        
+
         // Suppression des accès existants du service
         foreach ($service->getListeAcces() as $acces) {
             $em->remove($acces);
         }
         $em->flush();
-        
+
         $listeUtilisateurs = $service->getListeUtilisateurs();
-        
+
         $asa = $em->getRepository('EVPOSaffectationBundle:AccesServiceAppli');
-        
+
         // Liste pour mémoriser les applications déjà traitées
         $listeAppli = array();
 
@@ -56,9 +56,9 @@ class EVPOSUpdateGap {
 
         foreach ($listeAppli as $codeAppli) {
             $newAcces = new AccesServiceAppli();
-            
+
             $appli = $em->getRepository('EVPOSaffectationBundle:Application')->getApplication($codeAppli);
-            
+
             $newAcces->setServiceAcces($service);
             $newAcces->setAppliAcces($appli);
             $newAcces->setSourceImport("NEW");
@@ -67,11 +67,11 @@ class EVPOSUpdateGap {
         }
         $em->flush();
         unset($listeAppli);
-        
+
         $message = "Mise à jour de ".$nbAcces." accès applicatifs des ".$nbUtil." utilisateurs du service ".$codeService;
         return $message;
     }
-    
+
     /**
      * Mise à jour des RIU à partir de GAP
      */
@@ -80,7 +80,7 @@ class EVPOSUpdateGap {
         $em = $this->doctrine->getManager();
         $rUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur');
         $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServices();
-        
+
         // Recherche, dans GAP, la liste des RIU du service
         $requeteGap = "select matricule from GAP_NT_RIU where code_service = :codeService";
         $csr = oci_parse ( $this->ORA , $requeteGap) ;
@@ -89,19 +89,19 @@ class EVPOSUpdateGap {
             foreach($service->getListeRiu() as $riu) {
                 $service->removeListeRiu($riu);
             }
-            
+
             $codeService = $service->getCodeService();
-            
+
             oci_bind_by_name($csr, ':codeService', $codeService);
             oci_execute ($csr) ;
-            
+
             while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
                 $matricule = $row["MATRICULE"] ;
-                
+
                 // Recherche de l'utilisateur correspondant au matricule
                 if ($rUtil->isUtilisateur($matricule)) {
                     $utilisateur = $rUtil->getUtilisateur($matricule);
-                
+
                     // Enregistrement des RIU dans le service
                     $service->addListeRiu($utilisateur);
                 }
@@ -110,9 +110,9 @@ class EVPOSUpdateGap {
         }
         oci_free_statement($csr);
         unset($csr);
-        
+
         $em->flush();
-        
+
         $message = "Mise à jour de ".$nbRiu." RIU";
         return $message;
     }

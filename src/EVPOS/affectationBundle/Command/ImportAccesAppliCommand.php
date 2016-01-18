@@ -29,7 +29,7 @@ class ImportAccesAppliCommand extends ContainerAwareCommand
       $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');
 
       // Connexion à la base de données GAP
-      $user = $this->getContainer()->getParameter('oracle_user');;
+      $user = $this->getContainer()->getParameter('oracle_user');
   		$password = $this->getContainer()->getParameter('oracle_pwd');
   		$sid = "pgap";
       $this->ORA = oci_connect ($user , $password , $sid) ;
