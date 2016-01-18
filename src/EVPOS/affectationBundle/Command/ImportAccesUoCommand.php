@@ -31,9 +31,9 @@ class ImportAccesUoCommand extends ContainerAwareCommand
         $repAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesUtilUo');
 
         // Connexion à la base de données BAZA
-        $user = "970595";
-		$password = "M2p4CUS";
-		$sid = "pbaza";
+        $user = $this->getContainer()->getParameter('oracle_user');
+    		$password = $this->getContainer()->getParameter('oracle_pwd');
+    		$sid = "pbaza";
         $this->ORA = oci_connect ($user , $password , $sid) ;
         if (! $this->ORA) {
 		  print "Erreur de connexion à la base de données $sid avec l'utilisateur $user." ;

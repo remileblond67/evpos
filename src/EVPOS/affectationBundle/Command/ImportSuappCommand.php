@@ -25,8 +25,8 @@ class ImportSuappCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output) {
         $em = $this->getContainer()->get('doctrine')->getManager();
 
-        $user = "970595";
-    		$password = "M2p4CUS";
+        $user = $this->getContainer()->getParameter('oracle_user');
+    		$password = $this->getContainer()->getParameter('oracle_pwd');
     		$sid = "pbaza";
 
         $this->ORA = oci_connect ($user , $password , $sid) ;

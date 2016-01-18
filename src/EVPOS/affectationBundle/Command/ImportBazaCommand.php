@@ -27,8 +27,8 @@ class ImportBazaCommand extends ContainerAwareCommand
   protected function execute(InputInterface $input, OutputInterface $output) {
     $em = $this->getContainer()->get('doctrine')->getManager();
 
-    $user = "970595";
-    $password = "M2p4CUS";
+    $user = $this->getContainer()->getParameter('oracle_user');;
+    $password = $this->getContainer()->getParameter('oracle_pwd');;
     $sid = "pbaza";
 
     // Passer cette variable à TRUE pour déclencher une mise à jour des directions depuis BAZA
