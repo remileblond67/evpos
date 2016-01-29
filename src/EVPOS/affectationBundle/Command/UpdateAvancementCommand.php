@@ -17,16 +17,16 @@ class UpdateAvancementCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output) {
         $em = $this->getContainer()->get('doctrine')->getManager();
-
-        // Mise à jour de l'avancement de la migration des UO
-        $output->write("Lecture du fichier d'avancement des FIA... ");
         // Identification de l'environnement courant
-
         if (strpos(getcwd(), "prod") !== false) {
           $env = "prod";
         } else {
           $env = "dev";
         }
+
+        // Mise à jour de l'avancement de la migration des UO
+        $output->write("Lecture du fichier d'avancement des FIA (".$env.")... ");
+
         $csvFile = fopen("/home/data/evpos/".$env."/avancement/moca_avancement.csv", "r");
         $titre = fgets($csvFile);
         while (($data = fgetcsv($csvFile, 0, ';', '"')) !== FALSE) {

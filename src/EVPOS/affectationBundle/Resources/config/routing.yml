@@ -95,39 +95,6 @@ evpos_listeCPI:
     path: /liste_cpi
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:listeCpi }
 
-# Fonctions de mise à jour
-evpos_updateUtilFromBAZA:
-    path: /update_util_from_baza
-    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaUtil }
-
-evpos_updateRiu:
-    path: /update_riu
-    defaults: { _controller: EVPOSaffectationBundle:Update:majRiu }
-
-evpos_updateDirServFromBAZA:
-    path: /update_ds_from_baza
-    defaults: { _controller: EVPOSaffectationBundle:Update:majBazaDirServ }
-
-evpos_updateFromSUAPP:
-    path: /update_from_suapp
-    defaults: { _controller: EVPOSaffectationBundle:Update:majSUAPP }
-
-evpos_updateAccesService:
-    path: /update_acces_service_{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Update:updateAccesService }
-
-evpos_updateFromShareCan:
-    path: /update_sharecan
-    defaults: { _controller: EVPOSaffectationBundle:Update:updateShareCan }
-
-evpos_updateAvancement:
-    path: /update_avancement
-    defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancementUo }
-
-evpos_purgeBase:
-    path: /purge_base
-    defaults: { _controller: EVPOSaffectationBundle:Update:purgeBase }
-
 # Fonctions d'export
 evpos_exportAppliNexthink:
     path:  /appli_ntk

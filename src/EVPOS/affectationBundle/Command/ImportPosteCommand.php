@@ -45,7 +45,7 @@ class ImportPosteCommand extends ContainerAwareCommand
     $output->writeln("OK");
 
     // Lecture du fichier CSV extrait de GPARC
-    $output->write("Lecture du fichier des postes... ");
+    $output->write("Lecture du fichier des postes (".$env.")... ");
     $fileName = "/home/data/evpos/".$env."/gparc/gparc_prod_moca_01_materiel.csv";
     $csvFile = fopen($fileName, 'r');
     $nbLine = 0;
