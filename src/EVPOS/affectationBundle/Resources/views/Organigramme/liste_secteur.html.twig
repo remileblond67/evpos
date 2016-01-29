@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-          <table class="table table-striped table-bordered table-hover dataTable no-footer">
+          <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
             <thead>
                 <tr>
                     <td class="row">{{ 'secteur.code'|trans }}</td>
@@ -29,7 +29,7 @@
                   <td>{{ secteur.listeAppli | length }}</td>
                   <td>
                     <progress value="{{secteur.noteAvancementMoca}}" max="100" title="{{secteur.noteAvancementMoca}}%">
-                      {{secteur.noteAvancementMoca}}%
+                      {{secteur.noteAvancementMoca}}
                     </progress>
                   </td>
                 </tr>

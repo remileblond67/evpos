@@ -19,12 +19,15 @@ function showDone() {
   $('#tabAppli').find('tr.done').show();
 }
 </script>
-<table id="tabAppli" class="table table-striped table-bordered table-hover dataTable no-footer">
+<table id="tabAppli" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
     <thead>
         <tr>
             <td class="row sorting_asc" rowspan="2">{{ 'application.code'|trans }}</td>
             <td class="row" rowspan="2">
               {{ 'application.nom'|trans }}
+            </td>
+            <td>
+              {{'application.noteAvancement'|trans}}
               <br>
               <button type="button" onclick="showDone()">{{'app.all'|trans}}</button>
               <button type="button" onclick="hideDone()">{{'app.todo'|trans}}</button>
@@ -48,11 +51,11 @@ function showDone() {
             <td class=""><a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.codeAppli }) }}">{{appli.codeAppli }}</a></td>
             <td class="">
               {{appli.nomAppli }}
-              <br>
+            </td>
+            <td>
               <progress value="{{appli.noteAvancementMoca}}" max="100" title="{{appli.noteAvancementMoca}}%">
-                {{appli.noteAvancementMoca}}%
+                {{appli.noteAvancementMoca}}
               </progress>
-              {{appli.noteAvancementMoca}}%
             </td>
             <td class="">{{appli.natAppliLong }}</td>
             <td class="">

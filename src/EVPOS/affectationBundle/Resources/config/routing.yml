@@ -1,4 +1,3 @@
-
 evpos_accueil:
     path:     /
     defaults: { _controller: EVPOSaffectationBundle:Default:index }
@@ -74,10 +73,6 @@ evpos_cherchePoste:
 evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
-
-evpos_listeTypePosteExclus:
-    path: /type_poste_exclus
-    defaults: { _controller: EVPOSaffectationBundle:Poste:listeTypePosteExclus }
 
 evpos_fichePoste:
     path: /poste/{hostname}

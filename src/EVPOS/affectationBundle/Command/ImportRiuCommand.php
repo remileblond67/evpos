@@ -13,8 +13,8 @@ class ImportRiuCommand extends ContainerAwareCommand
   protected function configure() {
     parent::configure();
     $this
-    ->setName('evpos:import_riu')
-    ->setDescription('Import des RIU depuis la base GAP')
+      ->setName('evpos:import_riu')
+      ->setDescription('Import des RIU depuis la base GAP')
     ;
   }
 
@@ -36,23 +36,23 @@ class ImportRiuCommand extends ContainerAwareCommand
     $requeteGap = "select matricule from GAP_NT_RIU where code_service = :codeService";
     $csr = oci_parse ( $ora , $requeteGap) ;
     foreach ($listeService as $service) {
-        // Suppression des anciens RIU
-        foreach($service->getListeRiu() as $riu) {
-            $service->removeListeRiu($riu);
+      // Suppression des anciens RIU
+      foreach($service->getListeRiu() as $riu) {
+        $service->removeListeRiu($riu);
+      }
+      $codeService = $service->getCodeService();
+      oci_bind_by_name($csr, ':codeService', $codeService);
+      oci_execute ($csr) ;
+      while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
+        $matricule = $row["MATRICULE"] ;
+        // Recherche de l'utilisateur correspondant au matricule
+        if ($rUtil->isUtilisateur($matricule)) {
+          $utilisateur = $rUtil->getUtilisateur($matricule);
+          // Enregistrement des RIU dans le service
+          $service->addListeRiu($utilisateur);
         }
-        $codeService = $service->getCodeService();
-        oci_bind_by_name($csr, ':codeService', $codeService);
-        oci_execute ($csr) ;
-        while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
-            $matricule = $row["MATRICULE"] ;
-            // Recherche de l'utilisateur correspondant au matricule
-            if ($rUtil->isUtilisateur($matricule)) {
-                $utilisateur = $rUtil->getUtilisateur($matricule);
-                // Enregistrement des RIU dans le service
-                $service->addListeRiu($utilisateur);
-            }
-        }
-        $nbRiu++;
+      }
+      $nbRiu++;
     }
     oci_close ($ora) ;
     $output->writeln("Fin du traitement (mise à jour de ".$nbRiu." RIU)");
