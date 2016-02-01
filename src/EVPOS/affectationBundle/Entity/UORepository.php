@@ -107,4 +107,16 @@ class UORepository extends EntityRepository
 
     return $query->getResult();
   }
+
+  public function getNbUo($nature) {
+    $query = $this->createQueryBuilder('uo')
+      ->select('count(uo.codeUo) nb')
+      ->leftJoin('uo.appli', 'a')
+      ->setParameter('nature', $nature)
+      ->where("a.natAppli = :nature and uo.avancementMoca <> 'Non migré'")
+      ->getQuery()
+    ;
+
+    return $query->getOneOrNullResult();
+  }
 }

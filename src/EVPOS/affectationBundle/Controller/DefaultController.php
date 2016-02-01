@@ -88,6 +88,18 @@ class DefaultController extends Controller
           ->getAvancement('AS')
         ;
 
+        $nbUoAS = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getNbUo('AS')
+        ;
+
+        $nbUoAI = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getNbUo('AI')
+        ;
+
         // Note d'avancement par nature d'Application
         // $avancementNature = $this->getDoctrine()
         //     ->getManager()
@@ -109,6 +121,8 @@ class DefaultController extends Controller
           'avancementNature'=>$avancementNature,
           'avancementUoAI' => $avancementUoAI,
           'avancementUoAS' => $avancementUoAS,
+          'nbUoAI' => $nbUoAI,
+          'nbUoAS' => $nbUoAS
         )
         );
     }
