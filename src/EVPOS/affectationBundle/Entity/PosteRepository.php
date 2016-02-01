@@ -144,7 +144,13 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteAMigrer() {
         $query = $this->createQueryBuilder('p')
             ->select('count(p.hostname) nb')
-            ->where("p.master not in ('BICOM', 'BICOM MULTIMEDIA') and p.master not like '%ECOLE%' and p.master not like '%MAC%'")
+            ->where("p.master not in ('BICOM', 'BICOM MULTIMEDIA', 'POZOR')
+						     and p.master not like '%ECOLE%'
+								 and p.master not like '%MAC%'
+								 and p.hostname not like 'BMIC%'
+								 and (p.typeUsage is null or p.typeUsage not in ('HORS RESEAU', 'REFORME', 'SERVEUR'))
+								 and (p.statut is null or p.statut not in ('Parallèle moc@', 'Débranché moc@', 'Réformé en service', 'Réformé en prêt'))
+						  ")
             ->getQuery()
         ;
 
