@@ -132,9 +132,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">UO des AI</h3>
+                <div class="badge">{{nbUoAI.nb}}</div>
             </div>
             <div class="panel-body">
-                <canvas id="avancementAI" width="400" height="50">
+                <canvas id="avancementAI" width="410" height="50">
                   Votre navigateurs ne supporte pas Canvas.
                 </canvas>
                 <script>
@@ -142,10 +143,23 @@
                 var c = document.getElementById("avancementAI");
                 var ctx = c.getContext("2d");
                 var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
-                ctx.strokeStyle = "Black";
+                ctx.strokeStyle = "LightGrey";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.font = "8pt";
+                for (i=1; i<=40; i++) {
+                  ctx.beginPath();
+                  ctx.moveTo(i*10,0);
+                  ctx.lineTo(i*10,45);
+                  ctx.stroke();
+                }
+                for (i=1; i<=4; i++) {
+                  ctx.beginPath();
+                  ctx.moveTo(i*100,0);
+                  ctx.lineTo(i*100,50);
+                  ctx.stroke();
+                }
+                ctx.strokeStyle = "Black";
                 </script>
                 <table class="sortable" width="100%">
                   <tr>
@@ -167,12 +181,12 @@
                   ctx.beginPath();
                   ctx.moveTo(start,0);
                   ctx.lineTo(start+{{ligne.nb}},0);
-                  ctx.lineTo(start+{{ligne.nb}},50);
-                  ctx.lineTo(start,50);
+                  ctx.lineTo(start+{{ligne.nb}},40);
+                  ctx.lineTo(start,40);
                   ctx.closePath();
                   ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
                   ctx.fill();
-                  ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 25);
+                  ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
                   start += {{ligne.nb}};
                   </script>
                 </script>
@@ -184,19 +198,33 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">UO des AS</h3>
+                <div class="badge">{{nbUoAS.nb}}</div>
             </div>
             <div class="panel-body">
-              <canvas id="avancementAS" width="400" height="50">
+              <canvas id="avancementAS" width="410" height="50">
                 Votre navigateurs ne supporte pas Canvas.
               </canvas>
               <script>
               var start = 0;
               var c = document.getElementById("avancementAS");
               var ctx = c.getContext("2d");
-              ctx.strokeStyle = "Black";
               ctx.textAlign = "center";
               ctx.textBaseline = "middle";
               ctx.font = "8pt";
+              ctx.strokeStyle = "LightGrey";
+              for (i=1; i<=4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i*100,0);
+                ctx.lineTo(i*100,50);
+                ctx.stroke();
+              }
+              for (i=1; i<=40; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i*10,0);
+                ctx.lineTo(i*10,45);
+                ctx.stroke();
+              }
+              ctx.strokeStyle = "Black";
               </script>
               <table class="sortable" width="100%">
                 <tr>
@@ -216,12 +244,12 @@
                   ctx.beginPath();
                   ctx.moveTo(start,0);
                   ctx.lineTo(start+{{ligne.nb}},0);
-                  ctx.lineTo(start+{{ligne.nb}},50);
-                  ctx.lineTo(start,50);
+                  ctx.lineTo(start+{{ligne.nb}},40);
+                  ctx.lineTo(start,40);
                   ctx.closePath();
                   ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
                   ctx.fill();
-                  ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 25);
+                  ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
                   start += {{ligne.nb}};
                   </script>
                 </script>
