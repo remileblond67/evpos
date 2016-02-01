@@ -128,14 +128,13 @@
     <div class="col-lg-4">
         <h2>Applications</h2>
 
-        <h2>Intégration des UO</h2>
+        <h3>Intégration des UO</h3>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">UO des AI</h3>
-                <div class="badge">{{nbUoAI.nb}}</div>
+                <h3 class="panel-title">UO des AI <div class="badge">{{nbUoAI.nb}}</div></h3>
             </div>
             <div class="panel-body">
-                <canvas id="avancementAI" width="410" height="50">
+                <canvas id="avancementAI" width="410" height="60">
                   Votre navigateurs ne supporte pas Canvas.
                 </canvas>
                 <script>
@@ -145,8 +144,8 @@
                 var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
                 ctx.strokeStyle = "LightGrey";
                 ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-                ctx.font = "8pt";
+                ctx.textBaseline = "bottom";
+                ctx.font = "6pt";
                 for (i=1; i<=40; i++) {
                   ctx.beginPath();
                   ctx.moveTo(i*10,0);
@@ -158,8 +157,11 @@
                   ctx.moveTo(i*100,0);
                   ctx.lineTo(i*100,50);
                   ctx.stroke();
+                  ctx.strokeText(i*100, i*100, 60);
                 }
+                ctx.textBaseline = "middle";
                 ctx.strokeStyle = "Black";
+                ctx.globalAlpha = 0.75;
                 </script>
                 <table class="sortable" width="100%">
                   <tr>
@@ -173,7 +175,7 @@
                     <td>{{ligne.avancementMoca}}</td>
                     <td>{{ligne.nb}}</td>
                     <td>
-                      <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{ligne.nb/nbUoAI.nb*100|round}}%">{{ligne.nb}}</progress>
+                      <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%">{{ligne.nb}}</progress>
                     </td>
                   </tr>
                 </ul>
@@ -197,26 +199,26 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">UO des AS</h3>
-                <div class="badge">{{nbUoAS.nb}}</div>
+                <h3 class="panel-title">UO des AS <div class="badge">{{nbUoAS.nb}}</div></h3>
             </div>
             <div class="panel-body">
-              <canvas id="avancementAS" width="410" height="50">
+              <canvas id="avancementAS" width="410" height="60">
                 Votre navigateurs ne supporte pas Canvas.
               </canvas>
               <script>
               var start = 0;
               var c = document.getElementById("avancementAS");
               var ctx = c.getContext("2d");
-              ctx.textAlign = "center";
-              ctx.textBaseline = "middle";
-              ctx.font = "8pt";
+              ctx.textBaseline = "bottom";
               ctx.strokeStyle = "LightGrey";
+              ctx.textAlign = "center";
+              ctx.textBaseline = "bottom";
               for (i=1; i<=4; i++) {
                 ctx.beginPath();
                 ctx.moveTo(i*100,0);
                 ctx.lineTo(i*100,50);
                 ctx.stroke();
+                ctx.strokeText(i*100, i*100, 60);
               }
               for (i=1; i<=40; i++) {
                 ctx.beginPath();
@@ -224,7 +226,9 @@
                 ctx.lineTo(i*10,45);
                 ctx.stroke();
               }
+              ctx.textBaseline = "middle";
               ctx.strokeStyle = "Black";
+              ctx.globalAlpha = 0.75;
               </script>
               <table class="sortable" width="100%">
                 <tr>
@@ -237,7 +241,7 @@
                   <td>{{ligne.avancementMoca}}</td>
                   <td>{{ligne.nb}}</td>
                   <td>
-                    <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}" title="{{ligne.nb/nbUoAS.nb*100|round}}%">{{ligne.nb}}</progress>
+                    <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}" title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">{{ligne.nb}}</progress>
                   </td>
                 </tr>
                 <script>

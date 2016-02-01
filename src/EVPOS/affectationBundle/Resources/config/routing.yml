@@ -143,6 +143,10 @@ evpos_exportDirServUtilUoXml_service:
     path:  /direction_service_util_uo_xml/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXmlService }
 
+evpos_exportDirServUtilUoXml_util:
+    path:  /direction_service_util_uo_xml/util/{matUtil}
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilUoXmlUtil }
+
 # Fonctions d'export CSV
 evpos_exportDirectionCsv:
     path: /csv/direction
