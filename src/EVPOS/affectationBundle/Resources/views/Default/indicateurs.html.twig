@@ -127,27 +127,83 @@
 
     <div class="col-lg-4">
         <h2>Applications</h2>
+
+        <h2>Intégration des UO</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Répartition par nature application</h3>
+                <h3 class="panel-title">UO des AI</h3>
             </div>
             <div class="panel-body">
+                <canvas id="avancementAI" width="400" height="50">
+                  Votre navigateurs ne supporte pas Canvas.
+                </canvas>
+                <script>
+                var start = 0;
+                var c = document.getElementById("avancementAI");
+                var ctx = c.getContext("2d");
+                var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
+                ctx.strokeStyle = "Black";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.font = "8pt";
+                </script>
+                {% for ligne in avancementUoAI%}
                 <ul>
-                    {% for nb in nbAppli %}
-                    <li>{{ nb.natAppli }} {{nb.nb }}</li>
-                    {% endfor %}
+                  {{ligne.avancementMoca}} : {{ligne.nb}}
                 </ul>
+                <script>
+                  ctx.beginPath();
+                  ctx.moveTo(start,0);
+                  ctx.lineTo(start+{{ligne.nb}},0);
+                  ctx.lineTo(start+{{ligne.nb}},50);
+                  ctx.lineTo(start,50);
+                  ctx.closePath();
+                  ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
+                  ctx.fill();
+                  ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 25);
+                  start += {{ligne.nb}};
+                  </script>
+                </script>
+                {% endfor %}
             </div>
         </div>
 
-        <h2>UO</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Avancement intégration</h3>
+                <h3 class="panel-title">UO des AS</h3>
             </div>
             <div class="panel-body">
-                <ul>
-                </ul>
+              <canvas id="avancementAS" width="400" height="50">
+                Votre navigateurs ne supporte pas Canvas.
+              </canvas>
+              <script>
+              var start = 0;
+              var c = document.getElementById("avancementAS");
+              var ctx = c.getContext("2d");
+              var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
+              ctx.strokeStyle = "Black";
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";
+              ctx.font = "8pt";
+              </script>
+              {% for ligne in avancementUoAS%}
+              <ul>
+                {{ligne.avancementMoca}} : {{ligne.nb}}
+              </ul>
+              <script>
+                ctx.beginPath();
+                ctx.moveTo(start,0);
+                ctx.lineTo(start+{{ligne.nb}},0);
+                ctx.lineTo(start+{{ligne.nb}},50);
+                ctx.lineTo(start,50);
+                ctx.closePath();
+                ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
+                ctx.fill();
+                ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 25);
+                start += {{ligne.nb}};
+                </script>
+              </script>
+              {% endfor %}
             </div>
         </div>
 

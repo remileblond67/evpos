@@ -27,13 +27,6 @@ class DefaultController extends Controller
             ->getNbServices()
         ;
 
-        // Récupération du nombre d'applications par nature
-        $nbAppli = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Application')
-            ->getNbAppliNat()
-        ;
-
         // Récupération du nombre d'applications
         $nbUtil = $this->getDoctrine()
             ->getManager()
@@ -83,11 +76,17 @@ class DefaultController extends Controller
           ->getNbPosteMaster()
         ;
 
-        // $avancementUo = $this->getDoctrine()
-        //   ->getManager()
-        //   ->getRepository('EVPOSaffectationBundle:UO')
-        //   ->getAvancement()
-        // ;
+        $avancementUoAI = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getAvancement('AI')
+        ;
+
+        $avancementUoAS = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getAvancement('AS')
+        ;
 
         // Note d'avancement par nature d'Application
         // $avancementNature = $this->getDoctrine()
@@ -98,7 +97,6 @@ class DefaultController extends Controller
         $avancementNature = NULL;
 
         return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array(
-          'nbAppli' => $nbAppli,
           'nbUtil' => $nbUtil,
           'nbAccesUtilAppli' => $nbAccesUtilAppli,
           'nbService' => $nbServices,
@@ -108,7 +106,10 @@ class DefaultController extends Controller
           'nbPosteMoca' => $nbPosteMoca,
           'nbPosteUsage' => $nbPosteUsage,
           'nbPosteMaster' => $nbPosteMaster,
-          'avancementNature'=>$avancementNature)
+          'avancementNature'=>$avancementNature,
+          'avancementUoAI' => $avancementUoAI,
+          'avancementUoAS' => $avancementUoAS,
+        )
         );
     }
 }
