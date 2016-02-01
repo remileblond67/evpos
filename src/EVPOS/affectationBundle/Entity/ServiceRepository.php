@@ -82,6 +82,20 @@ class ServiceRepository extends EntityRepository
     }
 
     /**
+     * Récupération d'un service à partir de son code
+     *    --- Pour fiche ---
+     */
+    public function getServiceFiche($codeService) {
+        $query = $this->createQueryBuilder('s')
+            ->setParameter('code', $codeService)
+            ->where('s.codeService = :code')
+            ->getQuery()
+        ;
+
+        return $query->getOneOrNullResult();
+    }
+
+    /**
      * Teste si le service dont le code est passé en parametre existe
      */
     public function isService($codeService) {

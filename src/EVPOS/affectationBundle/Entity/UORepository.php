@@ -90,4 +90,19 @@ class UORepository extends EntityRepository
 
     return $retour;
   }
+
+  /**
+   * indicateurs d'avancement des UO, par nature
+   */
+  public function getAvancement() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.appli', 'a')
+      ->addSelect('a')
+      ->select('a.appli.natAppli, uo.avancementMoca, uocount(codeUo)')
+      ->groupBy('a.appli.natAppli, uo.avancementMoca')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
 }

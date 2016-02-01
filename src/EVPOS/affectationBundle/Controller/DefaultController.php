@@ -83,6 +83,12 @@ class DefaultController extends Controller
           ->getNbPosteMaster()
         ;
 
+        // $avancementUo = $this->getDoctrine()
+        //   ->getManager()
+        //   ->getRepository('EVPOSaffectationBundle:UO')
+        //   ->getAvancement()
+        // ;
+
         // Note d'avancement par nature d'Application
         // $avancementNature = $this->getDoctrine()
         //     ->getManager()

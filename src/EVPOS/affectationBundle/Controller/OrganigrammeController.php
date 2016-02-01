@@ -87,7 +87,7 @@ class OrganigrammeController extends Controller
         $service = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Service')
-            ->getService($codeService)
+            ->getServiceFiche($codeService)
         ;
         return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_service.html.twig', array('service' => $service));
     }
