@@ -31,6 +31,7 @@ function showOk() {
                 <td class="row">{{ 'direction.code'|trans }}</td>
                 <td class="row">{{ 'direction.nom'|trans }}</td>
                 <td class="row">{{ 'service.code'|trans }}</td>
+                <td class="row">{{ 'service.codeSirh'|trans }}</td>
                 <td class="row">{{ 'service.nom'|trans }}</td>
 			          <td class="row">{{ 'riu.nom'|trans }}</td>
                 <td class="row">{{ 'service.nbAgent'|trans }}</td>
@@ -73,6 +74,13 @@ function showOk() {
                     {% if service.codeService != '' %}
                     <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
                         {{service.codeService }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="">
+                    {% if service.codeSirh != '' %}
+                    <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+                        {{service.codeSirh }}
                     </a>
                     {% endif %}
                 </td>

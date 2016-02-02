@@ -10,6 +10,8 @@ use EVPOS\affectationBundle\Entity\Direction;
 use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\Utilisateur;
 
+use EVPOS\affectationBundle\Entity\CtrlServiceInconnu;
+
 /**
 * Import des accés applicatifs à partir de la base GAP
 * - GAP : accés aux applications
@@ -26,6 +28,12 @@ class ImportBazaCommand extends ContainerAwareCommand
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     $em = $this->getContainer()->get('doctrine')->getManager();
+    if (strpos(getcwd(), "prod") !== false) {
+      $env = "prod";
+    } else {
+      $env = "dev";
+    }
+    $output->writeln("Environnement : ".$env);
 
     $user = $this->getContainer()->getParameter('oracle_user');;
     $password = $this->getContainer()->getParameter('oracle_pwd');;
@@ -76,7 +84,7 @@ class ImportBazaCommand extends ContainerAwareCommand
       $output->writeln("Import de ".$nb." directions");
     }
 
-    $output->writeln("*** Import des services ***");
+    $output->writeln("*** Import des services depuis BAZA ***");
     // Marquage des services existants
     $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
     foreach($listeService as $service) {
@@ -110,6 +118,48 @@ class ImportBazaCommand extends ContainerAwareCommand
 
       $em->persist($service);
       $nb++;
+    }
+    $em->flush();
+
+    $output->writeln("*** Fusion des données d'entités GPARC ***");
+    $fileName = "/home/data/evpos/".$env."/gparc/Entités.csv";
+    $csvFile = fopen($fileName, 'r');
+    $nbLine = 0;
+    $codeInconnu = [];
+    while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
+      if ($nbLine>0) {
+        $lib = trim($data[0]);
+        $actif = trim($data[2]);
+        $codeService = trim($data[6]);
+        $codeSirh = trim($data[7]);
+
+        if ($actif = "1" && $codeService != "" && $codeService != "-") {
+          // Mise à jour du service concerné
+          if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService)) {
+            // Mise à jour du service
+            $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+          } else {
+            // Création du service
+            $service = new Service();
+            $service->setCodeService($codeService);
+            $service->setExisteBaza(TRUE);
+            $codeInconnu[$codeService] = TRUE;
+          }
+          $service->setLibService($lib);
+          $service->setCodeSirh($codeSirh);
+          $em->persist($service);
+        }
+      }
+      $nbLine++;
+    }
+    fclose($csvFile);
+    $em->flush();
+
+    foreach (array_keys($codeInconnu) as $code) {
+      $erreur = new CtrlServiceInconnu;
+      $erreur->setCodeService($code);
+      $erreur->setRemarque("Code service trouvé dans GPARC, mais pas dans BAZA");
+      $em->persist($erreur);
     }
     $em->flush();
 

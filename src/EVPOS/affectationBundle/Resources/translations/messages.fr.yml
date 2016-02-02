@@ -10,7 +10,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 1.6.0
+    version_n: 2.0.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -27,6 +27,7 @@ ctrl:
     uoInconnue: UO inconnues trouvées dans les fichiers de licence
     nb: Nombre d'occurences
     utilisateurInconnu: Utilisateurs GPARC inconnus de BAZA
+    serviceInconnu: Services inconnus
     remarque: Remarque
 
 poste:
@@ -69,8 +70,8 @@ application:
     nom: Nom de l'application
     desc: Description de l'application
     nature: Nature de l'application
-    listeUo: Liste des UO
-    listeUoMig: Liste des UO à migrer
+    listeUo: Liste des UO (modules)
+    listeUoMig: Liste des UO (modules) à migrer
     dispoMoca: Disponible dans MOCA ?
     aMigrer: A migrer dans MOCA
     utils: Utilisateurs de l'application
@@ -95,7 +96,7 @@ uo:
     utils: Utilisateurs de l'UO
     services: Services utilisateurs de l'UO
     postes: Postes sur lesquels l'UO est distribuée
-    liste: Liste des UO
+    liste: Liste des UO (modules)
     nbUtil: Nombre total d'utilisateurs
     nbUtilService: Nombre d'utilisateur du service
     nbPoste: Nombre de postes
@@ -120,7 +121,8 @@ secteur:
     listeAppliService: Liste des applications service du secteur
 
 service:
-    code: Code du service
+    code: Préfixe AD
+    codeSirh: Code SIRH
     nom: Nom du service
     liste: Liste des services
     nbAgent: Nombre d'agents

@@ -82,6 +82,19 @@ class ServiceRepository extends EntityRepository
     }
 
     /**
+     * Récupération d'un service à partir de son code SIRH
+     */
+    public function getServiceSirh($codeSirh) {
+        $query = $this->createQueryBuilder('s')
+            ->setParameter('code', $codeSirh)
+            ->where('s.codeSirh = :code')
+            ->getQuery()
+        ;
+
+        return $query->getOneOrNullResult();
+    }
+
+    /**
      * Récupération d'un service à partir de son code
      *    --- Pour fiche ---
      */

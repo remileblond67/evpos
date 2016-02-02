@@ -27,6 +27,12 @@ class Service
     private $codeService;
 
     /**
+     * @var string
+     * @ORM\Column(name="code_sirh", type="string", length=4, nullable=true)
+     */
+    private $codeSirh;
+
+    /**
      * @ORM\Column(name="nb_agent", type="integer", nullable=true)
      */
     private $nbAgent;
@@ -145,6 +151,27 @@ class Service
      */
     public function getCodeService() {
         return $this->codeService;
+    }
+
+    /**
+     * Set codeSirh
+     *
+     * @param string $codeSirh
+     * @return Service
+     */
+    public function setCodeSirh($codeSirh) {
+        $this->codeSirh = $codeSirh;
+
+        return $this;
+    }
+
+    /**
+     * Get codeSirh
+     *
+     * @return string
+     */
+    public function getCodeSirh() {
+        return $this->codeSirh;
     }
 
     /**

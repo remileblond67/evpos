@@ -4,22 +4,26 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-8">
-    <h4>{{ 'ctrl.posteInconnu'|trans }}</h4>
+    <h4>{{ 'ctrl.serviceInconnu'|trans }}</h4>
   </div>
 </div>
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
     <tr>
-      <td class="row sorting_asc">{{ 'poste.hostname'|trans }}</td>
-      <td class="row sorting_asc">{{ 'ctrl.nb'|trans }}</td>
+      <td class="row sorting_asc">{{ 'service.codeSirh'|trans }}</td>
+      <td class="row sorting_asc">{{ 'service.code'|trans }}</td>
+      <td class="row sorting_asc">{{ 'ctrl.remarque'|trans }}</td>
     </tr>
 
   </thead>
   <tbody>
-    {% for poste in listePosteInconnu %}
+    {% for erreur in listeErreur %}
     <tr class="gradeA odd">
-      <td>{{poste.hostname}}</td>
-      <td>{{poste.nb}}</td>
+      <td>{{erreur.codeSirh}}</td>
+      <td>{{erreur.codeService}}</td>
+      <td>
+        {{erreur.remarque}}
+      </td>
     </tr>
     {% endfor %}
   </tbody>

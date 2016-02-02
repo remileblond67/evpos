@@ -178,6 +178,11 @@ evpos_serviceAvancementXml:
     defaults: { _controller: EVPOSaffectationBundle:Etat:etatAvancementServiceXml }
 
 # Pages de contrôle
+
+evpos_ctrl_service_inconnu:
+    path: /ctrl_service_inconnu
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeServiceInconnu }
+
 evpos_ctrl_poste_inconnu:
     path: /ctrl_poste_inconnu
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listePosteInconnu }

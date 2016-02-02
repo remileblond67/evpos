@@ -8,6 +8,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use EVPOS\affectationBundle\Entity\Poste;
 use EVPOS\affectationBundle\Entity\Equipement;
 use EVPOS\affectationBundle\Entity\CtrlUtilisateurInconnu;
+use EVPOS\affectationBundle\Entity\CtrlPosteInconnu;
+use EVPOS\affectationBundle\Entity\CtrlServiceInconnu;
 
 /**
 * Import des postes à partir de GPARC
@@ -58,21 +60,23 @@ class ImportPosteCommand extends ContainerAwareCommand
     // Liste des utilisateurs trouvés dans l'export GPARC et inconnus de BAZA
     $listeUtilisateurInconnu = [];
 
+    $listeServiceRhErreur = [];
+    $listeServiceErreur = [];
+
     while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
       if ($nbLine>0) {
         $hostname = trim(strtoupper($data[3]));
 
         if ($hostname != "-" && (in_array($hostname, $listeHostname) !== TRUE) ) {
-          // $output->writeln($nbLine . " " . $hostname);
           $listeHostname[] = $hostname;
           $codeService = $data[1];
-          $numService = $data[13];
           $codeMateriel = $data[2];
           $statut = $data[4];
           $modele = $data[6];
           $categorie = $data[7];
-          $licenceW8 = $data[9];
+          $licenceW8 = $data[8];
           $ssd = $data[9];
+          $codeSirh = $data[11];
           $localisation = $data[12];
           $matUtil = strtoupper($data[13]);
           $commentaire = $data[15];
@@ -115,11 +119,19 @@ class ImportPosteCommand extends ContainerAwareCommand
               default:
               $poste->setSSD(FALSE);
             }
+
             // Mise à jour du service
-            $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+            $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceSirh($codeSirh);
+            if ($service === NULL) {
+              // Service non trouvé dans SIRH
+              $listeServiceRhErreur[$codeSirh] = TRUE;
+              $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+            }
             if ($service !== NULL) {
               $poste->setService($service);
             } else {
+              // Service non trouvé
+              $listeServiceErreur[$codeService] = TRUE;
               $poste->setService(NULL);
             }
 
@@ -139,16 +151,31 @@ class ImportPosteCommand extends ContainerAwareCommand
           // Le hostname est "-" ou en double
           $nbDoublon++;
         }
-
       }
       $nbLine++;
     }
     fclose($csvFile);
     $em->flush();
     unset($listeHostname);
+
+    // Enregistrement des erreurs
+    foreach (array_keys($listeServiceRhErreur) as $erreur) {
+      $erreurServiceInconnu = new CtrlServiceInconnu;
+      $erreurServiceInconnu->setCodeSirh($erreur);
+      $erreurServiceInconnu->setRemarque("Code RH non trouvé, mais utilisé par un poste");
+      $em->persist($serviceInconnu);
+    }
+    foreach (array_keys($listeServiceErreur) as $erreur) {
+      $erreurServiceInconnu = new CtrlServiceInconnu;
+      $erreurServiceInconnu->setCodeService($erreur);
+      $erreurServiceInconnu->setRemarque("Préfixe AD non trouvé, mais utilisé par un poste");
+      $em->persist($erreurServiceInconnu);
+    }
+    $em->flush();
+
     $output->writeln("OK (".$nbLine." lignes - ".$nbDoublon." doublons)");
 
-    $output->writeln("*** Affectation des postes sans service au service de leur Utilisateur  ***");
+    $output->writeln("*** Affectation des postes sans service au service de leur Utilisateur ***");
     $postesSansService = $em->getRepository('EVPOSaffectationBundle:Poste')->getPostesSansService();
     foreach($postesSansService as $poste) {
       foreach ($poste->getListeUtilisateurs() as $user) {

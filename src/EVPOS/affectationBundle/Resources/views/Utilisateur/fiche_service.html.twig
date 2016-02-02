@@ -21,8 +21,9 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-1"><h4>Code service</h4>{{service.codeService}}</div>
-            <div class="col-lg-3"><h4>Nom service</h4>{{service.libService}}</div>
+            <div class="col-lg-1"><h4>{{'service.code'|trans}}</h4>{{service.codeService}}</div>
+            <div class="col-lg-1"><h4>{{'service.codeSirh'|trans}}</h4>{{service.codeSirh}}</div>
+            <div class="col-lg-2"><h4>Nom service</h4>{{service.libService}}</div>
             <div class="col-lg-3">
                 <h4>Direction</h4>
                 <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
