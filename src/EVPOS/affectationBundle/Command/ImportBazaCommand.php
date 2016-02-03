@@ -214,7 +214,16 @@ class ImportBazaCommand extends ContainerAwareCommand
     $em->flush();
     unset($listeUtil);
 
-    $requeteBaza = "select upper(ntuid) matricule, ntufullnam nom, code_service, to_char(NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN from baz_user_nt where ntuscript is not null and (ntudisbld != 1 or ntudisbld is null) and ntufullnam is not null and upper(ntuid) not like '%\__' escape '\'";
+    $requeteBaza = "SELECT UPPER (u.ntuid) matricule,
+                     u.ntufullnam nom,
+                     u.code_service code_service,
+                     ua.code_service code_service_sirh,
+                     TO_CHAR (u.NTULASTLGN, 'YYYY-MM-DD') NTULASTLGN
+                FROM baz_user_nt u left outer JOIN BAZ_AGENT ua on ua.matricule = u.ntuid
+               WHERE ntuscript IS NOT NULL
+                     AND (ntudisbld != 1 OR ntudisbld IS NULL)
+                     AND ntufullnam IS NOT NULL
+                     AND UPPER (ntuid) NOT LIKE '%\__' escape '\'";
 
     $csr = oci_parse ( $this->ORA , $requeteBaza) ;
     oci_execute ($csr) ;
@@ -224,12 +233,28 @@ class ImportBazaCommand extends ContainerAwareCommand
       $matUtil = $row["MATRICULE"];
       $nomUtil = utf8_encode($row["NOM"]);
       $codeService = strtoupper(utf8_encode($row["CODE_SERVICE"]));
+      $codeSirh = strtoupper(utf8_encode($row["CODE_SERVICE_SIRH"]));
       $lastLogin = $row["NTULASTLGN"];
 
       if ($em->getRepository('EVPOSaffectationBundle:Utilisateur')->isUtilisateur($matUtil))
       $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($matUtil);
       else
       $utilisateur = new Utilisateur();
+
+      $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceSirh($codeSirh);
+      if ($service === NULL) {
+        // Service non trouvé dans SIRH
+        $listeServiceRhErreur[$codeSirh] = TRUE;
+        $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+      }
+      if ($service !== NULL) {
+        $utilisateur->setServiceUtil($service);
+      } else {
+        // Service non trouvé
+        $listeServiceErreur[$codeService] = TRUE;
+        $utilisateur->setServiceUtil(NULL);
+        $output->writeln("Service non trouvé : ".$codeService."/".$codeSirh." pour utilisateur ".$matUtil);
+      }
 
       if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService))
       $utilisateur->setServiceUtil($em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService));

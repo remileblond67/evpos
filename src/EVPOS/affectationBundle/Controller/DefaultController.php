@@ -100,14 +100,6 @@ class DefaultController extends Controller
           ->getNbUo('AI')
         ;
 
-        // Note d'avancement par nature d'Application
-        // $avancementNature = $this->getDoctrine()
-        //     ->getManager()
-        //     ->getRepository('EVPOSaffectationBundle:Application')
-        //     ->getAvancementNature()
-        // ;
-        $avancementNature = NULL;
-
         return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array(
           'nbUtil' => $nbUtil,
           'nbAccesUtilAppli' => $nbAccesUtilAppli,
@@ -118,7 +110,6 @@ class DefaultController extends Controller
           'nbPosteMoca' => $nbPosteMoca,
           'nbPosteUsage' => $nbPosteUsage,
           'nbPosteMaster' => $nbPosteMaster,
-          'avancementNature'=>$avancementNature,
           'avancementUoAI' => $avancementUoAI,
           'avancementUoAS' => $avancementUoAS,
           'nbUoAI' => $nbUoAI,
