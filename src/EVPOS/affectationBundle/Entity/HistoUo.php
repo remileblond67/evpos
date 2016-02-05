@@ -49,6 +49,12 @@ class HistoUo
      */
     private $nbUo;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau", type="string", length=10)
+     */
+    private $niveau;
 
     /**
      * Get id
@@ -150,5 +156,28 @@ class HistoUo
     public function getNbUo()
     {
         return $this->nbUo;
+    }
+
+    /**
+     * Set niveau
+     *
+     * @param string $niveau
+     * @return HistoUo
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return string
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
     }
 }

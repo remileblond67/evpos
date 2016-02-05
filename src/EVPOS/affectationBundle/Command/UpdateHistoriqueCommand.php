@@ -51,16 +51,31 @@ class UpdateHistoriqueCommand extends ContainerAwareCommand
 
     foreach (["AS", "AI"] as $nature) {
       $output->write("Historisation des états des UO ".$nature."... ");
-      $avancementUo = $this->getContainer()->get('doctrine')
+      $avancementUoGeneral = $this->getContainer()->get('doctrine')
         ->getManager()
         ->getRepository('EVPOSaffectationBundle:UO')
-        ->getAvancement($nature)
+        ->getAvancementGeneral($nature)
       ;
-      foreach ($avancementUo as $ligne) {
+      foreach ($avancementUoGeneral as $ligne) {
         $histoUo = new histoUo;
         $histoUo->setNatureAppli($nature);
         $histoUo->setAvancement($ligne["avancementMoca"]);
         $histoUo->setNbUo($ligne["nb"]);
+        $histoUo->setNiveau("general");
+        $histoUo->setDateMesure(new \DateTime());
+        $em->persist($histoUo);
+      }
+      $avancementUoDetail = $this->getContainer()->get('doctrine')
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:UO')
+        ->getAvancementDetail($nature)
+      ;
+      foreach ($avancementUoDetail as $ligne) {
+        $histoUo = new histoUo;
+        $histoUo->setNatureAppli($nature);
+        $histoUo->setAvancement($ligne["avancementMocaDetail"]);
+        $histoUo->setNbUo($ligne["nb"]);
+        $histoUo->setNiveau("detail");
         $histoUo->setDateMesure(new \DateTime());
         $em->persist($histoUo);
       }

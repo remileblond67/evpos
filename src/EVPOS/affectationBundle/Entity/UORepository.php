@@ -92,16 +92,33 @@ class UORepository extends EntityRepository
   }
 
   /**
-   * Indicateurs d'avancement des UO, par nature
+   * Indicateurs d'avancement général des UO, par nature
    */
-  public function getAvancement($nature) {
+  public function getAvancementGeneral($nature) {
     $query = $this->createQueryBuilder('uo')
       ->select('uo.avancementMoca, count(uo.codeUo) nb')
       ->leftJoin('uo.appli', 'a')
       ->setParameter('nature', $nature)
       ->where("a.natAppli = :nature and uo.avancementMoca <> 'Non migré'")
       ->groupBy('uo.avancementMoca')
-      ->orderBy('uo.avancementMoca')
+      ->orderBy('uo.avancementMoca', 'ASC')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+  /**
+   * Indicateurs d'avancement détaillé des UO, par nature
+   */
+  public function getAvancementDetail($nature) {
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo.avancementMocaDetail, count(uo.codeUo) nb')
+      ->leftJoin('uo.appli', 'a')
+      ->setParameter('nature', $nature)
+      ->where("a.natAppli = :nature and uo.avancementMocaDetail is not null")
+      ->groupBy('uo.avancementMocaDetail')
+      ->orderBy('uo.avancementMocaDetail', 'ASC')
       ->getQuery()
     ;
 
