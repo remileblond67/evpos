@@ -121,131 +121,131 @@
             </ul>
           </li>
 
-        </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
+              <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
-            <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">Export Excel <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a target="_blank" href="{{ path('evpos_exportService') }}">
+                  <span class="glyphicon glyphicon-export"></span>
+                  11. {{'service.liste'|trans}}
+                </a>
+              </li>
+              <li><a target="_blank" href="{{ path('evpos_exportServiceUtil') }}"><span class="glyphicon glyphicon-export"></span> 12. {{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportServiceRiu') }}"><span class="glyphicon glyphicon-export"></span> 13. {{'riu.liste'|trans}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a target="_blank" href="{{ path('evpos_listeAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 21. {{'applications.liste'|trans}}</a></li>
+              <li><a target="_blank" href="{{ path('evpos_listeAppliUoXml') }}"><span class="glyphicon glyphicon-export"></span> 22. {{'applications.listeAppliUo'|trans}}</a></li>
+              <li><a target="_blank" href="{{ path('evpos_listeAppliUoAllXml') }}"><span class="glyphicon glyphicon-export"></span> 23. {{'applications.listeAppliUoAll'|trans}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 31. {{'applications.listeAppliService'|trans}}</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}"><span class="glyphicon glyphicon-export"></span> 33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.liste'|trans}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a target="_blank" href="{{ path('evpos_serviceAvancementXml') }}"><span class="glyphicon glyphicon-export"></span> 51. {{'service.etatAvancement'|trans}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a target="_blank" href="{{ path('evpos_exportDirectionCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Directions</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportServiceCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Services</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportUtilisateurCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Utilisateurs</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportPosteCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Postes</a></li>
+              <li><a target="_blank" href="{{ path('evpos_exportPosteUtilCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Poste - utilisateur</a></li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown">Export Excel <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a target="_blank" href="{{ path('evpos_exportService') }}">
-                <span class="glyphicon glyphicon-export"></span>
-                11. {{'service.liste'|trans}}
-              </a>
-            </li>
-            <li><a target="_blank" href="{{ path('evpos_exportServiceUtil') }}"><span class="glyphicon glyphicon-export"></span> 12. {{'service.liste'|trans}} + {{'utilisateur.liste'|trans}}</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportServiceRiu') }}"><span class="glyphicon glyphicon-export"></span> 13. {{'riu.liste'|trans}}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a target="_blank" href="{{ path('evpos_listeAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 21. {{'applications.liste'|trans}}</a></li>
-            <li><a target="_blank" href="{{ path('evpos_listeAppliUoXml') }}"><span class="glyphicon glyphicon-export"></span> 22. {{'applications.listeAppliUo'|trans}}</a></li>
-            <li><a target="_blank" href="{{ path('evpos_listeAppliUoAllXml') }}"><span class="glyphicon glyphicon-export"></span> 23. {{'applications.listeAppliUoAll'|trans}}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 31. {{'applications.listeAppliService'|trans}}</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}"><span class="glyphicon glyphicon-export"></span> 33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.liste'|trans}}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a target="_blank" href="{{ path('evpos_serviceAvancementXml') }}"><span class="glyphicon glyphicon-export"></span> 51. {{'service.etatAvancement'|trans}}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a target="_blank" href="{{ path('evpos_exportDirectionCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Directions</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportServiceCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Services</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportUtilisateurCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Utilisateurs</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportPosteCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Postes</a></li>
-            <li><a target="_blank" href="{{ path('evpos_exportPosteUtilCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Poste - utilisateur</a></li>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">Contrôles <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="{{ path('evpos_ctrl_util') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.utilisateurInconnu'|trans}}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_ctrl_poste_inconnu') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.posteInconnu'|trans}}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_ctrl_uo_inconnue') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.uoInconnue'|trans}}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_ctrl_service_inconnu') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.serviceInconnu'|trans}}
+                </a>
+              </li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown">Contrôles <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="{{ path('evpos_ctrl_util') }}">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                {{'ctrl.utilisateurInconnu'|trans}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('evpos_ctrl_poste_inconnu') }}">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                {{'ctrl.posteInconnu'|trans}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('evpos_ctrl_uo_inconnue') }}">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                {{'ctrl.uoInconnue'|trans}}
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('evpos_ctrl_service_inconnu') }}">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                {{'ctrl.serviceInconnu'|trans}}
-              </a>
-            </li>
-          </ul>
-        </li>
+          <li><a href="{{ path('evpos_indicateurs') }}">Indicateurs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-        <li><a href="{{ path('evpos_indicateurs') }}">Indicateurs</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="wrapper">
-      <div class="container-fluid">
-        <div class="row">
-          {% for message in app.session.flashbag.get('info') %}
-          <div class="col-lg-3">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <h3 class="panel-title">Information</h3>
-              </div>
-              <div class="panel-body">
-                <p>{{ message }}</p>
-              </div>
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        {% for message in app.session.flashbag.get('info') %}
+        <div class="col-lg-3">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Information</h3>
+            </div>
+            <div class="panel-body">
+              <p>{{ message }}</p>
             </div>
           </div>
-          {% endfor %}
-          {% for message in app.session.flashbag.get('erreur') %}
-          <div class="col-lg-3">
-            <div class="panel panel-danger">
-              <div class="panel-heading">
-                <h3 class="panel-title">Information</h3>
-              </div>
-              <div class="panel-body">
-                <p>{{ message }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
         </div>
-        <div class="row">
-          <div class="col-lg-12">
-            {% block content %}
-            <p>Désolé, mais le contenu n'a pas encore été défini...</p>
-            {% endblock%}
+        {% endfor %}
+        {% for message in app.session.flashbag.get('erreur') %}
+        <div class="col-lg-3">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Information</h3>
+            </div>
+            <div class="panel-body">
+              <p>{{ message }}</p>
+            </div>
           </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          {% block content %}
+          <p>Désolé, mais le contenu n'a pas encore été défini...</p>
+          {% endblock%}
         </div>
       </div>
     </div>
+  </div>
 
-    {% javascripts output="js/compiled/core.js"
-    'bundles/jquery/js/jquery*.js'
-    'bundles/bootstrap/js/bootstrap.js'
-    %}
-    <script src="{{ asset_url }}" charset="utf-8"></script>
-    {% endjavascripts %}
+  {% javascripts output="js/compiled/core.js"
+  'bundles/jquery/js/jquery*.js'
+  'bundles/bootstrap/js/bootstrap.js'
+  %}
+  <script src="{{ asset_url }}" charset="utf-8"></script>
+  {% endjavascripts %}
 
-    <script src="http://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+  <script src="http://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
-    {% block javascripts %} {% endblock %}
-  </body>
+  {% block javascripts %} {% endblock %}
+</body>
 
-  </html>
+</html>

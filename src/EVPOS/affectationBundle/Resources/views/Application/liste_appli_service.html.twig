@@ -4,10 +4,13 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-6">
-        <h4>{{ 'applications.liste'|trans }}</h4>
+        <h4>{{'applications.listeAppliService'|trans}}</h4>
     </div>
     <div class="col-lg-6">
-        <a href="{{ path('evpos_listeServiceAppliXml')}}" class="btn btn-sm btn-default">{{'utilisateur.listeAcces'|trans}}</a>
+        <a href="{{ path('evpos_listeServiceAppliXml') }}" class="btn btn-sm btn-default" target="_blank">
+          <span class="glyphicon glyphicon-export"></span>
+          {{'applications.listeAppliService'|trans}}
+        </a>
     </div>
 </div>
 <div class="row">

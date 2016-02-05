@@ -50,7 +50,7 @@ function showOk() {
                   <button type="button" onclick="showOk()" title="{{'app.ok'|trans}}">
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                </div>
+                </td>
             </tr>
         </thead>
         <tbody>
@@ -86,8 +86,9 @@ function showOk() {
                 </td>
                 <td class="">
                   <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
-                    {{service.libService }}</td>
+                    {{service.libService }}
                   </a>
+                </td>
 			          <td class="">
                     <ul>
                     {% for riu in service.listeRiu %}
