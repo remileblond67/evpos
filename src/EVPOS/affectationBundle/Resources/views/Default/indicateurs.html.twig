@@ -6,7 +6,7 @@
 var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
 </script>
 <div class="row">
-  <div class="col-lg-3">
+  <div class="col-lg-2">
     <h2>Services / Directions</h2>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -146,60 +146,72 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Répartition par master</h3>
+        <h3 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordionMaster" href="#collapseMaster" aria-expanded="false" aria-controls="collapseOne">
+            Répartition par master
+          </a>
+        </h3>
       </div>
-      <div class="panel-body">
-        <table width="100%" class="sortable">
-          <tr>
-            <th>Master</th>
-            <th>Nombre de postes</th>
-            <th></th>
-          </tr>
-          {% for ligne in nbPosteMaster %}
-          <tr>
-            <td>{{ligne.master}}</td>
-            <td>{{ligne.nb}}</td>
-            <td><progress value={{ligne.nb}} max={{nbPoste}} title="{{(ligne.nb/nbPoste*100)|round}}%"></progress></td>
-          </tr>
-          {% endfor %}
-        </table>
+      <div id="collapseMaster" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <table width="100%" class="sortable">
+            <tr>
+              <th>Master</th>
+              <th>Nombre de postes</th>
+              <th></th>
+            </tr>
+            {% for ligne in nbPosteMaster %}
+            <tr>
+              <td>{{ligne.master}}</td>
+              <td>{{ligne.nb}}</td>
+              <td><progress value={{ligne.nb}} max={{nbPoste}} title="{{(ligne.nb/nbPoste*100)|round}}%"></progress></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
       </div>
     </div>
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Répartition par type d'usage</h3>
+        <h3 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordionUsage" href="#collapseUsage" aria-expanded="false" aria-controls="collapseOne">
+            Répartition par type d'usage
+          </a>
+        </h3>
       </div>
-      <div class="panel-body">
-        <table width="100%" class="sortable">
-          <thead>
-            <tr>
-              <th>Type d'usage</th>
-              <th>Nombre de poste</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for ligne in nbPosteUsage %}
-            <tr>
-              <td>{{ligne.typeUsage}}</td>
-              <td>{{ligne.nb}}</td>
-              <td><progress value="{{ligne.nb}}" max="{{nbPosteAMigrer}}"></progress></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <div id="collapseUsage" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <table width="100%" class="sortable">
+            <thead>
+              <tr>
+                <th>Type d'usage</th>
+                <th>Nombre de poste</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ligne in nbPosteUsage %}
+              <tr>
+                <td>{{ligne.typeUsage}}</td>
+                <td>{{ligne.nb}}</td>
+                <td><progress value="{{ligne.nb}}" max="{{nbPosteAMigrer}}"></progress></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <h2>Applications</h2>
 
-    <h3>Intégration des UO</h3>
+    <h3>Applications informatiques <div class="badge">{{nbUoAI.nb}}</div></h3>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">UO des AI <div class="badge">{{nbUoAI.nb}}</div></h3>
+        <h4 class="panel-title">Avancement général</h4>
       </div>
       <div class="panel-body">
         <canvas id="avancementAI" width="410" height="60">
@@ -235,13 +247,13 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             <th>%</th>
           </tr>
           {% for ligne in avancementUoAI%}
-            <tr>
-              <td>{{ligne.avancementMoca}}</td>
-              <td>{{ligne.nb}}</td>
-              <td>
-                <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%">{{ligne.nb}}</progress>
-              </td>
-            </tr>
+          <tr>
+            <td>{{ligne.avancementMoca}}</td>
+            <td>{{ligne.nb}}</td>
+            <td>
+              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%">{{ligne.nb}}</progress>
+            </td>
+          </tr>
           <script>
           ctx.beginPath();
           ctx.moveTo(start,0);
@@ -254,169 +266,240 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
           start += {{ligne.nb}};
           </script>
-        {% endfor %}
-      </table>
-      <canvas id="graphAI" width="410" height="100">Votre navigateur n'est pas capable d'afficher le graphique d'évolution.</canvas>
-      <script>
-      var c = document.getElementById("graphAI");
-      var ctx = c.getContext("2d");
-      ctx.strokeStyle = "LightGrey";
-      ctx.textAlign = "center";
-      for (i=1; i<=40; i++) {
-        ctx.beginPath();
-        ctx.moveTo(i*10,0);
-        ctx.lineTo(i*10,100);
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 0.75;
-      var x = 0;
-      {% for ligne in evolutionAiGen %}
-      y1 = {{ligne['3. Validé']}}
-      y2 = {{ligne['2. En cours']}};
-      y3 = {{ligne['1. Pas initiée']}};
-      total = y1 + y2 + y3 ;
-
-      ctx.fillStyle = couleur["3. Validé"];
-      ctx.beginPath();
-      ctx.moveTo(x,100);
-      ctx.lineTo(x,100-y1/total*100);
-      ctx.lineTo(x+10,100-y1/total*100);
-      ctx.lineTo(x+10,100);
-      ctx.fill();
-
-      ctx.fillStyle = couleur["2. En cours"];
-      ctx.beginPath();
-      ctx.moveTo(x,100-y1/total*100);
-      ctx.lineTo(x,100-(y1+y2)/total*100);
-      ctx.lineTo(x+10,100-(y1+y2)/total*100);
-      ctx.lineTo(x+10,100-y1/total*100);
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.fillStyle = couleur["1. Pas initiée"];
-      ctx.moveTo(x,100-(y1+y2)/total*100);
-      ctx.lineTo(x,100-(y1+y2+y3)/total*100);
-      ctx.lineTo(x+10,100-(y1+y2+y3)/total*100);
-      ctx.lineTo(x+10,100-(y1+y2)/total*100);
-      ctx.fill();
-
-      x += 10;
-      {% endfor %}
-      </script>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">UO des AS <div class="badge">{{nbUoAS.nb}}</div></h3>
-    </div>
-    <div class="panel-body">
-      <canvas id="avancementAS" width="410" height="60">
-        Votre navigateurs ne supporte pas Canvas.
-      </canvas>
-      <script>
-      var start = 0;
-      var c = document.getElementById("avancementAS");
-      var ctx = c.getContext("2d");
-      ctx.textBaseline = "bottom";
-      ctx.strokeStyle = "LightGrey";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "bottom";
-      for (i=1; i<=4; i++) {
-        ctx.beginPath();
-        ctx.moveTo(i*100,0);
-        ctx.lineTo(i*100,50);
-        ctx.stroke();
-        ctx.strokeText(i*100, i*100, 60);
-      }
-      for (i=1; i<=40; i++) {
-        ctx.beginPath();
-        ctx.moveTo(i*10,0);
-        ctx.lineTo(i*10,45);
-        ctx.stroke();
-      }
-      ctx.textBaseline = "middle";
-      ctx.strokeStyle = "Black";
-      ctx.globalAlpha = 0.75;
-      </script>
-      <table class="sortable" width="100%">
-        <tr>
-          <th>Avancement</th>
-          <th>Nb UO</th>
-          <th>%</th>
-        </tr>
-        {% for ligne in avancementUoAS%}
-        <tr>
-          <td>{{ligne.avancementMoca}}</td>
-          <td>{{ligne.nb}}</td>
-          <td>
-            <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}" title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">{{ligne.nb}}</progress>
-          </td>
-        </tr>
+          {% endfor %}
+        </table>
+        <canvas id="graphAI" width="410" height="100">Votre navigateur n'est pas capable d'afficher le graphique d'évolution.</canvas>
         <script>
+        var c = document.getElementById("graphAI");
+        var ctx = c.getContext("2d");
+        ctx.strokeStyle = "LightGrey";
+        ctx.textAlign = "center";
+        for (i=1; i<=40; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i*10,0);
+          ctx.lineTo(i*10,100);
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 0.75;
+        var x = 0;
+        {% for ligne in evolutionAiGen %}
+        y1 = {{ligne['3. Validé']}}
+        y2 = {{ligne['2. En cours']}};
+        y3 = {{ligne['1. Pas initiée']}};
+        total = y1 + y2 + y3 ;
+
+        ctx.fillStyle = couleur["3. Validé"];
         ctx.beginPath();
-        ctx.moveTo(start,0);
-        ctx.lineTo(start+{{ligne.nb}},0);
-        ctx.lineTo(start+{{ligne.nb}},40);
-        ctx.lineTo(start,40);
-        ctx.closePath();
-        ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
+        ctx.moveTo(x,100);
+        ctx.lineTo(x,100-y1/total*100);
+        ctx.lineTo(x+10,100-y1/total*100);
+        ctx.lineTo(x+10,100);
         ctx.fill();
-        ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
-        start += {{ligne.nb}};
+
+        ctx.fillStyle = couleur["2. En cours"];
+        ctx.beginPath();
+        ctx.moveTo(x,100-y1/total*100);
+        ctx.lineTo(x,100-(y1+y2)/total*100);
+        ctx.lineTo(x+10,100-(y1+y2)/total*100);
+        ctx.lineTo(x+10,100-y1/total*100);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = couleur["1. Pas initiée"];
+        ctx.moveTo(x,100-(y1+y2)/total*100);
+        ctx.lineTo(x,100-(y1+y2+y3)/total*100);
+        ctx.lineTo(x+10,100-(y1+y2+y3)/total*100);
+        ctx.lineTo(x+10,100-(y1+y2)/total*100);
+        ctx.fill();
+
+        x += 10;
+        {% endfor %}
         </script>
-      {% endfor %}
-    </table>
-    <canvas id="graphAS" width="410" height="100">Votre navigateur n'est pas capable d'afficher le graphique d'évolution.</canvas>
-    <script>
-    var c = document.getElementById("graphAS");
-    var ctx = c.getContext("2d");
-    ctx.strokeStyle = "LightGrey";
-    ctx.textAlign = "center";
-    for (i=1; i<=40; i++) {
-      ctx.beginPath();
-      ctx.moveTo(i*10,0);
-      ctx.lineTo(i*10,100);
-      ctx.stroke();
-    }
-    ctx.globalAlpha = 0.75;
-    var x = 0;
-    {% for ligne in evolutionAsGen %}
-    y1 = {{ligne['3. Validé']}}
-    y2 = {{ligne['2. En cours']}};
-    y3 = {{ligne['1. Pas initiée']}};
-    total = y1 + y2 + y3 ;
+      </div>
+    </div>
+    <div class="panel panel-group panel-default" id="accordionAI" role="tablist" aria-multiselectable="true">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordionAI" href="#collapseAI" aria-expanded="false" aria-controls="collapseOne">
+            Avancement détaillé
+          </a>
+        </h3>
+      </div>
+      <div id="collapseAI" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <table class="sortable" width="100%">
+            <thead>
+              <tr>
+                <th>Etat</th>
+                <th>Nb</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for etat in avancementUoAIDetail %}
+              <tr>
+                <td>{{etat.avancementMocaDetail}}</td>
+                <td>{{etat.nb}}</td>
+                <td>
+                  <progress value="{{etat.nb}}" max="{{nbUoAI.nb}}" title="{{(etat.nb / nbUoAI.nb * 100)|round}}%">
+                    {{etat.nb / nbUoAI.nb}}
+                  </progress>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-    ctx.fillStyle = couleur["3. Validé"];
-    ctx.beginPath();
-    ctx.moveTo(x,100);
-    ctx.lineTo(x,100-y1/total*100);
-    ctx.lineTo(x+10,100-y1/total*100);
-    ctx.lineTo(x+10,100);
-    ctx.fill();
+    <h3>Applications service <div class="badge">{{nbUoAS.nb}}</div></h3>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Avancement général</h3>
+      </div>
+      <div class="panel-body">
+        <canvas id="avancementAS" width="410" height="60">
+          Votre navigateurs ne supporte pas Canvas.
+        </canvas>
+        <script>
+        var start = 0;
+        var c = document.getElementById("avancementAS");
+        var ctx = c.getContext("2d");
+        ctx.textBaseline = "bottom";
+        ctx.strokeStyle = "LightGrey";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        for (i=1; i<=4; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i*100,0);
+          ctx.lineTo(i*100,50);
+          ctx.stroke();
+          ctx.strokeText(i*100, i*100, 60);
+        }
+        for (i=1; i<=40; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i*10,0);
+          ctx.lineTo(i*10,45);
+          ctx.stroke();
+        }
+        ctx.textBaseline = "middle";
+        ctx.strokeStyle = "Black";
+        ctx.globalAlpha = 0.75;
+        </script>
+        <table class="sortable" width="100%">
+          <tr>
+            <th>Avancement</th>
+            <th>Nb UO</th>
+            <th>%</th>
+          </tr>
+          {% for ligne in avancementUoAS%}
+          <tr>
+            <td>{{ligne.avancementMoca}}</td>
+            <td>{{ligne.nb}}</td>
+            <td>
+              <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}" title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">{{ligne.nb}}</progress>
+            </td>
+          </tr>
+          <script>
+          ctx.beginPath();
+          ctx.moveTo(start,0);
+          ctx.lineTo(start+{{ligne.nb}},0);
+          ctx.lineTo(start+{{ligne.nb}},40);
+          ctx.lineTo(start,40);
+          ctx.closePath();
+          ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
+          ctx.fill();
+          ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
+          start += {{ligne.nb}};
+          </script>
+          {% endfor %}
+        </table>
+        <canvas id="graphAS" width="410" height="100">Votre navigateur n'est pas capable d'afficher le graphique d'évolution.</canvas>
+        <script>
+        var c = document.getElementById("graphAS");
+        var ctx = c.getContext("2d");
+        ctx.strokeStyle = "LightGrey";
+        ctx.textAlign = "center";
+        for (i=1; i<=40; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i*10,0);
+          ctx.lineTo(i*10,100);
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 0.75;
+        var x = 0;
+        {% for ligne in evolutionAsGen %}
+        y1 = {{ligne['3. Validé']}}
+        y2 = {{ligne['2. En cours']}};
+        y3 = {{ligne['1. Pas initiée']}};
+        total = y1 + y2 + y3 ;
 
-    ctx.fillStyle = couleur["2. En cours"];
-    ctx.beginPath();
-    ctx.moveTo(x,100-y1/total*100);
-    ctx.lineTo(x,100-(y1+y2)/total*100);
-    ctx.lineTo(x+10,100-(y1+y2)/total*100);
-    ctx.lineTo(x+10,100-y1/total*100);
-    ctx.fill();
+        ctx.fillStyle = couleur["3. Validé"];
+        ctx.beginPath();
+        ctx.moveTo(x,100);
+        ctx.lineTo(x,100-y1/total*100);
+        ctx.lineTo(x+10,100-y1/total*100);
+        ctx.lineTo(x+10,100);
+        ctx.fill();
 
-    ctx.beginPath();
-    ctx.fillStyle = couleur["1. Pas initiée"];
-    ctx.moveTo(x,100-(y1+y2)/total*100);
-    ctx.lineTo(x,100-(y1+y2+y3)/total*100);
-    ctx.lineTo(x+10,100-(y1+y2+y3)/total*100);
-    ctx.lineTo(x+10,100-(y1+y2)/total*100);
-    ctx.fill();
+        ctx.fillStyle = couleur["2. En cours"];
+        ctx.beginPath();
+        ctx.moveTo(x,100-y1/total*100);
+        ctx.lineTo(x,100-(y1+y2)/total*100);
+        ctx.lineTo(x+10,100-(y1+y2)/total*100);
+        ctx.lineTo(x+10,100-y1/total*100);
+        ctx.fill();
 
-    x += 10;
-    {% endfor %}
-    </script>
+        ctx.beginPath();
+        ctx.fillStyle = couleur["1. Pas initiée"];
+        ctx.moveTo(x,100-(y1+y2)/total*100);
+        ctx.lineTo(x,100-(y1+y2+y3)/total*100);
+        ctx.lineTo(x+10,100-(y1+y2+y3)/total*100);
+        ctx.lineTo(x+10,100-(y1+y2)/total*100);
+        ctx.fill();
+
+        x += 10;
+        {% endfor %}
+        </script>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordionAS" href="#collapseAS" aria-expanded="false" aria-controls="collapseOne">
+            Avancement détaillé
+          </a>
+        </h3>
+      </div>
+      <div id="collapseAS" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <table class="sortable" width="100%">
+            <thead>
+              <tr>
+                <th>Etat</th>
+                <th>Nb</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for etat in avancementUoASDetail %}
+              <tr>
+                <td>{{etat.avancementMocaDetail}}</td>
+                <td>{{etat.nb}}</td>
+                <td>
+                  <progress value="{{etat.nb}}" max="{{nbUoAS.nb}}" title="{{(etat.nb / nbUoAS.nb * 100)|round}}%">
+                    {{etat.nb / nbUoAS.nb}}
+                  </progress>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </div>
 
 {%endblock%}

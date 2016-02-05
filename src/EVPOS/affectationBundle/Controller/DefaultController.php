@@ -88,6 +88,18 @@ class DefaultController extends Controller
           ->getAvancementGeneral('AS')
         ;
 
+        $avancementUoAIDetail = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getAvancementDetail('AI')
+        ;
+
+        $avancementUoASDetail = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getAvancementDetail('AS')
+        ;
+
         $nbUoAS = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:UO')
@@ -118,6 +130,19 @@ class DefaultController extends Controller
         ->getHisto("AS", "general")
         ;
 
+        $evolutionAiDet = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:HistoUo')
+        ->getHisto("AI", "detail")
+        ;
+
+        $evolutionAsDet = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:HistoUo')
+        ->getHisto("AS", "detail")
+        ;
+
+
         return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array(
           'nbUtil' => $nbUtil,
           'nbAccesUtilAppli' => $nbAccesUtilAppli,
@@ -130,11 +155,15 @@ class DefaultController extends Controller
           'nbPosteMaster' => $nbPosteMaster,
           'avancementUoAI' => $avancementUoAI,
           'avancementUoAS' => $avancementUoAS,
+          'avancementUoAIDetail' => $avancementUoAIDetail,
+          'avancementUoASDetail' => $avancementUoASDetail,
           'nbUoAI' => $nbUoAI,
           'nbUoAS' => $nbUoAS,
           'evolutionNbPoste' => $evolutionNbPoste,
           'evolutionAiGen' => $evolutionAiGen,
           'evolutionAsGen' => $evolutionAsGen,
+          'evolutionAiDet' => $evolutionAiDet,
+          'evolutionAsDet' => $evolutionAsDet,
         )
         );
     }
