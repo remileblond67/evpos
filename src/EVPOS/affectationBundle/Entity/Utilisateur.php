@@ -42,6 +42,11 @@ class Utilisateur
     private $lastLogin;
 
     /**
+     * @ORM\Column(name="age_login", type="integer", nullable=true)
+     */
+    private $ageLogin;
+
+    /**
     * @ORM\ManyToOne(targetEntity="Service", inversedBy="listeUtilisateurs")
     * @ORM\JoinColumn(name="service_util", referencedColumnName="code_service", nullable=true)
     */
@@ -336,5 +341,28 @@ class Utilisateur
     public function getExisteBaza()
     {
         return $this->existeBaza;
+    }
+
+    /**
+     * Set ageLogin
+     *
+     * @param integer $ageLogin
+     * @return Utilisateur
+     */
+    public function setAgeLogin($ageLogin)
+    {
+        $this->ageLogin = $ageLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get ageLogin
+     *
+     * @return integer 
+     */
+    public function getAgeLogin()
+    {
+        return $this->ageLogin;
     }
 }

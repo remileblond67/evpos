@@ -263,8 +263,11 @@ class ImportBazaCommand extends ContainerAwareCommand
       $utilisateur->setNomUtil($nomUtil);
       if ($lastLogin !== null) {
         $utilisateur->setLastLogin(new \DateTime($lastLogin));
+        $age = time() - $utilisateur->getLastLogin()->getTimestamp();
+        $utilisateur->setAgeLogin(round($age/(60*60*24)));
       } else {
         $utilisateur->setLastLogin(new \DateTime("1/1/1900"));
+        $utilisateur->setAgeLogin(9999);
       }
       $utilisateur->setExisteBaza(TRUE);
 

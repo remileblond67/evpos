@@ -207,6 +207,13 @@ class ImportSuappCommand extends ContainerAwareCommand
 
 
         // Mise à jour du type de poste client
+        $listeUo = $em->getRepository('EVPOSaffectationBundle:Uo')->findAll();
+        foreach ($uo as $listeUo) {
+          $uo->setTypePoste(NULL);
+          $em->persist($uo);
+        }
+        $em->flush();
+
         $requeteSUAPP = "SELECT m.id_module, c.type_poste_client FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'MOCA%'";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
         oci_execute ($csr) ;
@@ -218,6 +225,7 @@ class ImportSuappCommand extends ContainerAwareCommand
                 $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
                 $uo->appendTypePoste($typePoste);
                 $em->persist($uo);
+                $output->writeln($codeUo." -> ".$typePoste);
             }
         }
         $em->flush();

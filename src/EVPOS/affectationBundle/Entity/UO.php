@@ -102,6 +102,11 @@ class UO
     private $existeSuapp;
 
     /**
+     * @ORM\Column(name="nb_util", type="integer", nullable=true)
+     */
+    private $nbUtil;
+
+    /**
      * Set existeSuapp
      *
      * @param boolean $existeSuapp
@@ -394,7 +399,11 @@ class UO
      * Ajoute un nouveau type de poste pour l'UO
      */
     public function appendTypePoste($type) {
-        $this->typePoste = $this->typePoste . " " . $type;
+        if ($this->typePoste == "") {
+          $this->typePoste = $type;
+        } else {
+          $this->typePoste = $this->typePoste . "; " . $type;
+        }
     }
 
     /**
@@ -566,4 +575,27 @@ class UO
       }
     $this->noteAvancementMoca = $note;
   }
+
+    /**
+     * Set nbUtil
+     *
+     * @param integer $nbUtil
+     * @return UO
+     */
+    public function setNbUtil($nbUtil)
+    {
+        $this->nbUtil = $nbUtil;
+
+        return $this;
+    }
+
+    /**
+     * Get nbUtil
+     *
+     * @return integer 
+     */
+    public function getNbUtil()
+    {
+        return $this->nbUtil;
+    }
 }

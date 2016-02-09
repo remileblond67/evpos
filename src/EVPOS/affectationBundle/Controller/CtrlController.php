@@ -45,4 +45,12 @@ class CtrlController extends Controller
       $listeErreur = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:CtrlServiceInconnu')->findAll();
       return $this->render('EVPOSaffectationBundle:Ctrl:liste_service_inconnu.html.twig', array('listeErreur' => $listeErreur));
     }
+
+    /**
+     * Affiche la liste des utilisateurs qui ne se sont pas connectés depuis longtemps (6 mois)
+     */
+    public function listeAbsentServiceAction() {
+      $listeAbsent = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:Utilisateur')->findAbsent();
+      return $this->render('EVPOSaffectationBundle:Ctrl:liste_absent.html.twig', array('listeAbsent' => $listeAbsent));
+    }
 }

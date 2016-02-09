@@ -26,7 +26,7 @@ class UtilisateurRepository extends EntityRepository
 
         return $query->getResult();
     }
-    
+
     /**
      * Retourne le nombre d'utilisateur
      */
@@ -42,10 +42,10 @@ class UtilisateurRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        
+
         return $nbUtil;
     }
-    
+
     /**
      * Retourne la liste de tous les utilisateurs, avec pagination
      */
@@ -63,7 +63,7 @@ class UtilisateurRepository extends EntityRepository
             ->setFirstResult(($page-1) * $nbParPage)
             ->setMaxResults($nbParPage)
         ;
-        
+
         return new Paginator($query, true);
     }
 
@@ -103,7 +103,7 @@ class UtilisateurRepository extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
-    
+
     /**
      * Teste si l'utilisateur dont le matricule est passé en parametre existe
      */
@@ -115,12 +115,12 @@ class UtilisateurRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-        
+
         if ($nbUtil >= 1)
             $retour = true;
-        else 
+        else
             $retour = false;
-            
+
         return $retour;
     }
 
@@ -136,7 +136,7 @@ class UtilisateurRepository extends EntityRepository
 
         return $query->getSingleScalarResult();
     }
-    
+
     /**
      * Retourne la liste des utilisateurs qui n'ont pas été repérés dans BAZA
      */
@@ -145,10 +145,10 @@ class UtilisateurRepository extends EntityRepository
             ->where('u.existeBaza = FALSE')
             ->getQuery()
         ;
-        
+
         return $query->getResult();
     }
-        
+
     /**
      * Retourne la liste de tous les CPI
      */
@@ -160,7 +160,20 @@ class UtilisateurRepository extends EntityRepository
             ->where('appli.codeAppli is not null')
             ->getQuery()
         ;
-        
         return $query->getResult();
+    }
+
+    /**
+     * Retourne la liste des utilisateurs ne s'étant pas connecté depuis 6 mois
+     */
+    public function findAbsent() {
+      $query = $this->createQueryBuilder('u')
+          ->leftJoin('u.serviceUtil', 's')
+          ->addSelect('u.matUtil, u.nomUtil, s.codeService, s.libService, u.lastLogin, u.ageLogin')
+          ->where ('u.ageLogin > 365')
+          ->orderBy('u.lastLogin', 'ASC')
+          ->getQuery()
+      ;
+      return $query->getResult();
     }
 }

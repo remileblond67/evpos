@@ -40,7 +40,12 @@
             </div>
             <div class="col-lg-2">
                 <h4>{{ 'utilisateur.lastLogin'|trans }}</h4>
-                {{util.lastLogin|date("d/m/Y") }}
+                {{util.lastLogin|date("d/m/Y") }} <br>
+                <span
+                {% if util.ageLogin > 365 %}
+                  class="ko"
+                {% endif %}
+                >{{util.ageLogin}} jours</span>
         </div>
     </div>
 </div>

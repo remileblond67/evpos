@@ -28,6 +28,7 @@ ctrl:
     nb: Nombre d'occurences
     utilisateurInconnu: Utilisateurs GPARC inconnus de BAZA
     serviceInconnu: Services inconnus
+    absentService: Utilisateurs par date de dernière connexion (plus d'un an)
     remarque: Remarque
 
 poste:

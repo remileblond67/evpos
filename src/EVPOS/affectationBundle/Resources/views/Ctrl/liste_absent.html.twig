@@ -1,0 +1,55 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Suivi de la migration MOCA{% endblock%}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8">
+    <h4>{{ 'ctrl.absentService'|trans }}</h4>
+  </div>
+</div>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+  <thead>
+    <tr>
+      <td class="row sorting_asc">
+        {{ 'utilisateur.matricule'|trans }}
+      </td>
+      <td class="row">
+        {{ 'utilisateur.nom'|trans}}
+      </td>
+      <td class="row">
+        {{ 'service.code'|trans }}
+      </td>
+      <td class="row">
+        {{ 'service.nom'|trans }}
+      </td>
+      <td class="row">{{ 'utilisateur.lastLogin'|trans }}</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for absent in listeAbsent %}
+    <tr class="gradeA odd">
+      <td>
+        <a href="{{path('evpos_ficheUtil', {'matUtil': absent.matUtil})}}">
+          {{ absent.matUtil }}
+        </a>
+      </td>
+      <td>
+        <a href="{{path('evpos_ficheUtil', {'matUtil': absent.matUtil})}}">
+          {{ absent.nomUtil }}
+        </a>
+      </td>
+      <td>
+        {{ absent.codeService }}
+      </td>
+      <td>
+        {{ absent.libService }}
+      </td>
+      <td>
+        {{ absent.lastLogin|date('d/m/Y') }}<br>
+        {{ absent.ageLogin }} jours
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody
+</table>
+{%endblock%}
