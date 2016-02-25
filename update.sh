@@ -8,4 +8,3 @@ do
     /home/apache/apache-2.2.24/php-5.5.4/bin/php -c $HOME/Apache/conf app/console evpos:$cmd
 done
 
-
