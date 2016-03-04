@@ -194,7 +194,6 @@ class ImportSuappCommand extends ContainerAwareCommand
                 $uo->setAppli($appli);
                 $uo->setNomUo($nomUo);
                 $uo->setMigMoca($migMoca);
-                $uo->setTypePoste("");
                 $uo->setAncienCitrix(FALSE);
                 $uo->setExisteSuapp(TRUE);
 

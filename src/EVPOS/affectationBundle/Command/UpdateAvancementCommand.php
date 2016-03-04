@@ -35,8 +35,13 @@ class UpdateAvancementCommand extends ContainerAwareCommand
           $avancement = $data[2];
           $uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($codeUo);
           if ($uo !== NULL) {
-            $uo->setAvancementMoca($avancement);
-            $uo->setAvancementMocaDetail($avancementDetail);
+            if ($uo->getMigMoca()) {
+              $uo->setAvancementMoca($avancement);
+              $uo->setAvancementMocaDetail($avancementDetail);
+            } else {
+              $uo->setAvancementMoca(NULL); 
+              $uo->setAvancementMocaDetail(NULL);
+            }
             $em->persist($uo);
           }
         }
