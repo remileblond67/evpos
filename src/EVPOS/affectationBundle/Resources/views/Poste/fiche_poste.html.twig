@@ -97,6 +97,7 @@
               <td class="gradeA odd">{{ equipement.modele }}</td>
             </tr>
             {% endfor %}
+          </tbody>
           </table>
         </div>
       </div>
@@ -158,9 +159,41 @@
                 </td>
               </tr>
               {% endfor %}
+            </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="panel panel-group panel-default" id="accordionPrinter" role="tablist" aria-multiselectable="true">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordionUo" href="#collapsePrinter" aria-expanded="true" aria-controls="collapseOne">
+            {{'imprimante.liste'|trans}}
+            <div class="badge">{{poste.listeImprimantes|length}}</div>
+          </a>
+        </h3>
+      </div>
+      <div id="collapsePrinter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <div class="row">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+              <thead>
+                <tr>
+                  <td class="row" >{{ 'imprimante.hostname'|trans }}</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for imprimante in poste.listeImprimantes %}
+                <tr class="gradeA odd">
+                  <td class="gradeA odd">{{ imprimante.hostname }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endblock %}

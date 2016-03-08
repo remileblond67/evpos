@@ -122,6 +122,15 @@ class Poste
     private $listeUtilisateurs;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Imprimante", inversedBy="listePostes", cascade={"detach"})
+     * @ORM\JoinTable(name="evpos_poste_imprimante",
+     *      joinColumns={@ORM\JoinColumn(name="hostname", referencedColumnName="hostname")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="printer_hostname", referencedColumnName="hostname")}
+     * )
+     */
+    private $listeImprimantes;
+
+    /**
      * @ORM\ManyToMany(targetEntity="UO", inversedBy="listePostes", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_poste_uo",
      *      joinColumns={@ORM\JoinColumn(name="hostname", referencedColumnName="hostname")},
@@ -682,5 +691,47 @@ class Poste
     public function getTypeReseau()
     {
         return $this->typeReseau;
+    }
+
+    /**
+     * Add listeImprimantes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes
+     * @return Poste
+     */
+    public function addListeImprimante(\EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes)
+    {
+        $this->listeImprimantes[] = $listeImprimantes;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeImprimantes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes
+     */
+    public function removeListeImprimante(\EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes)
+    {
+        $this->listeImprimantes->removeElement($listeImprimantes);
+    }
+
+    /**
+     * Supprime la liste des imprimantes du poste
+     */
+    public function delListeImprimante() {
+        foreach ($this->listeImprimantes as $imprimante) {
+            $this->listeImprimantes->removeElement($imprimante);
+        }
+    }
+
+    /**
+     * Get listeImprimantes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getListeImprimantes()
+    {
+        return $this->listeImprimantes;
     }
 }

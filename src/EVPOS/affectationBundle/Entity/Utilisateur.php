@@ -81,6 +81,15 @@ class Utilisateur
     private $listePostes;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Imprimante", inversedBy="listeUtilisateurs", cascade={"detach"})
+     * @ORM\JoinTable(name="evpos_util_imprimante",
+     *      joinColumns={@ORM\JoinColumn(name="mat_util", referencedColumnName="mat_util")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="printer_hostname", referencedColumnName="hostname")}
+     * )
+     */
+    private $listeImprimantes;
+
+    /**
      * Retourne le nombre d'applications auquel l'utilisateur a accès
      */
     public function getNbAcces() {
@@ -359,10 +368,74 @@ class Utilisateur
     /**
      * Get ageLogin
      *
-     * @return integer 
+     * @return integer
      */
     public function getAgeLogin()
     {
         return $this->ageLogin;
+    }
+
+    /**
+     * Add listeImprimantes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes
+     * @return Utilisateur
+     */
+    public function addListeImprimante(\EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes)
+    {
+        $this->listeImprimantes[] = $listeImprimantes;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeImprimantes
+     *
+     * @param \EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes
+     */
+    public function removeListeImprimante(\EVPOS\affectationBundle\Entity\Imprimante $listeImprimantes)
+    {
+        $this->listeImprimantes->removeElement($listeImprimantes);
+    }
+
+    /**
+     * Get listeImprimantes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getListeImprimantes()
+    {
+        return $this->listeImprimantes;
+    }
+
+    /**
+     * Supprime la liste des imprimantes de l'utilisateur
+     */
+    public function delListeImprimante() {
+        foreach ($this->listeImprimantes as $imprimante) {
+            $this->listeImprimantes->removeElement($imprimante);
+        }
+    }
+
+    /**
+     * REPORT DES imprimantes
+     *
+     * On reporte au niveau de l'utilisateur la liste des imprimantes
+     * des postes utilisés
+     */
+    public function reportImprimantes() {
+      $this->delListeImprimante();
+      $listeImprimantes = [];
+
+      // Récupération de la liste des postes utilisés
+      foreach ($this->listePostes as $poste) {
+        // Recherche de la liste des imprimantes utilisées
+        foreach ($poste->getListeImprimantes() as $printer) {
+          if (array_search($printer->gethostname(), $listeImprimantes) === false) {
+            $this->addListeImprimante($printer);
+            $listeImprimantes[] = $printer->gethostname();
+          }
+        }
+      }
     }
 }

@@ -10,7 +10,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.1.0
+    version_n: 2.2.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -55,6 +55,10 @@ poste:
     ssd: Disque SSD
     master: Master du poste
     typeReseau: Type de réseau
+
+imprimante:
+    liste: Imprimantes utilisées
+    hostname: Hostname
 
 applications:
     liste: Applications à migrer

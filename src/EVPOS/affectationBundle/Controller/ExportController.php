@@ -9,6 +9,18 @@ class ExportController extends Controller
     #                               --- EXPORTS CSV ---
 
     /**
+     * Export CSV des files d'imprimantes
+     */
+    public function exportCsvUtilImprimanteAction() {
+      $listeUtilisateur = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Utilisateur')
+          ->findAll()
+      ;
+      return $this->render('EVPOSaffectationBundle:Export:export_printer.csv.twig', array('listeUtilisateur' => $listeUtilisateur));
+    }
+
+    /**
      * Export CSV des directions
      */
     public function exportCsvDirectionAction() {
@@ -19,6 +31,8 @@ class ExportController extends Controller
       ;
       return $this->render('EVPOSaffectationBundle:Export:liste_direction.csv.twig', array('listeDirection' => $listeDirection));
     }
+
+
 
     /**
      * Export CSV des services
