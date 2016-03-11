@@ -32,7 +32,7 @@ class UtilisateurRepository extends EntityRepository
      */
     public function getUtilisateursService($codeService) {
         $query = $this->createQueryBuilder('u')
-            ->leftJoin('u.service', 's')
+            ->leftJoin('u.serviceUtil', 's')
             ->setParameter('codeService', $codeService)
             ->where('s.codeService = :codeService')
             ->leftJoin('u.serviceUtil', 's')
