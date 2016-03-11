@@ -153,9 +153,9 @@
             <td class="row">{{'poste.hostname'|trans}}</td>
             <td class="row">{{'poste.utilisateurs'|trans}}</td>
             <td class="row">{{'poste.categorie'|trans}} <br> <i>{{'poste.typeUsage'|trans}}</i></td>
+            <td class="row">{{'poste.avancementMigMoca'|trans}}</td>
             <td class="row">{{'poste.modele'|trans}}</td>
             <td class="row">{{'poste.ecran'|trans}}</td>
-            <td class="row">{{'poste.licenceW8'|trans}}</td>
             <td class="row">{{'poste.uo'|trans }}</td>
             <td class="row">{{'poste.localisation'|trans}}</td>
             <td class="row">{{'poste.commentaire'|trans}}</td>
@@ -175,15 +175,12 @@
               <br>
               <i>{{poste.typeUsage}}</i>
             </td>
+            <td>{{poste.avancementMigMoca}}</td>
             <td>{{poste.modele}}</td>
             <td>
               {% for ecran in poste.listeEcran %}
               {{ecran}}
               {% endfor %}
-            </td>
-            <td>
-              {% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}
-              {{ poste.licenceW8Long }}
             </td>
             <td>
               {% for uo in poste.listeUo %}

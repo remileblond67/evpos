@@ -358,7 +358,7 @@
                        <td class="row">{{'poste.categorie'|trans}}</td>
           					   <td class="row">{{'poste.modele'|trans}}</td>
                        <td class="row">{{'poste.ecran'|trans}}</td>
-          					   <td class="row">{{'poste.licenceW8'|trans}}</td>
+          					   <td class="row">{{'poste.avancementMigMoca'|trans}}</td>
                        <td class="row">{{'poste.typeUsage'|trans}}</td>
                        <td class="row">{{'poste.uo'|trans }}</td>
           					   <td class="row">{{'poste.localisation'|trans}}</td>
@@ -382,8 +382,7 @@
                         {% endfor %}
                         </td>
             						<td>
-            							{% if poste.licenceW8 %} <span class="glyphicon glyphicon-ok ok"></span>{% endif %}
-            							{{ poste.licenceW8Long }}
+            							{{ poste.avancementMigMoca }}
             						</td>
                         <td>{{poste.typeUsage}}</td>
             						<td>
