@@ -28,7 +28,7 @@ class UtilisateurController extends Controller
         ->getRepository('EVPOSaffectationBundle:Utilisateur')
         ->getUtilisateurFull(strtoupper(trim($form['matUtil']->getData())))
       ;
-      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('util' => $util)));
+      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('matUtil' => $util->getMatUtil())))));
     }
     return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur.html.twig', array('form' => $form->createView()));
   }
@@ -84,7 +84,13 @@ class UtilisateurController extends Controller
   /**
   * Affiche la fiche d'un utilisateur dont le matricule est passé en paramètre
   */
-  public function ficheUtilisateurAction($util) {
+  public function ficheUtilisateurAction($matUtil) {
+    $util = $this->getDoctrine()
+    ->getManager()
+    ->getRepository('EVPOSaffectationBundle:Utilisateur')
+    ->getUtilisateurFull($matUtil)
+    ;
+
     if ($util !== NULL) {
       return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_utilisateur.html.twig', array('util' => $util));
     } else {
