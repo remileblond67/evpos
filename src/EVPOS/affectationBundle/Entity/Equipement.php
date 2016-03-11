@@ -23,7 +23,7 @@ class Equipement
     /**
      * @var string
      *
-     * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\Column(name="categorie", type="string", length=255, nullable=true)
      */
     private $categorie;
 
@@ -33,7 +33,7 @@ class Equipement
      * @ORM\Column(name="modele", type="string", length=255, nullable=true)
      */
     private $modele;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Poste", inversedBy="listeEquipement")
      * @ORM\JoinColumn(name="hostname", referencedColumnName="hostname", nullable=false)
@@ -43,7 +43,7 @@ class Equipement
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +66,7 @@ class Equipement
     /**
      * Get codeMateriel
      *
-     * @return string 
+     * @return string
      */
     public function getCodeMateriel()
     {
@@ -89,7 +89,7 @@ class Equipement
     /**
      * Get categorie
      *
-     * @return string 
+     * @return string
      */
     public function getCategorie()
     {
@@ -112,7 +112,7 @@ class Equipement
     /**
      * Get modele
      *
-     * @return string 
+     * @return string
      */
     public function getModele()
     {
@@ -135,7 +135,7 @@ class Equipement
     /**
      * Get poste
      *
-     * @return \EVPOS\affectationBundle\Entity\Poste 
+     * @return \EVPOS\affectationBundle\Entity\Poste
      */
     public function getPoste()
     {
