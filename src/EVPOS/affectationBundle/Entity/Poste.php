@@ -107,6 +107,13 @@ class Poste
     private $typeUsage;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="avancement_moca", type="string", length=255, nullable=true)
+     */
+    private $avancementMigMoca;
+
+    /**
     * @ORM\ManyToOne(targetEntity="Service", inversedBy="listePostes")
     * @ORM\JoinColumn(name="code_service", referencedColumnName="code_service", nullable=true)
     */
@@ -314,6 +321,16 @@ class Poste
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    public function getAvancementMigMoca() {
+      return $this->avancementMigMoca;
+    }
+
+    public function setAvancementMigMoca($avancementMigMoca) {
+      $this->avancementMigMoca = $avancementMigMoca;
+
+      return $this;
     }
 
     /**
