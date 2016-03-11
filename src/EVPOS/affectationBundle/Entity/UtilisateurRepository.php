@@ -104,6 +104,25 @@ class UtilisateurRepository extends EntityRepository
         return $query->getOneOrNullResult();
     }
 
+    public function getUtilisateurFullByName($nomUtil) {
+        $query = $this->createQueryBuilder('u')
+            ->setParameter('nomUtil', $nomUtil)
+            ->where('u.nomUtil = :nomUtil')
+            ->leftJoin('u.serviceUtil', 'service')
+            ->addSelect('service')
+            ->leftJoin('service.direction', 'dir')
+            ->addSelect('dir')
+            ->leftJoin('u.listeAcces', 'acces')
+            ->addSelect('acces')
+            ->leftJoin('acces.appliAcces', 'appli')
+            ->addSelect('appli')
+            ->orderBy('appli.codeAppli')
+            ->getQuery()
+        ;
+
+        return $query->getOneOrNullResult();
+    }
+
     /**
      * Teste si l'utilisateur dont le matricule est passé en parametre existe
      */

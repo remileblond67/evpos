@@ -23,12 +23,13 @@ class UtilisateurController extends Controller
     $form->handleRequest($request);
 
     if ($form->isValid()) {
-      $util = $this->getDoctrine()
-        ->getManager()
+      $util = $this->getDoctrine()->getManager()
         ->getRepository('EVPOSaffectationBundle:Utilisateur')
         ->getUtilisateurFull(strtoupper(trim($form['matUtil']->getData())))
       ;
-      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('matUtil' => $util->getMatUtil())));
+      if ($util !== NULL) {
+        return $this->redirect($this->generateUrl('evpos_ficheUtil', array('matUtil' => $util->getMatUtil())));
+      }  
     }
     return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur.html.twig', array('form' => $form->createView()));
   }
@@ -47,7 +48,13 @@ class UtilisateurController extends Controller
     $form->handleRequest($request);
 
     if ($form->isValid()) {
-      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('nomUtil' => strtoupper(trim($form['nomUtil']->getData())))));
+      $util = $this->getDoctrine()->getManager()
+        ->getRepository('EVPOSaffectationBundle:Utilisateur')
+        ->getUtilisateurFullByName(strtoupper(trim($form['nomUtil']->getData())))
+      ;
+      if ($util !== NULL) {
+        return $this->redirect($this->generateUrl('evpos_ficheUtil', array('matUtil' => $util->getMatUtil())));
+      }  
     }
     return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur_nom.html.twig', array('form' => $form->createView()));
   }
