@@ -28,7 +28,7 @@ class UtilisateurController extends Controller
         ->getRepository('EVPOSaffectationBundle:Utilisateur')
         ->getUtilisateurFull(strtoupper(trim($form['matUtil']->getData())))
       ;
-      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('matUtil' => $util->getMatUtil())))));
+      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('matUtil' => $util->getMatUtil())));
     }
     return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur.html.twig', array('form' => $form->createView()));
   }
