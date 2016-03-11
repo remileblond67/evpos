@@ -35,8 +35,6 @@ class UtilisateurRepository extends EntityRepository
             ->leftJoin('u.serviceUtil', 's')
             ->setParameter('codeService', $codeService)
             ->where('s.codeService = :codeService')
-            ->leftJoin('u.serviceUtil', 's')
-            ->addSelect('s')
             ->orderBy('u.matUtil')
             ->getQuery()
         ;
