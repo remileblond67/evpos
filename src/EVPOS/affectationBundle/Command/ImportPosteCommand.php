@@ -261,22 +261,24 @@ class ImportPosteCommand extends ContainerAwareCommand
               // Le code a déjà été rencontré
               $nbDoublon++;
             } else {
-              // Le code matériel n'avais jamais été rencontré
-              $listeCodeMateriel[] = $codeMateriel;
+              if ($categorie !== NULL) {
+                // Le code matériel n'avais jamais été rencontré
+                $listeCodeMateriel[] = $codeMateriel;
 
-              $categorie = trim($data[2]);
-              $modele = trim($data[3]);
+                $categorie = trim($data[2]);
+                $modele = trim($data[3]);
 
-              $equipement = new Equipement();
-              $equipement->setCodeMateriel($codeMateriel);
-              $equipement->setCategorie($categorie);
-              $equipement->setModele($modele);
+                $equipement = new Equipement();
+                $equipement->setCodeMateriel($codeMateriel);
+                $equipement->setCategorie($categorie);
+                $equipement->setModele($modele);
 
-              // recherche du poste lié
-              $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);
-              if ($poste !== NULL) {
-                $equipement->setPoste($poste);
-                $em->persist($equipement);
+                // recherche du poste lié
+                $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);
+                if ($poste !== NULL) {
+                  $equipement->setPoste($poste);
+                  $em->persist($equipement);
+                }
               }
             }
           }
