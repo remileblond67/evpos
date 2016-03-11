@@ -76,6 +76,13 @@ class DefaultController extends Controller
           ->getNbPosteMaster()
         ;
 
+        // Répartition des postes par avancement de la migration
+        $nbPosteAvancement = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Poste')
+          ->getNbPosteAvancement()
+        ;
+
         $avancementUoAI = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:UO')
@@ -153,6 +160,7 @@ class DefaultController extends Controller
           'nbPosteMoca' => $nbPosteMoca,
           'nbPosteUsage' => $nbPosteUsage,
           'nbPosteMaster' => $nbPosteMaster,
+          'nbPosteAvancement' => $nbPosteAvancement,
           'avancementUoAI' => $avancementUoAI,
           'avancementUoAS' => $avancementUoAS,
           'avancementUoAIDetail' => $avancementUoAIDetail,

@@ -185,4 +185,17 @@ class PosteRepository extends EntityRepository {
       ;
       return $query->getResult();
     }
+
+		/**
+     * Retourne le nombre de poste par avancement
+     */
+    public function getNbPosteAvancement() {
+      $query = $this->createQueryBuilder('p')
+        ->select('p.avancementMigMoca, count(p.hostname) nb')
+        ->groupBy('p.avancementMigMoca')
+        ->orderBy('p.avancementMigMoca')
+        ->getQuery()
+      ;
+      return $query->getResult();
+    }
 }
