@@ -23,7 +23,7 @@ class Equipement
     /**
      * @var string
      *
-     * @ORM\Column(name="categorie", type="string", length=255, nullable=true)
+     * @ORM\Column(name="categorie", type="string", length=255)
      */
     private $categorie;
 
