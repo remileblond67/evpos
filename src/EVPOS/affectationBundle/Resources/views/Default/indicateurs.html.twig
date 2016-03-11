@@ -70,14 +70,17 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">avancement de la migration MOCA</h3>
+        <h3 class="panel-title">Avancement de la migration MOCA</h3>
       </div>
       <div class="panel-body">
-        <ul>
+        <table>
           {% for avancement in nbPosteAvancement %}
-          <li>{{avancement.avancementMigMoca}} : {{avancement.nb}}</li>
+          <tr>
+            <td>{{avancement.avancementMigMoca}}</td>
+            <td>{{avancement.nb}}</td>
+          </tr>
           {% endfor %}
-        </ul>
+        </table>
       </div>
     </div>
 
