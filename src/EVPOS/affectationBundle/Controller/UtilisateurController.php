@@ -10,7 +10,7 @@ use EVPOS\affectationBundle\Entity\Utilisateur;
 class UtilisateurController extends Controller
 {
   /**
-  * Cherche une application
+  * Cherche un Utilisateur à partir de son matricule
   */
   public function chercheUtilisateurAction() {
     $request = $this->get('request');
@@ -27,6 +27,26 @@ class UtilisateurController extends Controller
     }
     return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur.html.twig', array('form' => $form->createView()));
   }
+
+  /**
+  * Cherche un Utilisateur à partir de son nom
+  */
+  public function chercheUtilisateurNomAction() {
+    $request = $this->get('request');
+    $util = new Utilisateur;
+
+    $form = $this->createFormBuilder($util)
+    ->add('nomUtil')
+    ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+      return $this->redirect($this->generateUrl('evpos_ficheUtil', array('nomUtil' => strtoupper(trim($form['nomUtil']->getData())))));
+    }
+    return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur_nom.html.twig', array('form' => $form->createView()));
+  }
+
   /**
   * Affiche la liste de tous les utilisateurs
   * liste paginée
