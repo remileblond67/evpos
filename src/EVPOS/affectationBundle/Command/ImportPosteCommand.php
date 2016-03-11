@@ -83,6 +83,7 @@ class ImportPosteCommand extends ContainerAwareCommand
           $typeUsage = $data[16];
           $typeReseau = $data[21];
           $master = $data[22];
+          $avancementMigMoca = $data[23];
 
           if ($hostname !== "") {
             // Recherche si le poste existe
@@ -119,6 +120,7 @@ class ImportPosteCommand extends ContainerAwareCommand
               default:
               $poste->setSSD(FALSE);
             }
+            $poste->setAvancementMigMoca($avancementMigMoca);
 
             // Mise à jour du service
             $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceSirh($codeSirh);
