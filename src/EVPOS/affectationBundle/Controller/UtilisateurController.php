@@ -26,7 +26,7 @@ class UtilisateurController extends Controller
       $util = $this->getDoctrine()
         ->getManager()
         ->getRepository('EVPOSaffectationBundle:Utilisateur')
-        ->getUtilisateurFull(strtoupper(trim($form['matUtil']->getData())
+        ->getUtilisateurFull(strtoupper(trim($form['matUtil']->getData())))
       ;
       return $this->redirect($this->generateUrl('evpos_ficheUtil', array('util' => $util)))));
     }
