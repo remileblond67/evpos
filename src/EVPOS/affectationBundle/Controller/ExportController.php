@@ -21,6 +21,18 @@ class ExportController extends Controller
     }
 
     /**
+     * Export CSV des files d'imprimantes pour DEGIM (par service)
+     */
+    public function exportCsvUtilImprimanteDegimAction($codeService) {
+      $listeUtilisateur = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Utilisateur')
+          ->getUtilisateursService($codeService)
+      ;
+      return $this->render('EVPOSaffectationBundle:Export:export_printer.csv.twig', array('listeUtilisateur' => $listeUtilisateur));
+    }
+
+    /**
      * Export CSV des directions
      */
     public function exportCsvDirectionAction() {
