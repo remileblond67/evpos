@@ -28,6 +28,22 @@ class UtilisateurRepository extends EntityRepository
     }
 
     /**
+     * Retourne la liste de tous les utilisateurs d'un service
+     */
+    public function getUtilisateursService($codeService) {
+        $query = $this->createQueryBuilder('u')
+            ->leftJoin('u.serviceUtil', 's')
+            ->setParameter('codeService', $codeService)
+            ->where('s.codeService = :codeService')
+            ->orderBy('u.matUtil')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+
+
+    /**
      * Retourne le nombre d'utilisateur
      */
     public function nbUtilUoService($uo, $service) {

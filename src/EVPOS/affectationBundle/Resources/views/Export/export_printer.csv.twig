@@ -1,6 +1,5 @@
-matricule;printer
 {% for utilisateur in listeUtilisateur %}
 {% for imprimante in utilisateur.listeImprimantes %}
-{{utilisateur.matUtil}};{{imprimante.hostname}}
+CITRIX;{{imprimante.hostname}};{{utilisateur.matUtil}}
 {% endfor %}
 {% endfor %}

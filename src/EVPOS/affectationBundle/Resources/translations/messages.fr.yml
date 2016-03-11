@@ -10,7 +10,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.3.0
+    version_n: 2.4.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -60,6 +60,7 @@ poste:
 imprimante:
     liste: Imprimantes utilisées
     hostname: Hostname
+    export: Export pour DEGIM
 
 applications:
     liste: Applications à migrer
