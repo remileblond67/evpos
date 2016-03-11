@@ -172,6 +172,10 @@ evpos_exportCsvUtilImprimante:
     path: /csv/util_imprimante
     defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimante }
 
+evpos_exportCsvUtilImprimanteDegim:
+    path: /csv/util_imprimante_degim/{codeService}
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimanteDegim }
+
 # Etat d'avancement des services
 evpos_serviceAvancement:
     path: /service_avancement
