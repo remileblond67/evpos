@@ -261,7 +261,7 @@ class ImportPosteCommand extends ContainerAwareCommand
               // Le code a déjà été rencontré
               $nbDoublon++;
             } else {
-              if ($categorie != "") {
+              if ($categorie != "" && $codeMateriel != "-") {
                 // Le code matériel n'avais jamais été rencontré
                 // et la catégorie est renseignée
                 $listeCodeMateriel[] = $codeMateriel;
