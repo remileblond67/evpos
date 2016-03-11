@@ -42,6 +42,10 @@ evpos_chercheUtilisateur:
     path: /cherche_utilisateur
     defaults: { _controller: EVPOSaffectationBundle:Utilisateur:chercheUtilisateur }
 
+evpos_chercheUtilisateurNom:
+    path: /cherche_utilisateur_nom
+    defaults: { _controller: EVPOSaffectationBundle:Utilisateur:chercheUtilisateurNom }
+
 evpos_ficheSecteur:
     path: /secteur/{codeSecteur}
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheSecteur }
