@@ -10,7 +10,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.4.1
+    version_n: 2.4.2
     todo: A faire
     all: Tout
     ok: Prêt
