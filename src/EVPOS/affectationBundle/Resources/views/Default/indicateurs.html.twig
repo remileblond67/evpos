@@ -76,7 +76,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
       <div class="panel-body">
         <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChartAvancement);
+        google.charts.setOnLoadCallback(drawChartAvancement, drawChartHisto);
         function drawChartAvancement() {
 
           var data = google.visualization.arrayToDataTable([
@@ -106,7 +106,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
       <div class="panel-body">
         <progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
         <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
-        
+
         <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChartHisto);
