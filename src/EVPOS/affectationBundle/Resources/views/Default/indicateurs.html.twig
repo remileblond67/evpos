@@ -98,7 +98,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           var data = google.visualization.arrayToDataTable([
             ['Date', 'Migré MOCA', 'A migrer'],
             {% for ligne in evolutionNbPoste %}
-            ['{{ligne.dateMesure|date("d / m / Y")}}',  {{ligne.nbMoca}},  {{ligne.nbTodo + ligne.nbMoca}}],
+            ['{{ligne.dateMesure|date("d/m/Y")}}',  {{ligne.nbMoca}},  {{ligne.nbTodo + ligne.nbMoca}}],
             {% endfor %}
           ]);
 
