@@ -78,7 +78,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawCharts);
 
-        function drawChartAvancement() {
+        function drawCharts() {
 
           var data = google.visualization.arrayToDataTable([
             ['Etat', 'Nombre de postes'],
@@ -94,24 +94,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           var chart = new google.visualization.PieChart(document.getElementById('piechart_etat_migration'));
 
           chart.draw(data, options);
-        }
-        </script>
-        <div id="piechart_etat_migration" style="width: 100%; height: 300px;"></div>
-      </div>
-    </div>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Avancement migration des postes</h3>
-      </div>
-      <div class="panel-body">
-        <progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
-        <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
-
-        <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChartHisto);
-        function drawChartHisto() {
           var data = google.visualization.arrayToDataTable([
             ['Date', 'Migré MOCA', 'A migrer'],
             {% for ligne in evolutionNbPoste %}
@@ -128,12 +111,19 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           var chart = new google.visualization.AreaChart(document.getElementById('histoNbPoste'));
           chart.draw(data, options);
         }
-
-        function drawCharts() {
-          drawChartHisto();
-          drawChartAvancement();
-        }
         </script>
+        <div id="piechart_etat_migration" style="width: 100%; height: 300px;"></div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Avancement migration des postes</h3>
+      </div>
+      <div class="panel-body">
+        <progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
+        <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
+
         <div id="histoNbPoste" style="width: 100%; height: 300px;"></div>
 
         <canvas id="graphNbPoste" width="450" height="100">
