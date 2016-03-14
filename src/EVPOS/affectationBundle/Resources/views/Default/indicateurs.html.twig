@@ -96,7 +96,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           chart.draw(data, options);
 
           var data = google.visualization.arrayToDataTable([
-            ['Date', 'Migré MOCA', 'A migrer'],
+            ['Date', 'MOCA', 'A migrer'],
             {% for ligne in evolutionNbPoste %}
             ['{{ligne.dateMesure|date("d/m/Y")}}',  {{ligne.nbMoca}},  {{ligne.nbTodo + ligne.nbMoca}}],
             {% endfor %}
@@ -104,7 +104,6 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
 
           var options = {
             title: 'Evolution migration poste',
-            hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
             vAxis: {minValue: 0}
           };
 
