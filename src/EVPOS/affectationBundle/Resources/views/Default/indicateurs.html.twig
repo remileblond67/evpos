@@ -76,12 +76,12 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
       <div class="panel-body">
         <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+        google.charts.setOnLoadCallback(drawChartHisto);
+        function drawChartHisto() {
           var data = google.visualization.arrayToDataTable([
             ['Date', 'Migré MOCA', 'A migrer'],
             {% for ligne in evolutionNbPoste %}
-            ['{{ligne.dateMesure|date("d / m / Y")}}',  {{ligne.nbMoca}},      {{ligne.nbTodo}}],
+            ['{{ligne.dateMesure|date("d / m / Y")}}',  {{ligne.nbMoca}},  {{ligne.nbTodo + ligne.nbMoca}}],
             {% endfor %}
           ]);
 
@@ -99,8 +99,8 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
 
         <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+        google.charts.setOnLoadCallback(drawChartAvancement);
+        function drawChartAvancement() {
 
           var data = google.visualization.arrayToDataTable([
             ['Etat', 'Nombre de postes'],
