@@ -169,7 +169,7 @@ evpos_exportPosteUtilCsv:
     defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilPoste }
 
 evpos_exportCsvUtilImprimante:
-    path: /csv/util_imprimante
+    path: /csv/util_imprimante_degim
     defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimante }
 
 evpos_exportCsvUtilImprimanteDegim:
