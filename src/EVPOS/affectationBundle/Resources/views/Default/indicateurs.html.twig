@@ -78,6 +78,30 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2013',  1000,      400],
+            ['2014',  1170,      460],
+            ['2015',  660,       1120],
+            ['2016',  1030,      540]
+          ]);
+
+          var options = {
+            title: 'Evolution migration poste',
+            hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
+          };
+
+          var chart = new google.visualization.AreaChart(document.getElementById('histoNbPoste'));
+          chart.draw(data, options);
+        }
+        </script>
+        <div id="histoNbPoste" style="width: 900px; height: 500px;"></div>
+
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
 
           var data = google.visualization.arrayToDataTable([
             ['Etat', 'Nombre de postes'],
