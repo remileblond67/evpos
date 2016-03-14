@@ -76,8 +76,9 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
       <div class="panel-body">
         <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
 
           var data = google.visualization.arrayToDataTable([
             ['Etat', 'Nombre de postes'],
@@ -93,6 +94,21 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           var chart = new google.visualization.PieChart(document.getElementById('piechart_etat_migration'));
 
           chart.draw(data, options);
+
+          var data = google.visualization.arrayToDataTable([
+            ['Date', 'MOCA', 'A migrer'],
+            {% for ligne in evolutionNbPoste %}
+            ['{{ligne.dateMesure|date("d/m/Y")}}',  {{ligne.nbMoca}},  {{ligne.nbTodo + ligne.nbMoca}}],
+            {% endfor %}
+          ]);
+
+          var options = {
+            title: 'Evolution migration poste',
+            vAxis: {minValue: 0}
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('histoNbPoste'));
+          chart.draw(data, options);
         }
         </script>
         <div id="piechart_etat_migration" style="width: 100%; height: 300px;"></div>
@@ -106,72 +122,8 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
       <div class="panel-body">
         <progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
         <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
-        <canvas id="graphNbPoste" width="450" height="100">
-          Votre navigateur n'est pas capable d'afficher le graphique d'évolution.
-        </canvas>
-        <script>
-        var c = document.getElementById("graphNbPoste");
-        var ctx = c.getContext("2d");
-        ctx.strokeStyle = "LightGrey";
-        ctx.textBaseline = "bottom";
-        ctx.font = "6pt";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "bottom";
-        ctx.font = "6pt";
-        // Axe des absisses
-        for (i=0; i<45; i++) {
-          ctx.beginPath();
-          ctx.moveTo(i*10, 0);
-          ctx.lineTo(i*10, 100);
-          ctx.stroke();
-        }
-        // Axe des ordonnées
-        ctx.textAlign = "right";
-        for (i=0; i<5; i++) {
-          ctx.beginPath();
-          ctx.moveTo(0, 100-i*20);
-          ctx.lineTo(450, 100-i*20);
-          ctx.stroke();
-          ctx.strokeText(i*1000, 450, 100-i*20);
-        }
-        i=0;
-        ctx.globalAlpha = 0.75;
-        ctx.fillStyle = "Gold";
-        {% for ligne in evolutionNbPoste %}
-        ctx.beginPath();
-        ctx.moveTo(i,100);
-        ctx.moveTo(i,100);
-        ctx.lineTo(i,100-{{ligne.nbTodo}}/50);
-        ctx.lineTo(i+10,100-{{ligne.nbTodo}}/50);
-        ctx.lineTo(i+10,100);
-        ctx.fill();
-        i=i+10;
-        {% endfor %}
-        i=0;
-        ctx.fillStyle = "Lime";
-        {% for ligne in evolutionNbPoste %}
-        ctx.beginPath();
-        ctx.moveTo(i,100);
-        ctx.lineTo(i,100-{{ligne.nbMoca}}/50);
-        ctx.lineTo(i+10,100-{{ligne.nbMoca}}/50);
-        ctx.lineTo(i+10,100);
-        ctx.fill();
 
-        // Affichage de la date
-        ctx.save();
-        ctx.textAlign = "Center";
-        ctx.textBaseline = "Middle";
-        ctx.translate(i+5, 100-{{ligne.nbMoca}}/50);
-        ctx.rotate(-Math.PI/2);
-        ctx.globalAlpha = 1;
-        ctx.strokeStyle = "Grey";
-        ctx.globalAlpha = 0.50;
-        ctx.strokeText("{{ligne.dateMesure|date("d / m / Y")}}", 80, 6);
-        ctx.restore();
-        i=i+10;
-        {% endfor %}
-
-        </script>
+        <div id="histoNbPoste" style="width: 100%; height: 200px;"></div>
       </div>
     </div>
 
