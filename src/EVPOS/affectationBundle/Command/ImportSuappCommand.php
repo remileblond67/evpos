@@ -213,7 +213,7 @@ class ImportSuappCommand extends ContainerAwareCommand
         }
         $em->flush();
 
-        $requeteSUAPP = "SELECT m.id_module, c.type_poste_client FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'MOCA%'";
+        $requeteSUAPP = "SELECT distinct m.id_module, c.type_poste_client FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'MOCA%'";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
         oci_execute ($csr) ;
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
@@ -222,9 +222,10 @@ class ImportSuappCommand extends ContainerAwareCommand
 
             if($em->getRepository('EVPOSaffectationBundle:Uo')->isUo($codeUo)) {
                 $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
+                $output->write($codeUo." -> ".$typePoste . "...");
                 $uo->appendTypePoste($typePoste);
                 $em->persist($uo);
-                $output->writeln($codeUo." -> ".$typePoste);
+                $output->writeln("OK");
             }
         }
         $em->flush();

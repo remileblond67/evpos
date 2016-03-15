@@ -75,7 +75,7 @@ class UO
 
     /**
      * @var string
-     * @ORM\Column(name="type_poste", type="string", length=50, nullable=true)
+     * @ORM\Column(name="type_poste", type="string", length=100, nullable=true)
      */
     private $typePoste;
 
@@ -592,7 +592,7 @@ class UO
     /**
      * Get nbUtil
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbUtil()
     {
