@@ -402,7 +402,7 @@ class UO
         if ($this->typePoste == "") {
           $this->typePoste = $type;
         } else {
-          if (array_search($type, $this->typePoste) !== FALSE) {
+          if (strpbrk($type, $this->typePoste) !== FALSE) {
             $this->typePoste = $this->typePoste . "; " . $type;
           }
         }
