@@ -222,9 +222,10 @@ class ImportSuappCommand extends ContainerAwareCommand
 
             if($em->getRepository('EVPOSaffectationBundle:Uo')->isUo($codeUo)) {
                 $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
+                $output->write($codeUo." -> ".$typePoste);
                 $uo->appendTypePoste($typePoste);
                 $em->persist($uo);
-                $output->writeln($codeUo." -> ".$typePoste);
+                $output->writeln("OK");
             }
         }
         $em->flush();
