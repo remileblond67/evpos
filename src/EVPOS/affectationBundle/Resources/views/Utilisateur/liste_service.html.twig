@@ -51,6 +51,7 @@ function showOk() {
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
                 </td>
+                <td class="row">{{ 'service.numEnsemble'|trans }}</td>
             </tr>
         </thead>
         <tbody>
@@ -105,6 +106,7 @@ function showOk() {
                       {{ service.noteAvancementMoca }}
                     </progress>
                 </td>
+                <td>{{service.numEnsemble}}</td>
             </tr>
             {% endfor %}
         </tbody>
