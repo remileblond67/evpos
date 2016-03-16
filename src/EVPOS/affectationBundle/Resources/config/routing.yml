@@ -210,3 +210,6 @@ evpos_ctrl_util:
 evpos_ctrl_absent:
     path: /ctrl_absent
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeAbsentService }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

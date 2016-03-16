@@ -81,13 +81,19 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# Gestion des utilisateurs avec FOS User
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+
 
 # ----------------------------------------------------------------------------
 # Configuration spécifique nécessaire pour le support des dates dans Oracle
 # (Pas nécessaire pour mysql)
 services:
     listener:
-        class: Doctrine\DBAL\Event\Listeners\OracleSessionInit 
+        class: Doctrine\DBAL\Event\Listeners\OracleSessionInit
         tags:
             - { name: doctrine.event_listener, event: postConnect }
 # ----------------------------------------------------------------------------
