@@ -75,7 +75,7 @@ class UO
 
     /**
      * @var string
-     * @ORM\Column(name="type_poste", type="string", length=100, nullable=true)
+     * @ORM\Column(name="type_poste", type="string", length=255, nullable=true)
      */
     private $typePoste;
 
@@ -402,7 +402,9 @@ class UO
         if ($this->typePoste == "") {
           $this->typePoste = $type;
         } else {
-          $this->typePoste = $this->typePoste . "; " . $type;
+          if (strpbrk($type, $this->typePoste) !== FALSE) {
+            $this->typePoste = $this->typePoste . "; " . $type;
+          }
         }
     }
 
