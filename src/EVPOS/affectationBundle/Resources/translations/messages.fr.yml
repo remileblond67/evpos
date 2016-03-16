@@ -139,6 +139,7 @@ service:
     etatAvancement: Etat d'avancement des services
     noteAvancement: Avancement intégration
     nbPoste: Nb postes service
+    numEnsemble: Numéro d'ensemble
 
 riu:
     nom: Nom RIU

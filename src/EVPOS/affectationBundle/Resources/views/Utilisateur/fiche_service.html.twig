@@ -34,7 +34,7 @@
         					{{service.direction.codeDirection}} : {{service.direction.libDirection}}
         				</a>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <h4>{{'riu.nom'|trans}}</h4>
                 <ul>
                 {% for riu in service.listeRiu %}
@@ -51,6 +51,10 @@
                 <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%"></progress>
                 <br>
                 {{ service.noteAvancementMoca }}%
+            </div>
+            <div class="col-lg-1">
+              <h4>{{'service.numEnsemble'|trans}}</h4>
+              {{service.numEnsemble}}
             </div>
         </div>
     </div>
