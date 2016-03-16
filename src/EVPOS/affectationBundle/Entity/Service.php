@@ -112,7 +112,7 @@ class Service
      *
      * @var integer
      *
-     * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
+     * @ORM\Column(name="num_ensemble", type="integer", nullable=true)
      */
     private $numEnsemble;
 
