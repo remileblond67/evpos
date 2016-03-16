@@ -3,7 +3,7 @@ namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ApplicationController extends Controller
+class UpdateController extends Controller
 {
     public function updateAvancementAction($codeService) {
       $service = $this->getDoctrine()
