@@ -19,6 +19,14 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=30, nullable=false)
+     * @ORM\Id
+     */
+    private $username;
+
     public function __construct()
     {
         parent::__construct();
