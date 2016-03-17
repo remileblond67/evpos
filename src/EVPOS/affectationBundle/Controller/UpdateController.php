@@ -15,6 +15,7 @@ class UpdateController extends Controller
       $form = $this->createFormBuilder($service)
         ->add('codeService')
         ->add('numEnsemble')
+        ->add('save', SubmitType::class, array('label' => 'Mettre à jour'))
         ->getForm()
       ;
 
