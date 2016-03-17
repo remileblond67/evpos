@@ -1,6 +1,3 @@
-<center>
-<form action="{{path('evpos_update_ensemble_service')}}" method="post" {{ form_enctype(form) }}>
-   {{ form_widget(form) }}
-   <input type="submit" />
-</form>
-</center>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
