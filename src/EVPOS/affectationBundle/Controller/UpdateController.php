@@ -15,11 +15,11 @@ class UpdateController extends Controller
       $form = $this->createFormBuilder($service)
         ->add('codeService', 'text', array('read_only' => true))
         ->add('numEnsemble', 'integer')
-        ->add('save', 'submit', array('label' => 'Mettre à jour'))
+        ->add('save', 'submit', array('label' => 'app.update'))
         ->getForm()
       ;
 
-      if ($form->isSubmitted()) {
+      if ($form->isValid()) {
         return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']));
       }
 
