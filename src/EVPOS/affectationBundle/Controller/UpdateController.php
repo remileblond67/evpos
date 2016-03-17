@@ -2,8 +2,6 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UpdateController extends Controller
@@ -16,8 +14,8 @@ class UpdateController extends Controller
       ;
 
       $form = $this->createFormBuilder($service)
-        ->add('codeService', TextType::class)
-        ->add('numEnsemble', IntType::class)
+        ->add('codeService')
+        ->add('numEnsemble')
         ->add('save', SubmitType::class, array('label' => 'Mettre à jour'))
         ->getForm()
       ;
