@@ -2,6 +2,7 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UpdateController extends Controller
