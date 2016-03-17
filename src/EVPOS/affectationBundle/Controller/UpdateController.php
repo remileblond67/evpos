@@ -13,11 +13,17 @@ class UpdateController extends Controller
       ;
 
       $form = $this->createFormBuilder($service)
-        ->add('codeService')
+        ->add('codeService', 'text', 'readonly')
         ->add('numEnsemble')
         ->add('save', 'submit', array('label' => 'Mettre à jour'))
         ->getForm()
       ;
+
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+        return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']));
+      }
 
       return $this->render('EVPOSaffectationBundle:Utilisateur:update_ensemble_service.html.twig', array(
         'form' => $form->createView(),
