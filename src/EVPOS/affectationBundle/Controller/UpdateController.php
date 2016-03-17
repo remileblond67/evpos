@@ -19,8 +19,6 @@ class UpdateController extends Controller
         ->getForm()
       ;
 
-      $form->handleRequest($request);
-
       if ($form->isSubmitted() && $form->isValid()) {
         return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']));
       }
