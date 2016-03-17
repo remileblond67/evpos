@@ -213,7 +213,7 @@ evpos_ctrl_absent:
 
 # Fonctions de mise à jour
 evpos_update_ensemble_service:
-    path: /admin/ensemble_service/{codeService}
+    path: /update/ensemble_service/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancement }
 
 fos_user:
