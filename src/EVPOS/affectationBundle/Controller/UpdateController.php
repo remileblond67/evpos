@@ -33,7 +33,7 @@ class UpdateController extends Controller
 
     public function deleteCorrespUoAction($oldCodeUo, $newCodeUo) {
       $em = $this->getDoctrine()->getManager();
-      $this->get("session")->->getFlashBag()->add('Test');
+      $this->get("session")->getFlashBag()->add('Test');
 
       return $this->redirectToRoute('evpos_ctrl_corresp_uo');
     }
