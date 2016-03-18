@@ -21,7 +21,7 @@ class UpdateController extends Controller
       ;
 
       if ($form->handleRequest($request)->isValid()) {
-        return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']));
+        return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']->getData()));
       }
 
       return $this->render('EVPOSaffectationBundle:Utilisateur:update_ensemble_service.html.twig', array(
