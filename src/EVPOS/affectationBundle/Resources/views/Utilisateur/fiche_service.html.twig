@@ -54,7 +54,10 @@
             </div>
             <div class="col-lg-1">
               <h4>{{'service.numEnsemble'|trans}}</h4>
-              <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService })}}">{{service.numEnsemble}}</a>
+              {{service.numEnsemble}}
+              <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService})}}">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
             </div>
         </div>
     </div>
