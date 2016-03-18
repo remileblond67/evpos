@@ -33,7 +33,17 @@ class UpdateController extends Controller
 
     public function deleteCorrespUoAction($oldCodeUo, $newCodeUo) {
       $em = $this->getDoctrine()->getManager();
-      $this->get("session")->getFlashBag()->add('info', 'Association '.$oldCodeUo.'->'.$newCodeUo.'supprimée');
+      $fb = $this->get("session")->getFlashBag();
+
+      $correspUo = $em->getRepository('EVPOSaffectationBundle:correspUo')->getCorrespUo($oldCodeUo, $newCodeUo);
+
+      if ($correspUo === NULL) {
+        $fb->add('erreur', "Impossible de trouver l'Association");
+      } else {
+        $em->delete($correspUo);
+        $em->flush();
+        $fb->add('info', 'Association '.$oldCodeUo.'->'.$newCodeUo.' supprimée');
+      }
 
       return $this->redirectToRoute('evpos_ctrl_corresp_uo');
     }
