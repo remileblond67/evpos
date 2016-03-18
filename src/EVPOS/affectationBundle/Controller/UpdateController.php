@@ -40,7 +40,7 @@ class UpdateController extends Controller
       if ($correspUo === NULL) {
         $fb->add('erreur', "Impossible de trouver l'Association");
       } else {
-        $em->delete($correspUo);
+        $em->remove($correspUo);
         $em->flush();
         $fb->add('info', 'Association '.$oldCodeUo.'->'.$newCodeUo.' supprimée');
       }
