@@ -7,11 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 class UpdateController extends Controller
 {
     public function updateEnsembleServiceAction($codeService, Request $request) {
-      $service = $this->getDoctrine()
-        ->getManager()
-        ->getRepository('EVPOSaffectationBundle:Service')
-        ->getServiceFiche($codeService)
-      ;
+
+      $em = $this->getDoctrine()->getManager();
+      $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceFiche($codeService) ;
 
       $form = $this->createFormBuilder($service)
         ->add('codeService', 'text', array('read_only' => true))
@@ -21,7 +19,10 @@ class UpdateController extends Controller
       ;
 
       if ($form->handleRequest($request)->isValid()) {
-        return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']->getData()));
+        $service->setNumEnsemble($form['numEnsemble']->getData());
+        $em->persist($service);
+        $em->flush();
+        return $this->redirectToRoute('evpos_ficheService', array('codeService' => $codeService));
       }
 
       return $this->render('EVPOSaffectationBundle:Utilisateur:update_ensemble_service.html.twig', array(
