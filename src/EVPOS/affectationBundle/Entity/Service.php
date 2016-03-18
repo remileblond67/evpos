@@ -56,7 +56,7 @@ class Service
      */
     private $direction;
 
-	/**
+	  /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", cascade={"detach"})
      * @ORM\JoinTable(name="evpos_riu_service",
      *      joinColumns={@ORM\JoinColumn(name="service_riu", referencedColumnName="code_service")},
@@ -65,7 +65,7 @@ class Service
      *      }
      * )
 	 */
-	 private $listeRiu;
+	  private $listeRiu;
 
     /**
      * @ORM\OneToMany(targetEntity="Application", mappedBy="serviceAppli", cascade={"detach"})
@@ -106,6 +106,23 @@ class Service
      * @ORM\Column(name="note_avancement_moca", type="integer", nullable=true)
      */
     private $noteAvancementMoca;
+
+    /**
+     * Numéro d'ensemble de migration
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="num_ensemble", type="integer", nullable=true)
+     */
+    private $numEnsemble;
+
+    public function getNumEnsemble() {
+        return $this->numEnsemble;
+    }
+
+    public function setNumEnsemble($numEnsemble) {
+      $this->numEnsemble = $numEnsemble;
+    }
 
     /**
      * Retourne le nombre d'agents affectés au service

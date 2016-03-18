@@ -14,15 +14,27 @@
 <script>
 function showTodo() {
   $('#tabService').find('tbody').find('tr').show();
-  $('#tabService').find('tr.done').hide();
+  $('#tabService').find('tbody').find('tr.done').hide();
 }
 function showAll() {
   $('#tabService').find('tbody').find('tr').show();
-  $('#tabService').find('tr').show();
+  $('#tabService').find('tbody').find('tr').show();
 }
 function showOk() {
   $('#tabService').find('tbody').find('tr').hide();
-  $('#tabService').find('tr.done').show();
+  $('#tabService').find('tbody').find('tr.done').show();
+}
+
+function showEnsembleTodo() {
+  $('#tabService').find('tbody').find('tr').show();
+  $('#tabService').find('tbody').find('tr.ensemble').hide();
+}
+function showEnsembleAll() {
+  $('#tabService').find('tbody').find('tr').show();
+}
+function showEnsembleOk() {
+  $('#tabService').find('tbody').find('tr').hide();
+  $('#tabService').find('tbody').find('tr.ensemble').show();
 }
 </script>
     <table id="tabService" class="sortable table table-striped table-bordered table-hover dataTable no-footer">
@@ -51,15 +63,24 @@ function showOk() {
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
                 </td>
+                <td class="row">
+                  {{ 'service.numEnsemble'|trans }}
+                  <br>
+                  <button type="button" onclick="showEnsembleAll()" title="{{'app.all'|trans}}">
+                    {{'app.all'|trans}}
+                  </button>
+                  <button type="button" onclick="showEnsembleTodo()" title="{{'app.todo'|trans}}">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                  </button>
+                  <button type="button" onclick="showEnsembleOk()" title="{{'app.ok'|trans}}">
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </button>
+                </td>
             </tr>
         </thead>
         <tbody>
             {% for service in listeService %}
-            <tr class="gradeA odd
-              {% if (service.noteAvancementMoca == "100" or service.nbAgent == 0) %}
-              done
-              {% endif %}
-            ">
+            <tr class="gradeA odd {% if (service.noteAvancementMoca == "100" or service.nbAgent == 0) %}done{% endif %} {% if (service.numEnsemble != "" or service.numEnsemble != 0) %}ensemble{% endif %}">
                 <td class="">
                   <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
                     {{service.direction.codeDirection}}
@@ -104,6 +125,12 @@ function showOk() {
                     <progress value="{{ service.noteAvancementMoca }}" max="100" title="{{ service.noteAvancementMoca }}%">
                       {{ service.noteAvancementMoca }}
                     </progress>
+                </td>
+                <td>
+                  {{service.numEnsemble}}
+                  <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService})}}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </a>
                 </td>
             </tr>
             {% endfor %}
