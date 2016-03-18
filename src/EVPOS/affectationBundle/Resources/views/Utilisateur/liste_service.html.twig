@@ -24,6 +24,19 @@ function showOk() {
   $('#tabService').find('tbody').find('tr').hide();
   $('#tabService').find('tr.done').show();
 }
+
+function showAvancementTodo() {
+  $('#tabService').find('tbody').find('tr').show();
+  $('#tabService').find('tr.ensemble').hide();
+}
+function showAvancementAll() {
+  $('#tabService').find('tbody').find('tr').show();
+  $('#tabService').find('tr').show();
+}
+function showAvancementOk() {
+  $('#tabService').find('tbody').find('tr').hide();
+  $('#tabService').find('tr.ensemble').show();
+}
 </script>
     <table id="tabService" class="sortable table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
@@ -53,6 +66,16 @@ function showOk() {
                 </td>
                 <td class="row">
                   {{ 'service.numEnsemble'|trans }}
+                  <br>
+                  <button type="button" onclick="showEnsembleAll()" title="{{'app.all'|trans}}">
+                    {{'app.all'|trans}}
+                  </button>
+                  <button type="button" onclick="showEnsembleTodo()" title="{{'app.todo'|trans}}">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                  </button>
+                  <button type="button" onclick="showEnsembleOk()" title="{{'app.ok'|trans}}">
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </button>
                 </td>
             </tr>
         </thead>
@@ -61,6 +84,9 @@ function showOk() {
             <tr class="gradeA odd
               {% if (service.noteAvancementMoca == "100" or service.nbAgent == 0) %}
               done
+              {% endif %}
+              {% if (service.numEnsemble != "" or service.numEnsemble != 0) %}
+              ensembleensemble
               {% endif %}
             ">
                 <td class="">
