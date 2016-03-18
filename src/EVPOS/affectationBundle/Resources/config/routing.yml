@@ -214,7 +214,7 @@ evpos_ctrl_absent:
 # Fonctions de mise à jour
 evpos_update_ensemble_service:
     path: /update/ensemble_service/{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Update:updateAvancement }
+    defaults: { _controller: EVPOSaffectationBundle:Update:updateEnsembleService }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
