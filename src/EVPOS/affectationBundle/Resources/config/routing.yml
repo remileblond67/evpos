@@ -216,5 +216,13 @@ evpos_update_service:
     path: /update/service/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Update:updateService }
 
+evpos_delete_corresp_uo:
+    path: /delete/corresp_uo/{oldCodeUo}/{newCodeUo}
+    defaults: { _controller: EVPOSaffectationBundle:Update:deleteCorrespUo }
+
+evpos_add_corresp_uo:
+    path: /add/corresp_uo
+    defaults: { _controller: EVPOSaffectationBundle:Update:addCorrespUo }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -7,6 +7,37 @@
     <h4>{{ 'uo.corresp'|trans }}</h4>
   </div>
 </div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addRows([
+          [ 'A', 'X', 5 ],
+          [ 'A', 'Y', 7 ],
+          [ 'A', 'Z', 6 ],
+          [ 'B', 'X', 2 ],
+          [ 'B', 'Y', 9 ],
+          [ 'B', 'Z', 4 ]
+        ]);
+
+        // Sets chart options.
+        var options = {
+          width: 600,
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+    <div id="sankey_basic" style="width: 900px; height: 300px;"></div>
+
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
     <tr>
@@ -20,8 +51,17 @@
       <td>{{corresp.oldCodeUo}}</td>
       <td>
         <div class="row">
-          <div class="col-lg-11">{{corresp.newUo.codeUo}}</div>
-          <div class="col-lg-1"><span class="glyphicon glyphicon-trash"></span></div>
+          <div class="col-lg-10">{{corresp.newUo.codeUo}}</div>
+          <div class="col-lg-1">
+            <a href="{{ path('') }">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </div>
+          <div class="col-lg-1">
+            <a href="{{ path('evpos_delete_corresp', {{'oldCodeUo' : corresp.oldCodeUo}, {'newCodeUo' : corresp.newUo.codeUo}}) }}">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </div>
         </div>
       </td>
     </tr>
