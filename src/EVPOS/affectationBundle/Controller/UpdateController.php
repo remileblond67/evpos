@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UpdateController extends Controller
 {
-    public function updateEnsembleServiceAction($codeService, Request $request) {
+    public function updateServiceAction($codeService, Request $request) {
 
       $em = $this->getDoctrine()->getManager();
       $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceFiche($codeService) ;
