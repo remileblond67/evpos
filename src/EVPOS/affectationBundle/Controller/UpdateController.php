@@ -25,7 +25,7 @@ class UpdateController extends Controller
         return $this->redirectToRoute('evpos_ficheService', array('codeService' => $codeService));
       }
 
-      return $this->render('EVPOSaffectationBundle:Utilisateur:update_ensemble_service.html.twig', array(
+      return $this->render('EVPOSaffectationBundle:Utilisateur:update_service.html.twig', array(
         'form' => $form->createView(),
       ));
     }
