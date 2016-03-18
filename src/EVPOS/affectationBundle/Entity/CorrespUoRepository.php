@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class CorrespUoRepository extends EntityRepository {
   public function getCorrespUo($oldCodeUo, $newCodeUo) {
     $query = $this->createQueryBuilder('c')
-      ->leftJoin('c.newUo', u)
+      ->leftJoin('c.newUo', 'u')
       ->addSelect('c')
       ->addSelect('u')
       ->setParameter('oldCodeUo', $oldCodeUo)
