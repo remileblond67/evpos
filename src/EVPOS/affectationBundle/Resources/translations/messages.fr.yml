@@ -15,8 +15,6 @@ app:
     all: Tout
     ok: Prêt
     legal: Mentions légales
-    user: Utilisateur connecté
-    logout: Se déconnecter
 
 user:
     connect: Se connecter
