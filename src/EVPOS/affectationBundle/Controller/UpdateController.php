@@ -32,7 +32,7 @@ class UpdateController extends Controller
     }
 
     public function deleteCorrespUoAction($oldCodeUo, $newCodeUo) {
-
+      $em = $this->getDoctrine()->getManager();
     }
 
     public function addCorrespUoAction(Request $request) {
