@@ -35,7 +35,7 @@ class UpdateController extends Controller
       $em = $this->getDoctrine()->getManager();
       $fb = $this->get("session")->getFlashBag();
 
-      $correspUo = $em->getRepository('EVPOSaffectationBundle:correspUo')->getCorrespUo($oldCodeUo, $newCodeUo);
+      $correspUo = $em->getRepository('EVPOSaffectationBundle:CorrespUo')->getCorrespUo($oldCodeUo, $newCodeUo);
 
       if ($correspUo === NULL) {
         $fb->add('erreur', "Impossible de trouver l'Association");
