@@ -54,7 +54,7 @@ function drawChart() {
             <div class="row">
               <div class="col-lg-10">{{corresp.newUo.codeUo}}</div>
               <div class="col-lg-2">
-                <a href="{{ path('evpos_delete_corresp_uo', {{'oldCodeUo' : corresp.oldCodeUo}, {'newCodeUo' : corresp.newUo.codeUo}})}}">
+                <a href="{{ path('evpos_delete_corresp_uo', {'oldCodeUo' : corresp.oldCodeUo, 'newCodeUo' : corresp.newUo.codeUo})}}">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
               </div>
