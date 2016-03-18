@@ -14,8 +14,6 @@ class UpdateController extends Controller
       ;
 
       $form = $this->createFormBuilder($service)
-        ->setAction($this->generateUrl('evpos_update_ensemble_service'))
-        ->setMethod('GET')
         ->add('codeService', 'text', array('read_only' => true))
         ->add('numEnsemble', 'integer')
         ->add('save', 'submit', array('label' => 'app.update'))
