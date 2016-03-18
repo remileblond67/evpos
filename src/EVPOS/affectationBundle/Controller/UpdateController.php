@@ -2,10 +2,11 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class UpdateController extends Controller
 {
-    public function updateAvancementAction($codeService) {
+    public function updateAvancementAction($codeService, Request $request) {
       $service = $this->getDoctrine()
         ->getManager()
         ->getRepository('EVPOSaffectationBundle:Service')
@@ -13,13 +14,15 @@ class UpdateController extends Controller
       ;
 
       $form = $this->createFormBuilder($service)
+        ->setAction($this->generateUrl('evpos_update_ensemble_service'))
+        ->setMethod('GET')
         ->add('codeService', 'text', array('read_only' => true))
         ->add('numEnsemble', 'integer')
         ->add('save', 'submit', array('label' => 'app.update'))
         ->getForm()
       ;
 
-      if ($form->isValid()) {
+      if ($form->handleRequest($request)->isValid()) {
         return $this->redirectToRoute('evpos_ficheService', array('codeService' => $form['codeService']));
       }
 
