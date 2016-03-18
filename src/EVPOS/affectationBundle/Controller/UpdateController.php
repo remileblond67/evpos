@@ -38,8 +38,5 @@ class UpdateController extends Controller
     public function addCorrespUoAction(Request $request) {
       $em = $this->getDoctrine()->getManager();
       $correspUo = new CorrespUo();
-
-      $form = $this->createFormBuilder($correspUo)
-        ->add('oldCodeUo', 'text')
     }
 }
