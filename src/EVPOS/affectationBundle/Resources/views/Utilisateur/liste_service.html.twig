@@ -14,15 +14,15 @@
 <script>
 function showTodo() {
   $('#tabService').find('tbody').find('tr').show();
-  $('#tabService').find('tr.done').hide();
+  $('#tabService').find('tbody').find('tr.done').hide();
 }
 function showAll() {
   $('#tabService').find('tbody').find('tr').show();
-  $('#tabService').find('tr').show();
+  $('#tabService').find('tbody').find('tr').show();
 }
 function showOk() {
   $('#tabService').find('tbody').find('tr').hide();
-  $('#tabService').find('tr.done').show();
+  $('#tabService').find('tbody').find('tr.done').show();
 }
 
 function showAvancementTodo() {
@@ -50,7 +50,7 @@ function showAvancementOk() {
                 <td class="row">{{ 'service.nbAcces'|trans }}</td>
 			          <td class="row">{{ 'service.nbAccesUo'|trans }}</td>
                 <td class="row">{{ 'service.nbPoste'|trans}}</td>
-                <td class="row">
+                <th class="row">
                   {{ 'service.noteAvancement'|trans }}
                   <br>
                   <button type="button" onclick="showAll()" title="{{'app.all'|trans}}">
@@ -62,8 +62,8 @@ function showAvancementOk() {
                   <button type="button" onclick="showOk()" title="{{'app.ok'|trans}}">
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                </td>
-                <td class="row">
+                </th>
+                <th class="row">
                   {{ 'service.numEnsemble'|trans }}
                   <br>
                   <button type="button" onclick="showEnsembleAll()" title="{{'app.all'|trans}}">
@@ -75,7 +75,7 @@ function showAvancementOk() {
                   <button type="button" onclick="showEnsembleOk()" title="{{'app.ok'|trans}}">
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                </td>
+                </th>
             </tr>
         </thead>
         <tbody>
