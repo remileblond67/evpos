@@ -18,12 +18,9 @@
         data.addColumn('string', 'To');
         data.addColumn('number', 'Weight');
         data.addRows([
-          [ 'A', 'X', 5 ],
-          [ 'A', 'Y', 7 ],
-          [ 'A', 'Z', 6 ],
-          [ 'B', 'X', 2 ],
-          [ 'B', 'Y', 9 ],
-          [ 'B', 'Z', 4 ]
+          {% for corresp in listeCorresp %}
+          [ '{{corresp.oldCodeUo}}', '{{corresp.newUo.codeUo}}', 5 ],
+          {% endfor %}
         ]);
 
         // Sets chart options.
@@ -36,7 +33,7 @@
         chart.draw(data, options);
       }
     </script>
-    <div id="sankey_basic" style="width: 900px; height: 300px;"></div>
+    <div id="sankey_basic" style="width: 100%; height: 800px;"></div>
 
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
