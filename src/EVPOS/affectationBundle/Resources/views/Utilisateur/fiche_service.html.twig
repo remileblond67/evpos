@@ -54,7 +54,7 @@
             </div>
             <div class="col-lg-1">
               <h4>{{'service.numEnsemble'|trans}}</h4>
-              <a href="{{ path('evpos_update_service')}}">{{service.numEnsemble}}</a>
+              <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService })}}">{{service.numEnsemble}}</a>
             </div>
         </div>
     </div>
