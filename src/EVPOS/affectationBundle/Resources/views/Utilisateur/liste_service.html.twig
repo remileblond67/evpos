@@ -53,9 +53,6 @@ function showOk() {
                 </td>
                 <td class="row">
                   {{ 'service.numEnsemble'|trans }}
-                  <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService})}}">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </a>
                 </td>
             </tr>
         </thead>
@@ -111,7 +108,12 @@ function showOk() {
                       {{ service.noteAvancementMoca }}
                     </progress>
                 </td>
-                <td>{{service.numEnsemble}}</td>
+                <td>
+                  {{service.numEnsemble}}
+                  <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService})}}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
