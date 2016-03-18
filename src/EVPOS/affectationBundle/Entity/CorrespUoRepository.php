@@ -18,7 +18,7 @@ class CorrespUoRepository extends EntityRepository {
       ->addSelect('u')
       ->setParameter('oldCodeUo', $oldCodeUo)
       ->setParameter('newCodeUo', $newCodeUo)
-      ->where('c.codeUo = :oldCodeUo and u.codeUo = :newCodeUo')
+      ->where('c.oldCodeUo = :oldCodeUo and u.codeUo = :newCodeUo')
       ->getQuery()
     ;
     return $query->getOneOrNullResult();
