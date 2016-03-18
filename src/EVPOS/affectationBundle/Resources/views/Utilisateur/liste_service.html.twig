@@ -27,15 +27,14 @@ function showOk() {
 
 function showAvancementTodo() {
   $('#tabService').find('tbody').find('tr').show();
-  $('#tabService').find('tr.ensemble').hide();
+  $('#tabService').find('tbody').find('tr.ensemble').hide();
 }
 function showAvancementAll() {
   $('#tabService').find('tbody').find('tr').show();
-  $('#tabService').find('tr').show();
 }
 function showAvancementOk() {
   $('#tabService').find('tbody').find('tr').hide();
-  $('#tabService').find('tr.ensemble').show();
+  $('#tabService').find('tbody').find('tr.ensemble').show();
 }
 </script>
     <table id="tabService" class="sortable table table-striped table-bordered table-hover dataTable no-footer">
