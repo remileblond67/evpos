@@ -37,6 +37,15 @@ function showAvancementOk() {
   $('#tabService').find('tbody').find('tr.ensemble').show();
 }
 </script>
+<button type="button" onclick="showEnsembleAll()" title="{{'app.all'|trans}}">
+  {{'app.all'|trans}}
+</button>
+<button type="button" onclick="showEnsembleTodo()" title="{{'app.todo'|trans}}">
+  <span class="glyphicon glyphicon-refresh"></span>
+</button>
+<button type="button" onclick="showEnsembleOk()" title="{{'app.ok'|trans}}">
+  <span class="glyphicon glyphicon-ok"></span>
+</button>
     <table id="tabService" class="sortable table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
             <tr>
@@ -50,7 +59,7 @@ function showAvancementOk() {
                 <td class="row">{{ 'service.nbAcces'|trans }}</td>
 			          <td class="row">{{ 'service.nbAccesUo'|trans }}</td>
                 <td class="row">{{ 'service.nbPoste'|trans}}</td>
-                <th class="row">
+                <td class="row">
                   {{ 'service.noteAvancement'|trans }}
                   <br>
                   <button type="button" onclick="showAll()" title="{{'app.all'|trans}}">
@@ -62,20 +71,10 @@ function showAvancementOk() {
                   <button type="button" onclick="showOk()" title="{{'app.ok'|trans}}">
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                </th>
-                <th class="row">
+                </td>
+                <td class="row">
                   {{ 'service.numEnsemble'|trans }}
-                  <br>
-                  <button type="button" onclick="showEnsembleAll()" title="{{'app.all'|trans}}">
-                    {{'app.all'|trans}}
-                  </button>
-                  <button type="button" onclick="showEnsembleTodo()" title="{{'app.todo'|trans}}">
-                    <span class="glyphicon glyphicon-refresh"></span>
-                  </button>
-                  <button type="button" onclick="showEnsembleOk()" title="{{'app.ok'|trans}}">
-                    <span class="glyphicon glyphicon-ok"></span>
-                  </button>
-                </th>
+                </td>
             </tr>
         </thead>
         <tbody>
