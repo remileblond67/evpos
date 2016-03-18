@@ -43,6 +43,7 @@
                     <td>{{'service.nbAgent'|trans}}</td>
                     <td>{{'service.nbPoste'|trans}}</td>
                     <td>{{'service.noteAvancement'|trans}}</td>
+                    <td>{{ 'service.numEnsemble'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
@@ -63,7 +64,7 @@
                         {{service.noteAvancementMoca}}
                       </progress>
                     </td>
-
+                    <td class="gradeA odd">{{service.numEnsemble}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
