@@ -50,9 +50,12 @@ class CtrlController extends Controller
     ;
 
     if ($form->handleRequest($request)->isValid()) {
-      // $correspUo->setOldCodeUo($form['oldCodeUo']->getData());
-      // $em->persist($correspUo);
-      // $em->flush();
+      $correspUo->setOldCodeUo($form['oldCodeUo']->getData());
+      $uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($form['newUo']->getData());
+      $correspUo->setNewUo($uo);
+      $em->persist($correspUo);
+
+      $em->flush();
       return $this->redirectToRoute('evpos_ctrl_corresp_uo');
     }
 
