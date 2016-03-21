@@ -40,7 +40,7 @@ class CtrlController extends Controller
     $correspUo = new correspUo();
 
     $form = $this->createFormBuilder($correspUo)
-    ->add('oldCodeUo')
+    ->add('oldCodeUo', 'text')
     ->add('newUo', 'entity', array(
       'class'    => 'EVPOSaffectationBundle:UO',
       'property' => 'codeUo',
@@ -50,7 +50,7 @@ class CtrlController extends Controller
     ;
 
     if ($form->handleRequest($request)->isValid()) {
-      $correspUo->setOldCodeUo($form['oldCodeUo']->getData());
+      $correspUo->setOldCodeUo(strtoupper($form['oldCodeUo']->getData()));
       $uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($form['newUo']->getData());
       $correspUo->setNewUo($uo);
       $em->persist($correspUo);
