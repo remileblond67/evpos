@@ -41,7 +41,6 @@ class CtrlController extends Controller
 
     $form = $this->createFormBuilder($correspUo)
       ->add('oldCodeUo')
-      ->add('newUo')
       ->getForm()
     ;
 
