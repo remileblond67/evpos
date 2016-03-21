@@ -204,7 +204,7 @@ evpos_ctrl_corresp_uo:
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeCorrespUo }
 
 evpos_ctrl_add_corresp_uo:
-    path: /create/ctrl_corresp_uo
+    path: /update/ctrl_corresp_uo
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:addCorrespUo }
 
 evpos_ctrl_util:
