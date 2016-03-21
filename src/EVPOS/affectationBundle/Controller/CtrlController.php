@@ -41,6 +41,7 @@ class CtrlController extends Controller
 
     $form = $this->createFormBuilder($correspUo)
       ->add('oldCodeUo')
+      ->add('save', 'submit', array('label' => 'app.add'))
       ->getForm()
     ;
 
