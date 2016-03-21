@@ -33,16 +33,20 @@ class CtrlController extends Controller
   }
 
   /**
-   * Ajout d'une nouvelle correspondances de code UO
-   */
+  * Ajout d'une nouvelle correspondances de code UO
+  */
   public function addCorrespUoAction(Request $request) {
     $em = $this->getDoctrine()->getManager();
     $correspUo = new correspUo();
 
     $form = $this->createFormBuilder($correspUo)
-      ->add('oldCodeUo')
-      ->add('save', 'submit', array('label' => 'app.add'))
-      ->getForm()
+    ->add('oldCodeUo')
+    ->add('newUo', 'entity', array(
+      'class'    => 'EVPOSaffectationBundle:UO',
+      'property' => 'codeUo',
+      'multiple' => false ))
+    ->add('save', 'submit', array('label' => 'app.add'))
+    ->getForm()
     ;
 
     if ($form->handleRequest($request)->isValid()) {

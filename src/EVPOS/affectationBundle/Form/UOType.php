@@ -17,19 +17,9 @@ class UOType extends AbstractType
         $builder
             ->add('codeUo')
             ->add('nomUo')
-            ->add('migMoca')
-            ->add('ancienCitrix')
-            ->add('avancementMoca')
-            ->add('avancementMocaDetail')
-            ->add('noteAvancementMoca')
-            ->add('typePoste')
-            ->add('existeSuapp')
-            ->add('nbUtil')
-            ->add('appli')
-            ->add('listePostes')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
