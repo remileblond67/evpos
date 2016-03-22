@@ -141,6 +141,7 @@ service:
     noteAvancement: Avancement intégration
     nbPoste: Nb postes service
     numEnsemble: Numéro d'ensemble
+    treeView: Vue globale
 
 riu:
     nom: Nom RIU

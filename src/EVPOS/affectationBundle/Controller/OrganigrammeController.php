@@ -8,6 +8,11 @@ use EVPOS\affectationBundle\Entity\Service;
 
 class OrganigrammeController extends Controller
 {
+    // TreeView des services et direction, en fonction du nombre d'agents
+    public function treeViewOrgaAction() {
+      return $this->render('EVPOSaffectationBundle:Organigramme:treeview_service.html.twig');
+    }
+
     // Liste des secteurs
     public function listeSecteurAction() {
       $listeSecteur = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:Secteur')->findAll();
