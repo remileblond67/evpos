@@ -1,5 +1,5 @@
 {% extends "EVPOSaffectationBundle::layout.html.twig" %}
-{% block title%}{{ 'secteur.liste'|trans }}{% endblock%}
+{% block title%}{{ 'service.treeView'|trans }}{% endblock%}
 
 {% block content %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -12,7 +12,7 @@ function drawChart() {
     ['Service', 'Parent', 'Nb poste', 'Avancement'],
     ['Eurométropole',    null,   0,                               0],
     {% for direction in listeDirection %}
-    ['{{direction.codeDirection}}', 'Eurométropole', 0, 0]
+    ['{{direction.codeDirection}}', 'Eurométropole', {{direction.nbPoste}}, {{direction.noteAvancementMoca}}]
     {% endfor %}
   ]);
 
@@ -32,7 +32,7 @@ function drawChart() {
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">{{ 'service.TreeView'|trans }}</h3>
+    <h3 class="panel-title">{{ 'service.treeView'|trans }}</h3>
   </div>
   <div class="panel-body">
     <div id="chart_div" style="width: 100%; height: 500px;"></div>
