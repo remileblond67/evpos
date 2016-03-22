@@ -14,6 +14,10 @@ function drawChart() {
     {% for direction in listeDirection %}
     ['{{direction.codeDirection}}', 'Eurométropole', {{direction.nbPoste}}, {{direction.noteAvancementMoca}}]
     {% endfor %}
+    {% for service in listeDirection %}
+    ['{{service.codeService}}', '{{service.direction.codeDirection}}', {{service.nbPoste}}, {{service.noteAvancementMoca}}]
+    {% endfor %}
+
   ]);
 
   tree = new google.visualization.TreeMap(document.getElementById('chart_div'));

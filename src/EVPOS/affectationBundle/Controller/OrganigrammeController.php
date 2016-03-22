@@ -13,7 +13,8 @@ class OrganigrammeController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->findAll();
-      return $this->render('EVPOSaffectationBundle:Organigramme:treeview_service.html.twig', ['listeDirection' => $listeDirection]);
+      $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
+      return $this->render('EVPOSaffectationBundle:Organigramme:treeview_service.html.twig', ['listeDirection' => $listeDirection, 'listeService' => $listeService]);
     }
 
     // Liste des secteurs
