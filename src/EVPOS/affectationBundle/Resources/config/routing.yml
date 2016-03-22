@@ -203,6 +203,10 @@ evpos_ctrl_corresp_uo:
     path: /ctrl_corresp_uo
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeCorrespUo }
 
+evpos_ctrl_add_corresp_uo:
+    path: /update/ctrl_corresp_uo
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:addCorrespUo }
+
 evpos_ctrl_util:
     path: /ctrl_util
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUtilisateurInconnu }
@@ -215,6 +219,14 @@ evpos_ctrl_absent:
 evpos_update_service:
     path: /update/service/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Update:updateService }
+
+evpos_delete_corresp_uo:
+    path: /delete/corresp_uo/{oldCodeUo}/{newCodeUo}
+    defaults: { _controller: EVPOSaffectationBundle:Update:deleteCorrespUo }
+
+evpos_add_corresp_uo:
+    path: /add/corresp_uo
+    defaults: { _controller: EVPOSaffectationBundle:Update:addCorrespUo }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

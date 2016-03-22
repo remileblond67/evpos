@@ -59,7 +59,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
     $output->writeln("Prise en compte des correspondances de code UO");
     $listeCorresp = $em->getRepository('EVPOSaffectationBundle:CorrespUo')->findAll();
     foreach($listeCorresp as $cor) {
-      $correspCode[$cor->getOldCodeUo()] = $cor->getNewUo()->getCodeUo();
+      $correspCode[strtoupper($cor->getOldCodeUo())] = strtoupper($cor->getNewUo()->getCodeUo());
       //$output->writeln("- " . $cor->getOldCodeUo() . " -> " . $cor->getNewUo()->getCodeUo());
     }
     unset($listeCorresp);
