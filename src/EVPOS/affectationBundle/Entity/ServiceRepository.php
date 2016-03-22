@@ -43,7 +43,7 @@ class ServiceRepository extends EntityRepository
     public function getServicesActifs() {
         $query = $this->createQueryBuilder('s')
             ->orderBy('s.codeService')
-            ->where('s.codeService is not null and (nbAgent > 0 or nbAgent is not null)')
+            ->where('s.codeService is not null and s.nbAgent > 0')
             ->getQuery()
         ;
 
