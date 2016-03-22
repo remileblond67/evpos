@@ -15,7 +15,7 @@ function drawChart() {
     ['{{direction.codeDirection}}', 'Eurométropole', {{direction.nbPoste}}, {{direction.noteAvancementMoca}}]
     {% endfor %}
     {% for service in listeService %}
-    ['{{service.codeService}}', '{{service.direction.codeDirection}}', {{service.nbPoste}}, {{service.noteAvancementMoca}}]
+    ['{{service.codeService}}', '{% if service.direction %}{{service.direction.codeDirection}}{% endif %}', {{service.nbPoste}}, {{service.noteAvancementMoca}}]
     {% endfor %}
 
   ]);
