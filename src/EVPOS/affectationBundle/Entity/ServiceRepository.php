@@ -38,6 +38,19 @@ class ServiceRepository extends EntityRepository
     }
 
     /**
+     * Retourne la liste de tous les services actifs
+     */
+    public function getServicesActifs() {
+        $query = $this->createQueryBuilder('s')
+            ->orderBy('s.codeService')
+            ->where('s.codeService is not null and nbAgent > 0')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+
+    /**
      * Retourne la liste de tous les services avec les informations liées
      */
     public function getServicesFull() {

@@ -12,8 +12,8 @@ class OrganigrammeController extends Controller
     public function treeViewOrgaAction() {
       $em = $this->getDoctrine()->getManager();
 
-      $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->findAll();
-      $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->findAll();
+      $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirections();
+      $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServicesActifs();
       return $this->render('EVPOSaffectationBundle:Organigramme:treeview_service.html.twig', ['listeDirection' => $listeDirection, 'listeService' => $listeService]);
     }
 
