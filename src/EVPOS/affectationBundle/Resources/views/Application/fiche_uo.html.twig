@@ -87,6 +87,7 @@
                         <td class="row">{{ 'service.nom'|trans }}</td>
                         <td class="row">{{ 'service.noteAvancement'|trans}}</td>
                         <td class="row">{{ 'uo.nbUtil'|trans}}</td>
+                        <td class="row">{{ 'service.numEnsemble'|trans}}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,6 +122,9 @@
                     </td>
                     <td>
                       {{accesServ.nbUtil}}
+                    </td>
+                    <td>
+                      {{accesServ.serviceAcces.numEnsemble}}
                     </td>
                 </tr>
                 {% endfor %}
