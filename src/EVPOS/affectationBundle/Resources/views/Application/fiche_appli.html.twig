@@ -193,6 +193,7 @@
                         <td class="row">{{ 'service.code'|trans }}</td>
                         <td class="row">{{ 'service.nom'|trans }}</td>
                         <td class="row">{{ 'service.noteAvancement'|trans}}</td>
+                        <td class="row">{{ 'service.numEnsemble'|trans}}</td>
                     </tr>
                 </thead>
             {% for accesServ in appli.listeServiceAcces%}
@@ -217,6 +218,7 @@
                         {{ accesServ.serviceAcces.libService}}
                       </a>
                     </td>
+                    <td>{{service.numEnsemble}}</td>
                     <td>
                       <progress value="{{accesServ.serviceAcces.noteAvancementMoca}}" max="100" title="{{accesServ.serviceAcces.noteAvancementMoca}}%">
                         {{accesServ.serviceAcces.noteAvancementMoca}}
