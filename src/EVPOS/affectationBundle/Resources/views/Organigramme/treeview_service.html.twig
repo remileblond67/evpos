@@ -35,7 +35,7 @@ function drawChart() {
       return '<div style="background:#fd9; padding:10px; border-style:solid">' +
              '<span style="font-family:Courier"><b>' + data.getValue(row, 0) + '</b></span><br>' +
              + size + ' postes<br>'
-             + data.getColumnLabel(3) + ' : ' + data.getValue(row, 3) + '<br>'
+             + data.getColumnLabel(3) + ' : ' + data.getValue(row, 3) + '%<br>'
              + data.getColumnLabel(4) + ' : ' + data.getValue(row, 4) + '<br>'
              + '<a href="service/'+data.getValue(row, 0).replace('Service ', '')+'">Fiche service</a>'
              + ' </div>';
