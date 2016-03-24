@@ -33,11 +33,9 @@ function drawChart() {
   function showFullTooltip(row, size, value) {
       return '<div style="background:#fd9; padding:10px; border-style:solid">' +
              '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +
-             '</b>, ' + data.getValue(row, 1) + ', ' + data.getValue(row, 2) +
-             ', ' + data.getValue(row, 3) + '</span><br>' +
-             'Datatable row: ' + row + '<br>' +
-  	   data.getColumnLabel(2) +
-             ' (total value of this cell and its children): ' + size + '<br>' +
+             '</b></span><br>' +
+             + data.getColumnLabel(2) +
+             ' (somme des enfants): ' + size + '<br>' +
   	   data.getColumnLabel(3) + ': ' + value + ' </div>';
     }
 }
