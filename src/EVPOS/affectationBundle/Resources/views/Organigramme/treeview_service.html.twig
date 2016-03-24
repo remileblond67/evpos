@@ -36,8 +36,8 @@ function drawChart() {
              '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +
              '</b></span><br>' +
              +'Nombre de postes : ' + size + '<br>'
-             + data.getColumnLabel(3) + ': ' + value
-             + '<a href="'+data.getValue(row, 0).replace('Service ', '')+'">Fiche service</a>'
+             + data.getColumnLabel(3) + ': ' + value + '<br>'
+             + '<a href="service/'+data.getValue(row, 0).replace('Service ', '')+'">Fiche service</a>'
              + ' </div>';
     }
 }
