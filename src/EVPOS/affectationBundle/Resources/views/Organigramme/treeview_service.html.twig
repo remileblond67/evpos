@@ -37,7 +37,7 @@ function drawChart() {
              '</b></span><br>' +
              +'Nombre de postes : ' + size + '<br>'
              + data.getColumnLabel(3) + ': ' + value + ' </div>'
-             + '<a href="'+getValue(row, 0).replace('Service ', '')+'">Fiche service</a>';
+             + '<a href="'+data.getValue(row, 0).replace('Service ', '')+'">Fiche service</a>';
     }
 }
 </script>
