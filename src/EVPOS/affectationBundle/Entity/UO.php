@@ -391,6 +391,10 @@ class UO
         $this->typePoste = $type;
     }
 
+    public function delTypePoste() {
+      $this->typePoste = NULL;
+    }
+
     public function getTypePoste() {
         return $this->typePoste;
     }
