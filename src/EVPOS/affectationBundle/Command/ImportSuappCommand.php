@@ -223,8 +223,8 @@ class ImportSuappCommand extends ContainerAwareCommand
 
             $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
             if($uo !== NULL) {
-                $uo->appendTypePoste($typePoste);
-                $em->persist($uo);
+                //$uo->appendTypePoste($typePoste);
+                //$em->persist($uo);
                 $output->writeln("OK");
             } else {
                 $output->writeln("Non trouvé");
