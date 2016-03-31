@@ -206,12 +206,14 @@ class ImportSuappCommand extends ContainerAwareCommand
 
 
         // Mise à jour du type de poste client
-        $listeUo = $em->getRepository('EVPOSaffectationBundle:Uo')->findAll();
-        foreach ($uo as $listeUo) {
-          $uo->setTypePoste(NULL);
+        $output->write("Suppression des types de poste des UO : ");
+        $listeUo = $em->getRepository('EVPOSaffectationBundle:Uo')->getListeUo();
+        foreach ($listeUo as $uo) {
+          $uo->delTypePoste();
           $em->persist($uo);
         }
         $em->flush();
+        $output->writeln("OK");
 
         $requeteSUAPP = "SELECT distinct m.id_module, c.type_poste_client FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'MOCA%'";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
@@ -219,13 +221,15 @@ class ImportSuappCommand extends ContainerAwareCommand
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
             $codeUo = strtoupper($row["ID_MODULE"]) ;
             $typePoste = strtoupper($row["TYPE_POSTE_CLIENT"]);
+            $output->write($codeUo." -> ".$typePoste . "...");
 
-            if($em->getRepository('EVPOSaffectationBundle:Uo')->isUo($codeUo)) {
-                $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
-                $output->write($codeUo." -> ".$typePoste . "...");
+            $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
+            if($uo !== NULL) {
                 $uo->appendTypePoste($typePoste);
                 $em->persist($uo);
                 $output->writeln("OK");
+            } else {
+                $output->writeln("Non trouvé");
             }
         }
         $em->flush();
