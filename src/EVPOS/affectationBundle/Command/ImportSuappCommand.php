@@ -219,13 +219,15 @@ class ImportSuappCommand extends ContainerAwareCommand
         while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
             $codeUo = strtoupper($row["ID_MODULE"]) ;
             $typePoste = strtoupper($row["TYPE_POSTE_CLIENT"]);
+            $output->write($codeUo." -> ".$typePoste . "...");
 
-            if($em->getRepository('EVPOSaffectationBundle:Uo')->isUo($codeUo)) {
-                $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
-                $output->write($codeUo." -> ".$typePoste . "...");
+            $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
+            if($uo !== NULL) {
                 $uo->appendTypePoste($typePoste);
                 $em->persist($uo);
                 $output->writeln("OK");
+            } else {
+                $output->writeln("Non trouvé");
             }
         }
         $em->flush();
