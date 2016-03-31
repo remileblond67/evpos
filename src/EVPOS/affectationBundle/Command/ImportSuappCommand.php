@@ -211,9 +211,9 @@ class ImportSuappCommand extends ContainerAwareCommand
         foreach ($listeUo as $uo) {
           $uo->delTypePoste();
           $em->persist($uo);
-          $output->write($uo->getCodeUo());
         }
         $em->flush();
+        $output->writeln("OK");
 
         $requeteSUAPP = "SELECT distinct m.id_module, c.type_poste_client FROM app_module m, app_contr_poste_client c  WHERE m.id_module = c.id_module AND c.type_poste_client LIKE 'MOCA%'";
         $csr = oci_parse ( $this->ORA , $requeteSUAPP) ;
@@ -225,8 +225,8 @@ class ImportSuappCommand extends ContainerAwareCommand
 
             $uo = $em->getRepository('EVPOSaffectationBundle:Uo')->getUo($codeUo);
             if($uo !== NULL) {
-                //$uo->appendTypePoste($typePoste);
-                //$em->persist($uo);
+                $uo->appendTypePoste($typePoste);
+                $em->persist($uo);
                 $output->writeln("OK");
             } else {
                 $output->writeln("Non trouvé");
