@@ -34,6 +34,7 @@
                         <postes>
                             {% for poste in utilisateur.listePostes %}
                             <poste>
+                              <avancementMigMoca>{{poste.avancementMigMoca}}</avancementMigMoca>
               								<hostname>{{poste.hostname}}</hostname>
               								<codeMateriel>{{poste.codeMateriel}}</codeMateriel>
               								<categorie>{{poste.categorie}}</categorie>
@@ -41,7 +42,6 @@
               								<localisation>{{poste.localisation}}</localisation>
               								<statut>{{poste.statut}}</statut>
               								<typeUsage>{{poste.typeUsage}}</typeUsage>
-                              <avancementMigMoca>{{poste.avancementMigMoca}}</avancementMigMoca>
                               <licenceW8>{{poste.licenceW8Long}}</licenceW8>
               								<utilisateurs>
                               {% for util in poste.listeUtilisateurs %}
