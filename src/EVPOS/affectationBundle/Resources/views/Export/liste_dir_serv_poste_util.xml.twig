@@ -12,6 +12,7 @@
         <postes>
           {% for poste in service.listePostes %}
           <poste>
+            <avancementMigMoca>{{poste.avancementMigMoca}}</avancementMigMoca>
             <hostname>{{poste.hostname}}</hostname>
             <codeMateriel>{{poste.codeMateriel}}</codeMateriel>
             <categorie>{{poste.categorie}}</categorie>
@@ -20,7 +21,6 @@
             <statut>{{poste.statut}}</statut>
             <commentaire>{{poste.commentaire}}</commentaire>
             <typeUsage>{{poste.typeUsage}}</typeUsage>
-            <avancementMigMoca>{{poste.avancementMigMoca}}</avancementMigMoca>
             <licenceW8>{{poste.licenceW8Long}}</licenceW8>
             <typeReseau>{{poste.typeReseau}}</typeReseau>
             <master>{{poste.master}}</master>
