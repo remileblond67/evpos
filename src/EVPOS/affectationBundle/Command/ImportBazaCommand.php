@@ -123,7 +123,7 @@ class ImportBazaCommand extends ContainerAwareCommand
 
     $output->write("Fusion des données d'entités GPARC... ");
     $fileName = "/home/data/evpos/".$env."/gparc/entites.csv";
-    if (file_exists($csvFile) {
+    if (file_exists($csvFile)) {
       $csvFile = fopen($fileName, 'r');
       $nbLine = 0;
       $codeInconnu = [];
