@@ -121,39 +121,44 @@ class ImportBazaCommand extends ContainerAwareCommand
     }
     $em->flush();
 
-    $output->writeln("*** Fusion des données d'entités GPARC ***");
-    $fileName = "/home/data/evpos/".$env."/gparc/Entités.csv";
-    $csvFile = fopen($fileName, 'r');
-    $nbLine = 0;
-    $codeInconnu = [];
-    while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
-      if ($nbLine>0) {
-        $lib = trim($data[0]);
-        $actif = trim($data[2]);
-        $codeService = trim($data[6]);
-        $codeSirh = trim($data[7]);
+    $output->write("Fusion des données d'entités GPARC... ");
+    $fileName = "/home/data/evpos/".$env."/gparc/entites.csv";
+    if (file_exists($csvFile) {
+      $csvFile = fopen($fileName, 'r');
+      $nbLine = 0;
+      $codeInconnu = [];
+      while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
+        if ($nbLine>0) {
+          $lib = trim($data[0]);
+          $actif = trim($data[2]);
+          $codeService = trim($data[6]);
+          $codeSirh = trim($data[7]);
 
-        if ($actif = "1" && $codeService != "" && $codeService != "-") {
-          // Mise à jour du service concerné
-          if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService)) {
-            // Mise à jour du service
-            $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
-          } else {
-            // Création du service
-            $service = new Service();
-            $service->setCodeService($codeService);
-            $service->setExisteBaza(TRUE);
-            $codeInconnu[$codeService] = TRUE;
+          if ($actif = "1" && $codeService != "" && $codeService != "-") {
+            // Mise à jour du service concerné
+            if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService)) {
+              // Mise à jour du service
+              $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
+            } else {
+              // Création du service
+              $service = new Service();
+              $service->setCodeService($codeService);
+              $service->setExisteBaza(TRUE);
+              $codeInconnu[$codeService] = TRUE;
+            }
+            $service->setLibService($lib);
+            $service->setCodeSirh($codeSirh);
+            $em->persist($service);
           }
-          $service->setLibService($lib);
-          $service->setCodeSirh($codeSirh);
-          $em->persist($service);
         }
+        $nbLine++;
       }
-      $nbLine++;
+      fclose($csvFile);
+      $em->flush();
+      $output->writeln("OK");
+    } else {
+      $output->writeln("Fichier ".$csvFile." introuvable");
     }
-    fclose($csvFile);
-    $em->flush();
 
     foreach (array_keys($codeInconnu) as $code) {
       $erreur = new CtrlServiceInconnu;
