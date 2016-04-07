@@ -151,7 +151,6 @@
                 <thead>
                     <tr>
                         <td class="row">{{'application.code'|trans}}</td>
-                        <td class="row">{{'application.nature'|trans}}</td>
                         <td class="row">{{'application.nom'|trans}}</td>
             						<td class="row">{{'application.nature'|trans}}</td>
                         <td class="row">
@@ -176,9 +175,6 @@
                             <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.appliAcces.codeAppli }) }}">
                             {{appli.appliAcces.codeAppli}}
                             </a>
-                        </td>
-                        <td class="gradeA odd">
-                          {{appli.appliAcces.natAppli}}
                         </td>
                         <td class="gradeA odd">
                           <a href="{{ path('evpos_ficheAppli', { 'codeAppli': appli.appliAcces.codeAppli }) }}">
