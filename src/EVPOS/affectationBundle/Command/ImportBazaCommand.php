@@ -121,7 +121,7 @@ class ImportBazaCommand extends ContainerAwareCommand
     }
     $em->flush();
 
-    $output->write("Fusion des données d'entités GPARC... ");
+    $output->writeln("*** Fusion des données d'entités GPARC ***");
     $fileName = "/home/data/evpos/".$env."/gparc/entites.csv";
     if (file_exists($fileName)) {
       $csvFile = fopen($fileName, 'r');
