@@ -259,9 +259,21 @@ class ExportController extends Controller
     }
 
     /**
-     * Export XML des postes
+     * Export XML des postes et de leurs équipements
      */
     public function exportDirServicePosteUtilXmlAction() {
+        ini_set('memory_limit', -1);
+        $listeDirection = $this->getDoctrine()->getManager()
+            ->getRepository('EVPOSaffectationBundle:Direction')
+            ->getListeDirServicePosteUtil()
+        ;
+        return $this->render('EVPOSaffectationBundle:Export:liste_dir_serv_poste_equip_util.xml.twig', array('listeDirection' => $listeDirection));
+    }
+
+    /**
+     * Export XML des postes
+     */
+    public function exportDirServicePosteSeulUtilXmlAction() {
         ini_set('memory_limit', -1);
         $listeDirection = $this->getDoctrine()->getManager()
             ->getRepository('EVPOSaffectationBundle:Direction')

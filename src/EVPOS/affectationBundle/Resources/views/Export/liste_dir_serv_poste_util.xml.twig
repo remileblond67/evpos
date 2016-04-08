@@ -9,6 +9,7 @@
       <service>
         <codeService>{{service.codeService}}</codeService>
         <libService>{{service.libService}}</libService>
+        <numEnsemble>{{service.numEnsemble}}</numEnsemble>
         <postes>
           {% for poste in service.listePostes %}
           <poste>
@@ -18,6 +19,7 @@
             <categorie>{{poste.categorie}}</categorie>
             <modele>{{poste.modele}}</modele>
             <localisation>{{poste.localisation}}</localisation>
+            <typeReseau>{{poste.typeReseau}}</typeReseau>
             <statut>{{poste.statut}}</statut>
             <commentaire>{{poste.commentaire}}</commentaire>
             <typeUsage>{{poste.typeUsage}}</typeUsage>
@@ -31,15 +33,6 @@
               </utilisateur>
               {% endfor %}
             </utilisateurs>
-            <equipements>
-              {% for equipement in poste.listeEquipement %}
-              <equipement>
-                <codeMateriel>{{ equipement.codeMateriel }}</codeMateriel>
-                <categorie>{{ equipement.categorie }}</categorie>
-                <modele>{{ equipement.modele }}</modele>
-              </equipement>
-              {% endfor %}
-            </equipements>
           </poste>
           {% endfor %}
         </postes>

@@ -35,6 +35,7 @@ ctrl:
 poste:
     titre: Postes
     liste: Liste des postes
+    listeEquipement: Liste des postes et de leurs équipements
     categorie: Catégorie de poste
     codeMateriel: Code matériel
     hostname: Hostname

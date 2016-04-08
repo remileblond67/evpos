@@ -9,6 +9,7 @@
             <service>
                 <codeService>{{service.codeService}}</codeService>
                 <libService>{{service.libService}}</libService>
+                <numEnsemble>{{service.numEnsemble}}</numEnsemble>
                 <utilisateurs>
                     {% for utilisateur in service.listeUtilisateurs %}
                     <utilisateur>
@@ -39,6 +40,7 @@
               								<categorie>{{poste.categorie}}</categorie>
               								<modele>{{poste.modele}}</modele>
               								<localisation>{{poste.localisation}}</localisation>
+                              <typeReseau>{{poste.typeReseau}}</typeReseau>
               								<statut>{{poste.statut}}</statut>
               								<typeUsage>{{poste.typeUsage}}</typeUsage>
                               <licenceW8>{{poste.licenceW8Long}}</licenceW8>
