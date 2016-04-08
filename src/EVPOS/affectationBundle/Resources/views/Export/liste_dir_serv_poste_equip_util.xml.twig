@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeDirServPosteUtil xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  {% for direction in listeDirection %}
+  <direction>
+    <codeDirection>{{direction.codeDirection}}</codeDirection>
+    <libDirection>{{direction.libDirection}}</libDirection>
+    <services>
+      {% for service in direction.listeServices %}
+      <service>
+        <codeService>{{service.codeService}}</codeService>
+        <libService>{{service.libService}}</libService>
+        <numEnsemble>{{service.numEnsemble}}</numEnsemble>
+        <postes>
+          {% for poste in service.listePostes %}
+          <poste>
+            <avancementMigMoca>{{poste.avancementMigMoca}}</avancementMigMoca>
+            <hostname>{{poste.hostname}}</hostname>
+            <codeMateriel>{{poste.codeMateriel}}</codeMateriel>
+            <categorie>{{poste.categorie}}</categorie>
+            <modele>{{poste.modele}}</modele>
+            <localisation>{{poste.localisation}}</localisation>
+            <typeReseau>{{poste.typeReseau}}</typeReseau>
+            <statut>{{poste.statut}}</statut>
+            <commentaire>{{poste.commentaire}}</commentaire>
+            <typeUsage>{{poste.typeUsage}}</typeUsage>
+            <licenceW8>{{poste.licenceW8Long}}</licenceW8>
+            <typeReseau>{{poste.typeReseau}}</typeReseau>
+            <master>{{poste.master}}</master>
+            <utilisateurs>
+              {% for util in poste.listeUtilisateurs %}
+              <utilisateur>
+                <matUtil>{{util.matUtil}}</matUtil>
+              </utilisateur>
+              {% endfor %}
+            </utilisateurs>
+            <equipements>
+              {% for equipement in poste.listeEquipement %}
+              <equipement>
+                <codeMateriel>{{ equipement.codeMateriel }}</codeMateriel>
+                <categorie>{{ equipement.categorie }}</categorie>
+                <modele>{{ equipement.modele }}</modele>
+              </equipement>
+              {% endfor %}
+            </equipements>
+          </poste>
+          {% endfor %}
+        </postes>
+      </service>
+      {% endfor %}
+    </services>
+  </direction>
+  {% endfor %}
+</listeDirServPosteUtil>
