@@ -13,7 +13,7 @@
                 <utilisateurs>
                     {% for utilisateur in service.listeUtilisateurs %}
                     <utilisateur>
-                        <matUtil>{{util.matUtil}}</matUtil>
+                        <matUtil>{{ utilisateur.matUtil }}</matUtil>
                         <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
                         <uos>
                             {% for uo in utilisateur.listeAccesUo %}
