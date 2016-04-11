@@ -13,6 +13,7 @@
                 <utilisateurs>
                     {% for utilisateur in service.listeUtilisateurs %}
                     <utilisateur>
+                        <matUtil>{{ utilisateur.matUtil }}</matUtil>
                         <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
                         <uos>
                             {% for uo in utilisateur.listeAccesUo %}
@@ -44,13 +45,6 @@
               								<statut>{{poste.statut}}</statut>
               								<typeUsage>{{poste.typeUsage}}</typeUsage>
                               <licenceW8>{{poste.licenceW8Long}}</licenceW8>
-              								<utilisateurs>
-                              {% for util in poste.listeUtilisateurs %}
-                                  <utilisateur>
-                                      <matUtil>{{util.matUtil}}</matUtil>
-                                  </utilisateur>
-                              {% endfor %}
-              								</utilisateurs>
               								<ecrans>
               								{% for ecran in poste.listeEcran %}
               									<ecran>{{ecran}}</ecran>
