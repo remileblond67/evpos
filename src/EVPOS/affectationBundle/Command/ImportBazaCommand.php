@@ -9,7 +9,6 @@ use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 use EVPOS\affectationBundle\Entity\Direction;
 use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\Utilisateur;
-
 use EVPOS\affectationBundle\Entity\CtrlServiceInconnu;
 
 /**
@@ -123,10 +122,10 @@ class ImportBazaCommand extends ContainerAwareCommand
 
     $output->writeln("*** Fusion des données d'entités GPARC ***");
     $fileName = "/home/data/evpos/".$env."/gparc/entites.csv";
+    $codeInconnu = [];
     if (file_exists($fileName)) {
       $csvFile = fopen($fileName, 'r');
       $nbLine = 0;
-      $codeInconnu = [];
       while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
         if ($nbLine>0) {
           $lib = trim($data[0]);
@@ -157,7 +156,7 @@ class ImportBazaCommand extends ContainerAwareCommand
       $em->flush();
       $output->writeln("OK");
     } else {
-      $output->writeln("Fichier ".$csvFile." introuvable");
+      $output->writeln("Fichier ".$fileName." introuvable");
     }
 
     foreach (array_keys($codeInconnu) as $code) {
