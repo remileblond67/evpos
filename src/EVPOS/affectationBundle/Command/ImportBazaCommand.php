@@ -9,7 +9,6 @@ use EVPOS\affectationBundle\Entity\AccesUtilAppli;
 use EVPOS\affectationBundle\Entity\Direction;
 use EVPOS\affectationBundle\Entity\Service;
 use EVPOS\affectationBundle\Entity\Utilisateur;
-
 use EVPOS\affectationBundle\Entity\CtrlServiceInconnu;
 
 /**
@@ -157,7 +156,7 @@ class ImportBazaCommand extends ContainerAwareCommand
       $em->flush();
       $output->writeln("OK");
     } else {
-      $output->writeln("Fichier ".$csvFile." introuvable");
+      $output->writeln("Fichier ".$fileName." introuvable");
     }
 
     foreach (array_keys($codeInconnu) as $code) {
