@@ -17,6 +17,15 @@ class OrganigrammeController extends Controller
       return $this->render('EVPOSaffectationBundle:Organigramme:treeview_service.html.twig', ['listeDirection' => $listeDirection, 'listeService' => $listeService]);
     }
 
+    // TreeView des services et direction, en fonction du nombre d'agents et de l'état de planification
+    public function treeViewOrgaPlanifAction() {
+      $em = $this->getDoctrine()->getManager();
+
+      $listeDirection = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirections();
+      $listeService = $em->getRepository('EVPOSaffectationBundle:Service')->getServicesActifs();
+      return $this->render('EVPOSaffectationBundle:Organigramme:treeview_service_planif.html.twig', ['listeDirection' => $listeDirection, 'listeService' => $listeService]);
+    }
+
     // Liste des secteurs
     public function listeSecteurAction() {
       $listeSecteur = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:Secteur')->findAll();

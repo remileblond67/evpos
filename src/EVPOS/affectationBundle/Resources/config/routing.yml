@@ -70,6 +70,10 @@ evpos_treeviewOrga:
     path: /treeview_orga
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:treeViewOrga }
 
+evpos_treeviewOrgaPlannif:
+    path: /treeview_orga_planif
+    defaults: { _controller: EVPOSaffectationBundle:Organigramme:treeViewOrgaPlanif }
+
 evpos_cherchePoste:
     path: /cherche_poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:cherchePoste }
