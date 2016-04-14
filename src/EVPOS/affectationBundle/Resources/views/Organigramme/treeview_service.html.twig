@@ -12,10 +12,10 @@ function drawChart() {
     ['Service', 'Parent', 'Nb poste', 'Avancement', 'Numéro ensemble'],
     ['Eurométropole',    null, 0, 0, 0],
     {% for direction in listeDirection %}
-    ['{{direction.codeDirection}}', 'Eurométropole', 0}}, {{0+direction.noteAvancementMoca}}, 0],
+    ['{{direction.codeDirection}}', 'Eurométropole', {{0+direction.nbPoste}}, {{0+direction.noteAvancementMoca}}, 0],
     {% endfor %}
     {% for service in listeService %}
-    ['Service {{service.codeService}}', '{% if service.direction %}{{service.direction.codeDirection}}{%else%}?{% endif %}', 0, {{0+service.noteAvancementMoca}}, {{0+service.numEnsemble}}],
+    ['Service {{service.codeService}}', '{% if service.direction %}{{service.direction.codeDirection}}{%else%}?{% endif %}', {{0+service.nbPoste}}, {{0+service.noteAvancementMoca}}, {{0+service.numEnsemble}}],
     {% endfor %}
 
   ]);
