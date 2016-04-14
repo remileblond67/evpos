@@ -143,6 +143,7 @@ service:
     nbPoste: Nb postes service
     numEnsemble: Numéro d'ensemble
     treeView: Vue globale
+    treeViewPlannif: Vue globale par état de plannification
 
 riu:
     nom: Nom RIU

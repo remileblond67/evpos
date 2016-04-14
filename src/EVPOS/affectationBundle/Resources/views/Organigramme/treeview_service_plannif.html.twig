@@ -1,0 +1,55 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'service.treeView'|trans }}{% endblock%}
+
+{% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+google.charts.load('current', {'packages':['treemap']});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Service', 'Parent', 'Nb poste', 'Avancement', 'Numéro ensemble'],
+    ['Eurométropole',    null, 0, 0, 0],
+    {% for direction in listeDirection %}
+    ['{{direction.codeDirection}}', 'Eurométropole', {{0+direction.nbPoste}}, {{0+direction.noteAvancementMoca}}, 0],
+    {% endfor %}
+    {% for service in listeService %}
+    ['Service {{service.codeService}}', '{% if service.direction %}{{service.direction.codeDirection}}{%else%}?{% endif %}', {{0+service.nbPoste}}, {{0+service.noteAvancementMoca}}, {{0+service.numEnsemble}}],
+    {% endfor %}
+
+  ]);
+
+  tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+  tree.draw(data, {
+    minColor: '#f00',
+    midColor: 'ff9300',
+    maxColor: '#0f0',
+    headerHeight: 15,
+    fontColor: 'black',
+    showScale: true,
+    generateTooltip: showFullTooltip
+  });
+  function showFullTooltip(row, size, value) {
+      return '<div style="background:#fd9; padding:10px; border-style:solid">' +
+             '<span style="font-family:Courier"><b>' + data.getValue(row, 0) + '</b></span><br>' +
+             + size + ' postes<br>'
+             + data.getColumnLabel(3) + ' : ' + data.getValue(row, 3) + '%<br>'
+             + data.getColumnLabel(4) + ' : ' + data.getValue(row, 4) + '<br>'
+             + '<a href="service/'+data.getValue(row, 0).replace('Service ', '')+'">Fiche service</a>'
+             + ' </div>';
+    }
+}
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ 'service.treeView'|trans }}</h3>
+  </div>
+  <div class="panel-body">
+    <p>Click gauche pour descendre direction -> service. Click droit pour remonter service->direction.</p>
+    <div id="chart_div" style="width: 100%; height: 650px;"></div>
+  </div>
+</div>
+{% endblock %}
