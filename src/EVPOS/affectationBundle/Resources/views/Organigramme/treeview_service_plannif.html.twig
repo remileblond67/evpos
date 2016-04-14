@@ -10,7 +10,7 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['Service', 'Parent', 'Nb poste', 'Avancement', 'Numéro ensemble'],
-    ['Eurométropole', null, 0, 0, 0]
+    ['Eurométropole', null, 0, 0, 0],
     ['Plannifié',    'Eurométropole', 0, 0, 0],
     ['Non plannifié', 'Eurométropole', 0, 0, 0],
     {% for direction in listeDirection %}
