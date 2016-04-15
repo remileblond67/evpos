@@ -265,6 +265,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
         }
         ctx.globalAlpha = 0.75;
         var x = 0;
+
         {% for ligne in evolutionAiGen %}
         y1 = {{ligne['3. Validé']}}
         y2 = {{ligne['2. En cours']}};
@@ -298,6 +299,31 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
         x += 10;
         {% endfor %}
         </script>
+
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Director (Year)',  'Rotten Tomatoes', 'IMDB'],
+              ['Alfred Hitchcock (1935)', 8.4,         7.9],
+              ['Ralph Thomas (1959)',     6.9,         6.5],
+              ['Don Sharp (1978)',        6.5,         6.4],
+              ['James Hawes (2008)',      4.4,         6.2]
+            ]);
+
+            var options = {
+              title: 'The decline of \'The 39 Steps\'',
+              vAxis: {title: 'Accumulated Rating'},
+              isStacked: true
+            };
+
+            var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+          }
+        </script>
+        <div id="chart_div" style="width: 900px; height: 500px;"></div>
       </div>
     </div>
     <div class="panel panel-group panel-default" id="accordionAI" role="tablist" aria-multiselectable="true">
