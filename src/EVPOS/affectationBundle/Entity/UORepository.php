@@ -101,7 +101,7 @@ class UORepository extends EntityRepository
       ->setParameter('nature', $nature)
       ->where("a.natAppli = :nature and uo.avancementMoca <> 'Non migré'")
       ->groupBy('uo.avancementMoca')
-      ->orderBy('uo.avancementMoca', 'ASC')
+      ->orderBy('uo.avancementMoca', 'DESC')
       ->getQuery()
     ;
 
