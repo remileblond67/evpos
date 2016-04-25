@@ -1,6 +1,6 @@
-hostname;matUtil
+hostname;matUtil;niveauVIP
 {% for poste in listePoste %}
 {% for util in poste.listeUtilisateurs %}
-{{poste.hostname}};{{util.matUtil}}
+{{poste.hostname}};{{util.matUtil}};{{util.niveauVIP}}
 {% endfor %}
 {% endfor %}
