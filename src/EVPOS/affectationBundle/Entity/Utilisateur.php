@@ -62,7 +62,7 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_vip", type="string", length="6")
+     * @ORM\Column(name="niveau_vip", type="string", length=6)
      */
     private $niveauVIP;
 
