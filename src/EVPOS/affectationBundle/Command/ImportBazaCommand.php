@@ -390,6 +390,7 @@ class ImportBazaCommand extends ContainerAwareCommand
             $em->persist($utilisateur);
           }
         }
+        $nbLine++;
       }
     } else {
       $output->writeln("Non trouvé");
