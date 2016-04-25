@@ -20,8 +20,17 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-lg-2"><h4>{{ 'utilisateur.matricule'|trans }}</h4>{{util.matUtil}}</div>
-      <div class="col-lg-2"><h4>{{ 'utilisateur.nom'|trans }}</h4>{{util.nomUtil}}</div>
+      <div class="col-lg-2">
+        <h4>{{ 'utilisateur.matricule'|trans }}</h4>
+        {{util.matUtil}}
+        {% if util.niveauVIP %}
+        <span class="glyphicon glyphicon-certificate important">{{ util.niveauVIP }}</span>
+        {% endif %}
+      </div>
+      <div class="col-lg-2">
+        <h4>{{ 'utilisateur.nom'|trans }}</h4>
+        {{util.nomUtil}}
+      </div>
       <div class="col-lg-3">
         <h4>{{ 'service.nom'|trans }}</h4>
         {% if util.serviceUtil %}

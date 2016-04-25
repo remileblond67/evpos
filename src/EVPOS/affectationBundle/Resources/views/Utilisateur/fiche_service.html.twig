@@ -330,7 +330,12 @@
                 <tbody>
                    {% for util in service.listeUtilisateurs | sort %}
                     <tr class="gradeA odd">
-                        <td><a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a></td>
+                        <td>
+                          <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a>
+                          {% if util.niveauVIP %}
+                          <span class="glyphicon glyphicon-certificate important">{{ util.niveauVIP }}</span>
+                          {% endif %}
+                        </td>
                         <td>{{util.nomUtil}}</td>
                         <td>
                         {% for poste in util.listePostes %}

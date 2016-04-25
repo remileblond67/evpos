@@ -171,7 +171,12 @@
                         </a>
                         {% endif %}
                     </td>
-                    <td class="row"><a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a></td>
+                    <td class="row">
+                      <a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a>
+                      {% if acces.utilAcces.niveauVIP %}
+                      <span class="glyphicon glyphicon-certificate important">{{ acces.utilAcces.niveauVIP }}</span>
+                      {% endif %}
+                    </td>
                     <td class="row">{{ acces.utilAcces.nomUtil }}</td>
                 </tr>
                 {% endfor %}
