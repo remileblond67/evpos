@@ -60,6 +60,13 @@ class Utilisateur
     private $existeBaza;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau_vip", type="string", length="6")
+     */
+    private $niveauVIP;
+
+    /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesUtilAppli", mappedBy="utilAcces", cascade={"remove"})
      */
     private $listeAcces;
@@ -350,6 +357,15 @@ class Utilisateur
     public function getExisteBaza()
     {
         return $this->existeBaza;
+    }
+
+    public function setNiveauVIP($niveauVIP) {
+      $this->niveauVIP = $niveauVIP;
+      return $this;
+    }
+
+    public function getNiveauVIP() {
+      return $this->niveauVIP;
     }
 
     /**
