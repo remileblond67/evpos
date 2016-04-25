@@ -28,6 +28,17 @@ class UtilisateurRepository extends EntityRepository
     }
 
     /**
+     * Retourne la liste des VIP
+     */
+    public function getVIP() {
+      $query = $this->createQueryBuilder('u')
+        ->where('u.niveauVIP is not null')
+        ->getQuery();
+
+      return $query->getResult();
+    }
+
+    /**
      * Retourne la liste de tous les utilisateurs d'un service
      */
     public function getUtilisateursService($codeService) {

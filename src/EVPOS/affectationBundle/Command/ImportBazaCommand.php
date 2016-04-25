@@ -363,6 +363,36 @@ class ImportBazaCommand extends ContainerAwareCommand
     unset($listeService);
     $output->writeln("OK");
 
+    // Mise à jour de la colonne "niveauVIP"
+    $output->write('Mise à jour de la colonne "niveauVIP"...');
+    $listeVIP = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getVIP();
+    foreach ($listeVIP as $vip) {
+      $vip->setNiveauVIP('');
+      $em->persist($vip);
+    }
+    unset($listeVIP);
+
+    $fileName = "/home/data/evpos/".$env."/gparc/util_vip.csv";
+    if (file_exists($fileName)) {
+      $csvFile = fopen($fileName, 'r');
+      $nbVIP = 0;
+      while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
+        if ($nbLine>0) {
+          $mat = trim($data[0]);
+          $niveauVIP = trim($data[1]);
+
+          $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($mat);
+          if ($utilisateur !== NULL) {
+            $utilisateur->setNiveauVIP($niveauVIP);
+            $em->persist($utilisateur);
+          }
+        }
+      }
+    }
+    $em->flush();
+    fclose($csvFile);
+    $output->writeln("OK");
+
     $output->writeln("Fin du traitement");
 
     oci_close ($this->ORA) ;
