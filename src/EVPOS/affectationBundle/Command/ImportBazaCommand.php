@@ -364,7 +364,7 @@ class ImportBazaCommand extends ContainerAwareCommand
     $output->writeln("OK");
 
     // Mise à jour de la colonne "niveauVIP"
-    $output->write('Mise à jour de la colonne "niveauVIP"...');
+    $output->writeln('Mise à jour de la colonne "niveauVIP"...');
     $listeVIP = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getVIP();
     foreach ($listeVIP as $vip) {
       $vip->setNiveauVIP('');
@@ -380,7 +380,8 @@ class ImportBazaCommand extends ContainerAwareCommand
         if ($nbLine>0) {
           $mat = trim($data[0]);
           $niveauVIP = trim($data[1]);
-
+          $output->write($mat.":".$niveauVIP.", ");
+          
           $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($mat);
           if ($utilisateur !== NULL) {
             $utilisateur->setNiveauVIP($niveauVIP);
