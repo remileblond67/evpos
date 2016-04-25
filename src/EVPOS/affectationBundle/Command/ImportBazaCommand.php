@@ -373,7 +373,9 @@ class ImportBazaCommand extends ContainerAwareCommand
     unset($listeVIP);
 
     $fileName = "/home/data/evpos/".$env."/gparc/util_vip.csv";
+    $output->write("- Recherche du fichier ".$fileName."... ");
     if (file_exists($fileName)) {
+      $output->writeln("OK");
       $csvFile = fopen($fileName, 'r');
       $nbLine = 0;
       while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
@@ -381,7 +383,7 @@ class ImportBazaCommand extends ContainerAwareCommand
           $mat = trim($data[0]);
           $niveauVIP = trim($data[1]);
           $output->write($mat.":".$niveauVIP.", ");
-          
+
           $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($mat);
           if ($utilisateur !== NULL) {
             $utilisateur->setNiveauVIP($niveauVIP);
@@ -389,6 +391,8 @@ class ImportBazaCommand extends ContainerAwareCommand
           }
         }
       }
+    } else {
+      $output->writeln("Non trouvé");
     }
     $em->flush();
     fclose($csvFile);
