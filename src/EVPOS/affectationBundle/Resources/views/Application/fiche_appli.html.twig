@@ -204,14 +204,18 @@
             {% for accesServ in appli.listeServiceAcces%}
                 <tr>
                     <td>
+                        {% if accesServ.serviceAcces.direction %}
                         <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
                         {{ accesServ.serviceAcces.direction.codeDirection}}
                         </a>
+                        {% endif %}
                     </td>
                     <td>
+                        {% if accesServ.serviceAcces.direction %}
                         <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
                         {{ accesServ.serviceAcces.direction.libDirection}}
                         </a>
+                        {% endif %}
                     </td>
                     <td>
                       <a href="{{ path('evpos_ficheService', { 'codeService' : accesServ.serviceAcces.codeService }) }}" alt="{{ 'service.nom'|trans }}">
