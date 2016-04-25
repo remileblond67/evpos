@@ -18,8 +18,8 @@ class HistoUoRepository extends EntityRepository {
     ->setParameter('niveau', $niveau)
     ->setParameter('nature', $nature)
     ->where('h.natureAppli = :nature and h.niveau = :niveau')
+    ->orderBy('h.dateMesure', 'ASC')
     ->orderBy('h.avancement', 'ASC')
-    ->orderBy('h.dateMesure', 'DESC')
     ->getQuery()
     ;
 
