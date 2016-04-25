@@ -375,7 +375,7 @@ class ImportBazaCommand extends ContainerAwareCommand
     $fileName = "/home/data/evpos/".$env."/gparc/util_vip.csv";
     if (file_exists($fileName)) {
       $csvFile = fopen($fileName, 'r');
-      $nbVIP = 0;
+      $nbLine = 0;
       while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
         if ($nbLine>0) {
           $mat = trim($data[0]);
