@@ -142,7 +142,7 @@ class UORepository extends EntityRepository
     $query = $this->createQueryBuilder('uo')
       ->leftJoin('uo.appli', 'a')
       ->leftJoin('a.cpi', 'cpi')
-      ->select('a.codeAppli, uo.codeUo, uo.nbUtil, cpi.matUtil')
+      ->select('a.codeAppli, uo.codeUo, uo.nbUtil, cpi.matUtil, cpi.nomUtil')
       ->where('uo.nbUtil = 0')
       ->getQuery()
     ;
