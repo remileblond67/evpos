@@ -54,6 +54,7 @@ class ImportPosteCommand extends ContainerAwareCommand
     $nbDoublon = 0;
 
     $serviceInconnu = $em->getRepository('EVPOSaffectationBundle:Service')->getService("?");
+    $utilServiceInconnu = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur('LS_?');
 
     // Liste des hostnames rencontrés dans l'export GPARC, pour ne pas traiter deux fois les doublons
     $listeHostname = [];
@@ -187,6 +188,7 @@ class ImportPosteCommand extends ContainerAwareCommand
       }
       if ($poste->getService() === NULL) {
         $poste->setService($serviceInconnu);
+        $poste->addListeUtilisateur($utilServiceInconnu);
         $output->write('?');
       }
       $em->persist($poste);
