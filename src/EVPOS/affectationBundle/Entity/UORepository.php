@@ -121,7 +121,6 @@ class UORepository extends EntityRepository
       ->orderBy('uo.avancementMocaDetail', 'ASC')
       ->getQuery()
     ;
-
     return $query->getResult();
   }
 
@@ -133,7 +132,17 @@ class UORepository extends EntityRepository
       ->where("a.natAppli = :nature and uo.avancementMoca <> 'Non migré'")
       ->getQuery()
     ;
-
     return $query->getOneOrNullResult();
+  }
+
+  /**
+   * Liste des UO sans aucun utilisateur
+   */
+  public function getSansUtilisateur() {
+    $query = $this->createQueryBuilder('uo')
+      ->where('count(uo.listeAcces) = 0')
+      ->getQuery()
+    ;
+    return $query->getResult();
   }
 }
