@@ -155,7 +155,7 @@ class DirectionRepository extends EntityRepository
             ->addSelect('a')
             ->leftJoin('a.appliAcces', 'app')
             ->addSelect('app')
-			->setParameter('code', $codeService)
+			      ->setParameter('code', $codeService)
             ->where('s.codeService = :code')
             ->getQuery()
         ;
