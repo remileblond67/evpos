@@ -12,6 +12,7 @@
     <thead>
         <tr>
             <td class="row sorting_asc">{{ 'uo.code'|trans }}</td>
+            <td class="row">{{ 'uo.nbUtil'|trans}}</td>
         </tr>
 
     </thead>
@@ -19,6 +20,7 @@
         {% for uo in listeUo %}
         <tr class="gradeA odd">
 			<td>{{uo.codeUo}}</td>
+      <td>{{uo.nbUtil}}</td>
 		</tr>
 		{% endfor %}
 	</tbody>
