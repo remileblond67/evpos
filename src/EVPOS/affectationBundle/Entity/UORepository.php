@@ -140,7 +140,8 @@ class UORepository extends EntityRepository
    */
   public function getSansUtilisateur() {
     $query = $this->createQueryBuilder('uo')
-      ->where('count(uo.listeAcces) == 0')
+      ->select('uo.codeUo')
+      ->where('count(uo.listeAcces) = 0')
       ->getQuery()
     ;
     return $query->getResult();
