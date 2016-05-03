@@ -32,6 +32,7 @@ ctrl:
     absentService: Utilisateurs par date de dernière connexion (plus d'un an)
     remarque: Remarque
     coherenceReseau: Contrôle de la cohérence réseau
+    erreur: Erreur
 
 poste:
     titre: Postes
