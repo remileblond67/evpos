@@ -94,6 +94,19 @@ class ExportController extends Controller
       return $this->render('EVPOSaffectationBundle:Export:liste_util_poste.csv.twig', array('listePoste' => $listePoste));
     }
 
+    /**
+     * Export des postes et de leur type de réseau (LAN/WAN)
+     */
+    public function exportPosteReseauXmlAction() {
+      $listePoste = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Poste')
+          ->findAll()
+      ;
+      return $this->render('EVPOSaffectationBundle:Export:liste_poste_reseau.xml.twig', array('listePoste' => $listePoste));
+    }
+
+
     #                               --- EXPORTS XML ---
 
     /**

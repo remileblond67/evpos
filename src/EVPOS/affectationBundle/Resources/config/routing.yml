@@ -143,6 +143,10 @@ evpos_listeDirServicePosteSeulUtilXml:
     path:   /direction_service_poste_seul_util.xml
     defaults: { _controller: EVPOSaffectationBundle:Export:exportDirServicePosteSeulUtilXml }
 
+evpos_listePosteReseauXml:
+    path: /liste_poste_reseau.xml
+    defaults: { _controller: EVPOSaffectationBundle:Export:exportPosteReseauXml }
+
 evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
