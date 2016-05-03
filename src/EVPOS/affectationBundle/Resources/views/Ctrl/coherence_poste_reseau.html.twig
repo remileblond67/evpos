@@ -1,0 +1,38 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}Suivi de la migration MOCA{% endblock%}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8">
+    <h4>{{ 'ctrl.absentService'|trans }}</h4>
+  </div>
+</div>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+  <thead>
+    <tr>
+      <th>
+        {{'poste.hostname'|trans}}
+      </th>
+      <th>
+        {{'poste.typeReseau'|trans}}
+      </th>
+      <th>
+        {{'poste.typeReseauReel'|trans}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{poste.hostname}}
+      </td>
+      <td>
+        {{poste.typeReseau}}
+      </td>
+      <td>
+        {{poste.typeReseauReel}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

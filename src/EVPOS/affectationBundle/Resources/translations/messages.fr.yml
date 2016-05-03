@@ -57,7 +57,8 @@ poste:
     listeExclus: Types de poste exclus
     ssd: Disque SSD
     master: Master du poste
-    typeReseau: Type de réseau
+    typeReseau: Type de réseau (GPARC)
+    typeReseauReel: Type de réseau réél
     avancementMigMoca: Avancement migration MOCA
 
 imprimante:
