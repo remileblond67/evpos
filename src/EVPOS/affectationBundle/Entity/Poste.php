@@ -158,6 +158,11 @@ class Poste
      */
     private $existeGparc;
 
+    public function getAdresseIp() {
+      $retour = system("host ".$this->hostname);
+      return $retour;
+    }
+
     /**
      * Get id
      *
