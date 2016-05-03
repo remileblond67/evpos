@@ -160,7 +160,8 @@ class Poste
 
     public function getAdresseIp() {
       $retour = system("host ".$this->hostname);
-      return $retour;
+      $adresse = preg_replace ("^.* has address ", "", $retour);
+      return $adresse;
     }
 
     /**
