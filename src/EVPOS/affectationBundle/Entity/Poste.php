@@ -159,7 +159,7 @@ class Poste
     private $existeGparc;
 
     public function getAdresseIp() {
-      $retour = system("host ".$this->hostname);
+      $retour = exec("host ".$this->hostname);
       $adresse = preg_replace ("/^.* has address /", "", $retour);
       return $adresse;
     }
