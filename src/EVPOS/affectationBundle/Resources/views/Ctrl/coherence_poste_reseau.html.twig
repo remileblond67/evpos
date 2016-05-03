@@ -28,7 +28,9 @@
     {% for poste in listePoste %}
     <tr>
       <td>
-        {{poste.hostname}}
+        <a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">
+          {{poste.hostname}}
+        </a>
       </td>
       <td>
         {{poste.typeReseau}}
