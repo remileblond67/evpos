@@ -36,6 +36,7 @@ poste:
     titre: Postes
     liste: Liste des postes
     listeEquipement: Liste des postes et de leurs équipements
+    listeReseau: Liste des postes par type de réseau
     categorie: Catégorie de poste
     codeMateriel: Code matériel
     hostname: Hostname
