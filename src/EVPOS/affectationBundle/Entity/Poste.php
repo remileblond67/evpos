@@ -159,6 +159,24 @@ class Poste
     private $existeGparc;
 
     /**
+     * Retourne l'adresse IP du Poste
+     */
+    public function getAdresseIp() {
+      $retour = exec("host -W 1 ".$this->hostname);
+      $adresse = preg_replace ("/^.* has address /", "", $retour);
+      return $adresse;
+    }
+
+    public function getTypeReseauReel() {
+      if (preg_match("/^192./", $this->getAdresseIp())) {
+        $typeReseau = "WAN";
+      } else {
+        $typeReseau = "LAN";
+      }
+      return $typeReseau;
+    }
+
+    /**
      * Get id
      *
      * @return integer

@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.13.0
+    version_n: 2.14.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -31,11 +31,14 @@ ctrl:
     serviceInconnu: Services inconnus
     absentService: Utilisateurs par date de dernière connexion (plus d'un an)
     remarque: Remarque
+    coherenceReseau: Contrôle de la cohérence réseau
+    erreur: Erreur
 
 poste:
     titre: Postes
     liste: Liste des postes
     listeEquipement: Liste des postes et de leurs équipements
+    listeReseau: Liste des postes par type de réseau
     categorie: Catégorie de poste
     codeMateriel: Code matériel
     hostname: Hostname
@@ -56,7 +59,8 @@ poste:
     listeExclus: Types de poste exclus
     ssd: Disque SSD
     master: Master du poste
-    typeReseau: Type de réseau
+    typeReseau: Type de réseau (GPARC)
+    typeReseauReel: Type de réseau réél
     avancementMigMoca: Avancement migration MOCA
 
 imprimante:

@@ -9,6 +9,18 @@ use EVPOS\affectationBundle\Entity\CorrespUo;
 class CtrlController extends Controller
 {
   /**
+   * Contrôle de cohérence du type de réseau des postes (LAN/WAN)
+   */
+  public function coherencePosteReseauAction() {
+    $listePoste = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:Poste')
+        ->findAll()
+    ;
+    return $this->render('EVPOSaffectationBundle:Ctrl:coherence_poste_reseau.html.twig', array('listePoste' => $listePoste));
+  }
+
+  /**
    * Affiche la liste des UO sans aucun utilisateur
    */
   public function listeUoSansUtilisateurAction() {
