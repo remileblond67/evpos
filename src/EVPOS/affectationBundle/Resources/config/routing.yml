@@ -145,7 +145,7 @@ evpos_listeDirServicePosteSeulUtilXml:
 
 evpos_coherencePosteReseau:
     path: /coherence_poste_reseau
-    defaults: { _controller: EVPOSaffectationBundle:Ctrl:coherencePosteReseauAction }
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:coherencePosteReseau }
 
 evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml
