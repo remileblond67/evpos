@@ -164,7 +164,7 @@ class Poste
       return $adresse;
     }
 
-    public function getTypeReseau() {
+    public function getTypeReseauReel() {
       if (preg_match("/^192./", $this->getAdresseIp())) {
         $typeReseau = "WAN";
       } else {
