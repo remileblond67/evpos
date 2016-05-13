@@ -31,7 +31,7 @@ ctrl:
     serviceInconnu: Services inconnus
     absentService: Utilisateurs par date de dernière connexion (plus d'un an)
     remarque: Remarque
-    coherenceReseau: Contrôle de la cohérence réseau
+    coherenceReseau: Cohérence réseau
     erreur: Erreur
 
 poste:
@@ -43,7 +43,6 @@ poste:
     codeMateriel: Code matériel
     hostname: Hostname
     listeUsage: Postes utilisés
-    import: Import des postes depuis GPARC (export CSV)
     modele: Modèle de poste
     ecran: Ecran
     statut: Statut
@@ -191,8 +190,8 @@ imprimante:
 
 nexthink:
     import: Import usage depuis Nexthink
-    exportAppli: Export des applications dans Nexthink
-    exportUo: Export des UO dans Nexthink
+    exportAppli: Applications → Nexthink
+    exportUo: UO → Nexthink
 
 gap:
     reportServDir: Report usages sur services/directions
