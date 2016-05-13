@@ -31,19 +31,18 @@ ctrl:
     serviceInconnu: Services inconnus
     absentService: Utilisateurs par date de dernière connexion (plus d'un an)
     remarque: Remarque
-    coherenceReseau: Contrôle de la cohérence réseau
+    coherenceReseau: Cohérence réseau
     erreur: Erreur
 
 poste:
     titre: Postes
-    liste: Liste des postes
-    listeEquipement: Liste des postes et de leurs équipements
-    listeReseau: Liste des postes par type de réseau
+    liste: Postes
+    listeEquipement: Postes et équipements
+    listeReseau: Postes par type de réseau
     categorie: Catégorie de poste
     codeMateriel: Code matériel
     hostname: Hostname
     listeUsage: Postes utilisés
-    import: Import des postes depuis GPARC (export CSV)
     modele: Modèle de poste
     ecran: Ecran
     statut: Statut
@@ -83,8 +82,8 @@ application:
     nom: Nom de l'application
     desc: Description de l'application
     nature: Nature de l'application
-    listeUo: Liste des UO (modules)
-    listeUoMig: Liste des UO (modules) à migrer
+    listeUo: UO (modules)
+    listeUoMig: UO (modules) à migrer
     dispoMoca: Disponible dans MOCA ?
     aMigrer: A migrer dans MOCA
     utils: Utilisateurs de l'application
@@ -109,11 +108,11 @@ uo:
     utils: Utilisateurs de l'UO
     services: Services utilisateurs de l'UO
     postes: Postes sur lesquels l'UO est distribuée
-    liste: Liste des UO (modules)
+    liste: UO (modules)
     nbUtil: Nombre total d'utilisateurs
     nbUtilService: Nombre d'utilisateur du service
     nbPoste: Nombre de postes
-    listeUsage: Liste des UO utilisées
+    listeUsage: UO utilisées
     usage: Usage de l'UO
     typePoste: Type de poste
     updateAvancement: Mise à jour de l'avancement des FIA
@@ -128,19 +127,19 @@ uo:
 secteur:
     nom: Nom du secteur
     code: Code secteur
-    liste: Liste des secteurs
+    liste: Secteurs
     noteAvancement: Avancement intégration secteur
     nbAppli: Nombre d'applications
-    listeAppliInfo: Liste des applications informatiques du secteur
-    listeAppliService: Liste des applications service du secteur
+    listeAppliInfo: Applications informatiques du secteur
+    listeAppliService: Applications service du secteur
 
 service:
     code: Préfixe AD
     codeSirh: Code SIRH
     nom: Nom du service
-    liste: Liste des services
+    liste: Services
     nbAgent: Nombre d'agents
-    listeAgent: Liste des agents
+    listeAgent: Agents
     nbAcces: Nombre d'applications utilisées
     nbAccesUo: Nombre d'UO utilisées
     etatAvancement: Etat d'avancement des services
@@ -152,12 +151,12 @@ service:
 
 riu:
     nom: Nom RIU
-    liste: Liste des RIU
+    liste: RIUs
 
 direction:
     code: Code de la direction
     nom: Nom de la direction
-    liste: Liste des directions
+    liste: Directions
     noteAvancement: Avancement intégration
     nbAgent: Nb agents direction
     nbPoste: Nb postes direction
@@ -166,18 +165,18 @@ direction:
 utilisateur:
     matricule: Matricule de l'utilisateur
     nom: Nom de l'utilisateur
-    liste: Liste des utilisateurs
+    liste: Utilisateurs
     infoAnnuaire: Informations issues de l'annuaire
     nbAcces: Nombre d'applications
-    listeAccesAppli: Liste des accès utilisateur aux applications
-    listeAccesUo: Liste des accès utilisateurs aux UO
+    listeAccesAppli: Accès utilisateur aux applications
+    listeAccesUo: Accès utilisateurs aux UO
     lastLogin: Date de dernière connexion
     poste: Poste de travail
     sourceAcces: Source de l'accès
 
 poste:
     titre: Postes
-    listeUsage: Liste des postes utilisés
+    listeUsage: Postes utilisés
     hostname: Hostname
     categorie: Catégorie
 
@@ -187,12 +186,12 @@ equipement:
     modele: Modèle
 
 imprimante:
-    listeUsage: Liste des imprimantes utilisées
+    listeUsage: Imprimantes utilisées
 
 nexthink:
     import: Import usage depuis Nexthink
-    exportAppli: Export des applications dans Nexthink
-    exportUo: Export des UO dans Nexthink
+    exportAppli: Applications → Nexthink
+    exportUo: UO → Nexthink
 
 gap:
     reportServDir: Report usages sur services/directions
