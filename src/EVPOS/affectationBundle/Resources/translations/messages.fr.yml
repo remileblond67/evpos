@@ -113,7 +113,7 @@ uo:
     nbUtil: Nombre total d'utilisateurs
     nbUtilService: Nombre d'utilisateur du service
     nbPoste: Nombre de postes
-    listeUsage: Liste des UO utilisées
+    listeUsage: UO utilisées
     usage: Usage de l'UO
     typePoste: Type de poste
     updateAvancement: Mise à jour de l'avancement des FIA
