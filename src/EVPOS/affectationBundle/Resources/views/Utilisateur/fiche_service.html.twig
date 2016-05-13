@@ -83,7 +83,6 @@
                       <td class="row">{{'application.nom'|trans}}</td>
                       <td class="row">{{'application.nature'|trans}}</td>
                       <td class="row">{{'application.noteAvancement'|trans}}</td>
-                      <td class="row">{{'application.listeUo'|trans}}</td>
                   </tr>
               </thead>
               <tbody>
@@ -99,19 +98,13 @@
                           {{appli.nomAppli}}
                         </a>
                       </td>
-                      <td class="gradeA odd">{{appli.natAppli}}</td>
+                      <td class="gradeA odd">
+                        {{appli.natAppli}}
+                      </td>
                       <td class="gradeA odd">
                         <progress max="100" value="{{appli.noteAvancementMoca}}" title="{{appli.noteAvancementMoca}}%">
                           {{appli.noteAvancementMoca}}%
                         </progress>
-                      </td>
-                      <td class="gradeA odd">
-                        {% for uo in appli.listeUo%}
-                        <span class="{% if uo.migMoca != true %}nonMoca{% endif %}">
-                          <span class="{{uo.avancementMocaIcon}}"></span>
-                          <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a>
-                        </span>
-                        {% endfor %}
                       </td>
                   </tr>
                   {% endfor %}
@@ -120,8 +113,6 @@
         </div>
     </div>
 </div>
-
-
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -163,7 +154,6 @@
                             <span class="glyphicon glyphicon-refresh"></span>
                           </button>
                         </td>
-            						<td class="row">{{'application.listeUo'|trans}}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -189,15 +179,6 @@
                             {{appli.appliAcces.noteAvancementMoca}}%
                           </progress>
                         </td>
-            						<td class="gradeA odd">
-            							{% for uo in appli.appliAcces.listeUo%}
-            							<span class="{% if uo.migMoca != true %}nonMoca{% endif %}">
-            								<span class="{{uo.avancementMocaIcon}}" title="{{uo.avancementMocaDetail}}">
-                            </span>
-            								<a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUO }}</a>
-            							</span>
-            							{% endfor %}
-            						</td>
                     </tr>
                     {% endfor %}
                 </tbody>
