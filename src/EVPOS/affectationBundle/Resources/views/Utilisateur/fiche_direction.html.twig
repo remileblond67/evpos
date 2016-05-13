@@ -64,7 +64,12 @@
                         {{service.noteAvancementMoca}}
                       </progress>
                     </td>
-                    <td class="gradeA odd">{{service.numEnsemble}}</td>
+                    <td class="gradeA odd">
+                      {{service.numEnsemble}}
+                      <a href="{{ path('evpos_update_service', { 'codeService' : service.codeService})}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
