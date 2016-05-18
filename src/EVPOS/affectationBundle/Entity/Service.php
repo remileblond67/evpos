@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Service
  *
- * @ORM\Table("evpos_service", indexes={@ORM\Index(name="email_address_idx", columns={"email_address"})})
+ * @ORM\Table("evpos_service", indexes={@ORM\Index(name="num_ensemble_idx", columns={"num_ensemble"})})
  * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\ServiceRepository")
  */
 class Service
