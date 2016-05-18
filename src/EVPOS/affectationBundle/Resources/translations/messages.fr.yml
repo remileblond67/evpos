@@ -75,6 +75,7 @@ applications:
     listeAppliUo: Applications / UO à migrer
     listeAppliUoAll: TOUTES les applications / UO
     listeAppliService: Applications des services/directions
+    appliEnsemble: Applications des ensembles de migration
 
 application:
     titre: Applications/UO
