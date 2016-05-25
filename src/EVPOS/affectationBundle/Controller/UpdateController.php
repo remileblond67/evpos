@@ -8,7 +8,6 @@ use EVPOS\affectationBundle\Entity\CorrespUo;
 class UpdateController extends Controller
 {
     public function updateServiceAction($codeService, Request $request) {
-
       $em = $this->getDoctrine()->getManager();
       $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceFiche($codeService) ;
 

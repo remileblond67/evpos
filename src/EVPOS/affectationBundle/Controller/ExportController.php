@@ -124,8 +124,7 @@ class ExportController extends Controller
     /**
      * Liste des applications et UO à migrer dans MOCA au format XML, pour exploitation dans Excel
      */
-    public function listeAppliUoXmlAction()
-    {
+    public function listeAppliUoXmlAction() {
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
@@ -138,8 +137,7 @@ class ExportController extends Controller
     /**
      * Liste de toutes les applications et UO au format XML, pour exploitation dans Excel
      */
-    public function listeAppliUoAllXmlAction()
-    {
+    public function listeAppliUoAllXmlAction() {
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')
@@ -152,8 +150,7 @@ class ExportController extends Controller
     /**
      * Liste des applications à migrer dans MOCA au format XML, pour exploitation dans Excel
      */
-    public function listeAppliXmlAction()
-    {
+    public function listeAppliXmlAction() {
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')

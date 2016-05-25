@@ -27,6 +27,7 @@ class UtilisateurController extends Controller
     }
     return $this->render('EVPOSaffectationBundle:Utilisateur:recherche_utilisateur.html.twig', array('form' => $form->createView()));
   }
+
   /**
   * Affiche la liste de tous les utilisateurs
   * liste paginée

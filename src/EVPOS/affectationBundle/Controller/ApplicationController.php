@@ -49,8 +49,7 @@ class ApplicationController extends Controller
     /**
      * Liste des applications et UO dans un tableau HTML
      */
-    public function listeAppliAction()
-    {
+    public function listeAppliAction() {
         $listeAppli = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Application')

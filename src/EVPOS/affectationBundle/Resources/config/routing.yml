@@ -20,11 +20,11 @@ evpos_cherche_uo:
 
 evpos_cherche_service:
     path: /service_cherche
-    defaults: { _controller: EVPOSaffectationBundle:Organigramme:chercheService }
+    defaults: { _controller: EVPOSaffectationBundle:Service:chercheService }
 
 evpos_listeServiceAppli:
     path:   /service_appli
-    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliService }
+    defaults: { _controller: EVPOSaffectationBundle:Service:listeAppliService }
 
 evpos_ficheAppli:
     path:  /application/{codeAppli}
@@ -60,7 +60,7 @@ evpos_listeService:
 
 evpos_ficheService:
     path: /service/{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheService }
+    defaults: { _controller: EVPOSaffectationBundle:Service:ficheService }
 
 evpos_listeDirection:
     path: /direction
