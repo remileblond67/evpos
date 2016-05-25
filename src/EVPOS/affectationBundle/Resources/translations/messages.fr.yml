@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.15.1
+    version_n: 2.16.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -33,6 +33,7 @@ ctrl:
     remarque: Remarque
     coherenceReseau: Cohérence réseau
     erreur: Erreur
+    appliSansFia: Applications sans FIA
 
 poste:
     titre: Postes
@@ -75,6 +76,7 @@ applications:
     listeAppliUo: Applications / UO à migrer
     listeAppliUoAll: TOUTES les applications / UO
     listeAppliService: Applications des services/directions
+    appliEnsemble: Applications des ensembles de migration
 
 application:
     titre: Applications/UO

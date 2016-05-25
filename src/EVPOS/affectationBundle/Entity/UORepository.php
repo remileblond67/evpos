@@ -38,6 +38,18 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne la liste des UO sans FIA
+   */
+  public function getSansFIA() {
+    $query = $this->createQueryBuilder('uo')
+      ->where("uo.avancementMoca = '1. Pas initiée'")
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+  /**
   * Récupération d'une UO et de toutes ses informations à partir de son code
   */
   public function getUoFull($codeUo) {
