@@ -9,16 +9,20 @@
 </div>
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
-    <th>{{'application.code'|trans}}</th>
-    <th>{{'application.nom'|trans}}</th>
-    <th>{{'application.cpi'|trans}}</th>
-    <th>{{'uo.code'|trans}}</th>
-    <th>{{'uo.nom'|trans}}</th>
-    <th>{{'uo.services'|trans}}</th>
+    <th> {{'application.nature'|trans}} </th>
+    <th> {{'application.code'|trans}} </th>
+    <th> {{'application.nom'|trans}} </th>
+    <th> {{'application.cpi'|trans}} </th>
+    <th> {{'uo.code'|trans}} </th>
+    <th> {{'uo.nom'|trans}} </th>
+    <th> {{'uo.services'|trans}} </th>
   </thead>
   <tbody>
     {% for uo in listeUO %}
     <tr>
+      <td>
+        {{uo.appli.natAppli}}
+      </td>
       <td>
         <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
           {{uo.appli.codeAppli}}
