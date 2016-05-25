@@ -60,7 +60,6 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
     $listeCorresp = $em->getRepository('EVPOSaffectationBundle:CorrespUo')->findAll();
     foreach($listeCorresp as $cor) {
       $correspCode[strtoupper($cor->getOldCodeUo())] = strtoupper($cor->getNewUo()->getCodeUo());
-      //$output->writeln("- " . $cor->getOldCodeUo() . " -> " . $cor->getNewUo()->getCodeUo());
     }
     unset($listeCorresp);
 
@@ -70,7 +69,7 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
     while($tab=fgetcsv($fichierLicence,1024,';')) {
       $champs = count($tab);
       //affichage de chaque champ de la ligne en question
-      if($champs = 2) {
+      if($champs == 2) {
         $codeUo = strtoupper(trim($tab[0]));
         $hostname = strtoupper(trim($tab[1]));
 
@@ -89,7 +88,6 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
     foreach(array_keys($accesPosteUo) as $hostname) {
       // Recherche poste
       $poste = $em->getRepository('EVPOSaffectationBundle:Poste')->getPoste($hostname);
-      //$output->writeln("Poste : " . $hostname);
 
       if ($poste === null) {
         // Enregistrement du poste non trouvé
@@ -103,7 +101,6 @@ class ImportAccesPosteCommand extends ContainerAwareCommand
       foreach ($listeUo as $codeUo) {
         // Recherche Uo
         $uo = $em->getRepository('EVPOSaffectationBundle:UO')->getUo($codeUo);
-        //$output->writeln("- ".$codeUo);
         if ($uo === null) {
           // Enregistrement de l'UO inconnue
           $uoInconnue = new CtrlUoInconnue();

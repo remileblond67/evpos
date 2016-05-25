@@ -46,9 +46,4 @@ class UpdateController extends Controller
 
       return $this->redirectToRoute('evpos_ctrl_corresp_uo');
     }
-
-    public function addCorrespUoAction(Request $request) {
-      $em = $this->getDoctrine()->getManager();
-      $correspUo = new CorrespUo();
-    }
 }

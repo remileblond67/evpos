@@ -23,11 +23,6 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
 
     $em = $this->getContainer()->get('doctrine')->getManager();
 
-    $repAppli = $em->getRepository('EVPOSaffectationBundle:Application');
-    $repUo = $em->getRepository('EVPOSaffectationBundle:UO');
-    $repAcces = $em->getRepository('EVPOSaffectationBundle:AccesUtilAppli');
-    $repAccesUo = $em->getRepository('EVPOSaffectationBundle:AccesUtilUo');
-
     // Mise à jour des accès applicatifs de l'ensemble des services
     $output->writeln("*** Report des accès appli et uo sur les services ***");
 
@@ -78,7 +73,7 @@ class ReportAccesServiceCommand extends ContainerAwareCommand
         $newAcces->setServiceAcces($service);
         $newAcces->setAppliAcces($appli);
         $newAcces->setSourceImport("Report service appli");
-        
+
         $em->persist($newAcces);
       }
       unset($listeAppli);
