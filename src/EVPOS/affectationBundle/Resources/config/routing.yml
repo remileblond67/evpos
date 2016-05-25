@@ -137,15 +137,15 @@ evpos_listeServiceAppliXml:
 
 evpos_listeDirServicePosteUtilXml:
     path:   /direction_service_poste_util.xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportDirServicePosteUtilXml }
+    defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportDirServicePosteUtilXml }
 
 evpos_listeDirServicePosteSeulUtilXml:
     path:   /direction_service_poste_seul_util.xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportDirServicePosteSeulUtilXml }
+    defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportDirServicePosteSeulUtilXml }
 
 evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
+    defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportServiceUtilAppliXml }
 
 evpos_exportDirServUtilUoXml:
     path:  /direction_service_util_uo_xml
