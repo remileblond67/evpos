@@ -37,13 +37,15 @@
       </td>
       <td>{{uo.nomUo}}</td>
       <td>
-        <ul>
+        <table>
           {% for acces in uo.listeServiceAcces %}
-          <li>
-            {{acces.serviceAcces.codeService}} : {{acces.serviceAcces.libService}}
-          </li>
+          <tr>
+            <td>{{acces.serviceAcces.codeService}}</td>
+            <td>{{acces.serviceAcces.libService}}</td>
+            <td>{{acces.serviceAcces.numEnsemble</td>
+          </tr>
           {% endfor %}
-        </ul>
+        </table>
       </td>
     </tr>
     {% endfor %}
