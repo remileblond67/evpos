@@ -45,7 +45,7 @@ class UORepository extends EntityRepository
       ->leftJoin('uo.appli', 'appli')
       ->addSelect('appli')
       ->leftJoin('uo.listeServiceAcces', 'acces')
-      ->addSelect('as')
+      ->addSelect('acces')
       ->leftJoin('appli.cpi', 'cpi')
       ->addSelect('cpi')
       ->where("uo.avancementMoca = '1. Pas initiée'")
