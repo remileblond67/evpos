@@ -101,11 +101,11 @@ evpos_listeCPI:
 # Fonctions d'export
 evpos_exportAppliNexthink:
     path:  /appli_ntk
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportAppliNexthink }
+    defaults: { _controller: EVPOSaffectationBundle:ExportNexthink:exportAppli }
 
 evpos_exportUoNexthink:
     path:  /uo_ntk
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportUoNexthink }
+    defaults: { _controller: EVPOSaffectationBundle:ExportNexthink:exportUo }
 
 evpos_exportService:
     path: /export_service
@@ -162,31 +162,31 @@ evpos_exportDirServUtilUoXml_util:
 # Fonctions d'export CSV
 evpos_exportDirectionCsv:
     path: /csv/direction
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvDirection }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvDirection }
 
 evpos_exportServiceCsv:
     path: /csv/service
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvService }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvService }
 
 evpos_exportUtilisateurCsv:
     path: /csv/utilisateur
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilisateur }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilisateur }
 
 evpos_exportPosteCsv:
     path: /csv/poste
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvPoste }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvPoste }
 
 evpos_exportPosteUtilCsv:
     path: /csv/util_poste
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilPoste }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilPoste }
 
 evpos_exportCsvUtilImprimante:
     path: /csv/util_imprimante_degim
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimante }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilImprimante }
 
 evpos_exportCsvUtilImprimanteDegim:
     path: /csv/util_imprimante_degim/{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimanteDegim }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilImprimanteDegim }
 
 # Etat d'avancement des services
 evpos_serviceAvancement:

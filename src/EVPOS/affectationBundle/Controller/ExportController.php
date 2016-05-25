@@ -6,94 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ExportController extends Controller
 {
-    #                               --- EXPORTS CSV ---
-
-    /**
-     * Export CSV des files d'imprimantes
-     */
-    public function exportCsvUtilImprimanteAction() {
-      $listeUtilisateur = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Utilisateur')
-          ->findAll()
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:export_printer.csv.twig', array('listeUtilisateur' => $listeUtilisateur));
-    }
-
-    /**
-     * Export CSV des files d'imprimantes pour DEGIM (par service)
-     */
-    public function exportCsvUtilImprimanteDegimAction($codeService) {
-      $listeUtilisateur = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Utilisateur')
-          ->getUtilisateursService($codeService)
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:export_printer.csv.twig', array('listeUtilisateur' => $listeUtilisateur));
-    }
-
-    /**
-     * Export CSV des directions
-     */
-    public function exportCsvDirectionAction() {
-      $listeDirection = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Direction')
-          ->findAll()
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:liste_direction.csv.twig', array('listeDirection' => $listeDirection));
-    }
-
-
-
-    /**
-     * Export CSV des services
-     */
-    public function exportCsvServiceAction() {
-      $listeService = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Service')
-          ->findAll()
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:liste_service.csv.twig', array('listeService' => $listeService));
-    }
-
-    /**
-     * Export CSV des utilisateurs
-     */
-    public function exportCsvUtilisateurAction() {
-      $listeUtilisateur = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Utilisateur')
-          ->findAll()
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:liste_utilisateur.csv.twig', array('listeUtilisateur' => $listeUtilisateur));
-    }
-
-    /**
-     * Export CSV des postes
-     */
-    public function exportCsvPosteAction() {
-      $listePoste = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Poste')
-          ->findAll()
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:liste_poste.csv.twig', array('listePoste' => $listePoste));
-    }
-
-    /**
-     * Export CSV des affectations de postes
-     */
-    public function exportCsvUtilPosteAction() {
-      $listePoste = $this->getDoctrine()
-          ->getManager()
-          ->getRepository('EVPOSaffectationBundle:Poste')
-          ->findAll()
-      ;
-      return $this->render('EVPOSaffectationBundle:Export:liste_util_poste.csv.twig', array('listePoste' => $listePoste));
-    }
-
     #                               --- EXPORTS XML ---
 
     /**
@@ -119,7 +31,6 @@ class ExportController extends Controller
         ;
         return $this->render('EVPOSaffectationBundle:Export:liste_service_riu.xml.twig', array('listeDirection' => $listeDirection));
     }
-
 
     /**
      * Liste des applications et UO à migrer dans MOCA au format XML, pour exploitation dans Excel
@@ -158,34 +69,6 @@ class ExportController extends Controller
         ;
 
         return $this->render('EVPOSaffectationBundle:Export:liste_appli_only.xml.twig', array('listeAppli' => $listeAppli));
-    }
-
-    /**
-     * Export de la définition des différents UO pour import dans Nexthink
-     *
-     */
-    public function exportUoNexthinkAction() {
-        $listeUo = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:UO')
-            ->getListeUo()
-        ;
-
-        return $this->render('EVPOSaffectationBundle:Export:export_uo_nexthink.xml.twig', array('listeUo' => $listeUo));
-    }
-
-    /**
-     * Export de la définition des différentes applications pour import dans Nexthink
-     *
-     */
-    public function exportAppliNexthinkAction() {
-        $listeAppli = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:Application')
-            ->getApplicationsFull()
-        ;
-
-        return $this->render('EVPOSaffectationBundle:Export:export_appli_nexthink.xml.twig', array('listeAppli' => $listeAppli));
     }
 
     /**
@@ -259,7 +142,6 @@ class ExportController extends Controller
      * Export XML des postes et de leurs équipements
      */
     public function exportDirServicePosteUtilXmlAction() {
-        ini_set('memory_limit', -1);
         $listeDirection = $this->getDoctrine()->getManager()
             ->getRepository('EVPOSaffectationBundle:Direction')
             ->getListeDirServicePosteUtil()
@@ -271,7 +153,6 @@ class ExportController extends Controller
      * Export XML des postes
      */
     public function exportDirServicePosteSeulUtilXmlAction() {
-        ini_set('memory_limit', -1);
         $listeDirection = $this->getDoctrine()->getManager()
             ->getRepository('EVPOSaffectationBundle:Direction')
             ->getListeDirServicePosteUtil()
