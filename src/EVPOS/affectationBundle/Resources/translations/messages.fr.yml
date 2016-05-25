@@ -33,6 +33,7 @@ ctrl:
     remarque: Remarque
     coherenceReseau: Cohérence réseau
     erreur: Erreur
+    appliSansFia: Applications sans FIA
 
 poste:
     titre: Postes
