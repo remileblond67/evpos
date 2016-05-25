@@ -21,6 +21,13 @@ class CtrlController extends Controller
   }
 
   /**
+   * Liste des applications sans FIA
+   */
+  public function appliSansFiaAction() {
+    
+  }
+
+  /**
    * Affiche la liste des UO sans aucun utilisateur
    */
   public function listeUoSansUtilisateurAction() {

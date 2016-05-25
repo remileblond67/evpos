@@ -147,6 +147,10 @@ evpos_coherencePosteReseau:
     path: /coherence_poste_reseau
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:coherencePosteReseau }
 
+evpos_ctrl_appliSansFia:
+    path: /ctrl/appliSansFia
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:appliSansFia }
+
 evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml
     defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
