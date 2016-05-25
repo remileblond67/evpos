@@ -38,9 +38,9 @@
       <td>{{uo.nomUo}}</td>
       <td>
         <ul>
-          {% for service in uo.listeServiceAcces %}
+          {% for acces in uo.listeServiceAcces %}
           <li>
-            {{service.codeService}} : {{service.libService}}
+            {{acces.serviceAcces.codeService}} : {{acces.serviceAcces.libService}}
           </li>
           {% endfor %}
         </ul>
