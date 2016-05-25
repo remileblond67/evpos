@@ -43,8 +43,11 @@ class UORepository extends EntityRepository
   public function getSansFIA() {
     $query = $this->createQueryBuilder('uo')
       ->leftJoin('uo.appli', 'appli')
-      ->leftJoin('appli.cpi', 'cpi')
+      ->addSelect('appli')
       ->leftJoin('uo.listeServiceAcces', 'as')
+      ->addSelect('as')
+      ->leftJoin('appli.cpi', 'cpi')
+      ->addSelect('cpi')
       ->where("uo.avancementMoca = '1. Pas initiée'")
       ->getQuery()
     ;
