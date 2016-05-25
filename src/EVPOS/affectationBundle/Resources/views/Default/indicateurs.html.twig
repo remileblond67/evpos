@@ -7,41 +7,13 @@
 var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
 </script>
 <div class="row">
-  <div class="col-lg-2">
-    <h2>Services / Directions</h2>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Nombre de directions</h3>
-      </div>
-      <div class="panel-body">
-        <div id="graph_nature_appli">
-          {{nbDirection}}
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Nombre de services</h3>
-      </div>
-      <div class="panel-body">
-        <div id="graph_nature_appli">
-          {{nbService}}
-        </div>
-      </div>
-    </div>
-
-    <h2>Utilisateurs</h2>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Nombre d'utilisateurs</h3>
-      </div>
-      <div class="panel-body">
-        <p>{{ nbUtil }}</p>
-      </div>
-    </div>
+  <div class="col-lg-12">
+    <h2>Utilisateurs, services et Directions</h2>
+    {{ nbUtil }}, répartis dans {{nbService}} services et {{nbDirection}} directions
   </div>
-
-  <div class="col-lg-5">
+</div>
+<div class="row">
+  <div class="col-lg-6">
     <h2>Postes</h2>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -58,7 +30,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             <td>{{nbPoste}}</td>
           </tr>
           <tr>
-            <td>Postes à migrer (sans les écoles, BICOM, POZOR, les Macintosh, les postes réformés, désactivés ou hors réseau)</td>
+            <td>Postes à migrer (hors écoles, BICOM, POZOR, Macintosh, ostes réformés, désactivés ou hors réseau)</td>
             <td>{{nbPosteAMigrer}}</td>
           </tr>
           <tr>
@@ -188,7 +160,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
     </div>
   </div>
 
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <h2>Applications</h2>
 
     <h3>Applications informatiques <div class="badge">{{nbUoAI.nb}}</div></h3>
