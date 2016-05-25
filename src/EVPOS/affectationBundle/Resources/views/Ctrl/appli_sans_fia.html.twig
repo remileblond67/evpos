@@ -1,5 +1,5 @@
 {% extends "EVPOSaffectationBundle::layout.html.twig" %}
-{% block title%}MOCA : {{ 'ctrl.appliSansFia'|trans }}{% endblock%}
+{% block title%}{{ 'ctrl.appliSansFia'|trans }}{% endblock%}
 
 {% block content %}
 <div class="row">
@@ -25,14 +25,26 @@
         </a>
       </td>
       <td>{{uo.appli.nomAppli}}</td>
-      <td></td>
+      <td>
+        {% if uo.appli.cpi %}
+          {{uo.appli.cpi.nomUtil}}
+        {% endif %}
+      </td>
       <td>
         <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
           {{uo.codeUo}}
         </a>
       </td>
       <td>{{uo.nomUo}}</td>
-      <td></td>
+      <td>
+        <ul>
+          {% for service in uo.listeServiceAcces %}
+          <li>
+            {{service.codeService}} : {{service.libService}}
+          </li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
