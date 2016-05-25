@@ -4,11 +4,29 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-8">
-    <h4>{{ 'ctrl.appl iSansFia'|trans }}</h4>
+    <h4>{{ 'ctrl.appliSansFia'|trans }}</h4>
   </div>
 </div>
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
+    <th>{{'application.code'|trans}}</th>
+    <th>{{'application.nom'|trans}}</th>
+    <th>{{'application.cpi'|trans}}</th>
+    <th>{{'uo.code'|trans}}</th>
+    <th>{{'uo.nom'|trans}}</th>
+    <th>{{'uo.services'|trans}}</th>
   </thead>
+  <tbody>
+    {% for uo in listeUO %}
+    <tr>
+      <td>{{uo.code}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}
