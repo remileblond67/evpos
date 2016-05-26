@@ -26,7 +26,7 @@ class CorrespUo
 	 * Nouvelle UO (remplace l'ancien code)
 	 * ----------------------------------------
     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\UO")
-    * @ORM\JoinColumn(name="new_code_uo", referencedColumnName="code_uo", nullable=false)
+    * @ORM\JoinColumn(name="new_code_uo", referencedColumnName="code_uo", nullable=false, onDelete="CASCADE")
     * @ORM\Id
     */
 	private $newUo;
@@ -47,7 +47,7 @@ class CorrespUo
     /**
      * Get codeUo
      *
-     * @return string 
+     * @return string
      */
     public function getOldCodeUo()
     {
@@ -70,7 +70,7 @@ class CorrespUo
     /**
      * Get newUo
      *
-     * @return \EVPOS\affectationBundle\Entity\UO 
+     * @return \EVPOS\affectationBundle\Entity\UO
      */
     public function getNewUo()
     {
