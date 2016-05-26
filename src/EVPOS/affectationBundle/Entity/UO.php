@@ -19,7 +19,7 @@ class UO
 
     /**
     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeUO")
-    * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false)
+    * @ORM\JoinColumn(name="code_appli", referencedColumnName="code_appli", nullable=false, onDelete="CASCADE")
     */
     private $appli;
 
