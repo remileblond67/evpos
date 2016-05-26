@@ -90,7 +90,7 @@ class UO
     private $listeServiceAcces;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUo")
+     * @ORM\ManyToMany(targetEntity="Poste", mappedBy="listeUo", cascade={"persist", "remove"})
      */
     private $listePostes;
 
