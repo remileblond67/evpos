@@ -19,6 +19,11 @@
   {% endstylesheets %}
 
   <style>
+  .important {
+    color: red;
+    font-size: 1.4em;
+  }
+
   .nonMoca {
     text-decoration:line-through;
   }
@@ -73,9 +78,11 @@
               <li><a href="{{ path('evpos_listeService') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'service.liste'|trans}}</a></li>
               <li><a href="{{ path('evpos_listeUtil') }}"><span class="glyphicon glyphicon-list-alt"></span> {{'utilisateur.liste'|trans}}</a></li>
 
+
               <li role="separator" class="divider"></li>
 
               <li><a href="{{ path('evpos_serviceAvancement') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.etatAvancement'|trans }}</a></li>
+              <li role="separator" class="divider"></li>
               <li><a href="{{ path('evpos_treeviewOrga') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.treeView'|trans }}</a></li>
               <li><a href="{{ path('evpos_treeviewOrgaPlannif') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.treeViewPlannif'|trans }}</a></li>
 
@@ -88,9 +95,12 @@
                 </a>
               </li>
 
-              <li role="separator" class="divider"></li>
-
-              <li><a href="{{path('evpos_listeCPI') }}"><span class="glyphicon glyphicon-export"></span> {{'cpi.export'|trans}}</a></li>
+              <li>
+                <a href="{{path('evpos_listeCPI') }}">
+                  <span class="glyphicon glyphicon-export"></span>
+                  {{'cpi.export'|trans}}
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -120,14 +130,6 @@
               <li role="separator" class="divider"></li>
               <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
               <li role="separator" class="divider"></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
-              <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
             </ul>
           </li>
 
@@ -163,6 +165,9 @@
               <li><a target="_blank" href="{{ path('evpos_exportPosteUtilCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Poste - utilisateur</a></li>
               <li role="separator" class="divider"></li>
               <li><a target="_blank" href="{{ path('evpos_exportCsvUtilImprimante') }}"><span class="glyphicon glyphicon-export"></span>CSV : Utilisateur - imprimantes</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
+              <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
             </ul>
           </li>
 
@@ -198,6 +203,26 @@
                 <a href="{{ path('evpos_ctrl_absent') }}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   {{'ctrl.absentService'|trans}}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_ctrl_uo_sans_utilisateur') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{ 'uo.sansUtil'|trans }}
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a target="_blank" href="{{ path('evpos_coherencePosteReseau') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.coherenceReseau'|trans}}
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="{{ path('evpos_ctrl_appliSansFia')}}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.appliSansFia'|trans}}
                 </a>
               </li>
             </ul>

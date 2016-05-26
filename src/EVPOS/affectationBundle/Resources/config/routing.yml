@@ -143,6 +143,14 @@ evpos_listeDirServicePosteSeulUtilXml:
     path:   /direction_service_poste_seul_util.xml
     defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportDirServicePosteSeulUtilXml }
 
+evpos_coherencePosteReseau:
+    path: /coherence_poste_reseau
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:coherencePosteReseau }
+
+evpos_ctrl_appliSansFia:
+    path: /ctrl/appli_sans_fia
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:appliSansFia }
+
 evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml
     defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportServiceUtilAppliXml }
@@ -198,6 +206,10 @@ evpos_serviceAvancementXml:
     defaults: { _controller: EVPOSaffectationBundle:Etat:etatAvancementServiceXml }
 
 # Pages de contrôle
+
+evpos_ctrl_uo_sans_utilisateur:
+    path: /ctrl_uo_sans_util
+    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUoSansUtilisateur }
 
 evpos_ctrl_service_inconnu:
     path: /ctrl_service_inconnu

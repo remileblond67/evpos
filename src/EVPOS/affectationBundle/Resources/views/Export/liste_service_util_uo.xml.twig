@@ -5,7 +5,7 @@
         <codeDirection>{{ direction.codeDirection }}</codeDirection>
         <libDirection>{{ direction.libDirection }}</libDirection>
         {% for service in direction.listeServices %}
-            {% if service.codeService is not null and service.nbAgent > 0 %}
+            {% if service.codeService is not null %}
             <service>
                 <codeService>{{service.codeService}}</codeService>
                 <libService>{{service.libService}}</libService>
@@ -15,6 +15,7 @@
                     <utilisateur>
                         <matUtil>{{ utilisateur.matUtil }}</matUtil>
                         <nomUtil>{{ utilisateur.nomUtil }}</nomUtil>
+                        <niveauVIP>{{ utilisateur.niveauVIP }}</niveauVIP>
                         <uos>
                             {% for uo in utilisateur.listeAccesUo %}
                             <uo>

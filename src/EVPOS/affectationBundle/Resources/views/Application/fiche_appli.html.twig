@@ -163,7 +163,12 @@
                             </a>
                             {% endif %}
                         </td>
-                        <td class="row"><a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a></td>
+                        <td class="row">
+                          <a href="{{path('evpos_ficheUtil', {'matUtil': acces.utilAcces.matUtil})}}">{{ acces.utilAcces.matUtil }}</a>
+                          {% if acces.utilAcces.niveauVIP %}
+                          <span class="glyphicon glyphicon-certificate important">{{ acces.utilAcces.niveauVIP }}</span>
+                          {% endif %}
+                        </td>
                         <td class="row">{{ acces.utilAcces.nomUtil }}</td>
                         <td class="row">{{ acces.sourceImport }}</td>
                     </tr>
@@ -199,14 +204,18 @@
             {% for accesServ in appli.listeServiceAcces%}
                 <tr>
                     <td>
+                        {% if accesServ.serviceAcces.direction %}
                         <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
                         {{ accesServ.serviceAcces.direction.codeDirection}}
                         </a>
+                        {% endif %}
                     </td>
                     <td>
+                        {% if accesServ.serviceAcces.direction %}
                         <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
                         {{ accesServ.serviceAcces.direction.libDirection}}
                         </a>
+                        {% endif %}
                     </td>
                     <td>
                       <a href="{{ path('evpos_ficheService', { 'codeService' : accesServ.serviceAcces.codeService }) }}" alt="{{ 'service.nom'|trans }}">
