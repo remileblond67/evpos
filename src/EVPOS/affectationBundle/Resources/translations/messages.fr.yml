@@ -33,7 +33,8 @@ ctrl:
     remarque: Remarque
     coherenceReseau: Cohérence réseau
     erreur: Erreur
-    appliSansFia: Applications sans FIA
+    uoSansFia: UO sans FIA
+    uoSansUtil: UO sans utilisateur déclaré
 
 poste:
     titre: Postes
