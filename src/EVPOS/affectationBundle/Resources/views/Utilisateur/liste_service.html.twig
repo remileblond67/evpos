@@ -89,9 +89,11 @@ function showEnsembleOk() {
                   {% endif %}
                 </td>
                 <td class="">
+                  {% if service.direction %}
                   <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
                     {{service.direction.libDirection}}
                   </a>
+                  {% endif %}
                 </td>
                 <td class="">
                     {% if service.codeService != '' %}
