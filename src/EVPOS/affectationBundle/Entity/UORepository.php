@@ -48,7 +48,7 @@ class UORepository extends EntityRepository
       ->addSelect('acces')
       ->leftJoin('appli.cpi', 'cpi')
       ->addSelect('cpi')
-      ->where("uo.avancementMoca = '1. Pas initiée'")
+      ->where("uo.avancementMoca = '1. Pas initiée' and uo.migMoca = true")
       ->getQuery()
     ;
 
@@ -64,7 +64,7 @@ class UORepository extends EntityRepository
       ->addSelect('appli')
       ->leftJoin('appli.cpi', 'cpi')
       ->addSelect('cpi')
-      ->where("uo.nbUtil = 0")
+      ->where("uo.nbUtil = 0  and uo.migMoca = true")
       ->getQuery()
     ;
 
