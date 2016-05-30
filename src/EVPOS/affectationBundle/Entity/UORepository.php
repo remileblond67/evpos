@@ -56,6 +56,24 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne la liste des UO sans utilisateurs
+   */
+  public function getSansUtil() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.appli', 'appli')
+      ->addSelect('appli')
+      ->leftJoin('uo.listeServiceAcces', 'acces')
+      ->leftJoin('appli.cpi', 'cpi')
+      ->addSelect('cpi')
+      ->where("uo.nbUtil = 0")
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+
+  /**
   * Récupération d'une UO et de toutes ses informations à partir de son code
   */
   public function getUoFull($codeUo) {

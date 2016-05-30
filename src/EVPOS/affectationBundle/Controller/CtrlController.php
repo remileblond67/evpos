@@ -21,19 +21,6 @@ class CtrlController extends Controller
   }
 
   /**
-   * Liste des applications sans FIA
-   */
-  public function appliSansFiaAction() {
-    $listeUO = $this->getDoctrine()
-      ->getManager()
-      ->getRepository('EVPOSaffectationBundle:UO')
-      ->getSansFIA()
-    ;
-
-    return $this->render('EVPOSaffectationBundle:Ctrl:appli_sans_fia.html.twig', array('listeUO' => $listeUO));
-  }
-
-  /**
    * Affiche la liste des UO sans aucun utilisateur
    */
   public function listeUoSansUtilisateurAction() {
