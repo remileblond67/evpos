@@ -24,7 +24,7 @@ evpos_cherche_service:
 
 evpos_listeServiceAppli:
     path:   /service_appli
-    defaults: { _controller: EVPOSaffectationBundle:Service:listeAppliService }
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeAppliService }
 
 evpos_ficheAppli:
     path:  /application/{codeAppli}
