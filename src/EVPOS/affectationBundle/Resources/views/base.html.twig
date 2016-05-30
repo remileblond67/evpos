@@ -65,7 +65,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Organigramme <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
-                {% render(controller('EVPOSaffectationBundle:Organigramme:chercheService')) %}
+                {% render(controller('EVPOSaffectationBundle:Service:chercheService')) %}
               </li>
               <li>
                 {% render(controller('EVPOSaffectationBundle:Utilisateur:chercheUtilisateur')) %}
@@ -134,14 +134,6 @@
           </li>
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Export de fichiers XML pour Nexthink">Usage <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
-              <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
             <a href="" class="dropdown-toggle" data-toggle="dropdown">Exports <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
@@ -173,6 +165,9 @@
               <li><a target="_blank" href="{{ path('evpos_exportPosteUtilCsv') }}"><span class="glyphicon glyphicon-export"></span>CSV : Poste - utilisateur</a></li>
               <li role="separator" class="divider"></li>
               <li><a target="_blank" href="{{ path('evpos_exportCsvUtilImprimante') }}"><span class="glyphicon glyphicon-export"></span>CSV : Utilisateur - imprimantes</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ path('evpos_exportAppliNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportAppli'|trans}}</a></li>
+              <li><a href="{{ path('evpos_exportUoNexthink') }}"><span class="glyphicon glyphicon-export"></span> {{'nexthink.exportUo'|trans}}</a></li>
             </ul>
           </li>
 
@@ -221,6 +216,19 @@
                 <a target="_blank" href="{{ path('evpos_coherencePosteReseau') }}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   {{'ctrl.coherenceReseau'|trans}}
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="{{ path('evpos_ctrl_uoSansFia')}}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.uoSansFia'|trans}}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_ctrl_uoSansUtil')}}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{'ctrl.uoSansUtil'|trans}}
                 </a>
               </li>
             </ul>

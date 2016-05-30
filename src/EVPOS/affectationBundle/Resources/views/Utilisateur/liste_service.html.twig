@@ -82,14 +82,18 @@ function showEnsembleOk() {
             {% for service in listeService %}
             <tr class="gradeA odd {% if (service.noteAvancementMoca == "100" or service.nbAgent == 0) %}done{% endif %} {% if (service.numEnsemble != "" or service.numEnsemble != 0) %}ensemble{% endif %}">
                 <td class="">
+                  {% if service.direction %}
                   <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
                     {{service.direction.codeDirection}}
                   </a>
+                  {% endif %}
                 </td>
                 <td class="">
+                  {% if service.direction %}
                   <a href="{{path('evpos_ficheDirection', {'codeDirection': service.direction.codeDirection})}}">
                     {{service.direction.libDirection}}
                   </a>
+                  {% endif %}
                 </td>
                 <td class="">
                     {% if service.codeService != '' %}

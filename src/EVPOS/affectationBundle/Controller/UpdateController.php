@@ -8,7 +8,6 @@ use EVPOS\affectationBundle\Entity\CorrespUo;
 class UpdateController extends Controller
 {
     public function updateServiceAction($codeService, Request $request) {
-
       $em = $this->getDoctrine()->getManager();
       $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceFiche($codeService) ;
 
@@ -46,10 +45,5 @@ class UpdateController extends Controller
       }
 
       return $this->redirectToRoute('evpos_ctrl_corresp_uo');
-    }
-
-    public function addCorrespUoAction(Request $request) {
-      $em = $this->getDoctrine()->getManager();
-      $correspUo = new CorrespUo();
     }
 }

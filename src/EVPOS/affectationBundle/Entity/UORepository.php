@@ -38,6 +38,41 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne la liste des UO sans FIA
+   */
+  public function getSansFIA() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.appli', 'appli')
+      ->addSelect('appli')
+      ->leftJoin('uo.listeServiceAcces', 'acces')
+      ->addSelect('acces')
+      ->leftJoin('appli.cpi', 'cpi')
+      ->addSelect('cpi')
+      ->where("uo.avancementMoca = '1. Pas initiée' and uo.migMoca = true")
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+  /**
+   * Retourne la liste des UO sans utilisateurs
+   */
+  public function getSansUtil() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.appli', 'appli')
+      ->addSelect('appli')
+      ->leftJoin('appli.cpi', 'cpi')
+      ->addSelect('cpi')
+      ->where("uo.nbUtil = 0  and uo.migMoca = true")
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+
+  /**
   * Récupération d'une UO et de toutes ses informations à partir de son code
   */
   public function getUoFull($codeUo) {

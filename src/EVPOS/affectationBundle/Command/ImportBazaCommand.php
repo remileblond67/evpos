@@ -133,7 +133,7 @@ class ImportBazaCommand extends ContainerAwareCommand
           $codeService = trim($data[6]);
           $codeSirh = trim($data[7]);
 
-          if ($actif = "1" && $codeService != "" && $codeService != "-") {
+          if ($actif == "1" && $codeService != "" && $codeService != "-") {
             // Mise à jour du service concerné
             if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService)) {
               // Mise à jour du service

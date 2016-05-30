@@ -108,8 +108,6 @@ class ImportAccesUoCommand extends ContainerAwareCommand
         $nbUtil++;
         if ($nbUtil%100 == 0) {
           $output->write($nbUtil." ");
-          // if ($nbUtil%1000 == 0)
-          // $em->flush();
         }
       }
       oci_free_statement($csr);

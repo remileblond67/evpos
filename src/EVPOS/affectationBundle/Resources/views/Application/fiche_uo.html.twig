@@ -140,7 +140,7 @@
             <a role="button" data-toggle="collapse" data-parent="#accordionUtils" href="#collapseUtil" aria-expanded="true" aria-controls="collapseOne">
                 {{'uo.utils'|trans}}
             </a>
-            <div class="badge">{{uo.listeAcces|length}}</div>
+            <div class="badge">{{uo.nbUtil}}</div>
         </h3>
     </div>
     <div id="collapseUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -152,6 +152,7 @@
                         <td class="row">{{ 'service.nom'|trans }}</td>
                         <td class="row">{{ 'utilisateur.matricule'|trans }}</td>
                         <td class="row">{{ 'utilisateur.nom'|trans }}</td>
+                        <td class="row">{{ 'utilisateur.sourceAcces'|trans }}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -178,6 +179,7 @@
                       {% endif %}
                     </td>
                     <td class="row">{{ acces.utilAcces.nomUtil }}</td>
+                    <td class="row">{{ acces.sourceImport }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

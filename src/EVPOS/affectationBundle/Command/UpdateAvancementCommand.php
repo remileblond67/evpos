@@ -28,6 +28,7 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         $output->write("Lecture du fichier d'avancement des FIA (".$env.")... ");
 
         $csvFile = fopen("/home/data/evpos/".$env."/avancement/moca_avancement.csv", "r");
+        // Lecture de la ligne de titre
         $titre = fgets($csvFile);
         while (($data = fgetcsv($csvFile, 0, ';', '"')) !== FALSE) {
           $codeUo = $data[0];
@@ -39,7 +40,7 @@ class UpdateAvancementCommand extends ContainerAwareCommand
               $uo->setAvancementMoca($avancement);
               $uo->setAvancementMocaDetail($avancementDetail);
             } else {
-              $uo->setAvancementMoca(NULL); 
+              $uo->setAvancementMoca(NULL);
               $uo->setAvancementMocaDetail(NULL);
             }
             $em->persist($uo);

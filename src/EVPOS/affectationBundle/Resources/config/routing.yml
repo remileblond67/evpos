@@ -20,7 +20,7 @@ evpos_cherche_uo:
 
 evpos_cherche_service:
     path: /service_cherche
-    defaults: { _controller: EVPOSaffectationBundle:Organigramme:chercheService }
+    defaults: { _controller: EVPOSaffectationBundle:Service:chercheService }
 
 evpos_listeServiceAppli:
     path:   /service_appli
@@ -56,11 +56,11 @@ evpos_ficheUtil:
 
 evpos_listeService:
     path:   /service
-    defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeService }
+    defaults: { _controller: EVPOSaffectationBundle:Service:listeService }
 
 evpos_ficheService:
     path: /service/{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Organigramme:ficheService }
+    defaults: { _controller: EVPOSaffectationBundle:Service:ficheService }
 
 evpos_listeDirection:
     path: /direction
@@ -101,11 +101,11 @@ evpos_listeCPI:
 # Fonctions d'export
 evpos_exportAppliNexthink:
     path:  /appli_ntk
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportAppliNexthink }
+    defaults: { _controller: EVPOSaffectationBundle:ExportNexthink:exportAppli }
 
 evpos_exportUoNexthink:
     path:  /uo_ntk
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportUoNexthink }
+    defaults: { _controller: EVPOSaffectationBundle:ExportNexthink:exportUo }
 
 evpos_exportService:
     path: /export_service
@@ -137,19 +137,28 @@ evpos_listeServiceAppliXml:
 
 evpos_listeDirServicePosteUtilXml:
     path:   /direction_service_poste_util.xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportDirServicePosteUtilXml }
+    defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportDirServicePosteUtilXml }
 
 evpos_listeDirServicePosteSeulUtilXml:
     path:   /direction_service_poste_seul_util.xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportDirServicePosteSeulUtilXml }
+    defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportDirServicePosteSeulUtilXml }
 
 evpos_coherencePosteReseau:
     path: /coherence_poste_reseau
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:coherencePosteReseau }
 
+evpos_ctrl_uoSansFia:
+    path: /ctrl/uo_sans_fia
+    defaults: { _controller: EVPOSaffectationBundle:CtrlAppli:uoSansFia }
+
+evpos_ctrl_uoSansUtil:
+    path: /ctrl/uo_sans_util
+    defaults: { _controller: EVPOSaffectationBundle:CtrlAppli:uoSansUtil }
+
+
 evpos_exportDirServUtilAppliXml:
     path:  /direction_service_util_appli_xml
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportServiceUtilAppliXml }
+    defaults: { _controller: EVPOSaffectationBundle:ExportLong:exportServiceUtilAppliXml }
 
 evpos_exportDirServUtilUoXml:
     path:  /direction_service_util_uo_xml
@@ -166,31 +175,31 @@ evpos_exportDirServUtilUoXml_util:
 # Fonctions d'export CSV
 evpos_exportDirectionCsv:
     path: /csv/direction
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvDirection }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvDirection }
 
 evpos_exportServiceCsv:
     path: /csv/service
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvService }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvService }
 
 evpos_exportUtilisateurCsv:
     path: /csv/utilisateur
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilisateur }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilisateur }
 
 evpos_exportPosteCsv:
     path: /csv/poste
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvPoste }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvPoste }
 
 evpos_exportPosteUtilCsv:
     path: /csv/util_poste
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilPoste }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilPoste }
 
 evpos_exportCsvUtilImprimante:
     path: /csv/util_imprimante_degim
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimante }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilImprimante }
 
 evpos_exportCsvUtilImprimanteDegim:
     path: /csv/util_imprimante_degim/{codeService}
-    defaults: { _controller: EVPOSaffectationBundle:Export:exportCsvUtilImprimanteDegim }
+    defaults: { _controller: EVPOSaffectationBundle:ExportCsv:exportCsvUtilImprimanteDegim }
 
 # Etat d'avancement des services
 evpos_serviceAvancement:
@@ -243,10 +252,6 @@ evpos_update_service:
 evpos_delete_corresp_uo:
     path: /delete/corresp_uo/{oldCodeUo}/{newCodeUo}
     defaults: { _controller: EVPOSaffectationBundle:Update:deleteCorrespUo }
-
-evpos_add_corresp_uo:
-    path: /add/corresp_uo
-    defaults: { _controller: EVPOSaffectationBundle:Update:addCorrespUo }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -26,7 +26,6 @@ class ImportImprimantesCommand extends ContainerAwareCommand
     $em = $this->getContainer()->get('doctrine')->getManager();
     $user = $this->getContainer()->getParameter('oracle_user');;
     $password = $this->getContainer()->getParameter('oracle_pwd');;
-    $sid = "pbaza";
 
     $ad = ldap_connect('ldap://clinf004.cus.fr');
     ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
