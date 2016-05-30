@@ -28,9 +28,9 @@
       <td>
         <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
           {{uo.appli.codeAppli}}
-          <br>
-          {{uo.appli.nomAppli}}
         </a>
+        <br>
+        {{uo.appli.nomAppli}}
       </td>
       <td>
         {% if uo.appli.cpi %}
@@ -41,8 +41,9 @@
         <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
           {{uo.codeUo}}
         </a>
+        <br>
+        {{uo.nomUo}}
       </td>
-      <td>{{uo.nomUo}}</td>
       <td>
         <table width="100%">
           {% for acces in uo.listeServiceAcces %}

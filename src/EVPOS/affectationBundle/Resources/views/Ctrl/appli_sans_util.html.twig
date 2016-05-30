@@ -10,11 +10,17 @@
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
     <th> {{'application.nature'|trans}} </th>
-    <th> {{'application.code'|trans}} </th>
-    <th> {{'application.nom'|trans}} </th>
+    <th>
+      {{'application.code'|trans}}
+      <br>
+      {{'application.nom'|trans}}
+    </th>
     <th> {{'application.cpi'|trans}} </th>
-    <th> {{'uo.code'|trans}} </th>
-    <th> {{'uo.nom'|trans}} </th>
+    <th>
+      {{'uo.code'|trans}}
+      <br>
+      {{'uo.nom'|trans}}
+    </th>
     <th> {{'uo.services'|trans}} </th>
   </thead>
   <tbody>
@@ -27,8 +33,9 @@
         <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
           {{uo.appli.codeAppli}}
         </a>
+        <br>
+        {{uo.appli.nomAppli}}
       </td>
-      <td>{{uo.appli.nomAppli}}</td>
       <td>
         {% if uo.appli.cpi %}
           {{uo.appli.cpi.nomUtil}}
@@ -38,8 +45,9 @@
         <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
           {{uo.codeUo}}
         </a>
+        <br>
+        {{uo.nomUo}}
       </td>
-      <td>{{uo.nomUo}}</td>
       <td>
         <table width="100%">
           {% for acces in uo.listeServiceAcces %}
