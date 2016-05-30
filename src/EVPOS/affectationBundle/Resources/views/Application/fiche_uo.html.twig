@@ -152,6 +152,7 @@
                         <td class="row">{{ 'service.nom'|trans }}</td>
                         <td class="row">{{ 'utilisateur.matricule'|trans }}</td>
                         <td class="row">{{ 'utilisateur.nom'|trans }}</td>
+                        <td class="row">{{ 'utilisateur.sourceAcces'|trans }}</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -178,6 +179,7 @@
                       {% endif %}
                     </td>
                     <td class="row">{{ acces.utilAcces.nomUtil }}</td>
+                    <td class="row">{{ acces.sourceImport }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
