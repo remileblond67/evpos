@@ -20,7 +20,6 @@
     <th>
       {{'uo.code'|trans}}
     </th>
-    <th> {{'uo.services'|trans}} </th>
   </thead>
   <tbody>
     {% for uo in listeUO %}
@@ -46,17 +45,6 @@
         </a>
         <br>
         {{uo.nomUo}}
-      </td>
-      <td>
-        <table width="100%">
-          {% for acces in uo.listeServiceAcces %}
-          <tr>
-            <td>{{acces.serviceAcces.codeService}}</td>
-            <td>{{acces.serviceAcces.libService}}</td>
-            <td>{{acces.serviceAcces.numEnsemble}}</td>
-          </tr>
-          {% endfor %}
-        </table>
       </td>
     </tr>
     {% endfor %}
