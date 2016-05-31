@@ -96,7 +96,7 @@ application:
     utilisation: Utilisation de l'application
     services: Services utilisant l'application
     validation: Besoin de l'application validé
-    nbUtil: Nombre d'utilisateurs
+    nbUtil: Nb d'utilisateurs
     cpi: Nom du CPI
     service: Service gestionnaire
     secteur: Secteur gestionnaire
@@ -112,8 +112,8 @@ uo:
     services: Services utilisateurs de l'UO
     postes: Postes sur lesquels l'UO est distribuée
     liste: UO (modules)
-    nbUtil: Nombre total d'utilisateurs
-    nbUtilService: Nombre d'utilisateur du service
+    nbUtil: Nb total d'utilisateurs
+    nbUtilService: Nb utilisateurs du service
     nbPoste: Nombre de postes
     listeUsage: UO utilisées
     usage: Usage de l'UO
@@ -143,8 +143,8 @@ service:
     liste: Services
     nbAgent: Nombre d'agents
     listeAgent: Agents
-    nbAcces: Nombre d'applications utilisées
-    nbAccesUo: Nombre d'UO utilisées
+    nbAcces: Nb. appli. utilisées
+    nbAccesUo: Nb. UO utilisées
     etatAvancement: Etat d'avancement des services
     noteAvancement: Avancement intégration
     nbPoste: Nb postes service
@@ -157,8 +157,8 @@ riu:
     liste: RIUs
 
 direction:
-    code: Code de la direction
-    nom: Nom de la direction
+    code: Code direction
+    nom: Nom direction
     liste: Directions
     noteAvancement: Avancement intégration
     nbAgent: Nb agents direction
@@ -166,11 +166,11 @@ direction:
 
 
 utilisateur:
-    matricule: Matricule de l'utilisateur
-    nom: Nom de l'utilisateur
+    matricule: Mat. utilisateur
+    nom: Nom utilisateur
     liste: Utilisateurs
     infoAnnuaire: Informations issues de l'annuaire
-    nbAcces: Nombre d'applications
+    nbAcces: Nb appli.
     listeAccesAppli: Accès utilisateur aux applications
     listeAccesUo: Accès utilisateurs aux UO
     lastLogin: Date de dernière connexion
