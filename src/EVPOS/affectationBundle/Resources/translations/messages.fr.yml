@@ -148,7 +148,7 @@ service:
     etatAvancement: Etat d'avancement des services
     noteAvancement: Avancement intégration
     nbPoste: Nb postes service
-    numEnsemble: Numéro d'ensemble
+    numEnsemble: N° ensemble
     treeView: Vue globale
     treeViewPlannif: Vue globale par état de plannification
 
