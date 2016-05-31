@@ -26,7 +26,7 @@ user:
 ctrl:
     posteInconnu: Postes inconnus trouvés dans les fichiers de licence
     uoInconnue: UO inconnues trouvées dans les fichiers de licence
-    nb: Nombre d'occurences
+    nb: Nb d'occurences
     utilisateurInconnu: Utilisateurs GPARC inconnus de BAZA
     serviceInconnu: Services inconnus
     absentService: Utilisateurs par date de dernière connexion (plus d'un an)
@@ -114,7 +114,7 @@ uo:
     liste: UO (modules)
     nbUtil: Nb total d'utilisateurs
     nbUtilService: Nb utilisateurs du service
-    nbPoste: Nombre de postes
+    nbPoste: Nb postes
     listeUsage: UO utilisées
     usage: Usage de l'UO
     typePoste: Type de poste
@@ -132,7 +132,7 @@ secteur:
     code: Code secteur
     liste: Secteurs
     noteAvancement: Avancement intégration secteur
-    nbAppli: Nombre d'applications
+    nbAppli: Nb applications
     listeAppliInfo: Applications informatiques du secteur
     listeAppliService: Applications service du secteur
 
@@ -141,7 +141,7 @@ service:
     codeSirh: Code SIRH
     nom: Nom du service
     liste: Services
-    nbAgent: Nombre d'agents
+    nbAgent: Nb agents
     listeAgent: Agents
     nbAcces: Nb. appli. utilisées
     nbAccesUo: Nb. UO utilisées
