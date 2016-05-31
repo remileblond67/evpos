@@ -25,6 +25,7 @@
                     <td class="row">{{ 'service.nbAgent'|trans }}</td>
                     <td class="row">{{ 'applications.liste'|trans }}</td>
                     <td class="row">{{ 'service.noteAvancement'|trans}}</td>
+                    <tr class="row">{{ 'service.numEnsemble'|trans }}</tr>
                 </tr>
             </thead>
             <tbody>
@@ -77,6 +78,7 @@
                                 {{service.noteAvancementMoca}}
                               </progress>
                             </td>
+                            <td>{{service.numEnsemble}}</td>
                         </tr>
                     {% endfor %}
                 {% endfor %}
