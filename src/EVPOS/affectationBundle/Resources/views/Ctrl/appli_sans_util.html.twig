@@ -20,6 +20,9 @@
     <th>
       {{'uo.code'|trans}}
     </th>
+    <th>
+      {{'uo.noteAvancement'|trans}}
+    </th>
   </thead>
   <tbody>
     {% for uo in listeUO %}
@@ -45,6 +48,13 @@
         </a>
         <br>
         {{uo.nomUo}}
+      </td>
+      <td>
+        {% if uo.migMoca %}
+        <progress value="{{ uo.noteAvancementMoca }}" max="100" title="{{ uo.noteAvancementMoca }}%">
+          {{ uo.noteAvancementMoca }}%
+        </progress>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
