@@ -212,7 +212,7 @@ evpos_serviceAvancementXml:
 
 evpos_planif_uo:
     path: /planif_uo
-    defaults: { _controller: EVPOSaffectationBundle:Etat:planifUoAction }
+    defaults: { _controller: EVPOSaffectationBundle:Etat:planifUo }
 
 # Pages de contrôle
 
