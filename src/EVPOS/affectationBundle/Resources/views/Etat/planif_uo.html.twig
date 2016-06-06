@@ -16,12 +16,14 @@
     </tr>
   </thead>
   <tbody>
+    {% for uo in listeUo %}
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{uo.appli.codeAppli}}</td>
+      <td>{{uo.codeUo}}</td>
+      <td>{{uo.nomUo}}</td>
       <td></td>
     </tr>
+    {% endfor %}
   </tbody>
 </table>
 
