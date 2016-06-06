@@ -18,9 +18,19 @@
   <tbody>
     {% for uo in listeUo %}
     <tr>
-      <td>{{uo.appli.codeAppli}}</td>
-      <td>{{uo.codeUo}}</td>
-      <td>{{uo.nomUo}}</td>
+      <td>
+        <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
+          {{uo.appli.codeAppli}}
+        </a>
+      </td>
+      <td>
+        <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
+          {{uo.codeUo}}
+        </a>
+      </td>
+      <td>
+        {{uo.nomUo}}
+      </td>
       <td></td>
     </tr>
     {% endfor %}
