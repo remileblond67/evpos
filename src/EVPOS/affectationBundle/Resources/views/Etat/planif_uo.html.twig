@@ -46,8 +46,10 @@
         <table width="100%">
           <tbody>
             {% for acces in uo.listeServiceAcces %}
-              <td>{{acces.serviceAcces.codeService}}</td>
-              <td>{{acces.serviceAcces.numEnsemble}}</td>
+              <tr>
+                <td>{{acces.serviceAcces.codeService}}</td>
+                <td>{{acces.serviceAcces.numEnsemble}}</td>
+              </tr>
             {% endfor %}
           </tbody>
         </table>
