@@ -191,7 +191,9 @@ class UORepository extends EntityRepository
     $query = $this->createQueryBuilder('uo')
       ->leftJoin('uo.listeServiceAcces', 's')
       ->addSelect('s')
-      ->where('s.serviceAcces.numEnsemble is null')
+      ->leftJoin('s.serviceAcces', 'sa')
+      ->addSelect('sa')
+      ->where('sa.numEnsemble is null')
       ->getQuery();
     return $query->getResult();
   }
