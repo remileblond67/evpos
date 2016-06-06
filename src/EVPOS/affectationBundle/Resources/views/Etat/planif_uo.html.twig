@@ -51,7 +51,9 @@
                   {{acces.serviceAcces.numEnsemble}}
                 </td>
                 <td>
-                  {{acces.serviceAcces.codeService}}
+                  <a href="{{ path('evpos_ficheService', { 'codeService' : acces.serviceAcces.codeService }) }}">
+                    {{acces.serviceAcces.codeService}}
+                  </a>
                 </td>
                 <td>
                   ({{acces.nbUtil}} util.)
