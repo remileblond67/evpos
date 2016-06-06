@@ -12,6 +12,9 @@
       <th> {{'application.code'|trans}} </th>
       <th> {{'uo.code'|trans}} </th>
       <th> {{'uo.nom'|trans}} </th>
+      <th>
+        {{'uo.noteAvancement'|trans}}
+      </th>
       <th> {{'service.numEnsemble'|trans}} </th>
     </tr>
   </thead>
@@ -31,7 +34,17 @@
       <td>
         {{uo.nomUo}}
       </td>
-      <td></td>
+      <td>
+        <div class="{{ uo.avancementMocaIcon }}" title="{{ uo.avancementMocaDetail }}"></div>
+        {{uo.avancementMoca}} - {{uo.noteAvancementMoca}}%
+        <br>
+        <progress value="{{ uo.noteAvancementMoca }}" max="100" title="{{uo.noteAvancementMoca}}%"></progress>
+        <br>
+        {{ uo.avancementMocaDetail }}
+      </td>
+      <td>
+
+      </td>
     </tr>
     {% endfor %}
   </tbody>
