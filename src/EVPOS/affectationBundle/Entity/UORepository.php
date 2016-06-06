@@ -189,6 +189,9 @@ class UORepository extends EntityRepository
    */
   public function getPlanifUo() {
     $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.listeServiceAcces', 's')
+      ->addSelect('s')
+      ->where('s.serviceAcces.numEnsemble != ""')
       ->getQuery();
     return $query->getResult();
   }
