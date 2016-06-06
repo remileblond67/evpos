@@ -10,7 +10,7 @@ class EtatController extends Controller
     /**
      * Affiche l'état d'avancement des services
      */
-    public function etatAvancementServiceAction() {
+    public function avancementServiceAction() {
         $listeDirection = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Direction')
@@ -24,7 +24,7 @@ class EtatController extends Controller
      * Affiche l'état d'avancement des services
      *      - export XML -
      */
-    public function etatAvancementServiceXmlAction() {
+    public function avancementServiceXmlAction() {
         $listeDirection = $this->getDoctrine()
             ->getManager()
             ->getRepository('EVPOSaffectationBundle:Direction')
@@ -32,5 +32,16 @@ class EtatController extends Controller
         ;
 
         return $this->render('EVPOSaffectationBundle:Etat:avancementService.xml.twig', array('listeDirection' => $listeDirection));
+    }
+
+    /**
+     * Etat de planification des services utilisant les différentes UO
+     */
+    public function planifUoAction() {
+      listeUo = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:UO')
+        ->getPlanifUo()
+      ;
+
+      return $this->render('EVPOSaffectationBundle:Etat:planif_uo.html.twig', array('listeUo' => $listeUo));
     }
 }

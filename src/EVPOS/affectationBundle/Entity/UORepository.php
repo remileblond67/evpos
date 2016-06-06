@@ -183,4 +183,13 @@ class UORepository extends EntityRepository
     ;
     return $query->getResult();
   }
+
+  /**
+   * Liste des UO planifiées
+   */
+  public function getPlanifUo() {
+    $query = $this->createQueryBuilder('uo')
+      ->getQuery();
+    return $query->getResult();
+  }
 }

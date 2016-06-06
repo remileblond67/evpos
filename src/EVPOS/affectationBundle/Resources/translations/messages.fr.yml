@@ -126,6 +126,7 @@ uo:
     ancienCitrix: Ancienne ferme Citrix
     noteAvancement: Avancement intégration
     sansUtil: UO sans aucun utilisateur déclaré
+    planif: Planification migration UO
 
 secteur:
     nom: Nom du secteur
