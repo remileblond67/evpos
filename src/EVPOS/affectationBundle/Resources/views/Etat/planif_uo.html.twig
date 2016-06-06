@@ -47,8 +47,15 @@
           <tbody>
             {% for acces in uo.listeServiceAcces %}
               <tr>
-                <td>{{acces.serviceAcces.codeService}}</td>
-                <td>{{acces.serviceAcces.numEnsemble}}</td>
+                <td>
+                  {{acces.serviceAcces.codeService}}
+                </td>
+                <td>
+                  {{acces.serviceAcces.numEnsemble}}
+                </td>
+                <td>
+                  {{acces.serviceAcces.nbUtil}} util.
+                </td>
               </tr>
             {% endfor %}
           </tbody>
