@@ -194,7 +194,7 @@ class UORepository extends EntityRepository
       ->leftJoin('s.serviceAcces', 'sa')
       ->addSelect('sa')
       ->where('sa.numEnsemble is not null')
-      ->orderBy('uo.codeUo ASC, sa.numEnsemble ASC')
+      ->orderBy('uo.codeUo, sa.numEnsemble')
       ->getQuery();
     return $query->getResult();
   }
