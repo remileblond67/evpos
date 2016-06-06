@@ -193,7 +193,7 @@ class UORepository extends EntityRepository
       ->addSelect('s')
       ->leftJoin('s.serviceAcces', 'sa')
       ->addSelect('sa')
-      ->where('sa.numEnsemble is null')
+      ->where('sa.numEnsemble is not null')
       ->getQuery();
     return $query->getResult();
   }
