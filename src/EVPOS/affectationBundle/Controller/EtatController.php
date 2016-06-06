@@ -38,7 +38,7 @@ class EtatController extends Controller
      * Etat de planification des services utilisant les différentes UO
      */
     public function planifUoAction() {
-      listeUo = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:UO')
+      $listeUo = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:UO')
         ->getPlanifUo()
       ;
 
