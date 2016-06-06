@@ -43,7 +43,9 @@
         {{ uo.avancementMocaDetail }}
       </td>
       <td>
-
+        {% for acces in uo.listeServiceAcces %}
+          {{acces.serviceAcces.codeService}} - {{acces.serviceAcces.numEnsemble}} <br>
+        {% endfor %}
       </td>
     </tr>
     {% endfor %}
