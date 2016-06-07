@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.17.1
+    version_n: 2.18.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -126,6 +126,7 @@ uo:
     ancienCitrix: Ancienne ferme Citrix
     noteAvancement: Avancement intégration
     sansUtil: UO sans aucun utilisateur déclaré
+    planif: Planification migration UO
 
 secteur:
     nom: Nom du secteur

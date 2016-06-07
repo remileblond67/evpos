@@ -183,4 +183,19 @@ class UORepository extends EntityRepository
     ;
     return $query->getResult();
   }
+
+  /**
+   * Liste des UO planifiées
+   */
+  public function getPlanifUo() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.listeServiceAcces', 's')
+      ->addSelect('s')
+      ->leftJoin('s.serviceAcces', 'sa')
+      ->addSelect('sa')
+      ->where("sa.numEnsemble is not null and uo.noteAvancementMoca <> '100'")
+      ->orderBy('uo.codeUo, sa.numEnsemble')
+      ->getQuery();
+    return $query->getResult();
+  }
 }
