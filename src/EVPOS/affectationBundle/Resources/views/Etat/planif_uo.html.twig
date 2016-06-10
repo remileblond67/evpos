@@ -6,12 +6,13 @@
     <h4>{{ 'uo.planif'|trans }}</h4>
   </div>
 </div>
-<table class="table table-striped table-bordered table-hover dataTable no-footer">
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
     <tr>
       <th> {{'application.code'|trans}} </th>
       <th> {{'uo.code'|trans}} </th>
       <th> {{'uo.nom'|trans}} </th>
+      <td> {{ 'application.cpi'|trans}} </td>
       <th>
         {{'uo.noteAvancement'|trans}}
       </th>
@@ -33,6 +34,11 @@
       </td>
       <td>
         {{uo.nomUo}}
+      </td>
+      <td>
+        {% if (uo.appli.cpi) %}
+        {{uo.appli.cpi.nomUtil}}
+        {% endif %}
       </td>
       <td>
         <div class="{{ uo.avancementMocaIcon }}" title="{{ uo.avancementMocaDetail }}"></div>
