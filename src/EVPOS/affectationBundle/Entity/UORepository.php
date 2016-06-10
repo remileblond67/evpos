@@ -193,7 +193,7 @@ class UORepository extends EntityRepository
       ->addSelect('s')
       ->leftJoin('s.serviceAcces', 'sa')
       ->addSelect('sa')
-      ->where("sa.numEnsemble is not null and uo.noteAvancementMoca <> '100'")
+      ->where("sa.numEnsemble is not null and uo.noteAvancementMoca <> '100' and uo.migMoca = true")
       ->orderBy('uo.codeUo, sa.numEnsemble')
       ->getQuery();
     return $query->getResult();
