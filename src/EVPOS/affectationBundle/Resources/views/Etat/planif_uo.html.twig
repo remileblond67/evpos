@@ -36,7 +36,9 @@
         {{uo.nomUo}}
       </td>
       <td>
+        {% if (uo.appli.cpi) %}
         {{uo.appli.cpi.nomUtil}}
+        {% endif %}
       </td>
       <td>
         <div class="{{ uo.avancementMocaIcon }}" title="{{ uo.avancementMocaDetail }}"></div>
