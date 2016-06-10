@@ -12,6 +12,7 @@
       <th> {{'application.code'|trans}} </th>
       <th> {{'uo.code'|trans}} </th>
       <th> {{'uo.nom'|trans}} </th>
+      <td> {{ 'application.cpi'|trans}} </td>
       <th>
         {{'uo.noteAvancement'|trans}}
       </th>
@@ -33,6 +34,9 @@
       </td>
       <td>
         {{uo.nomUo}}
+      </td>
+      <td>
+        {{uo.application.cpi}}
       </td>
       <td>
         <div class="{{ uo.avancementMocaIcon }}" title="{{ uo.avancementMocaDetail }}"></div>
