@@ -26,6 +26,13 @@
       <tr>
         <td>{{ service.codeService }}</td>
         <td>{{ service.libService }}</td>
+        {% for ensemble in ensembles %}
+        <td>
+          {% if ensemble.numEnsemble == service.numEnsemble %}
+            X
+          {% endif %}
+        </td>
+        {% endfor %}
       </tr>
       {% endfor %}
     </tbody>
