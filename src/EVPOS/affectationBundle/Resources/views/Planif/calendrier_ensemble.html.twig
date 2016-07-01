@@ -12,7 +12,7 @@
     <thead>
       <tr>
         <th rowspan="2">{{ 'service.nom'|trans }}</th>
-        <th colspan="{{ensembles|length - 1}}">{{ 'service.numEnsemble'|trans}}</th>
+        <th colspan="{{ensembles|length}}">{{ 'service.numEnsemble'|trans}}</th>
       </tr>
         {% for ensemble in ensembles %}
         <th>{{ensemble.numEnsemble}}</th>

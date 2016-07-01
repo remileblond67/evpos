@@ -155,6 +155,7 @@ class ServiceRepository extends EntityRepository
       $query = $this->createQueryBuilder('s')
         ->select('distinct s.numEnsemble')
         ->orderBy('s.numEnsemble', 'ASC')
+        ->where('s.numEnsemble is not null')
         ->getQuery();
 
       return $query->getResult();
