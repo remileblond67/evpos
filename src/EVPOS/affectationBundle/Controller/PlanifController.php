@@ -12,11 +12,11 @@ class PlanifController extends Controller
    * Affiche un calendrier des migrations d'ensembles cohérents
    */
    public function calendrierEnsembleAction() {
-     $ensembles = $this->getDoctrine()->getManager()
+     $services = $this->getDoctrine()->getManager()
        ->getRepository('EVPOSaffectationBundle:Service')
        ->getPlanif();
 
      return $this->render('EVPOSaffectationBundle:Planif:calendrier_ensemble.html.twig',
-                          array('ensembles' => $ensembles));
+                          array('services' => $services));
    }
 }

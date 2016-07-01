@@ -12,14 +12,18 @@
     <thead>
       <tr>
         <th>{{ 'service.numEnsemble'|trans}}</th>
+        <th>{{ 'service.codeService'|trans }}</th>
+        <th>{{ 'service.libService'|trans }}</th>
       </tr>
     </thead>
     <tbody>
-      {% for ensemble in ensembles %}
+      {% for service in services %}
       <tr>
         <td>
-          {{ ensemble.numEnsemble }}
+          {{ service.numEnsemble }}
         </td>
+        <td>{{ service.codeService }}</td>
+        <td>{{ service.libService }}</td>
       </tr>
       {% endfor %}
     </tbody>

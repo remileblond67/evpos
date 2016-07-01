@@ -143,7 +143,7 @@ class ServiceRepository extends EntityRepository
 
     public function getPlanif() {
       $query = $this->createQueryBuilder('s')
-        ->select('distinct s.numEnsemble')
+        ->select('s.codeService, s.libService, s.numEnsemble')
         ->orderBy('s.numEnsemble', 'ASC')
         ->where('s.numEnsemble is not null')
         ->getQuery();
