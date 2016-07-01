@@ -17,6 +17,6 @@ class PlanifController extends Controller
        ->getPlanif();
 
      return $this->render('EVPOSaffectationBundle:Planif:calendrier_ensemble.html.twig',
-                          array('listeEnsembles' => $ensembles));
+                          array('ensembles' => $ensembles));
    }
 }
