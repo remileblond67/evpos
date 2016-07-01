@@ -31,8 +31,11 @@
         </td>
         {% for ensemble in ensembles %}
         <td>
-          <span class="glyphicon glyphicon-ok"></span>
-          {{uo.serviceAcces.numEnsemble}}
+          {% for service in uo.serviceAcces %}
+            {% if service.numEnsemble == ensemble.numEnsemble %}
+            <span class="glyphicon glyphicon-ok"></span>
+            {% endif %}
+          {% endfor %}
         </td>
         {% endfor %}
       </tr>
