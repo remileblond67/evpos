@@ -31,8 +31,8 @@
         </td>
         {% for ensemble in ensembles %}
         <td>
-          {% for service in uo.listeServiceAcces %}
-            {% if service.numEnsemble == ensemble.numEnsemble %}
+          {% for acces in uo.listeServiceAcces %}
+            {% if acces.serviceAcces.numEnsemble == ensemble.numEnsemble %}
             <span class="glyphicon glyphicon-ok"></span>
             {% endif %}
           {% endfor %}
