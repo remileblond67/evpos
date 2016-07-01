@@ -89,6 +89,15 @@
               <li role="separator" class="divider"></li>
 
               <li>
+                <a href="{{ path('evpos_ensemble_service') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{ 'service.calMigration'|trans }}
+                </a>
+              </li>
+
+              <li role="separator" class="divider"></li>
+
+              <li>
                 <a href="{{ path('evpos_listeSecteur') }}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   {{ 'secteur.liste'|trans }}
@@ -121,6 +130,12 @@
                 <a href="{{ path('evpos_planif_uo')}}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   {{ 'uo.planif'|trans }}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_ensemble_uo') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  {{ 'uo.calMigration'|trans }}
                 </a>
               </li>
               <li role="separator" class="divider"></li>

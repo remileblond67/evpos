@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.18.1
+    version_n: 2.19.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -127,6 +127,7 @@ uo:
     noteAvancement: Avancement intégration
     sansUtil: UO sans aucun utilisateur déclaré
     planif: Planification migration UO
+    calMigration: Calendrier de migration des UO
 
 secteur:
     nom: Nom du secteur
@@ -152,6 +153,7 @@ service:
     numEnsemble: N° ensemble
     treeView: Vue globale
     treeViewPlannif: Vue globale par état de plannification
+    calMigration: Calendrier de migration des services
 
 riu:
     nom: Nom RIU

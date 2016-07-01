@@ -141,4 +141,24 @@ class ServiceRepository extends EntityRepository
         return $retour;
     }
 
+    public function getPlanif() {
+      $query = $this->createQueryBuilder('s')
+        ->select('s.codeService, s.libService, s.numEnsemble')
+        ->orderBy('s.numEnsemble', 'ASC')
+        ->where('s.numEnsemble is not null')
+        ->getQuery();
+
+      return $query->getResult();
+    }
+
+    public function getEnsembles() {
+      $query = $this->createQueryBuilder('s')
+        ->select('distinct s.numEnsemble')
+        ->orderBy('s.numEnsemble', 'ASC')
+        ->where('s.numEnsemble is not null')
+        ->getQuery();
+
+      return $query->getResult();
+    }
+
 }
