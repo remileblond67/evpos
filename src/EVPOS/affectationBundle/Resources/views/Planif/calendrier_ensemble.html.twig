@@ -24,8 +24,14 @@
     <tbody>
       {% for service in services %}
       <tr>
-        <td>{{ service.codeService }}</td>
-        <td>{{ service.libService }}</td>
+        <td>
+          <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+            {{ service.codeService }}
+          </a>
+        </td>
+        <td>
+          {{ service.libService }}
+        </td>
         {% for ensemble in ensembles %}
         <td>
           {% if ensemble.numEnsemble == service.numEnsemble %}
