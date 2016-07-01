@@ -26,8 +26,14 @@
       {% for uo in listeUo %}
       <tr>
         <td>
-          <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a>
+          <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a> :
+          {{uo.nomUo}}
         </td>
+        {% for ensemble in ensembles %}
+        <td>
+          <span class="glyphicon glyphicon-ok"></span>
+        </td>
+        {% endfor %}
       </tr>
       {% endfor %}
     </tbody>
