@@ -261,9 +261,9 @@ fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 # Etats d'aide à la planification
-evpos_planif_ensemble:
-    path: /planif/ensemble
-    defaults: { _controller: EVPOSaffectationBundle:Planif:calendrierEnsemble }
+evpos_planif_service:
+    path: /planif/service
+    defaults: { _controller: EVPOSaffectationBundle:Planif:calendrierService }
 
 evpos_planif_uo:
     path: /planif/uo

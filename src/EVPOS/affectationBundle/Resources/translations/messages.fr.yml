@@ -69,8 +69,6 @@ imprimante:
     hostname: Hostname
     export: Export pour DEGIM
 
-ensemble:
-    cal: Calendrier de migration des ensembles cohérents
 applications:
     liste: Applications à migrer
     listeAll: TOUTES les applications
@@ -129,6 +127,7 @@ uo:
     noteAvancement: Avancement intégration
     sansUtil: UO sans aucun utilisateur déclaré
     planif: Planification migration UO
+    calMigration: Calendrier de migration des UO
 
 secteur:
     nom: Nom du secteur
@@ -154,6 +153,7 @@ service:
     numEnsemble: N° ensemble
     treeView: Vue globale
     treeViewPlannif: Vue globale par état de plannification
+    calMigration: Calendrier de migration des services
 
 riu:
     nom: Nom RIU
