@@ -69,6 +69,8 @@ imprimante:
     hostname: Hostname
     export: Export pour DEGIM
 
+ensemble:
+    cal: Calendrier de migration des ensembles cohérents
 applications:
     liste: Applications à migrer
     listeAll: TOUTES les applications

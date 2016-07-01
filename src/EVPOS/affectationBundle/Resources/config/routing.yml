@@ -259,3 +259,8 @@ evpos_delete_corresp_uo:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# Etats d'aide à la planification
+evpos_planif_ensemble:
+    path: /planif/ensemble
+    defaults: { _controller: EVPOSaffectationBundle:Planif:calendrierEnsemble }

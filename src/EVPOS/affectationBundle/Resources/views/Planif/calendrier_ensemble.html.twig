@@ -1,0 +1,14 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'ensemble.cal'|trans }}{% endblock%}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <h4>{{ 'ensemble.cal'|trans }}</h4>
+    </div>
+    <div class="col-lg-4">
+        <a href="{{ path('evpos_listeAppliXml')}}" class="btn btn-sm btn-default">{{'applications.liste'|trans}}</a>
+        <a href="{{ path('evpos_listeAppliUoXml')}}" class="btn btn-sm btn-default">{{'applications.listeAppliUo'|trans}}</a>
+    </div>
+</div>
+{% end block%}
