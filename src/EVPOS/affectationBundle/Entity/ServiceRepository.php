@@ -141,4 +141,12 @@ class ServiceRepository extends EntityRepository
         return $retour;
     }
 
+    public function getPlanif() {
+      $service = $this->createQueryBuilder('s')
+        ->select('numEnsemble')
+        ->getQuery();
+
+      return $query->getResult();
+    }
+
 }
