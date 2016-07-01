@@ -21,6 +21,24 @@ class PlanifController extends Controller
        ->getEnsembles();
 
      return $this->render('EVPOSaffectationBundle:Planif:calendrier_ensemble.html.twig',
-                          array('services' => $services, 'ensembles' => $ensembles));
+                          array('services' => $services,
+                                'ensembles' => $ensembles));
+   }
+
+   /**
+    * Affiche un calendrier des imgrations d'applications
+    */
+   public function calendrierUoAction() {
+     $ensembles = $this->getDoctrine()->getManager()
+       ->getRepository('EVPOSaffectationBundle:Service')
+       ->getEnsembles();
+
+     $listeUo = $this->getDoctrine()->getManager()
+       ->getRepository('EVPOSaffectationBundle:UO')
+       ->getPlanifUo();
+
+     return $this->render('EVPOSaffectationBundle:Planif:calendrier_uo.html.twig',
+                          array('listeUo' => $listeUo,
+                                'ensembles' => $ensembles));
    }
 }

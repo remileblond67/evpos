@@ -264,3 +264,7 @@ fos_user:
 evpos_planif_ensemble:
     path: /planif/ensemble
     defaults: { _controller: EVPOSaffectationBundle:Planif:calendrierEnsemble }
+
+evpos_planif_uo:
+    path: /planif/uo
+    defaults: { _controller: EVPOSaffectationBundle:Planif:calendrierUo }
