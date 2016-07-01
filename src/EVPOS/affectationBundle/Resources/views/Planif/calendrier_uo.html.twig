@@ -12,7 +12,7 @@
     <thead>
       <tr>
         <th rowspan="2">{{ 'uo.code'|trans }}</th>
-        <th rowspan="2">{{ 'uo.avancementMoca'|trans}}</th>
+        <th rowspan="2">{{ 'uo.avancementMigMoca'|trans}}</th>
         <th colspan="{{ensembles|length}}">{{ 'service.numEnsemble'|trans}}</th>
       </tr>
         {% for ensemble in ensembles %}
@@ -31,7 +31,7 @@
           {{uo.nomUo}}
         </td>
         <td>
-          <progress value="{{uo.avancementMoca}}" max="100">{{uo.avancementMoca}}%</progress>
+          <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.avancementMoca}}%</progress>
         </td>
         {% for ensemble in ensembles %}
         <td>
