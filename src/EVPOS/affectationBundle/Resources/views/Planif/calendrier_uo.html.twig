@@ -24,17 +24,8 @@
       {% for uo in listeUo %}
       <tr>
         <td>
-          <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
-            {{ service.codeService }} : {{ service.libService }}
-          </a>
+          {{uo.codeUo}}
         </td>
-        {% for ensemble in ensembles %}
-        <td>
-          {% if ensemble.numEnsemble == service.numEnsemble %}
-            <span class="glyphicon glyphicon-ok"></span>
-          {% endif %}
-        </td>
-        {% endfor %}
       </tr>
       {% endfor %}
     </tbody>
