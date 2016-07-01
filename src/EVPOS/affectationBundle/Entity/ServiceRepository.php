@@ -151,4 +151,13 @@ class ServiceRepository extends EntityRepository
       return $query->getResult();
     }
 
+    public function getEnsembles() {
+      $query = $this->createQueryBuilder('s')
+        ->select('distinct s.numEnsemble')
+        ->orderBy('s.numEnsemble', 'ASC')
+        ->getQuery();
+
+      return $query->getResult();
+    }
+
 }

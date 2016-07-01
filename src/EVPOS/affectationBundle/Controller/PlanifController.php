@@ -16,7 +16,11 @@ class PlanifController extends Controller
        ->getRepository('EVPOSaffectationBundle:Service')
        ->getPlanif();
 
+     $ensembles = $this->getDoctrine()->getManager()
+       ->getRepository('EVPOSaffectationBundle:Service')
+       ->getEnsembles();
+
      return $this->render('EVPOSaffectationBundle:Planif:calendrier_ensemble.html.twig',
-                          array('services' => $services));
+                          array('services' => $services, 'ensembles' => $ensembles));
    }
 }

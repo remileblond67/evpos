@@ -11,9 +11,16 @@
 <table id="tabPlanif" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
     <thead>
       <tr>
-        <th>{{ 'service.numEnsemble'|trans}}</th>
         <th>{{ 'service.code'|trans }}</th>
         <th>{{ 'service.nom'|trans }}</th>
+        <th colspan="{{ensembles|length}}">{{ 'service.numEnsemble'|trans}}</th>
+      </tr>
+        <th></th>
+        <th></th>
+        {% for ensemble in ensembles %}
+        <th>{{ensemble.numEnsemble}}</th>
+        {% endfor %}
+      <tr>
       </tr>
     </thead>
     <tbody>
