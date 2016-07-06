@@ -8,6 +8,12 @@
     </div>
 </div>
 
+<style media="screen">
+  .ancienneFerme {
+    background-color: lightgrey;
+  }
+</style>
+
 <table id="tabPlanif" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
     <thead>
       <tr>
@@ -25,7 +31,7 @@
     </thead>
     <tbody>
       {% for uo in listeUo %}
-      <tr>
+      <tr {% if uo.ancienCitrix %}class="ancienneFerme"{% endif %}>
         <td>
           <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a> :
           {{uo.nomUo}}
@@ -33,7 +39,7 @@
         <td>
           <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.avancementMoca}}%</progress>
           {% if uo.ancienCitrix %}
-          Dispo dans l'ancienne ferme Citrix
+          <p>Ancienne ferme Citrix</p>
           {% endif %}
         </td>
         {% for ensemble in ensembles %}
