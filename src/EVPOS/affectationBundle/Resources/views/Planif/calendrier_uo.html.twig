@@ -32,7 +32,9 @@
         </td>
         <td>
           <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.avancementMoca}}%</progress>
-          {{uo.ancienCitrix}}
+          {% if uo.ancienCitrix %}
+          Dispo dans l'ancienne ferme Citrix
+          {% endif %}
         </td>
         {% for ensemble in ensembles %}
         <td>
