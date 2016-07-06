@@ -47,7 +47,7 @@
         <td>
           {% for acces in uo.listeServiceAcces %}
             {% if acces.serviceAcces.numEnsemble == ensemble.numEnsemble %}
-            <span class="glyphicon glyphicon-ok" title="ensemble.numEnsemble"></span>
+            <span class="glyphicon glyphicon-ok" title="{{ensemble.numEnsemble}}"></span>
             {% endif %}
           {% endfor %}
         </td>
