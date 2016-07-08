@@ -112,6 +112,7 @@ class ImportBazaCommand extends ContainerAwareCommand
         $service->setDirection($em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection));
       }
       $service->setCodeService($codeService);
+      $service->setCodeDirection($codeDirection);
       $service->setLibService($libService);
       $service->setExisteBaza(TRUE);
 
