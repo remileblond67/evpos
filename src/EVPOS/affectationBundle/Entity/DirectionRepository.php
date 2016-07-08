@@ -98,7 +98,7 @@ class DirectionRepository extends EntityRepository
             ->getQuery()
         ;
 
-        return $query->getNullOSingleResult();
+        return $query->getOneOrNullResult();
     }
 
     /**
