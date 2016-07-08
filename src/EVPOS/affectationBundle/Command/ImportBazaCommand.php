@@ -100,6 +100,7 @@ class ImportBazaCommand extends ContainerAwareCommand
     while (($row = oci_fetch_array($csr,OCI_ASSOC+OCI_RETURN_NULLS)) !== false) {
       $codeService = strtoupper($row["CODE_SERVICE"]) ;
       $codeDirection = strtoupper($row["CODE_DIRECTION"]) ;
+      $direction = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection);
       $libService = utf8_encode($row["DESCRIPTION_SERVICE"]);
 
       if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService))
@@ -112,6 +113,7 @@ class ImportBazaCommand extends ContainerAwareCommand
         $service->setDirection($em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection));
       }
       $service->setCodeService($codeService);
+      $service->setDirection($direction);
       $service->setLibService($libService);
       $service->setExisteBaza(TRUE);
 
