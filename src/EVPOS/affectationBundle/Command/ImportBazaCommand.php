@@ -39,7 +39,7 @@ class ImportBazaCommand extends ContainerAwareCommand
     $sid = "pbaza";
 
     // Passer cette variable à TRUE pour déclencher une mise à jour des directions depuis BAZA
-    $updateDirection = FALSE;
+    $updateDirection = TRUE;
 
     $this->ORA = oci_connect ($user , $password , $sid) ;
 
@@ -63,9 +63,9 @@ class ImportBazaCommand extends ContainerAwareCommand
         $libDirection = utf8_encode($row["LIB_LONG_DIRECTION"]);
 
         if ($em->getRepository('EVPOSaffectationBundle:Direction')->isDirection($codeDirection))
-        $direction = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection);
+          $direction = $em->getRepository('EVPOSaffectationBundle:Direction')->getDirection($codeDirection);
         else
-        $direction = new Direction();
+          $direction = new Direction();
 
         $direction->setCodeDirection($codeDirection);
         $direction->setLibDirection($libDirection);
