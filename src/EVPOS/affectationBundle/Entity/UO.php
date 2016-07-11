@@ -290,6 +290,9 @@ class UO
     public function getAvancementMocaIcon()
     {
         switch ($this->avancementMoca) {
+            case "4. En production":
+                $icon = "glyphicon glyphicon-ok ok";
+                break;
             case "3. Validé":
                 $icon = "glyphicon glyphicon-ok ok";
                 break;
@@ -308,6 +311,9 @@ class UO
 
     public function getEnCours() {
         switch ($this->avancementMoca) {
+            case "4. En production":
+                $enCours = true;
+                break;
             case "3. Validé":
                 $enCours = true;
                 break;
@@ -520,60 +526,64 @@ class UO
      */
     public function calculeNoteAvancement() {
       $note = 0;
-      if (strlen($this->avancementMocaDetail) > 2) {
-        $code = substr($this->avancementMocaDetail, 0, 2);
-        switch ($code) {
-          case "01":
+      if (($this->avancementMoca) == "4. En production") {
+        $note = 100;
+      } else {
+        if (strlen($this->avancementMocaDetail) > 2) {
+          $code = substr($this->avancementMocaDetail, 0, 2);
+          switch ($code) {
+            case "01":
             $note = 5;
             break;
-          case "02":
+            case "02":
             $note = 10;
             break;
-          case "03":
+            case "03":
             $note = 20;
             break;
-          case "04":
+            case "04":
             $note = 10;
             break;
-          case "05":
+            case "05":
             $note = 30;
             break;
-          case "06":
+            case "06":
             $note = 30;
             break;
-          case "07":
+            case "07":
             $note = 10;
             break;
-          case "08":
+            case "08":
             $note = 80;
             break;
-          case "09":
+            case "09":
             $note = 90;
             break;
-          case "10":
+            case "10":
             $note = 80;
             break;
-          case "11":
+            case "11":
             $note = 50;
             break;
-          case "12":
+            case "12":
             $note = 90;
             break;
-          case "13":
+            case "13":
             $note = 100;
             break;
-          case "14":
+            case "14":
             $note = 100;
             break;
-          case "15":
+            case "15":
             $note = 100;
             break;
-          case "00":
+            case "00":
             $note = 100;
             break;
-          default:
+            default:
             $note = 0;
             break;
+          }
         }
         if (($note != 100) && ($this->ancienCitrix === TRUE)) {
           $note = 80;
