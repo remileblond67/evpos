@@ -220,7 +220,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
-              ['Date',  'Validée', 'En cours', 'Pas initiée'],
+              ['Date',  'En production', 'Validée', 'En cours', 'Pas initiée'],
               {% for key, ligne in evolutionAiGen %}
               ['{{ key }}', {{ligne['4. En production']}}, {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
               {% endfor %}
