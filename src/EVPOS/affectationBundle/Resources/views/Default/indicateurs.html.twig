@@ -13,7 +13,7 @@
 %}
 <style media="screen">
   {% for etat, couleur in couleurs %}
-  progress.{{etat|replace({' ':'', '.':''})}} {
+  .{{etat|replace({' ':'', '.':''})}} {
     color: "{{couleur}}";
   }
   {% endfor %}
