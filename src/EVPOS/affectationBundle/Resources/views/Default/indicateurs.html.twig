@@ -211,11 +211,10 @@ var couleur = {
           </tr>
           {% for ligne in avancementUoAI%}
           <tr>
-            {% set avancement = ligne.avancementMoca %}
-            <td>{{avancement}}</td>
+            <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
             <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" style="color: {{couleurs.avancement}}">{{ligne.nb}}</progress>
+              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" class="{{ligne.avancementMoca}}">{{ligne.nb}}</progress>
             </td>
           </tr>
           <script>
