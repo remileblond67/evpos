@@ -221,7 +221,7 @@ var couleur = {
             <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
             <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" class="{{ligne.avancementMoca|replace(' ':'', '.':'')}}">
+              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" class="{{ligne.avancementMoca|replace({' ':'', '.':''})}}">
                 {{ligne.nb}}
               </progress>
             </td>
