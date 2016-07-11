@@ -222,7 +222,7 @@ var couleur = {"4. Abandonnée" : "#555", "1. Pas initiée" : "#A00", "2. En cou
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
-              ['Date',  'En production', 'Validée', 'En cours', 'Pas initiée'],
+              ['Date',  'Validée', 'En cours', 'Pas initiée'],
               {% for key, ligne in evolutionAiGen %}
               ['{{ key }}', {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
               {% endfor %}
