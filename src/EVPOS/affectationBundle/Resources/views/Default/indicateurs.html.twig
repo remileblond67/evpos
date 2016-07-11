@@ -231,7 +231,7 @@ var couleur = {"4. Abandonnée" : "#555", "1. Pas initiée" : "#A00", "2. En cou
             var options = {
               vAxis: {title: 'Nombre d\'UO'},
               isStacked: true,
-              colors: couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAI'));
@@ -353,7 +353,7 @@ var couleur = {"4. Abandonnée" : "#555", "1. Pas initiée" : "#A00", "2. En cou
             var options = {
               vAxis: {title: 'Nombre d\'UO'},
               isStacked: true,
-              colors: couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAS'));
