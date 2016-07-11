@@ -4,7 +4,7 @@
 {% block content %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
+var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime", "4. En production" : "Red"};
 </script>
 
 <div class="row">
@@ -229,7 +229,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             var options = {
               vAxis: {title: 'Nombre d\'UO'},
               isStacked: true,
-              colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: [couleur['4. En production'], couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAI'));
@@ -351,7 +351,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             var options = {
               vAxis: {title: 'Nombre d\'UO'},
               isStacked: true,
-              colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: [couleur['4. En production'], couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAS'));
