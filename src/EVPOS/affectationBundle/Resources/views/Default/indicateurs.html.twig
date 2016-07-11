@@ -13,8 +13,8 @@
 %}
 <style media="screen">
   {% for etat, couleur in couleurs %}
-  progress."{{etat}}" {
-    color: {{couleur}};
+  progress.{{etat|replace(' ':'', '.':'')}} {
+    color: "{{couleur}}";
   }
   {% endfor %}
 </style>
@@ -221,7 +221,7 @@ var couleur = {
             <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
             <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" class="{{ligne.avancementMoca}}">
+              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" class="{{ligne.avancementMoca|replace(' ':'', '.':'')}}">
                 {{ligne.nb}}
               </progress>
             </td>
