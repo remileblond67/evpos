@@ -4,7 +4,7 @@
 {% block content %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-var couleur = {"1. Pas initiée" : "#A00", "2. En cours" : "Gold", "3. Validé" : "#0F0", "4. En production" : "#0A0"};
+var couleur = {"4. Abandonnée" : "#555", "1. Pas initiée" : "#A00", "2. En cours" : "Gold", "3. Validé" : "#0F0", "4. En production" : "#0A0"};
 </script>
 
 <div class="row">
@@ -143,7 +143,9 @@ var couleur = {"1. Pas initiée" : "#A00", "2. En cours" : "Gold", "3. Validé" 
               <tr>
                 <td>{{ligne.typeUsage}}</td>
                 <td>{{ligne.nb}}</td>
-                <td><progress value="{{ligne.nb}}" max="{{nbPosteAMigrer}}"></progress></td>
+                <td>
+                  <progress value="{{ligne.nb}}" max="{{nbPosteAMigrer}}"></progress>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
