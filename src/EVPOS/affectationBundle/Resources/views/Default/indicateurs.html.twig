@@ -222,14 +222,14 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             var data = google.visualization.arrayToDataTable([
               ['Date',  'En production', 'Validée', 'En cours', 'Pas initiée'],
               {% for key, ligne in evolutionAiGen %}
-              ['{{ key }}', {{ligne['4. En production']}}, {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
+              ['{{ key }}', {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
               {% endfor %}
             ]);
 
             var options = {
               vAxis: {title: 'Nombre d\'UO'},
               isStacked: true,
-              colors: [couleur['4. En production'], couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAI'));
@@ -344,14 +344,14 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             var data = google.visualization.arrayToDataTable([
               ['Date',  'Validée', 'En cours', 'Pas initiée'],
               {% for key, ligne in evolutionAsGen %}
-              ['{{ key }}', {{ligne['4. En production']}}, {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
+              ['{{ key }}', {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
               {% endfor %}
             ]);
 
             var options = {
               vAxis: {title: 'Nombre d\'UO'},
               isStacked: true,
-              colors: [couleur['4. En production'], couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAS'));
