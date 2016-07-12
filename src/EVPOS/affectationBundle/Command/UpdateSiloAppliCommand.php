@@ -34,6 +34,9 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     } catch(Exception $e) {
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
+
+    print_r($xml);
+    
     $output->writeln("OK");
   }
 }
