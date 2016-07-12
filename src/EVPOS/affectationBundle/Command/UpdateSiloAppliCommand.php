@@ -33,7 +33,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $xmlFile = fopen($fileName);
     } catch(Exception $e) {
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
-    } finaly {
+    } finally {
       fclose($xmlFile);
     }
     $output->writeln("OK");
