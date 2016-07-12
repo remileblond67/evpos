@@ -30,11 +30,9 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
 
     $fileName = "/home/data/evpos/".$env."/silo/Update_AppV.xml";
     try {
-      $xmlFile = fopen($fileName, "r");
+      $xml = simplexml_load_file($fileName);
     } catch(Exception $e) {
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
-    } finally {
-      fclose($xmlFile);
     }
     $output->writeln("OK");
   }
