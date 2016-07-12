@@ -277,7 +277,7 @@ var couleur = {
             </thead>
             <tbody>
               {% for etat in avancementUoAIDetail %}
-              <tr>
+              <tr style="color: {{couleurs[ligne.avancementMoca]}}">
                 <td>{{etat.avancementMocaDetail}}</td>
                 <td>{{etat.nb}}</td>
                 <td>
