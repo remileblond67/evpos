@@ -207,12 +207,15 @@ var couleur = {
           <tr>
             <th>Avancement</th>
             <th>Nb UO</th>
-            <th>%</th>
+            <th colspan="2">%</th>
           </tr>
           {% for ligne in avancementUoAI%}
           <tr style="color: {{couleurs[ligne.avancementMoca]}}">
             <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
+            <td style="background-color: {{couleurs[ligne.avancementMoca]}}" width="2em">
+              &nbsp;&nbsp;&nbsp;
+            </td>
             <td>
               <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%">
                 {{ligne.nb}}
