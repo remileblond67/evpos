@@ -2,9 +2,22 @@
 {% block title%}Suivi de la migration MOCA{% endblock%}
 
 {% block content %}
+{%
+  set couleurs = {
+    "4. Abandonnée" : "#555",
+    "1. Pas initiée" : "#A00",
+    "2. En cours" : "Gold",
+    "3. Validé" : "#0F0",
+    "4. En production" : "#0A0"
+  }
+%}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Validé" : "Lime"};
+var couleur = {
+  {% for etat, couleur in couleurs %}
+    '{{etat}}' : '{{couleur}}',
+  {% endfor %}
+};
 </script>
 
 <div class="row">
@@ -143,7 +156,9 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
               <tr>
                 <td>{{ligne.typeUsage}}</td>
                 <td>{{ligne.nb}}</td>
-                <td><progress value="{{ligne.nb}}" max="{{nbPosteAMigrer}}"></progress></td>
+                <td>
+                  <progress value="{{ligne.nb}}" max="{{nbPosteAMigrer}}"></progress>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
@@ -190,16 +205,21 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
         </script>
         <table class="sortable" width="100%">
           <tr>
-            <th>Avancement</th>
+            <th colspan="2">Avancement</th>
             <th>Nb UO</th>
             <th>%</th>
           </tr>
           {% for ligne in avancementUoAI%}
-          <tr>
+          <tr style="color: {{couleurs[ligne.avancementMoca]}}">
+            <td style="background-color: {{couleurs[ligne.avancementMoca]}}" width="2em">
+              &nbsp;&nbsp;&nbsp;
+            </td>
             <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
             <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%">{{ligne.nb}}</progress>
+              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%">
+                {{ligne.nb}}
+              </progress>
             </td>
           </tr>
           <script>
@@ -227,7 +247,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             ]);
 
             var options = {
-              vAxis: {title: 'Nombre d\'UO'},
+              vAxis: {title: 'Nombre d\'UO en cours de migration'},
               isStacked: true,
               colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
@@ -312,16 +332,22 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
         </script>
         <table class="sortable" width="100%">
           <tr>
-            <th>Avancement</th>
+            <th colspan="2">Avancement</th>
             <th>Nb UO</th>
             <th>%</th>
           </tr>
           {% for ligne in avancementUoAS%}
           <tr>
+            <td style="background-color: {{couleurs[ligne.avancementMoca]}}" width="2em">
+              &nbsp;&nbsp;&nbsp;
+            </td>
             <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
             <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}" title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">{{ligne.nb}}</progress>
+              <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}"
+                        title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">
+                {{ligne.nb}}
+              </progress>
             </td>
           </tr>
           <script>
@@ -349,7 +375,7 @@ var couleur = {"1. Pas initiée" : "Gainsboro", "2. En cours" : "Gold", "3. Vali
             ]);
 
             var options = {
-              vAxis: {title: 'Nombre d\'UO'},
+              vAxis: {title: 'Nombre d\'UO en cours de migration'},
               isStacked: true,
               colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
