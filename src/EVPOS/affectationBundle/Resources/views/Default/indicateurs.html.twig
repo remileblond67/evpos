@@ -11,13 +11,6 @@
     "4. En production" : "#0A0"
   }
 %}
-<style media="screen">
-  {% for etat, couleur in couleurs %}
-  .{{etat|replace({' ':'', '.':''})}} {
-    background-color: "{{couleur}}";
-  }
-  {% endfor %}
-</style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 var couleur = {
@@ -221,7 +214,7 @@ var couleur = {
             <td>{{ligne.avancementMoca}}</td>
             <td>{{ligne.nb}}</td>
             <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" class="{{ligne.avancementMoca|replace({' ':'', '.':''})}}">
+              <progress value="{{ligne.nb}}" max="{{nbUoAI.nb}}" title="{{(ligne.nb/nbUoAI.nb*100)|round}}%" style="background-color: {{couleurs(ligne.avancementMoca)}}">
                 {{ligne.nb}}
               </progress>
             </td>
