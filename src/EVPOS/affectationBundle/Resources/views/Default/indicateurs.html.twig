@@ -14,7 +14,7 @@
 <style media="screen">
   {% for etat, couleur in couleurs %}
   .{{etat|replace({' ':'', '.':''})}} {
-    color: "{{couleur}}";
+    background-color: "{{couleur}}";
   }
   {% endfor %}
 </style>
