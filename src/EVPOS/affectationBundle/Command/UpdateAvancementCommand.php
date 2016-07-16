@@ -30,6 +30,7 @@ class UpdateAvancementCommand extends ContainerAwareCommand
         $csvFile = fopen("/home/data/evpos/".$env."/avancement/moca_avancement.csv", "r");
         // Lecture de la ligne de titre
         $titre = fgets($csvFile);
+        $output->writeln("- ligne de titre : " . $titre);
         while (($data = fgetcsv($csvFile, 0, ';', '"')) !== FALSE) {
           $codeUo = $data[0];
           $avancementDetail = $data[1];
