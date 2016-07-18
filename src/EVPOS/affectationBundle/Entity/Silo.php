@@ -30,7 +30,6 @@ class Silo
 
     /**
      * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\UO", inversedBy="listeSilo")
-     * @ORM\Id
      * @ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo", nullable=false, onDelete="cascade")
      */
     private $listeUO;
