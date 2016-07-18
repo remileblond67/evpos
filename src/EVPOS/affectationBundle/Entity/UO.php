@@ -646,7 +646,7 @@ class UO
     /**
      * Get listeSilo
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeSilo()
     {
