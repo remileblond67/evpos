@@ -5,6 +5,8 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use EVPOS\affectationBundle\Entity\Silo;
+
 /**
 * Import des silos et de l'affectation des UO dans ces derniers
 */
@@ -45,10 +47,15 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
-    $output->writeln ("Création des silos Citrix...");
-    foreach ($xml->ListeSilos->Silos_Applicatif->silo as $silo) {
-     echo "- " . $silo . "\n";
+    $output->write ("Création des silos Citrix...");
+    foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
+      echo "- " . $nomSilo . "\n";
+      $silo = new Silo();
+      $silo->setNomSilo($nomSilo);
+      $em->persist($silo);
     }
+    $em->flush();
+    $output->writeln("OK");
 
     $output->writeln ("Mise à jour de l'affectation des applications...");
     foreach ($xml->Applis->Appli as $app) {
