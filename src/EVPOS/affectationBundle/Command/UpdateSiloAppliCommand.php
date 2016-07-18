@@ -58,17 +58,16 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $output->writeln("OK");
 
     $output->writeln ("Mise à jour de l'affectation des applications... ");
+    $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
-      $listeSiloUo = [];
       $codeUO = split('_',$app['nom'])[0];
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
       if ($uo !== NULL) {
         foreach ($app->silo as $nomSilo) {
-          print_r($listeSiloUo);
-          if (array_search($nomSilo, $listeSiloUo)) {
+          if (array_search($nomSilo, $listeSiloUo[$codeUO])) {
             $output->write("Doublon");
           } else {
-            $listeSiloUo[] = (string)$nomSilo;
+            $listeSiloUo[$codeUO][] = (string)$nomSilo;
             $output->writeln("$codeUO dispo dans le silo " . $nomSilo);
             $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
             if ($silo !== NULL) {
