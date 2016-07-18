@@ -47,9 +47,8 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
-    $output->writeln ("Création des silos Citrix...");
+    $output->write ("Création des silos Citrix... ");
     foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
-      $output->writeln ("- " . $nomSilo . "\n");
       $newSilo = new Silo;
       $newSilo->setNomSilo((string)$nomSilo);
       $em->persist($newSilo);
@@ -57,9 +56,10 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $em->flush();
     $output->writeln("OK");
 
-    $output->writeln ("Mise à jour de l'affectation des applications...");
+    $output->writeln ("Mise à jour de l'affectation des applications... ");
     foreach ($xml->Applis->Appli as $app) {
-      $output->writeln("- " . $app['nom'] . " -> " . split('_',$app['nom'])[0]);
+      $codeUO = split('_',$app['nom'])[0];
+      $output->writeln("- " . $app['nom'] . " -> " . $codeUO);
      foreach ($app->silo as $silo) {
        $output->writeln("  dispo dans le silo " . $silo);
      }

@@ -85,6 +85,11 @@ class UO
     private $listeAcces;
 
     /**
+     * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\Silo", mappedBy="listeUO", cascade={"persist", "remove"})
+     */
+    private $listeSilo;
+
+    /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="uoAcces", cascade={"persist", "remove"})
      */
     private $listeServiceAcces;
