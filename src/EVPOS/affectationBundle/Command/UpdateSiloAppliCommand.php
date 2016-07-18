@@ -35,7 +35,10 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $output->write("Suppression des silos existants...");
     $listeSilos = $em->getRepository("EVPOSaffectationBundle:Silo")->findAll();
     foreach ($listeSilos as $silo) {
-      $silo->delListeUO();
+      foreach ($silo->getListeUO() as $uo) {
+        $silo->removeListeUO($uo);
+      }
+      $em->persist($silo);
       $em->remove($silo);
     }
     $em->flush();

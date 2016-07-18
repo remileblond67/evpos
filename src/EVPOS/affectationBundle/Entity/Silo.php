@@ -102,11 +102,4 @@ class Silo
     {
         return $this->listeUO;
     }
-
-    /**
-     * Supprime la liste des UO du silo
-     */
-    public function delListeUO() {
-        $this->listeUO = [];
-    }
 }
