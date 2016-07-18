@@ -53,6 +53,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $newSilo = new Silo;
       //$newSilo->setNomSilo($nomSilo);
       print_r($nomSilo);
+      print_r($nomSilo->asXML());
       $output->writeln($newSilo->getId());
       $em->persist($newSilo);
       $em->flush();
