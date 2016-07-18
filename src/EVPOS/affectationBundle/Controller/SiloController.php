@@ -5,7 +5,7 @@ namespace EVPOS\affectationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use EVPOS\affectationBundle\Entity\Silo;
 
-class ApplicationController extends Controller
+class SiloController extends Controller
 {
     /**
      * Liste des silos
