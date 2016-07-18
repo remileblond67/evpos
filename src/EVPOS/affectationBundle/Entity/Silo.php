@@ -13,31 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Silo
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
+     * @ORM\Id
      * @ORM\Column(name="nomSilo", type="string", length=255)
      */
     private $nomSilo;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set nomSilo
@@ -55,7 +36,7 @@ class Silo
     /**
      * Get nomSilo
      *
-     * @return string 
+     * @return string
      */
     public function getNomSilo()
     {
