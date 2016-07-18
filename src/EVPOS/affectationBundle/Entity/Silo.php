@@ -65,4 +65,44 @@ class Silo
     {
         return $this->nomSilo;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->listeUO = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add listeUO
+     *
+     * @param \EVPOS\affectationBundle\Entity\UO $listeUO
+     * @return Silo
+     */
+    public function addListeUO(\EVPOS\affectationBundle\Entity\UO $listeUO)
+    {
+        $this->listeUO[] = $listeUO;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeUO
+     *
+     * @param \EVPOS\affectationBundle\Entity\UO $listeUO
+     */
+    public function removeListeUO(\EVPOS\affectationBundle\Entity\UO $listeUO)
+    {
+        $this->listeUO->removeElement($listeUO);
+    }
+
+    /**
+     * Get listeUO
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeUO()
+    {
+        return $this->listeUO;
+    }
 }

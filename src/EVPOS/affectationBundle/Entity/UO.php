@@ -619,4 +619,37 @@ class UO
     {
         return $this->nbUtil;
     }
+
+    /**
+     * Add listeSilo
+     *
+     * @param \EVPOS\affectationBundle\Entity\Silo $listeSilo
+     * @return UO
+     */
+    public function addListeSilo(\EVPOS\affectationBundle\Entity\Silo $listeSilo)
+    {
+        $this->listeSilo[] = $listeSilo;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeSilo
+     *
+     * @param \EVPOS\affectationBundle\Entity\Silo $listeSilo
+     */
+    public function removeListeSilo(\EVPOS\affectationBundle\Entity\Silo $listeSilo)
+    {
+        $this->listeSilo->removeElement($listeSilo);
+    }
+
+    /**
+     * Get listeSilo
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getListeSilo()
+    {
+        return $this->listeSilo;
+    }
 }
