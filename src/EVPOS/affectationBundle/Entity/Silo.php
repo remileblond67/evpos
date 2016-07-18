@@ -21,6 +21,7 @@ class Silo
     */
 
     private $id;
+
     /**
      * @var string
      * @ORM\Column(name="nomSilo", type="string", length=255)
