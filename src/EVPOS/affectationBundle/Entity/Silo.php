@@ -31,7 +31,7 @@ class Silo
     /**
      * @ORM\ManyToMany(targetEntity="UO", inversedBy="listeSilo", cascade={"persist", "merge"})
      * @ORM\JoinTable(name="evpos_silo_uo",
-     *   joinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo")},
+     *   joinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="codeUo")},
      *   inverseJoinColumns={@ORM\JoinColumn(name="idSilo", referencedColumnName="id")}
      * )
      */
