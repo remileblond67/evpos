@@ -29,7 +29,11 @@ class Silo
     private $nomSilo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="UO", mappedBy="listeSilo", cascade={"persist", "remove"})
+     * @ORMManyToMany(targetEntity="Produit", inversedBy="listeSilo", cascade={"persist", "merge"})
+     * @ORMJoinTable(name="evpos_silo_uo",
+     *   joinColumns={@ORMJoinColumn(name="codeUO", referencedColumnName="codeUO")},
+     *   inverseJoinColumns={@ORMJoinColumn(name="idSilo", referencedColumnName="id")}
+     * )
      */
     private $listeUO;
 
@@ -99,7 +103,7 @@ class Silo
     /**
      * Get listeUO
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getListeUO()
     {
