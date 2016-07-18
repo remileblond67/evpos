@@ -70,9 +70,9 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
           } else {
             $output->writeln("Impossible de trouver le silo " . $nomSilo);
           }
-        } else {
-          $output->writeln("UO inconnue : " . $codeUO);
         }
+      } else {
+        $output->writeln("UO inconnue : " . $codeUO);
       }
       $em->persist($uo);
     }
