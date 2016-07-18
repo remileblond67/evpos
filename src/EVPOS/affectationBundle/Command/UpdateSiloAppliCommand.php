@@ -62,7 +62,9 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
       foreach ($app->silo as $nomSilo) {
         $output->writeln("  dispo dans le silo " . $nomSilo);
+        echo "recherche silo";
         $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo($nomSilo);
+        echo "ajout dans l'UO";
         $uo->addListeSilo($silo);
       }
       $em->persist($uo);
