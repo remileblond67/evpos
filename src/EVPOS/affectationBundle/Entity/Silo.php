@@ -24,7 +24,7 @@ class Silo
 
     /**
      * @var string
-     * @ORM\Column(name="nomSilo", type="string", length=255)
+     * @ORM\Column(name="nomSilo", type="string", length=255, nullable=true)
      */
     private $nomSilo;
 
