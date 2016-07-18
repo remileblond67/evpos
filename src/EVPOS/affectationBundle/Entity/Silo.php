@@ -107,7 +107,7 @@ class Silo
      * Supprime la liste des UO du silo
      */
     public function delListeUO() {
-        foreach ($this->listeUO as $uo) {
+        foreach ($this->listeUO[] as $uo) {
             $this->listeUO->removeElement($uo);
         }
     }
