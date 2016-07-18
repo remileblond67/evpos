@@ -19,6 +19,8 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
+    $em = $this->getContainer()->get('doctrine')->getManager();
+
     // Identification de l'environnement courant
     if (strpos(getcwd(), "prod") !== false) {
       $env = "prod";
@@ -27,6 +29,14 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     }
 
     $output->writeln("Mise à jour des silos et de l''affectation des UO dans ces derniers (".$env.")");
+
+    $output->write("Suppression des silos existants...");
+    $listeSilos = $em->getRepository("EVPOSaffectationBundle:Silo")->findAll();
+    foreach ($listeSilos as $silo) {
+      $em->remove($silo);
+    }
+    $em->flush();
+    $output->writeln("OK");
 
     $fileName = "/home/data/evpos/".$env."/silo/Update_AppV.xml";
     try {
