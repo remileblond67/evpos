@@ -64,6 +64,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
       if ($uo !== NULL) {
         foreach ($app->silo as $nomSilo) {
+          print_r($listeSiloUo);
           if (array_search($nomSilo, $listeSiloUo)) {
             $output->write("Doublon");
           } else {
