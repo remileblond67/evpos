@@ -58,41 +58,27 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $output->writeln("OK");
 
     $output->writeln ("Mise à jour de l'affectation des applications... ");
-    $listeSiloUo = [][];
+    $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
       $codeUO = split('_',$app['nom'])[0];
-      $listeSiloUo[$codeUo][] = (string)$nomSilo;
+      $listeSiloUo[$codeUO][] = (string)$nomSilo;
     }
 
     foreach (array_keys($listeSiloUo) as $codeUO) {
-      foreach ($listeSiloUo[$codeUO] as $nomSilo) {
-        echo " - $codeUO -> $nomSilo \n";
-      }
-    }
-      /*
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
       if ($uo !== NULL) {
-        foreach ($app->silo as $nomSilo) {
-          if (array_search($nomSilo, $listeSiloUo[$codeUO])) {
-            $output->write("Doublon");
+        foreach (array_unique($listeSiloUo[$codeUO]) as $nomSilo) {
+          $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
+          if ($silo !== NULL) {
+            $uo->addListeSilo($silo);
           } else {
-            $listeSiloUo[$codeUO][] = (string)$nomSilo;
-            $output->writeln("$codeUO dispo dans le silo " . $nomSilo);
-            $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
-            if ($silo !== NULL) {
-              $uo->addListeSilo($silo);
-            } else {
-              $output->writeln("Impossible de trouver le silo " . $nomSilo);
-            }
+            $output->writeln("Impossible de trouver le silo " . $nomSilo);
           }
         }
         $em->persist($uo);
-      } else {
-        $output->writeln("UO inconnue : " . $codeUO);
       }
-      $em->flush();
     }
+    $em->flush();
     $output->writeln("OK");
-    */
   }
 }
