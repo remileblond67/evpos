@@ -10,7 +10,7 @@ class SiloController extends Controller
     /**
      * Liste des silos
      */
-    public function listeSilo() {
+    public function listeSiloAction() {
       $liste = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:Silo')
