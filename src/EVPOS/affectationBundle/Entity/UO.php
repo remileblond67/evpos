@@ -85,10 +85,10 @@ class UO
     private $listeAcces;
 
     /**
-     * @ManyToMany(targetEntity="Silo")
-     * @JoinTable(name="evpos_uo_silo",
-     *      joinColumns={@JoinColumn(name="code_uo", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="id_silo", referencedColumnName="id_silo")}
+     * @ORM\ManyToMany(targetEntity="Silo")
+     * @ORM\JoinTable(name="evpos_uo_silo",
+     *      joinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="id_silo", referencedColumnName="id_silo")}
      *      )
      */
     private $listeSilo;
