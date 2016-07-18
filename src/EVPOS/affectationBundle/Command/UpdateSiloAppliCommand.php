@@ -47,12 +47,12 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
-    $output->write ("Création des silos Citrix...");
+    $output->writeln ("Création des silos Citrix...");
     foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
       echo "- " . $nomSilo . "\n";
-      $silo = new Silo;
-      $silo->setNomSilo($nomSilo);
-      $em->persist($silo);
+      $newSilo = new Silo;
+      $newSilo->setNomSilo($nomSilo);
+      $em->persist($newSilo);
     }
     $em->flush();
     $output->writeln("OK");
