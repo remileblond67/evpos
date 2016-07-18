@@ -49,9 +49,10 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
 
     $output->writeln ("Création des silos Citrix...");
     foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
-      echo "- " . $nomSilo . "\n";
+      $output->writeln ("- " . $nomSilo . "\n");
       $newSilo = new Silo;
       $newSilo->setNomSilo($nomSilo);
+      $output->writeln($newSilo->getId());
       $em->persist($newSilo);
       $em->flush();
     }
