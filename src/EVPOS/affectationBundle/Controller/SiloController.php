@@ -11,11 +11,11 @@ class SiloController extends Controller
      * Liste des silos
      */
     public function listeSilo() {
-      $listeSilo = $this->getDoctrine()
+      $liste = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:Silo')
           ->findAll()
       ;
-      return $this->render('EVPOSaffectationBundle:Silo:liste_silo.html.twig', array('listeSilo' => $listeSilo));
+      return $this->render('EVPOSaffectationBundle:Silo:liste_silo.html.twig', array('liste' => $liste));
     }
 }
