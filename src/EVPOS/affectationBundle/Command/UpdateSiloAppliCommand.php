@@ -35,8 +35,19 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
-    print_r($xml);
-    
+    $output->writeln ("Création des silos Citrix...");
+    foreach ($xml->ListeSilos->Silos_Applicatif->silo as $silo) {
+     echo "- " . $silo . "\n";
+    }
+
+    $output->writeln ("Mise à jour de l'affectation des applications...");
+    foreach ($xml->Applis->Appli as $app) {
+      $output->writeln("- " . $app['nom'] . " -> " . split('_',$app['nom'])[0]);
+     foreach ($app->silo as $silo) {
+       $output->writeln("  dispo dans le silo " . $silo);
+     }
+    }
+
     $output->writeln("OK");
   }
 }
