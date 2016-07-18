@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class SiloRepository extends EntityRepository
 {
+  /**
+  * Récupération d'un silo à partir de son nom
+  */
+  public function getSilo($nomSilo) {
+    $query = $this->createQueryBuilder('silo')
+      ->setParameter('nomSilo', $nomSilo)
+      ->where('silo.nomSilo = :nomSilo')
+      ->getQuery()
+    ;
+
+    return $query->getOneOrNullResult();
+  }
 }
