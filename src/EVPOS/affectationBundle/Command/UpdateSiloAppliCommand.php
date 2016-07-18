@@ -74,8 +74,8 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       } else {
         $output->writeln("UO inconnue : " . $codeUO);
       }
+      $em->flush();
     }
-    $em->flush();
     $output->writeln("OK");
   }
 }
