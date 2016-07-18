@@ -31,13 +31,13 @@ class Silo
     private $listeUO;
 
     /**
-    * Get id
+    * Get idSilo
     *
     * @return integer
     */
     public function getId()
     {
-        return $this->id;
+        return $this->idSilo;
     }
 
     /**
