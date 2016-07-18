@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Silo
  *
- * @ORM\Table()
+ * @ORM\Table("evpos_silo")
  * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\SiloRepository")
  */
 class Silo
