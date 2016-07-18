@@ -51,7 +51,8 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
       $output->writeln ("- " . $nomSilo . "\n");
       $newSilo = new Silo;
-      $newSilo->setNomSilo($nomSilo);
+      //$newSilo->setNomSilo($nomSilo);
+      print_r($nomSilo);
       $output->writeln($newSilo->getId());
       $em->persist($newSilo);
       $em->flush();
