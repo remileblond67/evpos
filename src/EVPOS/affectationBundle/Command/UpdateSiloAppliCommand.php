@@ -64,9 +64,10 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $listeSiloUo[$codeUo][] = (string)$nomSilo;
     }
 
-    foreach ($listeSiloUo as $codeUO => $listeSilo) {
-      print_r($codeUO);
-      print_r($listeSilo);
+    foreach (array_keys($listeSiloUo) as $codeUO) {
+      foreach ($listeSiloUo[$codeUO] as $nomSilo) {
+        echo " - $codeUO -> $nomSilo \n";
+      }
     }
       /*
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
