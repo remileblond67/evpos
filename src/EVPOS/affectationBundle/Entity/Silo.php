@@ -1,0 +1,64 @@
+<?php
+
+namespace EVPOS\affectationBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Silo
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="EVPOS\affectationBundle\Entity\SiloRepository")
+ */
+class Silo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomSilo", type="string", length=255)
+     */
+    private $nomSilo;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nomSilo
+     *
+     * @param string $nomSilo
+     * @return Silo
+     */
+    public function setNomSilo($nomSilo)
+    {
+        $this->nomSilo = $nomSilo;
+
+        return $this;
+    }
+
+    /**
+     * Get nomSilo
+     *
+     * @return string 
+     */
+    public function getNomSilo()
+    {
+        return $this->nomSilo;
+    }
+}
