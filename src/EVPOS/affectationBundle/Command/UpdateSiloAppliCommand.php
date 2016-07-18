@@ -54,7 +54,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $silo->setNomSilo($nomSilo);
       $em->persist($silo);
     }
-    //$em->flush();
+    $em->flush();
     $output->writeln("OK");
 
     $output->writeln ("Mise à jour de l'affectation des applications...");
