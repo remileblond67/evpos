@@ -271,5 +271,5 @@ evpos_ensemble_uo:
 
 # Silo
 evpos_listeSilo:
-  path: /silo
-  defaults: { _controller: EVPOSaffectationBundle:Silo:listeSilo }
+    path: /silo
+    defaults: { _controller: EVPOSaffectationBundle:Silo:listeSilo }
