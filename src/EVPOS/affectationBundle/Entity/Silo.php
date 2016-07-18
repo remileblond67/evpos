@@ -29,8 +29,7 @@ class Silo
     private $nomSilo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\UO", inversedBy="listeSilo")
-     * @ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo", nullable=false, onDelete="cascade")
+     * @ORM\ManyToMany(targetEntity="UO", mappedBy="listeSilo", cascade={"persist", "remove"})
      */
     private $listeUO;
 
