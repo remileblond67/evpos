@@ -9,5 +9,12 @@
       <td class="row">{{ 'silo.nom'|trans }}</td>
     </tr>
   </thead>
+  <tbody>
+    {% for silo in listeSilo %}
+    <tr>
+      <td>{{ silo.nomSilo }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}
