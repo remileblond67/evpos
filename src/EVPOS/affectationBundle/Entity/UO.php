@@ -85,7 +85,11 @@ class UO
     private $listeAcces;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Silo", inversedBy="listeUO", cascade={"persist", "merge"})
+     * @ManyToMany(targetEntity="Silo")
+     * @JoinTable(name="evpos_uo_silo",
+     *      joinColumns={@JoinColumn(name="code_uo", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="id_silo", referencedColumnName="id_silo")}
+     *      )
      */
     private $listeSilo;
 

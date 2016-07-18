@@ -15,12 +15,12 @@ class Silo
     /**
     * @var integer
     *
-    * @ORM\Column(name="id", type="integer")
+    * @ORM\Column(name="id_silo", type="integer")
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
     */
 
-    private $id;
+    private $idSilo;
 
     /**
      * @var string
@@ -28,13 +28,6 @@ class Silo
      */
     private $nomSilo;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="UO", inversedBy="listeSilo", cascade={"persist", "merge"})
-     * @ORM\JoinTable(name="evpos_silo_uo",
-     *   joinColumns={@ORM\JoinColumn(name="idSilo", referencedColumnName="id")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="codeUo")}
-     * )
-     */
     private $listeUO;
 
     /**
