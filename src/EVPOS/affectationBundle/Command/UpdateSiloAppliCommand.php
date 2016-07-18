@@ -60,15 +60,18 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     foreach ($xml->Applis->Appli as $app) {
       $codeUO = split('_',$app['nom'])[0];
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
-      foreach ($app->silo as $nomSilo) {
-
-        $output->writeln("  dispo dans le silo " . $nomSilo);
-        $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
-        print_r($silo);
-        if ($silo !== NULL) {
-          $uo->addListeSilo($silo);
+      if ($uo !== NULL) {
+        foreach ($app->silo as $nomSilo) {
+          $output->writeln("  dispo dans le silo " . $nomSilo);
+          $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
+          print_r($silo);
+          if ($silo !== NULL) {
+            $uo->addListeSilo($silo);
+          } else {
+            $output->writeln("Impossible de trouver le silo " . $nomSilo);
+          }
         } else {
-          $output->writeln("Impossible de trouver le silo " . $nomSilo);
+          $output->writeln("UO inconnue : " . $codeUO);
         }
       }
       $em->persist($uo);
