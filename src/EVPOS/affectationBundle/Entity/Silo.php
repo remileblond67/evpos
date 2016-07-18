@@ -29,8 +29,8 @@ class Silo
     private $nomSilo;
 
     /**
-     * @ORMManyToMany(targetEntity="Produit", inversedBy="listeSilo", cascade={"persist", "merge"})
-     * @ORMJoinTable(name="evpos_silo_uo",
+     * @ORM\ManyToMany(targetEntity="Produit", inversedBy="listeSilo", cascade={"persist", "merge"})
+     * @ORM\JoinTable(name="evpos_silo_uo",
      *   joinColumns={@ORMJoinColumn(name="codeUO", referencedColumnName="codeUO")},
      *   inverseJoinColumns={@ORMJoinColumn(name="idSilo", referencedColumnName="id")}
      * )
