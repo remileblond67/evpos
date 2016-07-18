@@ -58,7 +58,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $output->writeln("OK");
 
     $output->writeln ("Mise à jour de l'affectation des applications... ");
-    $listeSiloUo = [];
+    $listeSiloUo = [][];
     foreach ($xml->Applis->Appli as $app) {
       $codeUO = split('_',$app['nom'])[0];
       $uo = $em->getRepository("EVPOSaffectationBundle:UO")->getUO($codeUO);
