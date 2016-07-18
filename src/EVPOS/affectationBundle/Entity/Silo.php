@@ -28,6 +28,13 @@ class Silo
      */
     private $nomSilo;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="existe", type="boolean", nullable=true)
+     */
+    private $existeBaza;
+
     private $listeUO;
 
     /**
@@ -101,5 +108,28 @@ class Silo
     public function getListeUO()
     {
         return $this->listeUO;
+    }
+
+    /**
+     * Set existe
+     *
+     * @param boolean $existe
+     * @return Service
+     */
+    public function setExiste($existe)
+    {
+        $this->existe = $existe;
+
+        return $this;
+    }
+
+    /**
+     * Get existe
+     *
+     * @return boolean
+     */
+    public function getExiste()
+    {
+        return $this->existe;
     }
 }
