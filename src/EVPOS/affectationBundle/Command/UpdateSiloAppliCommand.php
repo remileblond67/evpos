@@ -32,14 +32,16 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
 
     $output->writeln("Mise à jour des silos et de l''affectation des UO dans ces derniers (".$env.")");
 
-    $output->write("Suppression des silos existants...");
-    $listeSilos = $em->getRepository("EVPOSaffectationBundle:Silo")->findAll();
-    foreach ($listeSilos as $silo) {
+    $output->write("Marquage des silos existants...");
+    $listeSilo = $em->getRepository("EVPOSaffectationBundle:Silo")->findAll();
+    foreach ($listeSilo as $silo) {
+      $silo->setExiste(false);
       foreach ($silo->getListeUO() as $uo) {
         $silo->removeListeUO($uo);
+        $uo->removeListeSilo($silo);
+        $em->persist($uo);
       }
       $em->persist($silo);
-      $em->remove($silo);
     }
     $em->flush();
     $output->writeln("OK");
@@ -53,18 +55,24 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
 
     $output->write ("Création des silos Citrix... ");
     foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
-      $newSilo = new Silo;
-      $newSilo->setNomSilo((string)$nomSilo);
-      $em->persist($newSilo);
+      $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
+      if ($silo === NULL) {
+        $silo = new Silo;
+      }
+      $silo->setNomSilo((string)$nomSilo);
+      $silo->setExiste(TRUE);
+      $em->persist($silo);
+      $em->flush();
     }
-    $em->flush();
     $output->writeln("OK");
 
     $output->writeln ("Mise à jour de l'affectation des applications... ");
     $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
       $codeUO = split('_',$app['nom'])[0];
-      $listeSiloUo[$codeUO][] = (string)$nomSilo;
+      foreach ($app->silo as $nomSilo) {
+        $listeSiloUo[$codeUO][] = (string)$nomSilo;
+      }
     }
 
     foreach (array_keys($listeSiloUo) as $codeUO) {
