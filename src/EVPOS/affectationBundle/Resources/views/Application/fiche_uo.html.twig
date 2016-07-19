@@ -49,11 +49,7 @@
       <div class="col-lg-2">
         <h4>{{'uo.listeSilo'|trans}}</h4>
         <ul class="mension">
-          {% for silo in uo.listeSilo %}
-          <li>
-            <a href="{{path('evpos_ficheSilo', {'idSilo': silo.idSilo})}}">{{silo.nomSilo}}</a>
-          </li>
-          {% endfor %}
+
         </ul>
       </div>
       <div class="col-lg-1">
@@ -267,4 +263,29 @@
       </div>
     </div>
   </div>
+
+  <div class="panel panel-group panel-default" id="accordionSilo" role="tablist" aria-multiselectable="true">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordionSilo" href="#collapseSilo" aria-expanded="true" aria-controls="collapseOne">
+          {{'uo.listeSilo'|trans}}
+        </a>
+        <div class="badge">{{uo.listeSilo|length}}</div>
+      </h3>
+    </div>
+    <div id="collapsePoste" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <table>
+          {% for silo in uo.listeSilo %}
+          <tr>
+            <td>
+              <a href="{{path('evpos_ficheSilo', {'idSilo': silo.idSilo})}}">{{silo.nomSilo}}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
   {% endblock %}
