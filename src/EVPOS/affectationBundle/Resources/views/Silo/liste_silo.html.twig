@@ -16,7 +16,7 @@
     {% for silo in listeSilo %}
     <tr>
       <td>
-        {{ silo.nomSilo }}
+        <a href="{{path('evpos_ficheSilo', {'idSilo': silo.idSilo})}}">{{ silo.nomSilo }}</a>
       </td>
       <td>
         {{silo.typeSilo}}

@@ -1,0 +1,29 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'silo.fiche'|trans }} {{silo.nomSilo}}{% endblock%}
+
+{% block content %}
+<h4></h4>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <h2>{{ 'silo.fiche'|trans }} {{silo.nomSilo}}</h2>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ 'suapp.info'|trans }}</h3>
+  </div>
+</div>
+
+<div class="panel-body">
+  <div class="row">
+    <div class="col-lg-2">
+      <h4>{{'silo.type'|trans}}</h4>
+      {{silo.typeSilo}}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

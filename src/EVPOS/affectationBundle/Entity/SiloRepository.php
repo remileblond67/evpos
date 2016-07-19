@@ -26,6 +26,20 @@ class SiloRepository extends EntityRepository
   }
 
   /**
+  * Récupération d'un silo à partir de son identifiant
+  */
+  public function getSiloId($idSilo) {
+    $query = $this->createQueryBuilder('silo')
+      ->setParameter('idSilo', $idSilo)
+      ->where('silo.idSilo = :idSilo')
+      ->getQuery()
+    ;
+
+    return $query->getOneOrNullResult();
+  }
+
+
+  /**
    * Retourne la liste des silos qui n'existent plus
    */
   public function listeSiloNonExiste() {

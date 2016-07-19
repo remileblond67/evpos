@@ -273,3 +273,7 @@ evpos_ensemble_uo:
 evpos_listeSilo:
     path: /silo
     defaults: { _controller: EVPOSaffectationBundle:Silo:listeSilo }
+
+evpos_ficheSilo:
+    path: /silo/{idSilo}
+    defaults: { _controller: EVPOSaffectationBundle:Silo:ficheSilo }
