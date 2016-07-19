@@ -15,7 +15,11 @@
     {% for silo in listeSilo %}
     <tr>
       <td>{{ silo.nomSilo }}</td>
-      <td>{{ silo.existe }}</td>
+      <td>
+        {% if silo.existe %}
+        <span class="glyphicon glyphicon-ok"></span>
+        {% endif %}
+      </td>
       <td>
         {% for uo in silo.listeUO %}
         {{uo.codeUo}}
