@@ -33,7 +33,7 @@ class Silo
      *
      * @ORM\Column(name="existe", type="boolean", nullable=true)
      */
-    private $existeBaza;
+    private $existe;
 
     private $listeUO;
 
