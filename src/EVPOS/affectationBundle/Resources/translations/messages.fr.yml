@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 2.20.0
+    version_n: 2.21.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -88,7 +88,7 @@ application:
     listeUo: UO (modules)
     listeUoMig: UO (modules) à migrer
     dispoMoca: Disponible dans MOCA ?
-    aMigrer: A migrer dans MOCA
+    aMigrer: A migrer ?
     utils: Utilisateurs de l'application
     postes: Postes sur lesquels l'application est installée
     usage: Usage de l'application
@@ -109,7 +109,8 @@ uo:
     migMoca: À migrer dans MOCA ?
     avancementMigMoca: Etat intégration MOCA
     utils: Utilisateurs de l'UO
-    services: Services utilisateurs de l'UO
+    directions: Directions utilisant l'UO
+    services: Services utilisant l'UO
     postes: Postes sur lesquels l'UO est distribuée
     liste: UO (modules)
     nbUtil: Nb total d'utilisateurs
@@ -128,6 +129,7 @@ uo:
     sansUtil: UO sans aucun utilisateur déclaré
     planif: Planification migration UO
     calMigration: Calendrier de migration des UO
+    listeSilo: Silo MOCA
 
 secteur:
     nom: Nom du secteur
@@ -221,3 +223,12 @@ xml:
 
 cpi:
     export: Export des CPI
+
+silo:
+    liste: Liste des silos
+    nom: Nom du silo
+    type: Type de silo
+    listeUo: Listes des UO
+    existe: Silo actif
+    fiche: Fiche silo
+    info: Informations générales

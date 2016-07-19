@@ -85,6 +85,15 @@ class UO
     private $listeAcces;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Silo")
+     * @ORM\JoinTable(name="evpos_uo_silo",
+     *      joinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="id_silo", referencedColumnName="id_silo")}
+     *      )
+     */
+    private $listeSilo;
+
+    /**
      * @ORM\OneToMany(targetEntity="EVPOS\affectationBundle\Entity\AccesServiceUo", mappedBy="uoAcces", cascade={"persist", "remove"})
      */
     private $listeServiceAcces;
@@ -393,6 +402,19 @@ class UO
         return $this->listeServiceAcces;
     }
 
+    public function getListeDirectionAcces() {
+      $listeDirectionAcces = [];
+      foreach ($this->listeServiceAcces as $accesService) {
+        $codeDirection = (string)$accesService->getServiceAcces()->getDirection()->getCodeDirection();
+        if (array_key_exists($codeDirection, $listeDirectionAcces)) {
+          $listeDirectionAcces[$codeDirection] += (int)$accesService->getNbUtil();
+        } else {
+          $listeDirectionAcces[$codeDirection] = (int)$accesService->getNbUtil();
+        }
+      }
+      return $listeDirectionAcces;
+    }
+
     public function setTypePoste($type) {
         $this->typePoste = $type;
     }
@@ -613,5 +635,38 @@ class UO
     public function getNbUtil()
     {
         return $this->nbUtil;
+    }
+
+    /**
+     * Add listeSilo
+     *
+     * @param \EVPOS\affectationBundle\Entity\Silo $listeSilo
+     * @return UO
+     */
+    public function addListeSilo(\EVPOS\affectationBundle\Entity\Silo $listeSilo)
+    {
+        $this->listeSilo[] = $listeSilo;
+
+        return $this;
+    }
+
+    /**
+     * Remove listeSilo
+     *
+     * @param \EVPOS\affectationBundle\Entity\Silo $listeSilo
+     */
+    public function removeListeSilo(\EVPOS\affectationBundle\Entity\Silo $listeSilo)
+    {
+        $this->listeSilo->removeElement($listeSilo);
+    }
+
+    /**
+     * Get listeSilo
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getListeSilo()
+    {
+        return $this->listeSilo;
     }
 }
