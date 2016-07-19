@@ -24,4 +24,28 @@ class SiloRepository extends EntityRepository
 
     return $query->getOneOrNullResult();
   }
+
+  /**
+   * Retourne la liste des silos qui n'existent plus
+   */
+  public function listeSiloNonExiste() {
+    $query = $this->createQueryBuilder('silo')
+      ->where('silo.existe = false')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+  /**
+   * Retourne la liste des silos qui n'existent plus
+   */
+  public function listeSiloExiste() {
+    $query = $this->createQueryBuilder('silo')
+      ->where('silo.existe = true')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
 }
