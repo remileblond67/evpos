@@ -32,14 +32,6 @@
         {% endif %}
       </div>
       <div class="col-lg-2">
-        <h4>{{'uo.listeSilo'|trans}}</h4>
-        <ul>
-          {% for silo in uo.listeSilo %}
-          <li>{{silo.nomSilo}}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="col-lg-2">
         <h4>{{ 'uo.avancementMigMoca'|trans}}</h4>
         <span class="{{uo.avancementMocaIcon}}" title="{{uo.avancementMocaDetail}}"></span>
         {{ uo.avancementMoca }}
@@ -53,6 +45,14 @@
       <div class="col-lg-1">
         <h4>Type de poste</h4>
         {{ uo.typePoste }}
+      </div>
+      <div class="col-lg-2">
+        <h4>{{'uo.listeSilo'|trans}}</h4>
+        <ul>
+          {% for silo in uo.listeSilo %}
+          <li>{{silo.nomSilo}}</li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="col-lg-1">
         <h4>{{'uo.ancienCitrix'|trans}}</h4>
