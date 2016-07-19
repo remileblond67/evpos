@@ -406,10 +406,10 @@ class UO
       $listeDirectionAcces = [];
       foreach ($this->listeServiceAcces as $accesService) {
         $codeDirection = (string)$accesService->getServiceAcces()->getDirection()->getCodeDirection();
-        if ($listeDirectionAcces[$codeDirection] === NULL) {
-          $listeDirectionAcces[$codeDirection] = (int)$accesService->getNbUtil();
-        } else {
+        if (array_key_exists($codeDirection, $listeDirectionAcces)) {
           $listeDirectionAcces[$codeDirection] += (int)$accesService->getNbUtil();
+        } else {
+          $listeDirectionAcces[$codeDirection] = (int)$accesService->getNbUtil();
         }
       }
       return $listeDirectionAcces;
