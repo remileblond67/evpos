@@ -35,6 +35,9 @@ class Silo
      */
     private $existe;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="UO", mappedBy="listeSilo")
+     */
     private $listeUO;
 
     /**
