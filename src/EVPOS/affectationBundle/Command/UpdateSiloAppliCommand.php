@@ -54,6 +54,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     }
 
     $output->write ("Création des silos Citrix... ");
+    $output->write ("appli ");
     foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
       $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
       if ($silo === NULL) {
@@ -61,6 +62,19 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       }
       $silo->setNomSilo((string)$nomSilo);
       $silo->setExiste(TRUE);
+      $silo->setTypeSilo("appli");
+      $em->persist($silo);
+      $em->flush();
+    }
+    $output->write ("bureau ");
+    foreach ($xml->ListeSilos->Silos_Bureau->silo as $nomSilo) {
+      $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
+      if ($silo === NULL) {
+        $silo = new Silo;
+      }
+      $silo->setNomSilo((string)$nomSilo);
+      $silo->setExiste(TRUE);
+      $silo->setTypeSilo("bureau");
       $em->persist($silo);
       $em->flush();
     }

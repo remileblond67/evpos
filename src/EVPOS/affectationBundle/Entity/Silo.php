@@ -30,7 +30,7 @@ class Silo
 
     /**
      * @var string
-     * @ORM\Column(name="typeSilo", type="string", length="25", nullable=true)
+     * @ORM\Column(name="typeSilo", type="string", length=25, nullable=true)
      */
     private $typeSilo;
 
@@ -80,7 +80,7 @@ class Silo
     }
 
     public function getTypeSilo() {
-      return $this->$typeSilo;
+      return $this->typeSilo;
     }
 
     public function setTypeSilo($typeSilo) {
