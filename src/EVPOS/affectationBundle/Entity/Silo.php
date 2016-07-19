@@ -24,7 +24,7 @@ class Silo
 
     /**
      * @var string
-     * @ORM\Column(name="nomSilo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nomSilo", type="string", length=255, nullable=true, unique=true)
      */
     private $nomSilo;
 
@@ -33,7 +33,7 @@ class Silo
      *
      * @ORM\Column(name="existe", type="boolean", nullable=true)
      */
-    private $existe;
+    private $existeBaza;
 
     private $listeUO;
 
