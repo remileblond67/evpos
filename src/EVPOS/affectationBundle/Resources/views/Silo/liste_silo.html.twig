@@ -22,9 +22,7 @@
       </td>
       <td>
         {% for uo in silo.listeUO %}
-        <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}" title="{{uo.nomUo}}">
-          {{uo.codeUo}}
-        </a>
+        <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}" title="{{uo.nomUo}}">{{uo.codeUo}}</a>
         {% endfor %}
       </td>
     </tr>
