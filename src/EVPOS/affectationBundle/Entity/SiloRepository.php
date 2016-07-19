@@ -18,7 +18,7 @@ class SiloRepository extends EntityRepository
   public function getSilo($nomSilo) {
     $query = $this->createQueryBuilder('silo')
       ->setParameter('nomSilo', $nomSilo)
-      ->where('silo.nomSilo = :nomSilo')
+      ->where('silo.nomSilo = ":nomSilo"')
       ->getQuery()
     ;
 
