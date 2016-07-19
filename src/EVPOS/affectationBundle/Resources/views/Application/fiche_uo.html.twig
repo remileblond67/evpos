@@ -81,29 +81,20 @@
       <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
           <tr>
-            <td class="row">{{ 'direction.nom'|trans }}</td>
-            <td class="row">{{ 'direction.nom'|trans }}</td>
+            <td class="row">{{ 'direction.code'|trans }}</td>
             <td class="row">{{ 'uo.nbUtil'|trans}}</td>
           </tr>
         </thead>
         <tbody>
-          {% for accesServ in uo.listeDirectionAcces %}
+          {% for codeDirection, nbUtil in uo.listeDirectionAcces %}
           <tr>
             <td>
-              <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
-                {{ accesServ.serviceAcces.direction.codeDirection}}
+              <a href="{{path('evpos_ficheDirection', {'codeDirection': codeDirection})}}">
+                {{ codeDirection}}
               </a>
             </td>
             <td>
-              <a href="{{path('evpos_ficheDirection', {'codeDirection': accesServ.serviceAcces.direction.codeDirection})}}">
-                {{ accesServ.serviceAcces.direction.libDirection}}
-              </a>
-            </td>
-            <td>
-              {{accesServ.nbUtil}}
-            </td>
-            <td>
-              {{accesServ.serviceAcces.numEnsemble}}
+              {{nbUtil}}
             </td>
           </tr>
           {% endfor %}
