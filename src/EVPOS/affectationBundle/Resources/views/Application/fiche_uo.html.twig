@@ -42,17 +42,11 @@
         <br/>
         <i>{{ uo.avancementMocaDetail}}</i>
       </div>
-      <div class="col-lg-1">
+      <div class="col-lg-2">
         <h4>Type de poste</h4>
         {{ uo.typePoste }}
       </div>
       <div class="col-lg-2">
-        <h4>{{'uo.listeSilo'|trans}}</h4>
-        <ul class="mension">
-
-        </ul>
-      </div>
-      <div class="col-lg-1">
         <h4>{{'uo.ancienCitrix'|trans}}</h4>
         {% if uo.ancienCitrix %}
         <span class="ok glyphicon glyphicon-ok"></span>
@@ -273,7 +267,7 @@
         <div class="badge">{{uo.listeSilo|length}}</div>
       </h3>
     </div>
-    <div id="collapsePoste" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+    <div id="collapseSilo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         <table>
           {% for silo in uo.listeSilo %}
