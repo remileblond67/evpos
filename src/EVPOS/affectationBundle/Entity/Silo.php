@@ -29,6 +29,12 @@ class Silo
     private $nomSilo;
 
     /**
+     * @var string
+     * @ORM\Column(name="typeSilo", type="string", length="25", nullable=true)
+     */
+    private $typeSilo;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="existe", type="boolean", nullable=true)
@@ -72,6 +78,17 @@ class Silo
     {
         return $this->nomSilo;
     }
+
+    public function getTypeSilo() {
+      return $this->$typeSilo;
+    }
+
+    public function setTypeSilo($typeSilo) {
+      $this->typeSilo = $typeSilo;
+
+      return $this;
+    }
+
     /**
      * Constructor
      */

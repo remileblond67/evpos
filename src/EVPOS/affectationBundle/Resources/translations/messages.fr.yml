@@ -226,5 +226,6 @@ cpi:
 silo:
     liste: Liste des silos
     nom: Nom du silo
+    type: Type de silo
     listeUo: Listes des UO
     existe: Silo actif
