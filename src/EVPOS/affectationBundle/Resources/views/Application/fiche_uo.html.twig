@@ -270,13 +270,22 @@
     <div id="collapseSilo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         <table>
-          {% for silo in uo.listeSilo %}
-          <tr>
-            <td>
-              <a href="{{path('evpos_ficheSilo', {'idSilo': silo.idSilo})}}">{{silo.nomSilo}}</a>
-            </td>
-          </tr>
-          {% endfor %}
+          <thead>
+            <th>{{'silo.nom'|trans}}</th>
+            <th>{{'silo.type'|trans}}</th>
+          </thead>
+          <tbody>
+            {% for silo in uo.listeSilo %}
+            <tr>
+              <td>
+                <a href="{{path('evpos_ficheSilo', {'idSilo': silo.idSilo})}}">{{silo.nomSilo}}</a>
+              </td>
+              <td>
+                {{silo.typeSilo}}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
         </table>
       </div>
     </div>
