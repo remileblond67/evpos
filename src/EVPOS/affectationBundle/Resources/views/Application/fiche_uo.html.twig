@@ -21,7 +21,7 @@
         <h4>Code appli</h4>
         <a href="{{path('evpos_ficheAppli', {'codeAppli': uo.appli.codeAppli})}}">{{uo.appli.codeAppli}}</a>
       </div>
-      <div class="col-lg-2"><h4>Code UO</h4>{{uo.codeUo}}</div>
+      <div class="col-lg-1"><h4>Code UO</h4>{{uo.codeUo}}</div>
       <div class="col-lg-2"><h4>Libellé UO</h4>{{uo.nomUo}}</div>
       <div class="col-lg-1">
         <h4>{{'application.aMigrer'|trans}}</h4>
@@ -31,7 +31,8 @@
         <span class="ko glyphicon glyphicon-remove"></span> Non
         {% endif %}
       </div>
-      <div class="col-lg-1">
+      <div class="col-lg-2">
+        <h4>{{'uo.listeSilo'|trans}}</h4>
         {% for silo in uo.listeSilo %}
         {{silo.nomSilo}}
         {% endfor %}

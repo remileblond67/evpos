@@ -88,7 +88,7 @@ application:
     listeUo: UO (modules)
     listeUoMig: UO (modules) à migrer
     dispoMoca: Disponible dans MOCA ?
-    aMigrer: Migr. MOCA ?
+    aMigrer: A migrer ?
     utils: Utilisateurs de l'application
     postes: Postes sur lesquels l'application est installée
     usage: Usage de l'application
