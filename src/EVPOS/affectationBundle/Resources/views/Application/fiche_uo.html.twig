@@ -33,9 +33,11 @@
       </div>
       <div class="col-lg-2">
         <h4>{{'uo.listeSilo'|trans}}</h4>
-        {% for silo in uo.listeSilo %}
-        {{silo.nomSilo}}
-        {% endfor %}
+        <ul>
+          {% for silo in uo.listeSilo %}
+          <li>{{silo.nomSilo}}</li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="col-lg-2">
         <h4>{{ 'uo.avancementMigMoca'|trans}}</h4>

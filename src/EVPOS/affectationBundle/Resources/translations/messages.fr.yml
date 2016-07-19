@@ -128,6 +128,7 @@ uo:
     sansUtil: UO sans aucun utilisateur déclaré
     planif: Planification migration UO
     calMigration: Calendrier de migration des UO
+    listeSilo: Silo MOCA
 
 secteur:
     nom: Nom du secteur
