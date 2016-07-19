@@ -7,12 +7,18 @@
   <thead>
     <tr>
       <td class="row">{{ 'silo.nom'|trans }}</td>
+      <td class="row">{{ 'silo.listeUo'|trans}}</td>
     </tr>
   </thead>
   <tbody>
     {% for silo in listeSilo %}
     <tr>
       <td>{{ silo.nomSilo }}</td>
+      <td>
+        {% for uo in silo.listeUO %}
+        {{uo.codeUo}}
+        {% endfor %}
+      </td>
     </tr>
     {% endfor %}
   </tbody>
