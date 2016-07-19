@@ -51,7 +51,7 @@ class Silo
     *
     * @return integer
     */
-    public function getId()
+    public function getIdSilo()
     {
         return $this->idSilo;
     }
