@@ -402,6 +402,14 @@ class UO
         return $this->listeServiceAcces;
     }
 
+    public function getListeDirectionAcces() {
+      $listeDirectionAcces = [];
+      foreach ($this->listeServiceAcces as $accesService) {
+        $listeDirectionAcces[$service->getCodeDirection()] += $accesService->getNbUtil();
+      }
+      return $listeDirectionAcces;
+    }
+
     public function setTypePoste($type) {
         $this->typePoste = $type;
     }
