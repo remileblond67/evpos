@@ -23,7 +23,11 @@
       </div>
       <div class="col-lg-2">
         <h4>{{'silo.existe'|trans}}</h4>
-        {{silo.existe}}
+        {% if silo.existe %}
+          <span class="glyphicon glyphicon-ok"></span>
+        {% else %}
+          <span class="glyphicon glyphicon-ko"></span>
+        {% endif %}
       </div>
     </div>
   </div>
