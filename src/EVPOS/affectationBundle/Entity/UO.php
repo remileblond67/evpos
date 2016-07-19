@@ -405,7 +405,7 @@ class UO
     public function getListeDirectionAcces() {
       $listeDirectionAcces = [];
       foreach ($this->listeServiceAcces as $accesService) {
-        $listeDirectionAcces[$accesService->getServiceAcces()->getCodeDirection()] += $accesService->getNbUtil();
+        $listeDirectionAcces[$accesService->getServiceAcces()->getDirection()->getCodeDirection()] += $accesService->getNbUtil();
       }
       return $listeDirectionAcces;
     }
