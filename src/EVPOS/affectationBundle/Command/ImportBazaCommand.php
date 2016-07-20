@@ -250,14 +250,12 @@ class ImportBazaCommand extends ContainerAwareCommand
       $service = $em->getRepository('EVPOSaffectationBundle:Service')->getServiceSirh($codeSirh);
       if ($service === NULL) {
         // Service non trouvé dans SIRH
-        $listeServiceRhErreur[$codeSirh] = TRUE;
         $service = $em->getRepository('EVPOSaffectationBundle:Service')->getService($codeService);
       }
       if ($service !== NULL) {
         $utilisateur->setServiceUtil($service);
       } else {
         // Service non trouvé
-        $listeServiceErreur[$codeService] = TRUE;
         $utilisateur->setServiceUtil(NULL);
         $output->writeln("Service non trouvé : ".$codeService."/".$codeSirh." pour utilisateur ".$matUtil);
       }
