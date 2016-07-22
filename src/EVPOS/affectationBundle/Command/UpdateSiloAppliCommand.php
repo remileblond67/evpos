@@ -46,7 +46,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $em->flush();
     $output->writeln("OK");
 
-    $fileName = "/home/data/evpos/".$env."/silo/Update_AppV.xml";
+    $fileName = "/home/data/evpos/".$env."/silo/update_appv.xml";
     try {
       $xml = simplexml_load_file($fileName);
     } catch(Exception $e) {

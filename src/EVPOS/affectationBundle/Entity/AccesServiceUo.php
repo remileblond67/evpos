@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class AccesServiceUo
 {
     public function __construct() {
-        // $this->dateImport = new DateTime();
+        //$this->dateImport = new DateTime();
     }
 
     /**
@@ -36,14 +36,14 @@ class AccesServiceUo
      * @ORM\JoinColumn(name="code_service", referencedColumnName="code_service", nullable=false)
      */
     private $serviceAcces;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\UO", inversedBy="listeServiceAcces")
      * @ORM\Id
      * @ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo", nullable=false)
      */
     private $uoAcces;
-    
+
     /**
      * @var integer
      *
@@ -67,7 +67,7 @@ class AccesServiceUo
     /**
      * Get dateImport
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateImport()
     {
@@ -90,7 +90,7 @@ class AccesServiceUo
     /**
      * Get source
      *
-     * @return string 
+     * @return string
      */
     public function getSourceImport()
     {
@@ -113,7 +113,7 @@ class AccesServiceUo
     /**
      * Get serviceAcces
      *
-     * @return \EVPOS\affectationBundle\Entity\Service 
+     * @return \EVPOS\affectationBundle\Entity\Service
      */
     public function getServiceAcces()
     {
@@ -136,7 +136,7 @@ class AccesServiceUo
     /**
      * Get appliAcces
      *
-     * @return \EVPOS\affectationBundle\Entity\UO 
+     * @return \EVPOS\affectationBundle\Entity\UO
      */
     public function getUoAcces()
     {
@@ -159,7 +159,7 @@ class AccesServiceUo
     /**
      * Get nbUtil
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbUtil()
     {

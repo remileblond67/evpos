@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class AccesServiceAppli
 {
     public function __construct() {
-        // $this->dateImport = new DateTime();
+        //$this->dateImport = new DateTime();
     }
 
     /**
@@ -36,7 +36,7 @@ class AccesServiceAppli
      * @ORM\JoinColumn(name="code_service", referencedColumnName="code_service", nullable=false)
      */
     private $serviceAcces;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="EVPOS\affectationBundle\Entity\Application", inversedBy="listeServiceAcces")
      * @ORM\Id
@@ -60,7 +60,7 @@ class AccesServiceAppli
     /**
      * Get dateImport
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateImport()
     {
@@ -83,7 +83,7 @@ class AccesServiceAppli
     /**
      * Get source
      *
-     * @return string 
+     * @return string
      */
     public function getSourceImport()
     {
@@ -106,7 +106,7 @@ class AccesServiceAppli
     /**
      * Get serviceAcces
      *
-     * @return \EVPOS\affectationBundle\Entity\Service 
+     * @return \EVPOS\affectationBundle\Entity\Service
      */
     public function getServiceAcces()
     {
@@ -129,7 +129,7 @@ class AccesServiceAppli
     /**
      * Get appliAcces
      *
-     * @return \EVPOS\affectationBundle\Entity\Application 
+     * @return \EVPOS\affectationBundle\Entity\Application
      */
     public function getAppliAcces()
     {
