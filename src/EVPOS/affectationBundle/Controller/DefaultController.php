@@ -34,12 +34,12 @@ class DefaultController extends Controller
             ->getNbUtilisateurs()
         ;
 
-        // Récupération du nombre d'accès GAP
-        $nbAccesUtilAppli = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('EVPOSaffectationBundle:AccesUtilAppli')
-            ->getNbAccesUtilAppli()
-        ;
+        // // Récupération du nombre d'accès GAP
+        // $nbAccesUtilAppli = $this->getDoctrine()
+        //     ->getManager()
+        //     ->getRepository('EVPOSaffectationBundle:AccesUtilAppli')
+        //     ->getNbAccesUtilAppli()
+        // ;
 
         // Récupération du nombre de postes
         $nbPoste = $this->getDoctrine()
