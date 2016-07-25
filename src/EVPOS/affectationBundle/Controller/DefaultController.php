@@ -34,13 +34,6 @@ class DefaultController extends Controller
             ->getNbUtilisateurs()
         ;
 
-        // // Récupération du nombre d'accès GAP
-        // $nbAccesUtilAppli = $this->getDoctrine()
-        //     ->getManager()
-        //     ->getRepository('EVPOSaffectationBundle:AccesUtilAppli')
-        //     ->getNbAccesUtilAppli()
-        // ;
-
         // Récupération du nombre de postes
         $nbPoste = $this->getDoctrine()
             ->getManager()
@@ -152,7 +145,6 @@ class DefaultController extends Controller
 
         return $this->render('EVPOSaffectationBundle:Default:indicateurs.html.twig', array(
           'nbUtil' => $nbUtil,
-          'nbAccesUtilAppli' => $nbAccesUtilAppli,
           'nbService' => $nbServices,
           'nbDirection' => $nbDirections,
           'nbPoste' => $nbPoste,
