@@ -91,7 +91,7 @@ class PosteRepository extends EntityRepository {
             ->addSelect('u')
             ->leftJoin('p.listeUo', 'uo')
             ->addSelect('uo')
-            ->where('uo is not null and u is not null')
+            ->where('uo.codeUo is not null and u.matUtil is not null')
             ->getQuery()
         ;
 
