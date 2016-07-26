@@ -153,7 +153,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">{{'poste.titre'|trans}} <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">
+              <span class="glyphicon glyphicon-phone"></span>
+              {{'poste.titre'|trans}} <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 {% render(controller('EVPOSaffectationBundle:Poste:cherchePoste')) %}
@@ -165,7 +168,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">Exports <b class="caret"></b></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-export"></span>
+              Exports <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 <a target="_blank" href="{{ path('evpos_exportService') }}">
@@ -203,7 +209,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">Contrôles <b class="caret"></b></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-eye-open"></span>
+              Contrôles <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 <a href="{{ path('evpos_ctrl_util') }}">
