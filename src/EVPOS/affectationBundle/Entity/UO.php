@@ -85,7 +85,7 @@ class UO
     private $listeAcces;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Silo")
+     * @ORM\ManyToMany(targetEntity="Silo", inversedBy="listeUO")
      * @ORM\JoinTable(name="evpos_uo_silo",
      *      joinColumns={@ORM\JoinColumn(name="code_uo", referencedColumnName="code_uo")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="id_silo", referencedColumnName="id_silo")}
@@ -477,7 +477,15 @@ class UO
      * Retourne le lien vers la FIA de l'application
      */
     public function getLienFia() {
-        return "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx";
+        if (($this->avancementMoca) == "4. En production") {
+          // La FIA se trouve sur MERL1
+          $lien = "https://sharecan.strasbourg.eu/service/merl1/FIA/".$this->codeUo."_FIA.docx";
+        } else {
+          // La FIA se trouve sur le site d'accompagnement MOCA
+          $lien = "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx";
+        }
+        return $lien;
+
     }
 
 

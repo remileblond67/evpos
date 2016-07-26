@@ -15,14 +15,14 @@ class AccesUtilUoRepository extends EntityRepository
 	public function getAccesUtilUo($util, $uo) {
         $query = $this->createQueryBuilder('a')
             ->select('a')
-            ->setParameter('Uo', $uo)
-			->setParameter('Utilisateur', $util)
-			->leftJoin('a.uoAcces', 'uo')
-			->leftJoin('a.utilAcces', 'u')
-            ->where('uo = :Uo and u = :Utilisateur')
+            ->setParameter('uo', $uo)
+						->setParameter('utilisateur', $util)
+						->leftJoin('a.uoAcces', 'uo')
+						->leftJoin('a.utilAcces', 'u')
+            ->where('uo = :uo and u = :utilisateur')
             ->getQuery()
         ;
-        
+
         return $query->getOneOrNullResult();
     }
 }

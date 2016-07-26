@@ -62,7 +62,10 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">Organigramme <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Utilisateurs, service et directions (source : BAZA)">
+              <span class="glyphicon glyphicon-user"></span>
+              Organigramme <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 {% render(controller('EVPOSaffectationBundle:Service:chercheService')) %}
@@ -83,14 +86,14 @@
 
               <li><a href="{{ path('evpos_serviceAvancement') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.etatAvancement'|trans }}</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ path('evpos_treeviewOrga') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.treeView'|trans }}</a></li>
-              <li><a href="{{ path('evpos_treeviewOrgaPlannif') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'service.treeViewPlannif'|trans }}</a></li>
+              <li><a href="{{ path('evpos_treeviewOrga') }}"><span class="glyphicon glyphicon-th"></span> {{ 'service.treeView'|trans }}</a></li>
+              <li><a href="{{ path('evpos_treeviewOrgaPlannif') }}"><span class="glyphicon glyphicon-th"></span> {{ 'service.treeViewPlannif'|trans }}</a></li>
 
               <li role="separator" class="divider"></li>
 
               <li>
                 <a href="{{ path('evpos_ensemble_service') }}">
-                  <span class="glyphicon glyphicon-list-alt"></span>
+                  <span class="glyphicon glyphicon-calendar"></span>
                   {{ 'service.calMigration'|trans }}
                 </a>
               </li>
@@ -114,7 +117,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">{{'application.titre'|trans}} <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Applications et UO (source : SUAPP)">
+              <span class="glyphicon glyphicon-folder-open"></span>
+              {{'application.titre'|trans}} <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 {% render(controller('EVPOSaffectationBundle:Application:chercheAppli')) %}
@@ -134,12 +140,12 @@
               </li>
               <li>
                 <a href="{{ path('evpos_ensemble_uo') }}">
-                  <span class="glyphicon glyphicon-list-alt"></span>
+                  <span class="glyphicon glyphicon-calendar"></span>
                   {{ 'uo.calMigration'|trans }}
                 </a>
               </li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ path('evpos_ctrl_corresp_uo') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'uo.corresp'|trans }}</a></li>
+              <li><a href="{{ path('evpos_ctrl_corresp_uo') }}"><span class="glyphicon glyphicon-random"></span> {{ 'uo.corresp'|trans }}</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ path('evpos_listeSilo') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'silo.liste'|trans }}</a></li>
 
@@ -147,7 +153,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">{{'poste.titre'|trans}} <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{'poste.titre'|trans}}">
+              <span class="glyphicon glyphicon-phone"></span>
+              {{'poste.titre'|trans}} <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 {% render(controller('EVPOSaffectationBundle:Poste:cherchePoste')) %}
@@ -159,7 +168,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">Exports <b class="caret"></b></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-export"></span>
+              Exports <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 <a target="_blank" href="{{ path('evpos_exportService') }}">
@@ -197,7 +209,10 @@
           </li>
 
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">Contrôles <b class="caret"></b></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-eye-open"></span>
+              Contrôles <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 <a href="{{ path('evpos_ctrl_util') }}">
@@ -239,26 +254,29 @@
               <li class="divider"></li>
               <li>
                 <a target="_blank" href="{{ path('evpos_coherencePosteReseau') }}">
-                  <span class="glyphicon glyphicon-list-alt"></span>
+                  <span class="glyphicon glyphicon-signal"></span>
                   {{'ctrl.coherenceReseau'|trans}}
                 </a>
               </li>
               <li class="divider"></li>
               <li>
                 <a href="{{ path('evpos_ctrl_uoSansFia')}}">
-                  <span class="glyphicon glyphicon-list-alt"></span>
+                  <span class="glyphicon glyphicon-exclamation-sign"></span>
                   {{'ctrl.uoSansFia'|trans}}
                 </a>
               </li>
               <li>
                 <a href="{{ path('evpos_ctrl_uoSansUtil')}}">
-                  <span class="glyphicon glyphicon-list-alt"></span>
+                  <span class="glyphicon glyphicon-exclamation-sign"></span>
                   {{'ctrl.uoSansUtil'|trans}}
                 </a>
               </li>
             </ul>
           </li>
-          <li><a href="{{ path('evpos_indicateurs') }}">Indicateurs</a>
+          <li><a href="{{ path('evpos_indicateurs') }}">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            Indicateurs
+          </a>
           </li>
         </ul>
       </div>
