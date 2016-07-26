@@ -479,10 +479,10 @@ class UO
     public function getLienFia() {
         if (($this->avancementMoca) == "4. En production") {
           // La FIA se trouve sur MERL1
-          $lien = "https://sharecan.strasbourg.eu/service/merl1/FIA/".$this->codeUo."_FIA.docx"
+          $lien = "https://sharecan.strasbourg.eu/service/merl1/FIA/".$this->codeUo."_FIA.docx";
         } else {
           // La FIA se trouve sur le site d'accompagnement MOCA
-          $lien = "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx"
+          $lien = "https://sharecan.strasbourg.eu/projets/moca/Applications/".$this->codeUo."_FIA.docx";
         }
         return $lien;
 
