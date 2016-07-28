@@ -288,19 +288,21 @@
 
 <div class="panel panel-group panel-default" id="accordionUtils" role="tablist" aria-multiselectable="true">
     <script type="text/javascript">
-    $.ajax({
-      type: 'POST',
-      url: "{{ path('evpos_agentsService') }}",
-      data: { codeService: '{{service.codeService}}' },
-      dataType: 'json',
-      success: function (data) {
+    $(document).ready(function() {
+      $.ajax({
+        type: 'POST',
+        url: "{{ path('evpos_agentsService') }}",
+        data: { codeService: '{{service.codeService}}' },
+        dataType: 'json',
+        success: function (data) {
           //Handle your JSON data to update the DOM
           $.each(data, function(index, element) {
-              $('#testId').append($('<div>', {
-                  text: element.name
-              }));
+            $('#testId').append($('<div>', {
+              text: element.name
+            }));
           });
-      }
+        }
+      });
     });
     </script>
     <div class="panel-heading">
