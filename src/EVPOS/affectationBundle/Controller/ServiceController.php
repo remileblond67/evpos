@@ -4,6 +4,7 @@ namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use EVPOS\affectationBundle\Entity\Service;
 
 class ServiceController extends Controller {
@@ -46,6 +47,19 @@ class ServiceController extends Controller {
           ->getServiceFiche($codeService)
       ;
       return $this->render('EVPOSaffectationBundle:Utilisateur:fiche_service.html.twig', array('service' => $service));
+  }
+
+  /**
+   * Retourne la liste des agents d'un service, au format Json
+   */
+  public function agentsService($codeService) {
+    $listeAgent = $this->getDoctrine()->getManager()
+                  ->getRepository('EVPOSaffectationBundle:Utilisateur')
+                  ->listeAgentService($codeService)
+    ;
+
+    $response = new Response(json_encode($data));
+    return $response;
   }
 
 }

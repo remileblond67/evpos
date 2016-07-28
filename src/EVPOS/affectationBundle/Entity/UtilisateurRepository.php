@@ -203,4 +203,15 @@ class UtilisateurRepository extends EntityRepository
       ;
       return $query->getResult();
     }
+
+    public function listeAgentService($codeService) {
+      $query = $this->createQueryBuilder('u')
+        ->addSelect('u.matUtil, u.nomUtil, u.lastLogin')
+        ->setParameter('codeService', $codeService)
+        ->where('u.codeService' = :codeService)
+        ->orderBy('u.nomUtil', 'ASC')
+        ->getQuery()
+      ;
+      return $query->getResult();
+    }
 }
