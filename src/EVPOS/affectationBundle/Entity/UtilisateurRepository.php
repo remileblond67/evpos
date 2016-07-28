@@ -208,7 +208,7 @@ class UtilisateurRepository extends EntityRepository
       $query = $this->createQueryBuilder('u')
         ->addSelect('u.matUtil, u.nomUtil, u.lastLogin')
         ->setParameter('codeService', $codeService)
-        ->where('u.codeService' = :codeService)
+        ->where('u.codeService = :codeService')
         ->orderBy('u.nomUtil', 'ASC')
         ->getQuery()
       ;
