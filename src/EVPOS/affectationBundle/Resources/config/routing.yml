@@ -63,8 +63,8 @@ evpos_ficheService:
     defaults: { _controller: EVPOSaffectationBundle:Service:ficheService }
 
 evpos_agentsService:
-    path: /service/{codeService}/listeUtil
-    defaults: { _controller: EVPOSaffectationBundle:Service:agentsService, _format: json }
+    path: /service/{codeService}/listeAgents
+    defaults: { _controller: EVPOSaffectationBundle:Service:agentsService, format: json }
 
 evpos_listeDirection:
     path: /direction
