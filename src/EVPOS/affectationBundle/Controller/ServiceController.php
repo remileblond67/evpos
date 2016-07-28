@@ -58,7 +58,7 @@ class ServiceController extends Controller {
                   ->listeAgentService($codeService)
     ;
 
-    $response = new Response(json_encode($data));
+    $response = new Response(json_encode($listeAgent));
     return $response;
   }
 
