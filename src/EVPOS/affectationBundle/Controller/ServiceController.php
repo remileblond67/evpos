@@ -52,7 +52,7 @@ class ServiceController extends Controller {
   /**
    * Retourne la liste des agents d'un service, au format Json
    */
-  public function agentsService($codeService) {
+  public function agentsServiceAction($codeService) {
     $listeAgent = $this->getDoctrine()->getManager()
                   ->getRepository('EVPOSaffectationBundle:Utilisateur')
                   ->listeAgentService($codeService)
