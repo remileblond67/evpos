@@ -290,8 +290,7 @@
     <script type="text/javascript">
     $.ajax({
       type: 'POST',
-      url: "{{ path('evpos_agentsService') }}",
-      data: { codeService: '{{service.codeService}}' },
+      url: "{{ path('evpos_agentsService', { codeService: '{{service.codeService}}' }) }}",
       dataType: 'json',
       success: function (data) {
           //Handle your JSON data to update the DOM
