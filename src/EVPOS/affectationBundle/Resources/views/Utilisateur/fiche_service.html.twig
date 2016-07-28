@@ -135,7 +135,8 @@
       $('#tabAppliUsage').find('tr.done').show();
     }
 
-    $.ajax({
+    $(document).ready(function() {
+      $.ajax({
         url: 'http://wdevpos/web/app_dev.php/service/INF/listeAgents',
         data: 'go', // on envoie $_GET['go']
         dataType: 'json', // on veut un retour JSON
@@ -145,6 +146,7 @@
                 $test.append('<tr><td>value="'+ index +'">'+ value +'</td></tr>');
             });
         }
+      });
     });
     </script>
 
