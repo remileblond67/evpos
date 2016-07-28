@@ -134,10 +134,29 @@
     function showAppliUsageDone() {
       $('#tabAppliUsage').find('tr.done').show();
     }
+
+    $.ajax({
+        url: 'http://wdevpos/web/app_dev.php/service/INF/listeAgents',
+        data: 'go', // on envoie $_GET['go']
+        dataType: 'json', // on veut un retour JSON
+        success: function(json) {
+            $.each(json, function(index, value) { // pour chaque noeud JSON
+                // on ajoute l option dans la liste
+                $test.append('<tr><td>value="'+ index +'">'+ value +'</td></tr>');
+            });
+        }
+    });
     </script>
 
+
+    <script type="text/javascript">
+
+    </script>
     <div id="collapseAppli" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
+            <table id=test>
+
+            </table>
             <table id="tabAppliUsage" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
                 <thead>
                     <tr>
