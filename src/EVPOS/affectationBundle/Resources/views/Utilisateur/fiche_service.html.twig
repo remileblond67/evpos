@@ -299,7 +299,7 @@
     <div id="collapseUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
             <table id="testId">
-              
+
             </table>
             <table class="table table-striped table-bordered table-hover dataTable no-footer sortable" id="tab">
                <thead>
@@ -415,9 +415,7 @@ $(document).ready(function() {
     success: function (data) {
       //Handle your JSON data to update the DOM
       $.each(data, function(index, element) {
-        $('#testId').append($('<tr>', {
-          text: '<td>element.matUtil</td><td>element.momUtil</td>'
-        }));
+        $('#testId').append('<tr><td>'+ element.matUtil +'</td><td'>+element.momUtil+'</td>');
       });
     }
   });
