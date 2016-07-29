@@ -415,7 +415,9 @@ $(document).ready(function() {
     success: function (data) {
       //Handle your JSON data to update the DOM
       $.each(data, function(index, element) {
-        $('#testId').append('<tr><td>' + element.matUtil + '</td><td'> + element.momUtil + '</td></tr>');
+        $('#testId').append($('<tr>', {
+          text: '<td>'+element.matUtil+'</td><td>'+element.momUtil+'</td>'
+        }));
       });
     }
   });
