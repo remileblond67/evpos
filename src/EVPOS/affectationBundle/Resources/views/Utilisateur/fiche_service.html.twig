@@ -298,9 +298,17 @@
     </div>
     <div id="collapseUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <div id="testId">
-              <p>Données JSON :</p>
-            </div>
+            <table id="testId">
+              <thead>
+                <tr>
+                    <td class="row">{{'utilisateur.matricule'|trans}}</td>
+                    <td class="row">{{'utilisateur.nom'|trans}}</td>
+                  </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
             <table class="table table-striped table-bordered table-hover dataTable no-footer sortable" id="tab">
                <thead>
                    <tr>
@@ -415,8 +423,8 @@ $(document).ready(function() {
     success: function (data) {
       //Handle your JSON data to update the DOM
       $.each(data, function(index, element) {
-        $('#testId').append($('<div>', {
-          text: element.matUtil
+        $('#testId' > tbody).append($('<tr>', {
+          text: '<td>element.matUtil</td><td>element.momUtil</td>'
         }));
       });
     }
