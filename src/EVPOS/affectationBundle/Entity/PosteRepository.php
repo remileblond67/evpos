@@ -204,7 +204,6 @@ class PosteRepository extends EntityRepository {
      * -- format JSON
      */
     public function listePosteService($codeService) {
-      $listePoste = array();
       $query = $this->createQueryBuilder('p')
         ->leftJoin('p.service', 's')
 				->leftJoin('p.listeUtilisateurs', 'u')
@@ -213,18 +212,8 @@ class PosteRepository extends EntityRepository {
         ->where('s.codeService = :codeService')
         ->getQuery()
       ;
-			foreach ($query->getResult() as $ligne) {
-				$poste = [
-					'hostname' => $ligne["hostname"],
-					'matUtil' => $ligne["matUtil"],
-					'categorie' => $ligne["categorie"],
-					'modele' => $ligne["modele"],
-					'typeUsage' => $ligne["typeUsage"],
-					'localisation' => $ligne["localisation"],
-					'commentaire' => $ligne["commentaire"],
-				];
-				$listePoste[] = $poste;
-			}
+			$listePoste = $query->getArrayResult();
+
 			return $listePoste;
     }
 }
