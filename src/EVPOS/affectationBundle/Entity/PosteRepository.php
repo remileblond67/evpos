@@ -214,12 +214,12 @@ class PosteRepository extends EntityRepository {
       ;
 			foreach ($query->getResult() as $ligne) {
 				$poste = [
-					'hostname' => $hostname,
-					'categorie' => $categorie,
-					'modele' => $modele,
-					'typeUsage' => $typeUsage,
-					'localisation' => $localisation,
-					'commentaire' => $commentaire,
+					'hostname' => $ligne["hostname"],
+					'categorie' => $ligne["categorie"],
+					'modele' => $ligne["modele"],
+					'typeUsage' => $ligne["typeUsage"],
+					'localisation' => $ligne["localisation"],
+					'commentaire' => $ligne["commentaire"],
 				];
 				$listePoste[] = $poste;
 			}
