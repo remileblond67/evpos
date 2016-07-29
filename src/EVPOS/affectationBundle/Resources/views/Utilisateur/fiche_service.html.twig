@@ -287,24 +287,6 @@
 
 
 <div class="panel panel-group panel-default" id="accordionUtils" role="tablist" aria-multiselectable="true">
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $.ajax({
-        type: 'POST',
-        url: "{{ path('evpos_agentsService') }}",
-        data: { codeService: '{{service.codeService}}' },
-        dataType: 'json',
-        success: function (data) {
-          //Handle your JSON data to update the DOM
-          $.each(data, function(index, element) {
-            $('#testId').append($('<div>', {
-              text: element.name
-            }));
-          });
-        }
-      });
-    });
-    </script>
     <div class="panel-heading">
         <h3 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordionUtils"
@@ -422,3 +404,24 @@
 </div>
 
 {%endblock%}
+
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $.ajax({
+    type: 'POST',
+    url: "{{ path('evpos_agentsService') }}",
+    data: { codeService: '{{service.codeService}}' },
+    dataType: 'json',
+    success: function (data) {
+      //Handle your JSON data to update the DOM
+      $.each(data, function(index, element) {
+        $('#testId').append($('<div>', {
+          text: element.name
+        }));
+      });
+    }
+  });
+});
+</script>
+{% endblock %}
