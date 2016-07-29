@@ -205,14 +205,26 @@ class UtilisateurRepository extends EntityRepository
     }
 
     public function listeAgentService($codeService) {
+      $listeUtil = {};
       $query = $this->createQueryBuilder('u')
         ->leftJoin('u.serviceUtil', 's')
-        ->addSelect('u.matUtil, u.nomUtil, DATE_FORMAT(u.lastLogin, "%d-%m-%Y")')
+        ->addSelect('u.matUtil, u.nomUtil, u.lastLogin')
         ->setParameter('codeService', $codeService)
         ->where('s.codeService = :codeService')
         ->orderBy('u.nomUtil', 'ASC')
         ->getQuery()
       ;
-      return $query->getResult();
+
+      foreach ($query->getResult() as $ligne) {
+        $util = {
+          'matUtil' => $ligne[matUtil],
+          'nomUtil' => $ligne[nomUtil],
+          'lastLogin' => $ligne[lastLogin]
+        };
+
+        $listeUtil.append($util);
+      }
+
+      return $listeUtil;
     }
 }
