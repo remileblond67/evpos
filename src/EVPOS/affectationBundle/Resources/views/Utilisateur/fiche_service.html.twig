@@ -402,7 +402,7 @@ $(document).ready(function() {
         }
 
         $('#testId tbody').append($('<tr>', {
-          html: '<td><a href="/web/utilisateur/'+element.matUtil+'">' + vip + element.matUtil + '</td><td>' + element.nomUtil + '</td><td>' + element.lastLogin + '</td>'
+          html: '<td><a href="{{path('evpos_listeUtil')}}/'+element.matUtil+'">' + vip + element.matUtil + '</td><td>' + element.nomUtil + '</td><td>' + element.lastLogin + '</td>'
         }));
       });
     }
