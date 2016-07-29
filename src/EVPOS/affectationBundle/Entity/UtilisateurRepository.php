@@ -208,7 +208,7 @@ class UtilisateurRepository extends EntityRepository
       $listeUtil = array();
       $query = $this->createQueryBuilder('u')
         ->leftJoin('u.serviceUtil', 's')
-        ->addSelect('u.matUtil, u.nomUtil, u.lastLogin')
+        ->addSelect('u.matUtil, u.nomUtil, u.lastLogin, u.niveauVIP')
         ->setParameter('codeService', $codeService)
         ->where('s.codeService = :codeService')
         ->orderBy('u.nomUtil', 'ASC')
@@ -224,6 +224,7 @@ class UtilisateurRepository extends EntityRepository
         $util = [
           'matUtil' => $ligne["matUtil"],
           'nomUtil' => $ligne["nomUtil"],
+          'niveauVIP' => $ligne["niveauVIP"],
           'lastLogin' => $date,
         ];
 
