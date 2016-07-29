@@ -205,7 +205,7 @@ class UtilisateurRepository extends EntityRepository
     }
 
     public function listeAgentService($codeService) {
-      $listeUtil = {};
+      $listeUtil = ();
       $query = $this->createQueryBuilder('u')
         ->leftJoin('u.serviceUtil', 's')
         ->addSelect('u.matUtil, u.nomUtil, u.lastLogin')
