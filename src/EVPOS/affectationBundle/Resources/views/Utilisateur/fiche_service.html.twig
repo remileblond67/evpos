@@ -424,7 +424,7 @@ $(document).ready(function() {
       //Handle your JSON data to update the DOM
       $.each(data, function(index, element) {
         $('#testId tbody').append($('<tr>', {
-          html: '<td >'+element.matUtil+'</td><td>'+element.momUtil+'</td><td>'+element.lastLogin.date+'</td>'
+          html: '<td >' + element.matUtil + '</td><td>' + element.nomUtil + '</td><td>' + element.lastLogin + '</td>'
         }));
       });
     }
