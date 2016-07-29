@@ -207,7 +207,8 @@ class PosteRepository extends EntityRepository {
       $listePoste = array();
       $query = $this->createQueryBuilder('p')
         ->leftJoin('p.service', 's')
-        ->addSelect('p.hostname, p.categorie, p.modele, p.typeUsage, p.localisation, p.commentaire')
+				->leftJoin('p.listeUtilisateurs', 'u')
+        ->addSelect('p.hostname, p.categorie, p.modele, p.typeUsage, p.localisation, p.commentaire, u.matUtil')
         ->setParameter('codeService', $codeService)
         ->where('s.codeService = :codeService')
         ->getQuery()
@@ -215,6 +216,7 @@ class PosteRepository extends EntityRepository {
 			foreach ($query->getResult() as $ligne) {
 				$poste = [
 					'hostname' => $ligne["hostname"],
+					'matUtil' => $ligne["matUtil"],
 					'categorie' => $ligne["categorie"],
 					'modele' => $ligne["modele"],
 					'typeUsage' => $ligne["typeUsage"],
