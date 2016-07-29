@@ -66,12 +66,12 @@ class ServiceController extends Controller {
    * Retourne la liste des postes d'un service, au format Json
    */
   public function posteServiceAction($codeService) {
-    $listeAgent = $this->getDoctrine()->getManager()
+    $listePoste = $this->getDoctrine()->getManager()
                   ->getRepository('EVPOSaffectationBundle:Poste')
                   ->listePosteService($codeService)
     ;
 
-    $response = new Response(json_encode($listeAgent));
+    $response = new Response(json_encode($listePoste));
     return $response;
   }
 
