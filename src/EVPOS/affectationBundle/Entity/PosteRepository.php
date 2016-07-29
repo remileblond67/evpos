@@ -198,4 +198,31 @@ class PosteRepository extends EntityRepository {
       ;
       return $query->getResult();
     }
+
+		/**
+     * Liste des postes d'un service
+     * -- format JSON
+     */
+    public function listePosteService($codeService) {
+      $listePoste = array();
+      $query = $this->createQueryBuilder('p')
+        ->leftJoin('p.service', 's')
+        ->addSelect('p.hostname, p.categorie, p.modele, p.typeUsage, p.localisation, p.commentaire')
+        ->setParameter('codeService', $codeService)
+        ->where('s.codeService = :codeService')
+        ->getQuery()
+      ;
+			foreach ($query->getResult() as $ligne) {
+				$poste = [
+					'hostname' => $hostname,
+					'categorie' => $categorie,
+					'modele' => $modele,
+					'typeUsage' => $typeUsage,
+					'localisation' => $localisation,
+					'commentaire' => $commentaire,
+				];
+				$listePoste[] = $poste;
+			}
+			return $listePoste;
+    }
 }

@@ -67,8 +67,8 @@ class ServiceController extends Controller {
    */
   public function posteServiceAction($codeService) {
     $listeAgent = $this->getDoctrine()->getManager()
-                  ->getRepository('EVPOSaffectationBundle:Utilisateur')
-                  ->listeAgentService($codeService)
+                  ->getRepository('EVPOSaffectationBundle:Poste')
+                  ->listePosteService($codeService)
     ;
 
     $response = new Response(json_encode($listeAgent));

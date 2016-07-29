@@ -204,6 +204,10 @@ class UtilisateurRepository extends EntityRepository
       return $query->getResult();
     }
 
+    /**
+     * Liste des agents du service
+     * -- format JSON
+     */
     public function listeAgentService($codeService) {
       $listeUtil = array();
       $query = $this->createQueryBuilder('u')
