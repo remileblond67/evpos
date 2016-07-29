@@ -396,9 +396,9 @@ $(document).ready(function() {
       //Handle your JSON data to update the DOM
       $.each(data, function(index, element) {
         if (element.niveauVIP == null) {
-          vip = "";
+          vip = '';
         } else {
-          vip = "<span class="glyphicon glyphicon-certificate important">{{ element.niveauVIP }}</span>";
+          vip = '<span class="glyphicon glyphicon-certificate important">'+ element.niveauVIP + '</span>';
         }
 
         $('#testId tbody').append($('<tr>', {
