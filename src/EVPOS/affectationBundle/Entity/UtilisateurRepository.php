@@ -213,6 +213,7 @@ class UtilisateurRepository extends EntityRepository
         ->setParameter('codeService', $codeService)
         ->where('s.codeService = :codeService')
         ->orderBy('u.nomUtil', 'ASC')
+        ->groupBy('u.matUtil')
         ->getQuery()
       ;
 
@@ -226,7 +227,7 @@ class UtilisateurRepository extends EntityRepository
           'matUtil' => $ligne["matUtil"],
           'nomUtil' => $ligne["nomUtil"],
           'lastLogin' => $date,
-          'nbPoste' => $ligne["nbPoste"]
+          // 'nbPoste' => $ligne["nbPoste"]
         ];
 
         $listeUtil[] = $util;
