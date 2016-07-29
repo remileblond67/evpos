@@ -416,7 +416,7 @@ $(document).ready(function() {
       //Handle your JSON data to update the DOM
       $.each(data, function(index, element) {
         $('#testId').append($('<tr>', {
-          text: '<td>'+element.matUtil+'</td><td>'+element.momUtil+'</td>'
+          html: '<td>'+element.matUtil+'</td><td>'+element.momUtil+'</td>'
         }));
       });
     }
