@@ -379,7 +379,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <table id="listePoste">
+            <table id="listePoste" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
                <thead>
                    <tr>
                        <td class="row">{{'poste.hostname'|trans}}</td>
@@ -435,9 +435,12 @@ $(document).ready(function() {
         ligne.append($('<td>', {
           html: element.hostname
         }));
-        ligne.append($('<td>', {
-          html: element.matUtil + ' : ' + element.nomUtil
-        }));
+        listeUtil = $("<td>");
+        element.listeUtilisateurs.foreach(function(),{
+          ligneUtil.append($('<ul><li>', {
+            html: element.matUtil + ' : ' + element.nomUtil
+          }));
+        });
         ligne.append($('<td>', {
           html: element.categorie
         }));
