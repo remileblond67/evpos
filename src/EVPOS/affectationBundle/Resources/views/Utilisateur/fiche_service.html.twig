@@ -431,9 +431,20 @@ $(document).ready(function() {
     dataType: 'json',
     success: function (data) {
       $.each(data, function(index, element) {
-        $('#listePoste tbody').append($('<tr>', {
-          html: '<td>'+element.hostname+'</td><td>'+element.matUtil+' : '+element.nomUtil+'<td></td>'+element.categorie+'</td><td>'+element.modele+'</td><td>'+element.avancementMigMoca+'</td><td>'+element.typeUsage+"</td><td>"+element.codeUo+" : "+element.nomUo+"</td><td>"+element.localisation+"</td><td>"+element.commentaire+"</td>"
-        }));
+        $('#listePoste tbody').append($('<tr>'));
+        $('#listePoste tbody tr').append($('<td>'), {
+          text: element.hostname
+        });
+
+        hostname = '<td>'+element.hostname+'</td>';
+        util = '<td>'+element.matUtil+' : '+element.nomUtil+'<td>';
+        categorie = '<td>'+element.categorie+'</td>';
+        modele = '<td>'+element.modele+'</td>';
+        avancement = '<td>'+element.avancementMigMoca+'</td>';
+        typeUsage = '<td>'+element.typeUsage+'</td>';
+        Uo = "<td>"+element.codeUo+" : "+element.nomUo+"</td>";
+        localisation = "<td>"+element.localisation+"</td>";
+        commentaire = "<td>"+element.commentaire+"</td>";
       });
     }
   });
