@@ -436,7 +436,7 @@ $(document).ready(function() {
           html: element.hostname
         }));
         listeUtil = $("<td>");
-        element.listeUtilisateurs.foreach(function(user), {
+        element.listeUtilisateurs.foreach(function(user) {
           listeUtil.append($('<ul><li>', {
             html: user.matUtil + ' : ' + user.nomUtil
           }));
