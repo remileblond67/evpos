@@ -436,11 +436,12 @@ $(document).ready(function() {
           html: element.hostname
         }));
         listeUtil = $("<td>");
-        element.listeUtilisateurs.foreach(function(user) {
-          listeUtil.append($('<ul><li>', {
-            html: user.matUtil + ' : ' + user.nomUtil
+        element.listeUtilisateurs.forEach(function(user) {
+          listeUtil.append($('<p>', {
+            html: '<a href="{{path('evpos_listeUtil')}}/'+user.matUtil+'">' + user.matUtil + '</a> : ' + user.nomUtil
           }));
         });
+        ligne.append(listeUtil);
         ligne.append($('<td>', {
           html: element.categorie
         }));
