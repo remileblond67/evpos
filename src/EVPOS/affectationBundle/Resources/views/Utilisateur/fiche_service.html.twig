@@ -460,7 +460,7 @@ $(document).ready(function() {
         listeUo = $("<td>");
         element.listeUo.forEach(function(uo) {
           listeUo.append($('<p>', {
-            html: '<span class="+uo.avancementMocaIcon+"></span>' + uo.codeUo + " : " + uo.nomUo
+            html: "<span class='" + uo.avancementMocaIcon + "'></span><a href='{{ path('evpos_listeAppli')}}/"+uo.codeUo+"'>" + uo.codeUo + "</a> : " + uo.nomUo
           }));
         });
         ligne.append(listeUo);
