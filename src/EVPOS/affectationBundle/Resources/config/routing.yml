@@ -277,6 +277,11 @@ evpos_ensemble_uo:
     path: /ensemble/uo
     defaults: { _controller: EVPOSaffectationBundle:Planif:calendrierUo }
 
+evpos_uo_attente_ensemble:
+    path: /ensemble/uo_attente
+    defaults: { _controller: EVPOSaffectationBundle:Planif:uoAttenteEnsemble }
+
+
 # Silo
 evpos_listeSilo:
     path: /silo
