@@ -382,7 +382,7 @@
             <table id="listePoste">
               <tbody>
                 <!-- Données dynamiques JSON -->
-              </tbody>
+w              </tbody>
             </table>
         </div>
     </div>
@@ -419,7 +419,7 @@ $(document).ready(function() {
     success: function (data) {
       $.each(data, function(index, element) {
         $('#listePoste tbody').append($('<tr>', {
-          html: '<td>Nouveau poste</td>'
+          html: '<td>'+element.hostname+'</td><td>'+element.categorie+'</td><td>'+element.modele+'</td><td>'+element.typeUsage+"</td><td>"+element.localisation+"</td>"
         }));
       });
     }
