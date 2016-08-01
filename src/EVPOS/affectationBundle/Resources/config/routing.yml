@@ -62,14 +62,6 @@ evpos_ficheService:
     path: /service/{codeService}
     defaults: { _controller: EVPOSaffectationBundle:Service:ficheService }
 
-evpos_agentService:
-    path: /service/{codeService}/agent
-    defaults: { _controller: EVPOSaffectationBundle:Service:agentService, format: json }
-
-evpos_posteService:
-    path: /service/{codeService}/poste
-    defaults: { _controller: EVPOSaffectationBundle:Service:posteService, format: json }
-
 evpos_listeDirection:
     path: /direction
     defaults: { _controller: EVPOSaffectationBundle:Organigramme:listeDirection }
@@ -285,3 +277,17 @@ evpos_listeSilo:
 evpos_ficheSilo:
     path: /silo/{idSilo}
     defaults: { _controller: EVPOSaffectationBundle:Silo:ficheSilo }
+
+# Services Web retournant du JSON
+
+evpos_agentService:
+  path: /service/{codeService}/agent
+  defaults: { _controller: EVPOSaffectationBundle:Service:agentService, format: json }
+
+evpos_posteService:
+  path: /service/{codeService}/poste
+  defaults: { _controller: EVPOSaffectationBundle:Service:posteService, format: json }
+
+evpos_listeUtilisateurNom:
+  patch: /utilisateur_nom/{nom}
+  defaults: { _controller: EVPOSaffectationBundle:Utilisateur:chercheUtilNom, format:json }

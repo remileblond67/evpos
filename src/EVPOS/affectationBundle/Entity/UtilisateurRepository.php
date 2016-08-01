@@ -27,6 +27,21 @@ class UtilisateurRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public funciton getUtilNom($nom) {
+      $query = $this->createQueryBuilder('u')
+          ->leftJoin('u.serviceUtil', 's')
+          ->addSelect('u.matUtil, u.nomUtil, s.codeService')
+          ->setParameter('nom', $nom)
+          ->where('u.nomUtil like "%:nom%"')
+          ->orderBy('u.nomUtil')
+          ->getQuery()
+      ;
+
+      return $query->getResult();
+      $listeUtil = $query->getArrayResult();
+      return $listeUtil;
+    }
+
     /**
      * Retourne la liste des VIP
      */
