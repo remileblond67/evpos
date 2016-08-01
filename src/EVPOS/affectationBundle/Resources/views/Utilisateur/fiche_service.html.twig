@@ -414,10 +414,11 @@ $(document).ready(function() {
         ligne.append($('<td>', {
           html: element.localisation
         }));
+        commentaire = element.commentaire.replace(/[<&>'"]/g, function(c) {
+          return "&#" + c.charCodeAt() + ";";
+        });
         ligne.append($('<td>', {
-          html: element.commentaire.replace(/[<&>'"]/g, function(c) {
-            return "&#" + c.charCodeAt() + ";";
-          });
+          html: commentaire
         }));
 
         $('#listePoste tbody').append(ligne);
