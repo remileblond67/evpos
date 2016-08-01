@@ -358,7 +358,7 @@ $(document).ready(function() {
     dataType: 'json',
     success: function (data) {
       $.each(data, function(index, element) {
-        ligne = $($('<tr>');
+        ligne = $('<tr>');
         if (element.niveauVIP == null) {
           vip = '';
         } else {
