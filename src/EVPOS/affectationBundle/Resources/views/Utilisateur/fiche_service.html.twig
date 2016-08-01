@@ -395,7 +395,7 @@
                </thead>
               <tbody>
                 <!-- Données dynamiques JSON -->
-w              </tbody>
+              </tbody>
             </table>
         </div>
     </div>
@@ -431,8 +431,8 @@ $(document).ready(function() {
     dataType: 'json',
     success: function (data) {
       $.each(data, function(index, element) {
-        $('#listePoste tbody').append($('<tr>'));
-        $('#listePoste tbody tr').append($('<td>'), {
+        ligne = $("<tr>");
+        ligne.append($('<td>'), {
           text: element.hostname
         });
 
@@ -445,6 +445,8 @@ $(document).ready(function() {
         Uo = "<td>"+element.codeUo+" : "+element.nomUo+"</td>";
         localisation = "<td>"+element.localisation+"</td>";
         commentaire = "<td>"+element.commentaire+"</td>";
+
+        $('#listePoste tbody').append(ligne);
       });
     }
   });
