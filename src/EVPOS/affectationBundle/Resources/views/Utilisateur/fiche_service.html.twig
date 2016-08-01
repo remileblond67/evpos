@@ -433,7 +433,7 @@ $(document).ready(function() {
       $.each(data, function(index, element) {
         ligne = $("<tr>");
         ligne.append($('<td>'), {
-          text: element.hostname
+          html: element.hostname
         });
 
         hostname = '<td>'+element.hostname+'</td>';
