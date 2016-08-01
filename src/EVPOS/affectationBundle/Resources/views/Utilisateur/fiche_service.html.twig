@@ -435,16 +435,30 @@ $(document).ready(function() {
         ligne.append($('<td>', {
           html: element.hostname
         }));
-
-        hostname = '<td>'+element.hostname+'</td>';
-        util = '<td>'+element.matUtil+' : '+element.nomUtil+'<td>';
-        categorie = '<td>'+element.categorie+'</td>';
-        modele = '<td>'+element.modele+'</td>';
-        avancement = '<td>'+element.avancementMigMoca+'</td>';
-        typeUsage = '<td>'+element.typeUsage+'</td>';
-        Uo = "<td>"+element.codeUo+" : "+element.nomUo+"</td>";
-        localisation = "<td>"+element.localisation+"</td>";
-        commentaire = "<td>"+element.commentaire+"</td>";
+        ligne.append($('<td>', {
+          html: element.matUtil + ' : ' + element.nomUtil
+        }));
+        ligne.append($('<td>', {
+          html: element.categorie
+        }));
+        ligne.append($('<td>', {
+          html: element.modele
+        }));
+        ligne.append($('<td>', {
+          html: element.avancementMigMoca
+        }));
+        ligne.append($('<td>', {
+          html: element.typeUsage
+        }));
+        ligne.append($('<td>', {
+          html: element.codeUo + " : " + element.nomUo
+        }));
+        ligne.append($('<td>', {
+          html: element.localisation
+        }));
+        ligne.append($('<td>', {
+          html: element.commentaire
+        }));
 
         $('#listePoste tbody').append(ligne);
       });
