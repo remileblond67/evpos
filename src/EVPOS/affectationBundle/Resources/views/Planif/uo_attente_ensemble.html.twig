@@ -17,10 +17,10 @@
 
 {% for ensemble in ensembles %}
 <h2>Ensemble {{ensemble.numEnsemble}}</h2>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   {% for uo in listeUo %}
     {% for acces in uo.listeServiceAcces %}
       {% if acces.serviceAcces.numEnsemble == ensemble.numEnsemble %}
-      <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
         <tr {% if uo.ancienCitrix %}class="ancienneFerme"{% endif %}>
           <td>
             <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a> :
@@ -36,9 +36,9 @@
               <span class="glyphicon glyphicon-ok" title="Ensemble n°{{ensemble.numEnsemble}}"></span>
           </td>
         </tr>
-      </table>
       {% endif %}
     {% endfor %}
   {% endfor %}
+</table>
 {% endfor %}
 {% endblock %}
