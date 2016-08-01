@@ -27,12 +27,12 @@ class UtilisateurRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public funciton getUtilNom($nom) {
+    public function getUtilNom($nom) {
       $query = $this->createQueryBuilder('u')
           ->leftJoin('u.serviceUtil', 's')
           ->addSelect('u.matUtil, u.nomUtil, s.codeService')
-          ->setParameter('nom', $nom)
-          ->where('u.nomUtil like "%:nom%"')
+          ->setParameter('nom', '%'.$nom.'%')
+          ->where('u.nomUtil like :nom')
           ->orderBy('u.nomUtil')
           ->getQuery()
       ;

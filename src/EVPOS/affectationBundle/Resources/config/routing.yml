@@ -289,5 +289,5 @@ evpos_posteService:
   defaults: { _controller: EVPOSaffectationBundle:Service:posteService, format: json }
 
 evpos_listeUtilisateurNom:
-  patch: /utilisateur_nom/{nom}
+  path: /utilisateur_nom/{nom}
   defaults: { _controller: EVPOSaffectationBundle:Utilisateur:chercheUtilNom, format:json }
