@@ -186,7 +186,7 @@ class PosteRepository extends EntityRepository {
       return $query->getResult();
     }
 
-		/**
+    /**
      * Retourne le nombre de poste par avancement
      */
     public function getNbPosteAvancement() {
@@ -197,5 +197,23 @@ class PosteRepository extends EntityRepository {
         ->getQuery()
       ;
       return $query->getResult();
+    }
+
+    /**
+     * Liste des postes d'un service
+     * -- format JSON
+     */
+    public function listePosteService($codeService) {
+      $query = $this->createQueryBuilder('p')
+        ->leftJoin('p.service', 's')
+        ->leftJoin('p.listeUtilisateurs', 'u')
+        ->leftJoin('p.listeUo', 'uo')
+        ->select('p, u, uo')
+        ->setParameter('codeService', $codeService)
+        ->where('s.codeService = :codeService')
+        ->getQuery()
+      ;
+      $listePoste = $query->getArrayResult();
+      return $listePoste;
     }
 }

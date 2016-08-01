@@ -135,7 +135,6 @@
       $('#tabAppliUsage').find('tr.done').show();
     }
     </script>
-
     <div id="collapseAppli" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
             <table id="tabAppliUsage" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
@@ -293,40 +292,24 @@
             <a role="button" data-toggle="collapse" data-parent="#accordionUtils"
                href="#collapseUtil" aria-expanded="true" aria-controls="collapseOne">
             {{'service.listeAgent'|trans}}
-            <div class="badge">{{service.listeUtilisateurs|length}}</div>
+            <div class="badge">{{service.nbAgent}}</div>
             </a>
         </h3>
     </div>
     <div id="collapseUtil" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer sortable" id="tab">
-               <thead>
-                   <tr>
-                       <td class="row">{{'utilisateur.matricule'|trans}}</td>
-                       <td class="row">{{'utilisateur.nom'|trans}}</td>
-                       <td class="row">{{'utilisateur.poste'|trans}}</td>
-                       <td class="row">{{'utilisateur.lastLogin'|trans}}</td>
-                   </tr>
-               </thead>
-                <tbody>
-                   {% for util in service.listeUtilisateurs | sort %}
-                    <tr class="gradeA odd">
-                        <td>
-                          <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a>
-                          {% if util.niveauVIP %}
-                          <span class="glyphicon glyphicon-certificate important">{{ util.niveauVIP }}</span>
-                          {% endif %}
-                        </td>
-                        <td>{{util.nomUtil}}</td>
-                        <td>
-                        {% for poste in util.listePostes %}
-                        <a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname}}</a>
-                        {% endfor %}
-                        </td>
-                        <td>{{util.lastLogin|date("d/m/Y") }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+            <table class="table table-striped table-bordered table-hover dataTable no-footer sortable" id="listeAgent">
+              <thead>
+                  <tr>
+                      <td class="row">{{'utilisateur.matricule'|trans}}</td>
+                      <td class="row">{{'utilisateur.nom'|trans}}</td>
+                      <td class="row">{{'utilisateur.lastLogin'|trans}}</td>
+                      <td class="row">{{'utilisateur.poste'|trans}}</td>
+                  </tr>
+              </thead>
+               <tbody>
+                 <!-- Contenu dynamique à partir du JSON -->
+               </tbody>
             </table>
         </div>
     </div>
@@ -337,68 +320,129 @@
         <h3 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordionPoste" href="#collapsePoste" aria-expanded="true" aria-controls="collapseOne">
             {{'poste.listeUsage'|trans}}
-            <div class="badge">{{service.listePostes|length}}</div>
+            <div class="badge" id="nbPoste">{{service.nbPoste}}</div>
             </a>
         </h3>
     </div>
     <div id="collapsePoste" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+            <table id="listePoste" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
                <thead>
                    <tr>
                        <td class="row">{{'poste.hostname'|trans}}</td>
                        <td class="row">{{'poste.utilisateurs'|trans}}</td>
                        <td class="row">{{'poste.categorie'|trans}}</td>
-          					   <td class="row">{{'poste.modele'|trans}}</td>
-                       <td class="row">{{'poste.ecran'|trans}}</td>
-          					   <td class="row">{{'poste.avancementMigMoca'|trans}}</td>
+                       <td class="row">{{'poste.modele'|trans}}</td>
+                       <td class="row">{{'poste.avancementMigMoca'|trans}}</td>
                        <td class="row">{{'poste.typeUsage'|trans}}</td>
                        <td class="row">{{'poste.uo'|trans }}</td>
-          					   <td class="row">{{'poste.localisation'|trans}}</td>
+                       <td class="row">{{'poste.localisation'|trans}}</td>
                        <td class="row">{{'poste.commentaire'|trans}}</td>
                    </tr>
                </thead>
-                <tbody>
-                   {% for poste in service.listePostes | sort %}
-                    <tr class="gradeA odd">
-                        <td><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname}}</a></td>
-                        <td>
-                            {% for util in poste.listeUtilisateurs %}
-                            <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a> : {{util.nomUtil}}
-                            {% endfor %}
-                        </td>
-                        <td>{{poste.categorie}}</td>
-            						<td>{{poste.modele}}</td>
-                        <td>
-                        {% for ecran in poste.listeEcran %}
-                            {{ecran}}
-                        {% endfor %}
-                        </td>
-            						<td>
-            							{{ poste.avancementMigMoca }}
-            						</td>
-                        <td>{{poste.typeUsage}}</td>
-            						<td>
-            						{% for uo in poste.listeUo %}
-            							<li class="{% if uo.migMoca != true %}nonMoca{% endif %}">
-            								<span class="{{uo.avancementMocaIcon}}"></span>
-            								<a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
-            								{{ uo.appli.codeAppli }}
-            								</a>
-            								:
-            								<a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
-            								{{ uo.codeUo }}
-            								</a>- {{ uo.nomUo }}</li>
-            						{% endfor %}
-            						</td>
-                        <td>{{poste.localisation}}</td>
-                        <td>{{poste.commentaire|raw}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+              <tbody>
+                <!-- Données dynamiques JSON -->
+              </tbody>
             </table>
         </div>
     </div>
 </div>
 
 {%endblock%}
+
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+  $.ajax({
+    type: 'POST',
+    url: "{{ path('evpos_agentService', {'codeService': service.codeService}) }}",
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, element) {
+        ligne = $('<tr>');
+        if (element.niveauVIP == null) {
+          vip = '';
+        } else {
+          vip = '<span class="glyphicon glyphicon-certificate important">'+ element.niveauVIP + '</span>';
+        }
+        ligne.append($('<td>', {
+          html: '<td><a href="{{path('evpos_listeUtil')}}/'+element.matUtil+'">' + vip + element.matUtil
+        }));
+        ligne.append($('<td>', {
+          html: element.nomUtil
+        }));
+        ligne.append($('<td>', {
+          html: element.ageLogin + " jours"
+        }));
+
+        listePoste = $('<td>');
+        element.listePostes.forEach(function(poste) {
+          listePoste.append($('<p>', {
+            html: '<a href="{{path("evpos_listePoste")}}/'+poste.hostname+'">'+poste.hostname+'</a>'
+          }));
+        });
+        ligne.append(listePoste);
+
+        $('#listeAgent tbody').append(ligne);
+      });
+    }
+  });
+
+  $.ajax({
+    type: 'POST',
+    url: "{{ path('evpos_posteService', {'codeService': service.codeService}) }}",
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, element) {
+        ligne = $("<tr>");
+        ligne.append($('<td>', {
+          html: element.hostname
+        }));
+
+        listeUtil = $("<td>");
+        element.listeUtilisateurs.forEach(function(user) {
+          listeUtil.append($('<p>', {
+            html: '<a href="{{path('evpos_listeUtil')}}/'+user.matUtil+'">' + user.matUtil + '</a> : ' + user.nomUtil
+          }));
+        });
+        ligne.append(listeUtil);
+
+        ligne.append($('<td>', {
+          html: element.categorie
+        }));
+        ligne.append($('<td>', {
+          html: element.modele
+        }));
+        ligne.append($('<td>', {
+          html: element.avancementMigMoca
+        }));
+        ligne.append($('<td>', {
+          html: element.typeUsage
+        }));
+
+        listeUo = $("<td>");
+        element.listeUo.forEach(function(uo) {
+          listeUo.append($('<p>', {
+            html: "<span class='" + uo.avancementMocaIcon + "'></span><a href='/web/uo/"+uo.codeUo+"'>" + uo.codeUo + "</a> : " + uo.nomUo
+          }));
+        });
+        ligne.append(listeUo);
+
+        ligne.append($('<td>', {
+          html: element.localisation
+        }));
+        commentaire = "";
+        if (element.commentaire) {
+          commentaire = element.commentaire;
+        }
+        ligne.append($('<td>', {
+          html: commentaire
+        }));
+
+        $('#listePoste tbody').append(ligne);
+      });
+    }
+  });
+});
+</script>
+{% endblock %}

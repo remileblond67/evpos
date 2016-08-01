@@ -313,6 +313,10 @@ class Utilisateur
         return $this->listePostes;
     }
 
+    public function getNbPostes() {
+      return $this->listePostes->length();
+    }
+
     /**
      * Set lastLogin
      *

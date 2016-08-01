@@ -203,4 +203,22 @@ class UtilisateurRepository extends EntityRepository
       ;
       return $query->getResult();
     }
+
+    /**
+     * Liste des agents du service
+     * -- format JSON
+     */
+    public function listeAgentService($codeService) {
+      $query = $this->createQueryBuilder('u')
+        ->leftJoin('u.serviceUtil', 's')
+        ->leftJoin('u.listePostes', 'p')
+        ->select('u, p')
+        ->setParameter('codeService', $codeService)
+        ->where('s.codeService = :codeService')
+        ->orderBy('u.nomUtil', 'ASC')
+        ->getQuery()
+      ;
+      $listeUtil = $query->getArrayResult();
+      return $listeUtil;
+    }
 }
