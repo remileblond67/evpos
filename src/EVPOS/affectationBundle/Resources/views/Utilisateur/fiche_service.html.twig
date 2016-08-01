@@ -380,6 +380,19 @@
                 </tbody>
             </table>
             <table id="listePoste">
+               <thead>
+                   <tr>
+                       <td class="row">{{'poste.hostname'|trans}}</td>
+                       <td class="row">{{'poste.utilisateurs'|trans}}</td>
+                       <td class="row">{{'poste.categorie'|trans}}</td>
+                       <td class="row">{{'poste.modele'|trans}}</td>
+                       <td class="row">{{'poste.avancementMigMoca'|trans}}</td>
+                       <td class="row">{{'poste.typeUsage'|trans}}</td>
+                       <td class="row">{{'poste.uo'|trans }}</td>
+                       <td class="row">{{'poste.localisation'|trans}}</td>
+                       <td class="row">{{'poste.commentaire'|trans}}</td>
+                   </tr>
+               </thead>
               <tbody>
                 <!-- Données dynamiques JSON -->
 w              </tbody>
@@ -419,7 +432,7 @@ $(document).ready(function() {
     success: function (data) {
       $.each(data, function(index, element) {
         $('#listePoste tbody').append($('<tr>', {
-          html: '<td>'+element.hostname+'</td><td>'+element.categorie+'</td><td>'+element.modele+'</td><td>'+element.typeUsage+"</td><td>"+element.localisation+"</td>"
+          html: '<td>'+element.hostname+'</td><td>'+element.matUtil+' : '+element.nomUtil+'<td></td>'+element.categorie+'</td><td>'+element.modele+'</td><td>'+element.avancementMigMoca+'</td><td>'+element.typeUsage+"</td><td>"+element.codeUo+" : "+element.nomUo+"</td><td>"+element.localisation+"</td><td>"+element.commentaire+"</td>"
         }));
       });
     }
