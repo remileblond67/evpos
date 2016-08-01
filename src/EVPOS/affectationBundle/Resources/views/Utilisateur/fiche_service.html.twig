@@ -435,6 +435,7 @@ $(document).ready(function() {
         ligne.append($('<td>', {
           html: element.hostname
         }));
+
         listeUtil = $("<td>");
         element.listeUtilisateurs.forEach(function(user) {
           listeUtil.append($('<p>', {
@@ -442,6 +443,7 @@ $(document).ready(function() {
           }));
         });
         ligne.append(listeUtil);
+
         ligne.append($('<td>', {
           html: element.categorie
         }));
@@ -454,9 +456,15 @@ $(document).ready(function() {
         ligne.append($('<td>', {
           html: element.typeUsage
         }));
-        ligne.append($('<td>', {
-          html: element.codeUo + " : " + element.nomUo
-        }));
+
+        listeUo = $("<td>");
+        element.listeUo.forEach(function(uo) {
+          listeUo.append($('<p>', {
+            html: uo.codeUo + " : " + uo.nomUo
+          }));
+        });
+        ligne.append(listeUo);
+
         ligne.append($('<td>', {
           html: element.localisation
         }));
