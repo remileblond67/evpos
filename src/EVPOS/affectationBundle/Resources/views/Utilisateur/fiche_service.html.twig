@@ -415,7 +415,9 @@ $(document).ready(function() {
           html: element.localisation
         }));
         ligne.append($('<td>', {
-          html: element.commentaire
+          html: element.commentaire.replace(/[<&>'"]/g, function(c) {
+            return "&#" + c.charCodeAt() + ";";
+          });
         }));
 
         $('#listePoste tbody').append(ligne);
