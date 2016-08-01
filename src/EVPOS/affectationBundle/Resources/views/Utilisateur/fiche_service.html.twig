@@ -358,15 +358,23 @@ $(document).ready(function() {
     dataType: 'json',
     success: function (data) {
       $.each(data, function(index, element) {
+        ligne = $($('<tr>');
         if (element.niveauVIP == null) {
           vip = '';
         } else {
           vip = '<span class="glyphicon glyphicon-certificate important">'+ element.niveauVIP + '</span>';
         }
-
-        $('#listeAgent tbody').append($('<tr>', {
-          html: '<td><a href="{{path('evpos_listeUtil')}}/'+element.matUtil+'">' + vip + element.matUtil + '</td><td>' + element.nomUtil + '</td><td>' + element.lastLogin + '</td>'
+        ligne.append($('<td>', {
+          html: '<td><a href="{{path('evpos_listeUtil')}}/'+element.matUtil+'">' + vip + element.matUtil
         }));
+        ligne.append($('<td>', {
+          html: element.nomUtil
+        }));
+        ligne.append($('<td>', {
+          html: element.ageLogin + " jours ("+element.lasteLogin.date+")"
+        }));
+
+        $('#listeAgent tbody').append(ligne);
       });
     }
   });
