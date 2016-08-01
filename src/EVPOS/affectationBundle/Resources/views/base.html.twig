@@ -73,6 +73,16 @@
               <li>
                 {% render(controller('EVPOSaffectationBundle:Utilisateur:chercheUtilisateur')) %}
               </li>
+              <li>
+                <form class="" action="index.html" method="post">
+                  <label for="nomUtil">{{'utilisateur.nom'|trans}}</label>
+                  <input type="text" id="nomUtil" liste="listeUtil">
+                  <datalist class="listeUtil">
+                    <option value="970595">LEBLOND</option>
+                    <option value="970596">SIMONIS</option>
+                  </datalist>
+                </form>
+              </li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ path('evpos_listeDirection') }}">
                 <span class="glyphicon glyphicon-list-alt"></span>
