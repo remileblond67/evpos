@@ -15,45 +15,30 @@
   }
 </style>
 
-<table id="tabPlanif" class="table table-striped table-bordered table-hover dataTable no-footer sortable">
-    <thead>
-      <tr>
-        <th rowspan="2">{{ 'uo.code'|trans }}</th>
-        <th rowspan="2">{{ 'uo.avancementMigMoca'|trans}}</th>
-        <th colspan="{{ensembles|length}}">{{ 'service.numEnsemble'|trans}}</th>
-      </tr>
-        {% for ensemble in ensembles %}
-        <th>
-          {{ensemble.numEnsemble}}
-        </th>
-        {% endfor %}
-      <tr>
-      </tr>
-    </thead>
-    <tbody>
-      {% for uo in listeUo %}
-      <tr {% if uo.ancienCitrix %}class="ancienneFerme"{% endif %}>
-        <td>
-          <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a> :
-          {{uo.nomUo}}
-        </td>
-        <td>
-          <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.avancementMoca}}%</progress>
-          {% if uo.ancienCitrix %}
-          <p>Ancienne ferme Citrix</p>
-          {% endif %}
-        </td>
-        {% for ensemble in ensembles %}
-        <td>
-          {% for acces in uo.listeServiceAcces %}
-            {% if acces.serviceAcces.numEnsemble == ensemble.numEnsemble %}
-            <span class="glyphicon glyphicon-ok" title="Ensemble n°{{ensemble.numEnsemble}}"></span>
+{% for ensemble in ensembles %}
+<h2>Ensemble {{ensemble.numEnsemble}}</h2>
+  {% for uo in listeUo %}
+    {% for acces in uo.listeServiceAcces %}
+      {% if acces.serviceAcces.numEnsemble == ensemble.numEnsemble %}
+      <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+        <tr {% if uo.ancienCitrix %}class="ancienneFerme"{% endif %}>
+          <td>
+            <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a> :
+            {{uo.nomUo}}
+          </td>
+          <td>
+            <progress value="{{uo.noteAvancementMoca}}" max="100">{{uo.avancementMoca}}%</progress>
+            {% if uo.ancienCitrix %}
+            <p>Ancienne ferme Citrix</p>
             {% endif %}
-          {% endfor %}
-        </td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-    </tbody>
-</table>
+          </td>
+          <td>
+              <span class="glyphicon glyphicon-ok" title="Ensemble n°{{ensemble.numEnsemble}}"></span>
+          </td>
+        </tr>
+      </table>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
 {% endblock %}
