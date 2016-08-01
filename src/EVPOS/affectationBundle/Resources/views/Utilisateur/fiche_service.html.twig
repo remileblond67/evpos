@@ -432,9 +432,9 @@ $(document).ready(function() {
     success: function (data) {
       $.each(data, function(index, element) {
         ligne = $("<tr>");
-        ligne.append($('<td>'), {
+        ligne.append($('<td>', {
           html: element.hostname
-        });
+        }));
 
         hostname = '<td>'+element.hostname+'</td>';
         util = '<td>'+element.matUtil+' : '+element.nomUtil+'<td>';
