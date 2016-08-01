@@ -31,8 +31,8 @@ class UtilisateurRepository extends EntityRepository
       $query = $this->createQueryBuilder('u')
           ->leftJoin('u.serviceUtil', 's')
           ->addSelect('u.matUtil, u.nomUtil, s.codeService')
-          ->setParameter('nom', '%'.$nom.'%')
-          ->where('u.nomUtil like :nom')
+          ->setParameter('nom', '%'.strtoupper($nom).'%')
+          ->where('upper(u.nomUtil) like :nom')
           ->orderBy('u.nomUtil')
           ->getQuery()
       ;

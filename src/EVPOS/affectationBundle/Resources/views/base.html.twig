@@ -74,13 +74,10 @@
                 {% render(controller('EVPOSaffectationBundle:Utilisateur:chercheUtilisateur')) %}
               </li>
               <li>
-                <form class="" action="index.html" method="post">
-                  <label for="nomUtil">{{'utilisateur.nom'|trans}}</label>
-                  <input type="text" id="nomUtil" list="listeUtil" placeholder="Entrer un nom...">
-                  <datalist id="listeUtil">
-                    <option value="970595">LEBLOND</option>
-                  </datalist>
-                </form>
+              <input type="text" id="nomUtil" list="listeUtil" placeholder="Entrer un nom..." onChange="updateNomUtil()">
+              <datalist id="listeUtil">
+                <option value="970595">LEBLOND</option>
+              </datalist>
               </li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ path('evpos_listeDirection') }}">
@@ -342,19 +339,20 @@
   {% block javascripts %}
   <script type="text/javascript">
 
-  $(document).ready(function() {
-  $.ajax({
-    type: 'POST',
-    url: "/utilisateur_nom/" + $("#nomUtil"),
-    dataType: 'json',
-    success: function (data) {
-      $.each(data, function(index, element) {
-        $('#listUtil').append($('<option>', {
-          text: element.nomUtil
-        }));
-      });
-    }
-  });
+  function updateNomUtil() {
+    $.ajax({
+      type: 'POST',
+      url: "/utilisateur_nom/" + $("#nomUtil").val(),
+      dataType: 'json',
+      success: function (data) {
+        $.each(data, function(index, element) {
+          $('#listUtil').append($('<option>', {
+            text: element.nomUtil
+          }));
+        });
+      }
+    });
+  };
   </script>
 
   {% endblock %}
