@@ -41,4 +41,22 @@ class PlanifController extends Controller
                           array('listeUo' => $listeUo,
                                 'ensembles' => $ensembles));
    }
+
+   /**
+    * Affiche les UO en attente pour chaque ensemble
+    */
+   public function uoAttenteEnsembleAction() {
+     $ensembles = $this->getDoctrine()->getManager()
+       ->getRepository('EVPOSaffectationBundle:Service')
+       ->getEnsembles();
+
+     $listeUo = $this->getDoctrine()->getManager()
+         ->getRepository('EVPOSaffectationBundle:UO')
+         ->getPlanifUo();
+
+       return $this->render('EVPOSaffectationBundle:Planif:uo_attente_ensemble.html.twig',
+                            array('listeUo' => $listeUo,
+                                  'ensembles' => $ensembles));
+
+   }
 }
