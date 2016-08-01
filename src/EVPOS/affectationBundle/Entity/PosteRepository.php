@@ -202,7 +202,6 @@ class PosteRepository extends EntityRepository {
     /**
      * Liste des postes d'un service
      * -- format JSON
-     *   ->addSelect('p.hostname, uo.codeUo, uo.nomUo, p.categorie, p.modele, p.avancementMigMoca, p.typeUsage, p.localisation, p.commentaire, u.matUtil, u.nomUtil')
      */
     public function listePosteService($codeService) {
       $query = $this->createQueryBuilder('p')
@@ -215,7 +214,6 @@ class PosteRepository extends EntityRepository {
         ->getQuery()
       ;
       $listePoste = $query->getArrayResult();
-
       return $listePoste;
     }
 }

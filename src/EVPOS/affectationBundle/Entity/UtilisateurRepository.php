@@ -209,32 +209,16 @@ class UtilisateurRepository extends EntityRepository
      * -- format JSON
      */
     public function listeAgentService($codeService) {
-      $listeUtil = array();
       $query = $this->createQueryBuilder('u')
         ->leftJoin('u.serviceUtil', 's')
-        ->addSelect('u.matUtil, u.nomUtil, u.lastLogin, u.niveauVIP')
+        ->leftJoin('u.listePostes', 'p')
+        ->select('u, p')
         ->setParameter('codeService', $codeService)
         ->where('s.codeService = :codeService')
         ->orderBy('u.nomUtil', 'ASC')
         ->getQuery()
       ;
-
-      foreach ($query->getResult() as $ligne) {
-        if ($ligne["lastLogin"] !== NULL) {
-          $date = date_format($ligne["lastLogin"], 'Y-m-d');
-        } else {
-          $date = "inconnue";
-        }
-        $util = [
-          'matUtil' => $ligne["matUtil"],
-          'nomUtil' => $ligne["nomUtil"],
-          'niveauVIP' => $ligne["niveauVIP"],
-          'lastLogin' => $date,
-        ];
-
-        $listeUtil[] = $util;
-      }
-
+      $listeUtil = $query->getArrayResult();
       return $listeUtil;
     }
 }
