@@ -304,6 +304,7 @@
                       <td class="row">{{'utilisateur.matricule'|trans}}</td>
                       <td class="row">{{'utilisateur.nom'|trans}}</td>
                       <td class="row">{{'utilisateur.lastLogin'|trans}}</td>
+                      <td class="row">{{'utilisateur.poste'|trans}}</td>
                   </tr>
               </thead>
                <tbody>
@@ -371,8 +372,16 @@ $(document).ready(function() {
           html: element.nomUtil
         }));
         ligne.append($('<td>', {
-          html: element.ageLogin + " jours ("+element.lasteLogin.date+")"
+          html: element.ageLogin + " jours"
         }));
+
+        listePoste = $('<td>');
+        element.listePostes.forEach(function(poste) {
+          listePoste.append($('<p>', {
+            html: '<a href="{{path("evpos_listePoste")}}/'+poste.hostname+'">'+poste.hostname+'</a>'
+          }));
+        });
+        ligne.append(listePoste);
 
         $('#listeAgent tbody').append(ligne);
       });

@@ -212,7 +212,7 @@ class UtilisateurRepository extends EntityRepository
       $query = $this->createQueryBuilder('u')
         ->leftJoin('u.serviceUtil', 's')
         ->leftJoin('u.listePostes', 'p')
-        ->select('u, p.hostname')
+        ->select('u, p')
         ->setParameter('codeService', $codeService)
         ->where('s.codeService = :codeService')
         ->orderBy('u.nomUtil', 'ASC')
