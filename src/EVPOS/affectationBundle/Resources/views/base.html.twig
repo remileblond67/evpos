@@ -340,6 +340,22 @@
   <script src="http://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
   {% block javascripts %}
+  <script type="text/javascript">
+
+  $(document).ready(function() {
+  $.ajax({
+    type: 'POST',
+    url: "/utilisateur_nom/" + $("#nomUtil"),
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, element) {
+        $('#listUtil').append($('<option>', {
+          text: element.nomUtil
+        }));
+      }
+    }
+  });
+  </script>
 
   {% endblock %}
 </body>
