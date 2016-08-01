@@ -76,10 +76,9 @@
               <li>
                 <form class="" action="index.html" method="post">
                   <label for="nomUtil">{{'utilisateur.nom'|trans}}</label>
-                  <input type="text" id="nomUtil" list="listeUtil">
+                  <input type="text" id="nomUtil" list="listeUtil" placeholder="Entrer un nom...">
                   <datalist id="listeUtil">
                     <option value="970595">LEBLOND</option>
-                    <option value="970596">SIMONIS</option>
                   </datalist>
                 </form>
               </li>
@@ -341,6 +340,7 @@
   <script src="http://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
   {% block javascripts %}
+
   {% endblock %}
 </body>
 
