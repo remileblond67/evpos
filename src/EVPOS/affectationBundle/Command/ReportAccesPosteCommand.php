@@ -40,7 +40,9 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
   						$em->flush();
   						$output->write("a");
             } else {
-  						$acces->setSourceImport($acces->getSourceImport()." - Report depuis accès poste");
+  						if ($acces->getSourceImport() === NULL) {
+                $acces->setSourceImport("Report depuis accès poste");
+              }
   						$em->persist($acces);
   						$output->write("m");
   					}
