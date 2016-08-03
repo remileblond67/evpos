@@ -49,7 +49,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $fileName = "/home/data/evpos/".$env."/silo/update_appv.xml";
     try {
       $xml = simplexml_load_file($fileName);
-    } catch(Exception $e) {
+    } catch(FileException $e) {
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
@@ -83,7 +83,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $output->writeln ("Mise à jour de l'affectation des applications... ");
     $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
-      $codeUO = split('_',$app['nom'])[0];
+      $codeUO = preg_split("/\_/",$app['nom'])[0];
       foreach ($app->silo as $nomSilo) {
         $listeSiloUo[$codeUO][] = (string)$nomSilo;
       }

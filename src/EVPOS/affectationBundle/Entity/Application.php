@@ -543,7 +543,7 @@ class Application
   public function reportAccesUo() {
     $listeUtilAppli = [];
 
-    // Récupération de la liste des matricules existants
+    // Récupération de la liste des utilisateurs de l'application
     foreach ($this->listeAcces as $acces) {
       $util = $acces->getUtilAcces();
       $listeUtilAppli[$util->getMatUtil()] = $util;
@@ -554,7 +554,7 @@ class Application
       if ($uo->getMigMoca()) {
         foreach ($uo->getListeAcces() as $acces) {
           $utilAcces = $acces->getUtilAcces();
-          // Si l'utilisateur de l'UO ne se retrouve pas dans l'application
+          // Si l'utilisateur de l'UO ne se retrouve pas déjà dans l'application
           if (array_search($utilAcces->getMatUtil(), array_keys($listeUtilAppli)) === FALSE) {
             $listeUtilAppli[$utilAcces->getMatUtil()] = $utilAcces;
 
@@ -565,9 +565,12 @@ class Application
             $newAcces->setAppliAcces($this);
 
             $this->listeAcces[] = $newAcces;
+            unset($newAcces);
           }
+          unset($utilAcces);
         }
       }
     }
+    unset($listeUtilAppli);
   }
 }

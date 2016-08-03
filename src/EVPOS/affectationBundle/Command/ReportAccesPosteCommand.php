@@ -26,7 +26,7 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
 
   	$output->writeln("*** Report des accès postes sur les utilisateurs ***");
     $listePosteUtilisateursAppli = $em->getRepository('EVPOSaffectationBundle:Poste')->getPosteUtilisateursAppli();
-
+    
     foreach($listePosteUtilisateursAppli as $poste) {
       foreach ($poste->getListeUtilisateurs() as $util) {
           foreach ($poste->getListeUo() as $uo) {
@@ -40,7 +40,9 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
   						$em->flush();
   						$output->write("a");
             } else {
-  						$acces->setSourceImport("Report depuis accès poste");
+  						if ($acces->getSourceImport() === NULL) {
+                $acces->setSourceImport("Report depuis accès poste");
+              }
   						$em->persist($acces);
   						$output->write("m");
   					}
@@ -48,18 +50,20 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
       }
     }
     $em->flush();
-    $output->writeln("OK");
+    $output->writeln("\nOK");
     unset($listePosteUtilisateursAppli);
 
     // Report des accès UO sur les Applications
     $output->write("Report des accès UO sur les applications... ");
     $listeAppli = $em->getRepository('EVPOSaffectationBundle:Application')->findAll();
     foreach ($listeAppli as $appli) {
+      $output->write($appli->getCodeAppli()." ");
       $appli->reportAccesUo();
       $em->persist($appli);
+      gc_collect_cycles();
+      $em->flush();
     }
     unset($listeAppli);
-    $em->flush();
     $output->writeln("OK");
-	}
+  }
 }
