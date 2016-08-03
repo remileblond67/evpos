@@ -57,7 +57,7 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
     $output->write("Report des accès UO sur les applications... ");
     $listeAppli = $em->getRepository('EVPOSaffectationBundle:Application')->findAll();
     foreach ($listeAppli as $appli) {
-      $output->write($appli->getNomAppli()." ");
+      $output->write($appli->getCodeAppli()." ");
       $appli->reportAccesUo();
       $em->persist($appli);
     }
