@@ -83,7 +83,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     $output->writeln ("Mise à jour de l'affectation des applications... ");
     $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
-      $codeUO = split('_',$app['nom'])[0];
+      $codeUO = preg_split("/\_/",$app['nom'])[0];
       foreach ($app->silo as $nomSilo) {
         $listeSiloUo[$codeUO][] = (string)$nomSilo;
       }

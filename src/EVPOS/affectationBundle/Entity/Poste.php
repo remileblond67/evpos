@@ -621,7 +621,7 @@ class Poste
     public function getListeEcran() {
         $liste = [];
         foreach ($this->listeEquipement as $equip) {
-            if (ereg ('.*Ecran/(.+)$', $equip->getCategorie(), $type)) {
+            if (preg_match("/.*Ecran\/(.+)$/", $equip->getCategorie(), $type)) {
                 $liste[] = $type[1];
             }
         }
