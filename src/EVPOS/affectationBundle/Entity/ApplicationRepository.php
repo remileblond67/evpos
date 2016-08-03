@@ -143,8 +143,6 @@ class ApplicationRepository extends EntityRepository
      * Retourne la note moyenne d'avancement par nature d'application
      */
     public function getAvancementNature() {
-      $notes = [];
-
       $listeNature = ["AS", "AI"];
       foreach ($listeNature as $nature) {
         $query = $this->createQueryBuilder('ap')

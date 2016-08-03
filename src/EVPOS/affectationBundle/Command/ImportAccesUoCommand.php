@@ -99,7 +99,7 @@ class ImportAccesUoCommand extends ContainerAwareCommand
             $newAcces->setUoAcces($uo);
             unset($uo);
             $newAcces->setUtilAcces($utilisateur);
-            $newAcces->setSourceImport("Import BAZA du ".date("d/m/Y"));
+            $newAcces->setSourceImport("Accès nominatif");
 
             $em->persist($newAcces);
             unset($newAcces);
