@@ -60,9 +60,10 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
       $output->write($appli->getCodeAppli()." ");
       $appli->reportAccesUo();
       $em->persist($appli);
+      gc_collect_cycles();
+      $em->flush();
     }
     unset($listeAppli);
-    $em->flush();
-    $output->writeln("\nOK");
-	}
+    $output->writeln("OK");
+  }
 }
