@@ -569,5 +569,6 @@ class Application
         }
       }
     }
+    unset($listeUtilAppli);
   }
 }
