@@ -257,7 +257,6 @@ class ImportBazaCommand extends ContainerAwareCommand
       } else {
         // Service non trouvé
         $utilisateur->setServiceUtil(NULL);
-        $output->writeln("Service non trouvé : ".$codeService."/".$codeSirh." pour utilisateur ".$matUtil);
       }
 
       if ($em->getRepository('EVPOSaffectationBundle:Service')->isService($codeService))
@@ -382,7 +381,6 @@ class ImportBazaCommand extends ContainerAwareCommand
         if ($nbLine>0) {
           $mat = trim($data[0]);
           $niveauVIP = trim($data[1]);
-          $output->write($mat.":".$niveauVIP.", ");
 
           $utilisateur = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateur($mat);
           if ($utilisateur !== NULL) {

@@ -218,10 +218,10 @@ class ImportPosteCommand extends ContainerAwareCommand
     $output->writeln("OK");
 
     // Suppression des postes ne figurant pas dans la liste extraite de GPARC
-    $output->write("Suppression des postes non référencés dans GPARC... ");
+    $output->write("Suppression des postes non référencés dans GPARC...");
     $listePoste = $em->getRepository('EVPOSaffectationBundle:Poste')->findNonGparc();
     foreach ($listePoste as $poste) {
-      $output->writeln("Suppression du poste ".$poste->getHostname());
+      $output->write(".");
       $em->remove($poste);
     }
     $em->flush();
