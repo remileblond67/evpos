@@ -206,7 +206,7 @@ class ImportSuappCommand extends ContainerAwareCommand
 
 
         // Mise à jour du type de poste client
-        $output->write("Suppression des types de poste des UO : ");
+        $output->write("Suppression des types de poste des UO... ");
         $listeUo = $em->getRepository('EVPOSaffectationBundle:Uo')->getListeUo();
         foreach ($listeUo as $uo) {
           $uo->delTypePoste();
@@ -226,9 +226,6 @@ class ImportSuappCommand extends ContainerAwareCommand
             if($uo !== NULL) {
                 $uo->appendTypePoste($typePoste);
                 $em->persist($uo);
-                $output->writeln("OK");
-            } else {
-                $output->writeln("Non trouvé");
             }
         }
         $em->flush();
