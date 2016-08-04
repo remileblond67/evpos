@@ -311,11 +311,11 @@ class ImportBazaCommand extends ContainerAwareCommand
 
 
     // Suppression des utilisateurs qui n'existaient pas dans BAZA
-    $output->write("Suppression des utilisateurs qui n'existaient pas dans BAZA... ");
+    $output->write("Suppression des utilisateurs qui n'existaient pas dans BAZA...");
     $listeUtil = $em->getRepository('EVPOSaffectationBundle:Utilisateur')->getUtilisateursSuppr();
     foreach($listeUtil as $util) {
       $em->remove($util);
-      $output->write($util->getNomUtil()." ");
+      $output->write('.');
     }
     $em->flush();
     unset($listeUtil);
