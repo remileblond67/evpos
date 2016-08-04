@@ -3,7 +3,6 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use EVPOS\affectationBundle\Entity\Silo;
 
 class SiloController extends Controller
 {

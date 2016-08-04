@@ -3,8 +3,6 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use EVPOS\affectationBundle\Entity\Application;
-use EVPOS\affectationBundle\Entity\UO;
 
 class PlanifController extends Controller
 {

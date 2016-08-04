@@ -8,7 +8,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use EVPOS\affectationBundle\Entity\Poste;
 use EVPOS\affectationBundle\Entity\Equipement;
 use EVPOS\affectationBundle\Entity\CtrlUtilisateurInconnu;
-use EVPOS\affectationBundle\Entity\CtrlPosteInconnu;
 use EVPOS\affectationBundle\Entity\CtrlServiceInconnu;
 
 /**
