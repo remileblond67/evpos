@@ -63,10 +63,11 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
       $em->persist($appli);
       gc_collect_cycles();
       $nbAppli++;
-      if ($nbAppli % 10 == 0) {
+      if ($nbAppli % 25 == 0) {
         $em->flush();
       }
     }
+    $em->flush();
     unset($listeAppli);
     $output->writeln("OK");
   }
