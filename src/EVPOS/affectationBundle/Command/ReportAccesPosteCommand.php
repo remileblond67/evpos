@@ -26,7 +26,7 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
 
   	$output->writeln("*** Report des accès postes sur les utilisateurs ***");
     $listePosteUtilisateursAppli = $em->getRepository('EVPOSaffectationBundle:Poste')->getPosteUtilisateursAppli();
-    
+
     foreach($listePosteUtilisateursAppli as $poste) {
       foreach ($poste->getListeUtilisateurs() as $util) {
           foreach ($poste->getListeUo() as $uo) {
@@ -56,12 +56,16 @@ class ReportAccesPosteCommand extends ContainerAwareCommand
     // Report des accès UO sur les Applications
     $output->write("Report des accès UO sur les applications... ");
     $listeAppli = $em->getRepository('EVPOSaffectationBundle:Application')->findAll();
+    $nbAppli = 0;
     foreach ($listeAppli as $appli) {
       $output->write($appli->getCodeAppli()." ");
       $appli->reportAccesUo();
       $em->persist($appli);
       gc_collect_cycles();
-      $em->flush();
+      $nbAppli++;
+      if ($nbAppli % 10 == 0) {
+        $em->flush();
+      }
     }
     unset($listeAppli);
     $output->writeln("OK");
