@@ -38,13 +38,13 @@ class SiloRepository extends EntityRepository
     return $query->getOneOrNullResult();
   }
 
-
   /**
    * Retourne la liste des silos qui n'existent plus
    */
   public function listeSiloNonExiste() {
     $query = $this->createQueryBuilder('silo')
       ->where('silo.existe = false')
+      ->orderBy('silo.idSilo')
       ->getQuery()
     ;
 
@@ -57,6 +57,7 @@ class SiloRepository extends EntityRepository
   public function listeSiloExiste() {
     $query = $this->createQueryBuilder('silo')
       ->where('silo.existe = true')
+      ->orderBy('silo.idSilo')
       ->getQuery()
     ;
 
