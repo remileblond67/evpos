@@ -13,8 +13,18 @@
     </tr>
   </thead>
   <tbody>
-    {% for uo in listeUo %}
+    {% for key, uo in listeUo %}
     <tr>
+      <td>
+      {{ key }}
+      </td>
+      <td>
+      <ul>
+      {% for silo in uo %}
+      <li>{{ silo }}</li>
+      {% endfor %}
+      </ul>
+      </td>
     </tr>
     {% endfor %}
   </tbody>

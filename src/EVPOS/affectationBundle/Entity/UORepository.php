@@ -111,21 +111,23 @@ class UORepository extends EntityRepository
    */
   public function getUoSilo() {
     $query = $this->createQueryBuilder('uo')
-      ->select('uo.codeUo, uo.nomUo')
+      ->select('uo')
       ->where('uo.migMoca = true')
       ->orderBy('uo.codeUo')
       ->getQuery()
     ;
 
+    /* Création d'un tableau d'affectation UO/silo */
     $tabUoSilo = [];
-    foreach ($uo as query->getResult()) {
+
+    foreach ($query->getResult() as $uo) {
       $listeSilo = [];
-      foreach ($silo as $uo->getListeSilo()) {
-        $listeSilo[] = $silo->getCodeSilo();
+      foreach ($uo->getListeSilo() as $silo) {
+        $listeSilo[] = $silo->getNomSilo();
       }
       $tabUoSilo[$uo->getCodeUo()] = $listeSilo;
+      unset($listeSilo);
     }
-
     return $tabUoSilo;
   }
 
