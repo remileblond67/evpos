@@ -18,13 +18,15 @@
       <td>
       {{ key }}
       </td>
-      <td>
-      <ul>
-      {% for silo in uo %}
-      <li>{{ silo }}</li>
+      {% for colSilo in listeSilo %}
+        {% for silo in uo %}
+        <td>
+          {% if silo.idSilo = colSilo %}
+          {{ silo }}
+          {% endif %}
+        </td>
+        {% endfor %}
       {% endfor %}
-      </ul>
-      </td>
     </tr>
     {% endfor %}
   </tbody>
