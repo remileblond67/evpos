@@ -117,7 +117,16 @@ class UORepository extends EntityRepository
       ->getQuery()
     ;
 
-    return $query->getResult();
+    $tabUoSilo = [];
+    foreach ($uo as query->getResult()) {
+      $listeSilo = [];
+      foreach ($silo as $uo->getListeSilo()) {
+        $listeSilo[] = $silo->getCodeSilo();
+      }
+      $tabUoSilo[$uo->getCodeUo()] = $listeSilo;
+    }
+
+    return $tabUoSilo;
   }
 
   /**

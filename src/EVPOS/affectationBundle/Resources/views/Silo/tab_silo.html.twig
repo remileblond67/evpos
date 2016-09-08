@@ -15,12 +15,6 @@
   <tbody>
     {% for uo in listeUo %}
     <tr>
-      <td>
-        <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}" title="{{uo.nomUo}}">{{uo.codeUo}}</a>
-      </td>
-      {% for silo in listeSilo %}
-      <td></td>
-      {% endfor %}
     </tr>
     {% endfor %}
   </tbody>
