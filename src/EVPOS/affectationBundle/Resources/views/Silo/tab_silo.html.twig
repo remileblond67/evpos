@@ -7,6 +7,9 @@
   <thead>
     <tr>
       <th class="row">{{ 'uo.nom'|trans }}</th>
+      {% for silo in listeSilo %}
+      <th class="row">{{ silo.nom}}</th>
+      {% endfor %}
     </tr>
   </thead>
   <tbody>
@@ -15,6 +18,9 @@
       <td>
         <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}" title="{{uo.nomUo}}">{{uo.codeUo}}</a>
       </td>
+      {% for silo in listeSilo %}
+      <td></td>
+      {% endfor %}
     </tr>
     {% endfor %}
   </tbody>

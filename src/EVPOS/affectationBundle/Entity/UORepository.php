@@ -113,6 +113,7 @@ class UORepository extends EntityRepository
     $query = $this->createQueryBuilder('uo')
       ->select('uo.codeUo, uo.nomUo')
       ->where('uo.migMoca = true')
+      ->orderBy('uo.codeUo')
       ->getQuery()
     ;
 
