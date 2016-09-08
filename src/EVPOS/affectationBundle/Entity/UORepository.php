@@ -111,7 +111,7 @@ class UORepository extends EntityRepository
    */
   public function getUoSilo() {
     $query = $this->createQueryBuilder('uo')
-      ->select('uo.codeUo')
+      ->select('uo.codeUo, uo.nomUo')
       ->where('uo.migMoca = true')
       ->getQuery()
     ;
