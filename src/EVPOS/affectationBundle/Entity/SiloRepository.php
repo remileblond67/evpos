@@ -44,7 +44,7 @@ class SiloRepository extends EntityRepository
   public function listeSiloNonExiste() {
     $query = $this->createQueryBuilder('silo')
       ->where('silo.existe = false')
-      ->orderBy('silo.idSilo')
+      ->orderBy('silo.nomSilo')
       ->getQuery()
     ;
 
@@ -57,7 +57,7 @@ class SiloRepository extends EntityRepository
   public function listeSiloExiste() {
     $query = $this->createQueryBuilder('silo')
       ->where('silo.existe = true')
-      ->orderBy('silo.idSilo')
+      ->orderBy('silo.nomSilo')
       ->getQuery()
     ;
 
