@@ -107,6 +107,19 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne la liste des UO avec leur affectation dans les silos
+   */
+  public function getUoSilo() {
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo.codeUo')
+      ->where('uo.migMoca = true')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+  /**
   * Teste si l'UO dont le code est passé en parametre existe
   */
   public function isUo($codeUo) {

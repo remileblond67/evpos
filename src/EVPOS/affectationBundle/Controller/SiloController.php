@@ -30,4 +30,16 @@ class SiloController extends Controller
 
       return $this->render('EVPOSaffectationBundle:Silo:fiche_silo.html.twig', array('silo' => $silo));
     }
+
+    /**
+     * Affiche le tableau de répartition des UO sur les silos
+     */
+    public funciton tableauUoSilo() {
+      $listeUo = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getUoSilo()
+      ;
+      return $this->render('EVPOSaffectationBundle:Silo:tab_silo.html.twig', array('listeUo' => $listeUo));
+    }
 }
