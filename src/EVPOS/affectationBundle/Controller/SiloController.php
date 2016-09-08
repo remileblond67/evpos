@@ -34,7 +34,7 @@ class SiloController extends Controller
     /**
      * Affiche le tableau de répartition des UO sur les silos
      */
-    public function tableauUoSilo() {
+    public function tableauUoSiloAction() {
       $listeUo = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:UO')
