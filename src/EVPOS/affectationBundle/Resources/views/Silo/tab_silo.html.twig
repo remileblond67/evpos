@@ -13,15 +13,16 @@
     </tr>
   </thead>
   <tbody>
+    {{dump(listeUo) }}
     {% for key, uo in listeUo %}
     <tr>
       <td>
       {{ key }}
       </td>
       {% for colSilo in listeSilo %}
-        {% for silo in uo %}
+        {% for silo in colSilo %}
         <td>
-          {% if silo.idSilo = colSilo %}
+          {% if (silo.idSilo == colSilo) %}
           {{ silo }}
           {% endif %}
         </td>
