@@ -47,6 +47,12 @@ class SiloController extends Controller
           ->getUoSilo()
       ;
 
-      return $this->render('EVPOSaffectationBundle:Silo:tab_silo.html.twig', array('listeUo' => $listeUo, 'listeSilo' => $listeSilo));
+      $listeUoKo = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:UO')
+          ->getUoPlusieursSilos()
+      ;
+
+      return $this->render('EVPOSaffectationBundle:Silo:tab_silo.html.twig', array('listeUo' => $listeUo, 'listeSilo' => $listeSilo, 'listeUoKo' => $listeUoKo));
     }
 }

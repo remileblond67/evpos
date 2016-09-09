@@ -136,6 +136,28 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne la liste des UO hébergées dans plusieurs silos de PROD
+   */
+  public function getUoPlusieursSilos() {
+    $listeUoKo = [];
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo')
+      ->where('uo.migMoca = true')
+      ->orderBy('uo.codeUo')
+      ->getQuery()
+    ;
+    foreach ($query->getResult() as $uo) {
+      $listeSilo = [];
+      foreach ($uo->getListeSilo() as $silo) {
+        if (in_array($silo->getNomSilo(), $listeSilo)) {
+          $listeUoKo[] = $uo->getCodeUo();
+        }
+      }
+    }
+    return $listeUoKo;
+  }
+
+  /**
   * Teste si l'UO dont le code est passé en parametre existe
   */
   public function isUo($codeUo) {
