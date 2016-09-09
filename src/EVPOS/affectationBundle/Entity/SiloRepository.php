@@ -69,7 +69,7 @@ class SiloRepository extends EntityRepository
    */
   public function listeSiloProd() {
     $query = $this->createQueryBuilder('silo')
-      ->where("silo.existe = true and uc(silo.nomSilo) like '%PROD%'")
+      ->where("silo.existe = true and upper(silo.nomSilo) like '%PROD%'")
       ->orderBy('silo.nomSilo')
       ->getQuery()
     ;
