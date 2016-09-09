@@ -13,7 +13,11 @@ function drawChart() {
     {% for silo in listeSilo%}
     ['{{silo.nomSilo}}',    'Global',   0,                               0],
     {% endfor %}
-
+    {% for key, dataUo in listeUo %}
+      {% for monSilo in dataUo.Silo %}
+        ['{{key}}', '{{monSilo}}', {{dataUo.nbUtil}}, 0],
+      {% endfor %}
+    {% endfor %}
   ]);
 
   tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
@@ -40,6 +44,5 @@ function drawChart() {
 </script>
 
 <h4>{{ 'silo.liste'|trans }}</h4>
-{{ dump(listeUo) }}
 <div id="chart_div" style="width: 100%; height: 1000px;"></div>
 {% endblock %}
