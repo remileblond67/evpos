@@ -129,7 +129,7 @@ class UORepository extends EntityRepository
           $compteur++;
         }
       }
-      $tabUoSilo[$uo->getCodeUo()] = array("nbUtil"=>$uo->getNbUtil(), "Silo"=>$listeSilo)
+      $tabUoSilo[$uo->getCodeUo()] = array("nbUtil"=>$uo->getNbUtil(), "Silo"=>$listeSilo);
       unset($listeSilo);
     }
     return $tabUoSilo;
