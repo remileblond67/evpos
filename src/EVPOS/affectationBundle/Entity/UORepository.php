@@ -151,8 +151,11 @@ class UORepository extends EntityRepository
       foreach ($uo->getListeSilo() as $silo) {
         if (in_array($silo->getNomSilo(), $listeSilo)) {
           $listeUoKo[] = $uo->getCodeUo();
+        } else {
+          $listeSilo[] = $silo->getNomSilo();
         }
       }
+      unset($listeSilo);
     }
     return $listeUoKo;
   }
