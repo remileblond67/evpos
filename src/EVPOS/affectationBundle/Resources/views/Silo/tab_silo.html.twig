@@ -10,8 +10,8 @@ google.charts.setOnLoadCallback(drawBarColors);
 function drawBarColors() {
   var data = google.visualization.arrayToDataTable([
     ['Silo', '2010 Population', '2000 Population'],
-    {% for key, uo in listeUo %}
-    ['{{key}}', 8175000, 8008000],
+    {% for silo in listeSilo %}
+    ['{{silo.nomSilo}}', 8175000, 8008000],
     {% endfor %}
   ]);
 
@@ -34,7 +34,7 @@ function drawBarColors() {
 </script>
 
 <h4>{{ 'silo.liste'|trans }}</h4>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 100%; height: 2000px;"></div>
 <table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
     <tr>
@@ -45,23 +45,10 @@ function drawBarColors() {
     </tr>
   </thead>
   <tbody>
-    {{dump(listeUo) }}
-    {% for key, uo in listeUo %}
     <tr>
-      <td>
-      {{ key }}
-      </td>
       {% for colSilo in listeSilo %}
-        {% for silo in colSilo %}
-        <td>
-          {% if (silo.idSilo == colSilo) %}
-          {{ silo }}
-          {% endif %}
-        </td>
-        {% endfor %}
       {% endfor %}
     </tr>
-    {% endfor %}
   </tbody>
 </table>
 {% endblock %}
