@@ -123,7 +123,7 @@ class UORepository extends EntityRepository
     foreach ($query->getResult() as $uo) {
       $listeSilo = [];
       foreach ($uo->getListeSilo() as $silo) {
-        if (strtoupper(strpos($silo->getNomSilo()), 'PROD') !== false) {
+        if (strpos(strtoupper($silo->getNomSilo()), 'PROD') !== false) {
           $listeSilo[] = $silo->getNomSilo();
         }
       }
