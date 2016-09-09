@@ -38,7 +38,7 @@ class SiloController extends Controller
       $listeSilo = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:Silo')
-          ->listeSiloExiste()
+          ->listeSiloProd()
       ;
 
       $listeUo = $this->getDoctrine()

@@ -52,7 +52,7 @@ class SiloRepository extends EntityRepository
   }
 
   /**
-   * Retourne la liste des silos qui n'existent plus
+   * Retourne la liste des silos qui existent
    */
   public function listeSiloExiste() {
     $query = $this->createQueryBuilder('silo')
@@ -63,4 +63,18 @@ class SiloRepository extends EntityRepository
 
     return $query->getResult();
   }
+
+  /**
+   * Retourne la liste des silos de production
+   */
+  public function listeSiloProd() {
+    $query = $this->createQueryBuilder('silo')
+      ->where("silo.existe = true and uc(silo.nomSilo) like '%PROD%'")
+      ->orderBy('silo.nomSilo')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
 }
