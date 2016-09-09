@@ -107,7 +107,7 @@ class UORepository extends EntityRepository
   }
 
   /**
-   * Retourne la liste des UO avec leur affectation dans les silos
+   * Retourne la liste des UO avec leur affectation dans les silos de prod
    */
   public function getUoSilo() {
     $query = $this->createQueryBuilder('uo')
@@ -117,13 +117,15 @@ class UORepository extends EntityRepository
       ->getQuery()
     ;
 
-    /* Création d'un tableau d'affectation UO/silo */
+    /* CrÃ©ation d'un tableau d'affectation UO/silo */
     $tabUoSilo = [];
 
     foreach ($query->getResult() as $uo) {
       $listeSilo = [];
       foreach ($uo->getListeSilo() as $silo) {
-        $listeSilo[] = $silo->getNomSilo();
+        if (strtoupper(strpos($silo->getNomSilo()), 'PROD') !== false) {
+          $listeSilo[] = $silo->getNomSilo();
+        }
       }
       $tabUoSilo[$uo->getCodeUo()] = $listeSilo;
       unset($listeSilo);
