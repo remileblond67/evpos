@@ -142,22 +142,11 @@ class UORepository extends EntityRepository
     $listeUoKo = [];
     $query = $this->createQueryBuilder('uo')
       ->select('uo')
-      ->where('uo.migMoca = true')
+      ->where('uo.migMoca = true and count(uo.listeSilo) > 1')
       ->orderBy('uo.codeUo')
       ->getQuery()
     ;
-    foreach ($query->getResult() as $uo) {
-      $listeSilo = [];
-      foreach ($uo->getListeSilo() as $silo) {
-        if (in_array($silo->getNomSilo(), $listeSilo)) {
-          $listeUoKo[] = $uo->getCodeUo();
-        } else {
-          $listeSilo[] = $silo->getNomSilo();
-        }
-      }
-      unset($listeSilo);
-    }
-    return $listeUoKo;
+    return $query->getResult();
   }
 
   /**

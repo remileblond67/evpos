@@ -16,7 +16,8 @@ class SiloController extends Controller
           ->getRepository('EVPOSaffectationBundle:Silo')
           ->findAll()
       ;
-      return $this->render('EVPOSaffectationBundle:Silo:liste_silo.html.twig', array('listeSilo' => $listeSilo));
+      return $this->render('EVPOSaffectationBundle:Silo:liste_silo.html.twig',
+                            array('listeSilo' => $listeSilo));
     }
 
     /**
@@ -28,7 +29,8 @@ class SiloController extends Controller
                    ->getSiloId($idSilo)
       ;
 
-      return $this->render('EVPOSaffectationBundle:Silo:fiche_silo.html.twig', array('silo' => $silo));
+      return $this->render('EVPOSaffectationBundle:Silo:fiche_silo.html.twig',
+                            array('silo' => $silo));
     }
 
     /**
@@ -47,12 +49,15 @@ class SiloController extends Controller
           ->getUoSilo()
       ;
 
-      $listeUoKo = $this->getDoctrine()
+      $listeUoMultiSilo = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:UO')
           ->getUoPlusieursSilos()
       ;
 
-      return $this->render('EVPOSaffectationBundle:Silo:tab_silo.html.twig', array('listeUo' => $listeUo, 'listeSilo' => $listeSilo, 'listeUoKo' => $listeUoKo));
+      return $this->render('EVPOSaffectationBundle:Silo:tab_silo.html.twig',
+                            array('listeUo' => $listeUo,
+                           'listeSilo' => $listeSilo,
+                           'listeUoMultiSilo' => $listeUoMultiSilo));
     }
 }
