@@ -2,7 +2,7 @@
 {% block title%}{{ 'silo.liste'|trans }}{% endblock%}
 
 {% block content %}
-{{dump(listeUoKo)}}
+{{dump(listeUoMultiSilo)}}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 google.charts.load('current', {'packages':['treemap']});
@@ -12,12 +12,12 @@ function drawChart() {
     ['UO', 'Silo', 'Nb util', 'Market increase/decrease (color)'],
     ['Global',    null,       0,                               0],
     {% for silo in listeSilo%}
-    ['{{silo.nomSilo}}',    'Global',   0,                               0],
+    ['Silo {{silo.nomSilo}}',    'Global',   0,                               0],
     {% endfor %}
     {% set idUo = 0 %}
     {% for key, dataUo in listeUo %}
       {% for monSilo in dataUo.Silo %}
-        ['{{key}}', '{{monSilo}}', {{dataUo.nbUtil}}, {{idUo}}],
+        ['UO {{key}}', 'Silo {{monSilo}}', {{dataUo.nbUtil}}, {{idUo}}],
       {% endfor %}
       {% set idUo = idUo + 1 %}
     {% endfor %}
