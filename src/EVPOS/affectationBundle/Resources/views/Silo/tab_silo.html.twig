@@ -14,10 +14,12 @@ function drawChart() {
     {% for silo in listeSilo%}
     ['{{silo.nomSilo}}',    'Global',   0,                               0],
     {% endfor %}
+    {% set idUo = 0 %}
     {% for key, dataUo in listeUo %}
       {% for monSilo in dataUo.Silo %}
-        ['{{key}}', '{{monSilo}}', {{dataUo.nbUtil}}, 0],
+        ['{{key}}', '{{monSilo}}', {{dataUo.nbUtil}}, {{idUo}}],
       {% endfor %}
+      {% set idUo = idUo + 1 %}
     {% endfor %}
   ]);
 
@@ -34,7 +36,7 @@ function drawChart() {
           midColor: '#f7f7f7',
           maxColor: '#ee8100',
           headerHeight: 15,
-          showScale: true,
+          showScale: false,
           height: 500,
           useWeightedAverageForAggregation: true
         };
