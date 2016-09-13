@@ -21,14 +21,6 @@ class CtrlController extends Controller
   }
 
   /**
-   * Affiche la liste des UO sans aucun utilisateur
-   */
-  public function listeUoSansUtilisateurAction() {
-    $listeUo = $this->getDoctrine()->getManager()->getRepository('EVPOSaffectationBundle:UO')->getSansUtilisateur();
-    return $this->render('EVPOSaffectationBundle:Ctrl:liste_uo_sans_util.html.twig', array('listeUo' => $listeUo));
-  }
-
-  /**
   * Affiche la liste des postes inconnus
   */
   public function listePosteInconnuAction() {

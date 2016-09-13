@@ -223,11 +223,6 @@ evpos_planif_uo:
     defaults: { _controller: EVPOSaffectationBundle:Etat:planifUo }
 
 # Pages de contrôle
-
-evpos_ctrl_uo_sans_utilisateur:
-    path: /ctrl_uo_sans_util
-    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUoSansUtilisateur }
-
 evpos_ctrl_service_inconnu:
     path: /ctrl_service_inconnu
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeServiceInconnu }
