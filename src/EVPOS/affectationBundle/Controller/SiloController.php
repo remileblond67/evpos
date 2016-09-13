@@ -44,8 +44,15 @@ class SiloController extends Controller
                  ->getUoDirection()
       ;
 
+      $listeDir = $this->getDoctrine()
+                 ->getManager()
+                 ->getRepository('EVPOSaffectationBundle:Direction')
+                 ->getDirections()
+      ;
+
+
       return $this->render('EVPOSaffectationBundle:Silo:export_uo_dir.xml.twig',
-                            array('tabSilo' => $tabSilo));
+                            array('tabSilo' => $tabSilo, 'listeDir' => $listeDir));
     }
 
 
