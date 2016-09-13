@@ -23,7 +23,7 @@ class SiloController extends Controller
     /**
      * Tableau de répartition des UO dans les silos
      */
-    publiuc function tabSiloAction() {
+    public function tabSiloAction() {
       $tabSilo = $this->getDoctrine()
                  ->getManager()
                  ->getRepository('EVPOSaffectationBundle:UO')

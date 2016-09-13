@@ -4,5 +4,12 @@
 {% block content %}
 <h4>{{ 'silo.liste'|trans }}</h4>
 {{dump(tabSilo)}}
+<table>
+{% for uo, dir in tabSilo %}
+<tr>
+<td>{{uo}}</td>
+</tr>
+{% endfor %}
+</table>
 
 {% endblock %}
