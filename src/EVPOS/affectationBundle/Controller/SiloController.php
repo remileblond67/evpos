@@ -37,7 +37,7 @@ class SiloController extends Controller
       ;
 
       return $this->render('EVPOSaffectationBundle:Silo:liste_uo_direction.html.twig',
-                            array('tabSilo' => $tabSilo));
+                            array('tabSilo' => $tabSilo, 'listeDir' => $listeDir));
     }
 
     /**
@@ -50,7 +50,7 @@ class SiloController extends Controller
                  ->getUoDirection()
       ;
       return $this->render('EVPOSaffectationBundle:Silo:export_uo_dir.xml.twig',
-                            array('tabSilo' => $tabSilo, 'listeDir' => $listeDir));
+                            array('tabSilo' => $tabSilo));
     }
 
 
