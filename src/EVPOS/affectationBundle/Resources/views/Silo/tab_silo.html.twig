@@ -12,11 +12,11 @@ function drawChart() {
     ['UO', 'Silo', 'Nb util', 'Market increase/decrease (color)'],
     ['Global',    null,       0,                               0],
     {% for silo in listeSilo%}
-    ['{{silo.nomSilo}}',    'Global',   0,                               0],
+    ['Silo {{silo.nomSilo}}',    'Global',   0,                               0],
     {% endfor %}
     {% for key, dataUo in listeUo %}
       {% for monSilo in dataUo.Silo %}
-        ['{{key}}', '{{monSilo}}', {{dataUo.nbUtil}}, 0],
+        ['UO {{key}}', 'Silo {{monSilo}}', {{dataUo.nbUtil}}, 0],
       {% endfor %}
     {% endfor %}
   ]);
