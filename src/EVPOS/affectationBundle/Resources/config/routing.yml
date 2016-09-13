@@ -289,3 +289,7 @@ evpos_repSilo:
 evpos_ficheSilo:
     path: /silo/{idSilo}
     defaults: { _controller: EVPOSaffectationBundle:Silo:ficheSilo }
+
+evpos_tabSilo:
+    path: /tab_silo
+    defaults: { _controller: EVPOSaffectationBundle:Silo:tabSilo }

@@ -136,6 +136,28 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne le tableau de répartition des utilisateurs d'UO dans les directions
+   */
+  public function getUoDirection() {
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo')
+      ->where('uo.migMoca = true')
+      ->orderBy('uo.codeUo')
+      ->getQuery()
+    ;
+
+    $tabUoDir = [];
+
+    foreach ($query->getResult() as $uo) {
+      foreach ($uo->getListeDirectionAcces() as $dir => $nb) {
+          $tabUoDir[$uo->getCodeUo()][$dir] = $nb;
+      }
+    }
+
+    return $tabUoDir;
+  }
+
+  /**
    * Retourne la liste des UO hébergées dans plusieurs silos de PROD
    */
   public function getUoPlusieursSilos() {

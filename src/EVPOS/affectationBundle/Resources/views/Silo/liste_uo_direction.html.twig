@@ -1,0 +1,8 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'silo.liste'|trans }}{% endblock%}
+
+{% block content %}
+<h4>{{ 'silo.liste'|trans }}</h4>
+{{dump(tabSilo)}}
+
+{% endblock %}
