@@ -35,6 +35,21 @@ class SiloController extends Controller
     }
 
     /**
+     * Export XML de la répartition des UO dans les silos
+     */
+    public function exportTabSiloAction() {
+      $tabSilo = $this->getDoctrine()
+                 ->getManager()
+                 ->getRepository('EVPOSaffectationBundle:UO')
+                 ->getUoDirection()
+      ;
+
+      return $this->render('EVPOSaffectationBundle:Silo:export_uo_dir.xml.twig',
+                            array('tabSilo' => $tabSilo));
+    }
+
+
+    /**
      * Affichage de la fiche d'un silo
      */
     public function ficheSiloAction($idSilo) {
