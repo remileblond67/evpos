@@ -3,11 +3,35 @@
 
 {% block content %}
 <h4>{{ 'silo.liste'|trans }}</h4>
-{{dump(tabSilo)}}
-<table>
-{% for uo, dir in tabSilo %}
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+<thead>
 <tr>
-<td>{{uo}}</td>
+<th></th>
+{% for dir in listeDir %}
+<th>
+  <a href="{{path('evpos_ficheDirection', {'codeDirection': dir.codeDirection})}}" title="Fiche de la direction {{dir.codeDirection}}">
+  {{dir.codeDirection}}
+  </a>
+</th>
+{% endfor %}
+</tr>
+</thead>
+{% for uo, accesDir in tabSilo %}
+<tr>
+<td>
+  <a href="{{path('evpos_ficheUo', {'codeUo': uo})}}" title="Fiche de l'UO {{uo}}">
+  {{uo}}
+  </a>
+</td>
+  {% for dir in listeDir %}
+  <td>
+  {% for accesDir, nb in accesDir %}
+    {% if accesDir == dir.codeDirection %}
+    {{ nb }}
+    {% endif %}
+  {% endfor %}
+  </td>
+  {% endfor %}
 </tr>
 {% endfor %}
 </table>
