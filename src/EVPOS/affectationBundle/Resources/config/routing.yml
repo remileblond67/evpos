@@ -293,3 +293,7 @@ evpos_ficheSilo:
 evpos_tabSilo:
     path: /tab_silo
     defaults: { _controller: EVPOSaffectationBundle:Silo:tabSilo }
+
+evpos_export_uo_dir:
+    path: /export_uo_dir
+    defaults: { _controller: EVPOSaffectationBundle:Silo:exportTabSilo }    

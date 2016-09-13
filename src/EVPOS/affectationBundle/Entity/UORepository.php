@@ -146,18 +146,9 @@ class UORepository extends EntityRepository
       ->getQuery()
     ;
 
-    $listeDirection = $this->getDoctrine()
-               ->getManager()
-               ->getRepository('EVPOSaffectationBundle:Direction')
-               ->getDirections()
-    ;
-
     $tabUoDir = [];
 
     foreach ($query->getResult() as $uo) {
-      foreach ($listeDirection as $dir) {
-        $tabUoDir[$uo->getCodeUo()][$dir->getCodeDirection()] = 0;
-      }
       foreach ($uo->getListeDirectionAcces() as $dir => $nb) {
           $tabUoDir[$uo->getCodeUo()][$dir] = $nb;
       }

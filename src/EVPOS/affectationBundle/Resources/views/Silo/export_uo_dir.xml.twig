@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeUo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+{% for uo, listeDir in tabSilo %}
+<uo codeUo="{{uo}}">
+  {% for dir, nb in listeDir %}
+  <dir codeDirection="{{dir}}" nbUtil={{nb}}>
+  </dir>
+  {% endfor %}
+</uo>
+{% endfor %}
+</listeUo>
