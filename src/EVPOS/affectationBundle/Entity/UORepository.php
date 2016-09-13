@@ -141,7 +141,7 @@ class UORepository extends EntityRepository
   public function getUoPlusieursSilos() {
     $listeUoKo = [];
     $query = $this->createQueryBuilder('uo')
-      ->select('uo.codeUo, uo.nomUo, silo.nomSilo')
+      ->select('uo.codeUo, silo.nomSilo')
       ->leftJoin('uo.listeSilo', 'silo')
       ->where("uo.migMoca = true and silo.nomSilo like '%Prod%'")
       ->orderBy('uo.codeUo')
