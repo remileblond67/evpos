@@ -25,9 +25,16 @@
 </td>
   {% for dir in listeDir %}
   <td>
+  {%
+  nbUser = 0
+  for accesDir, nb in accesDir
+    nbTotal = nbTotal + nb
+  endfor
+  %}
+
   {% for accesDir, nb in accesDir %}
     {% if accesDir == dir.codeDirection %}
-    {{ nb }}
+    <div style="background-color=rgba(0,255,0,{{nb/nbTotal}})">{{ nb }}</div>
     {% endif %}
   {% endfor %}
   </td>
