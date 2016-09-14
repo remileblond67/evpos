@@ -6,7 +6,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\AccesUtilUo;
-use EVPOS\affectationBundle\Entity\Uo;
 
 /**
  * Report des accès postes sur les UO et les applications

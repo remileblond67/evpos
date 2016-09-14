@@ -16,6 +16,7 @@ app:
     all: Tout
     ok: Prêt
     legal: Mentions légales
+    find: Rechercher
 
 user:
     connect: Se connecter
