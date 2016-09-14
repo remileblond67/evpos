@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 3.2.2
+    version_n: 3.3.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -233,3 +233,5 @@ silo:
     existe: Silo actif
     fiche: Fiche silo
     info: Informations générales
+    rep: Répartition des UO dans les silos
+    tab: Tableau des silos

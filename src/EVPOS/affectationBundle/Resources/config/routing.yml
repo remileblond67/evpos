@@ -223,11 +223,6 @@ evpos_planif_uo:
     defaults: { _controller: EVPOSaffectationBundle:Etat:planifUo }
 
 # Pages de contrôle
-
-evpos_ctrl_uo_sans_utilisateur:
-    path: /ctrl_uo_sans_util
-    defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeUoSansUtilisateur }
-
 evpos_ctrl_service_inconnu:
     path: /ctrl_service_inconnu
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeServiceInconnu }
@@ -287,6 +282,18 @@ evpos_listeSilo:
     path: /silo
     defaults: { _controller: EVPOSaffectationBundle:Silo:listeSilo }
 
+evpos_repSilo:
+    path: /rep_silo
+    defaults: { _controller: EVPOSaffectationBundle:Silo:repSilo }
+
 evpos_ficheSilo:
     path: /silo/{idSilo}
     defaults: { _controller: EVPOSaffectationBundle:Silo:ficheSilo }
+
+evpos_tabSilo:
+    path: /tab_silo
+    defaults: { _controller: EVPOSaffectationBundle:Silo:tabSilo }
+
+evpos_export_uo_dir:
+    path: /export_uo_dir
+    defaults: { _controller: EVPOSaffectationBundle:Silo:exportTabSilo }    

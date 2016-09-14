@@ -107,6 +107,72 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Retourne la liste des UO avec leur affectation dans les silos de prod
+   */
+  public function getUoSilo() {
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo')
+      ->where('uo.migMoca = true')
+      ->orderBy('uo.codeUo')
+      ->getQuery()
+    ;
+
+    /* Création d'un tableau d'affectation UO/silo */
+    $tabUoSilo = [];
+
+    foreach ($query->getResult() as $uo) {
+      $listeSilo = [];
+      $compteur = 0;
+      foreach ($uo->getListeSilo() as $silo) {
+        if (strpos(strtoupper($silo->getNomSilo()), 'PROD') !== false and $compteur == 0) {
+          $listeSilo[] = $silo->getNomSilo();
+          $compteur++;
+        }
+      }
+      $tabUoSilo[$uo->getCodeUo()] = array("nbUtil"=>$uo->getNbUtil(), "Silo"=>$listeSilo);
+      unset($listeSilo);
+    }
+    return $tabUoSilo;
+  }
+
+  /**
+   * Retourne le tableau de répartition des utilisateurs d'UO dans les directions
+   */
+  public function getUoDirection() {
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo')
+      ->where('uo.migMoca = true')
+      ->orderBy('uo.codeUo')
+      ->getQuery()
+    ;
+
+    $tabUoDir = [];
+
+    foreach ($query->getResult() as $uo) {
+      foreach ($uo->getListeDirectionAcces() as $dir => $nb) {
+          $tabUoDir[$uo->getCodeUo()][$dir] = $nb;
+      }
+    }
+
+    return $tabUoDir;
+  }
+
+  /**
+   * Retourne la liste des UO hébergées dans plusieurs silos de PROD
+   */
+  public function getUoPlusieursSilos() {
+    $listeUoKo = [];
+    $query = $this->createQueryBuilder('uo')
+      ->select('uo.codeUo, silo.nomSilo')
+      ->leftJoin('uo.listeSilo', 'silo')
+      ->where("uo.migMoca = true and silo.nomSilo like '%Prod%'")
+      ->orderBy('uo.codeUo')
+      ->getQuery()
+    ;
+    return $query->getResult();
+  }
+
+  /**
   * Teste si l'UO dont le code est passé en parametre existe
   */
   public function isUo($codeUo) {

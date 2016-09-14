@@ -1,0 +1,44 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'silo.liste'|trans }}{% endblock%}
+
+{% block content %}
+<h4>{{ 'silo.liste'|trans }}</h4>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+<thead>
+<tr>
+<th></th>
+{% for dir in listeDir %}
+<th>
+  <a href="{{path('evpos_ficheDirection', {'codeDirection': dir.codeDirection})}}" title="Fiche de la direction {{dir.codeDirection}}">
+  {{dir.codeDirection}}
+  </a>
+</th>
+{% endfor %}
+</tr>
+</thead>
+{% for uo, accesDir in tabSilo %}
+<tr>
+<td>
+  <a href="{{path('evpos_ficheUo', {'codeUo': uo})}}" title="Fiche de l'UO {{uo}}">
+  {{uo}}
+  </a>
+</td>
+  {% for dir in listeDir %}
+  <td>
+  {% set nbTotal = 0 %}
+  {% for accesDir, nb in accesDir %}
+    {% set nbTotal = nbTotal + nb %}
+  {% endfor %}
+
+  {% for accesDir, nb in accesDir %}
+    {% if accesDir == dir.codeDirection %}
+    <div style="background-color:rgba(0,255,0,{{nb/nbTotal}})">{{ nb }}</div>
+    {% endif %}
+  {% endfor %}
+  </td>
+  {% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

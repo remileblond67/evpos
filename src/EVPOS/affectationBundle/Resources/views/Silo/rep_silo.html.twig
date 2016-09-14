@@ -1,0 +1,50 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'silo.rep'|trans }}{% endblock%}
+
+{% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {'packages':['treemap']});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['UO', 'Silo', 'Nb util', 'Market increase/decrease (color)'],
+    ['Global',    null,       0,                               0],
+    {% for silo in listeSilo%}
+    ['Silo {{silo.nomSilo}}',    'Global',   0,                               0],
+    {% endfor %}
+    {% set idUo = 0 %}
+    {% for key, dataUo in listeUo %}
+      {% for monSilo in dataUo.Silo %}
+        ['UO {{key}}', 'Silo {{monSilo}}', {{dataUo.nbUtil}}, {{idUo}}],
+      {% endfor %}
+      {% set idUo = idUo + 1 %}
+    {% endfor %}
+  ]);
+
+  tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+  var options = {
+          highlightOnMouseOver: true,
+          maxDepth: 1,
+          maxPostDepth: 2,
+          minHighlightColor: '#8c6bb1',
+          midHighlightColor: '#9ebcda',
+          maxHighlightColor: '#edf8fb',
+          minColor: '#009688',
+          midColor: '#f7f7f7',
+          maxColor: '#ee8100',
+          headerHeight: 15,
+          showScale: false,
+          height: 500,
+          useWeightedAverageForAggregation: true
+        };
+
+  tree.draw(data, options);
+
+}
+</script>
+
+<h4>{{ 'silo.rep'|trans }}</h4>
+<div id="chart_div" style="width: 100%; height: 1000px;"></div>
+{% endblock %}

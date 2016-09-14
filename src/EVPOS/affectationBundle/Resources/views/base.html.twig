@@ -154,6 +154,8 @@
               <li><a href="{{ path('evpos_ctrl_corresp_uo') }}"><span class="glyphicon glyphicon-random"></span> {{ 'uo.corresp'|trans }}</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ path('evpos_listeSilo') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'silo.liste'|trans }}</a></li>
+              <li><a href="{{ path('evpos_repSilo') }}"><span class="glyphicon glyphicon-th"></span> {{ 'silo.rep'|trans }}</a></li>
+              <li><a href="{{ path('evpos_tabSilo') }}"><span class="glyphicon glyphicon-th"></span> {{ 'uo.directions'|trans }}</a></li>
             </ul>
           </li>
 
@@ -194,6 +196,7 @@
               <li><a target="_blank" href="{{ path('evpos_listeServiceAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 31. {{'applications.listeAppliService'|trans}}</a></li>
               <li><a target="_blank" href="{{ path('evpos_exportDirServUtilAppliXml') }}"><span class="glyphicon glyphicon-export"></span> 32. {{'utilisateur.listeAccesAppli'|trans}}</a></li>
               <li><a target="_blank" href="{{ path('evpos_exportDirServUtilUoXml') }}"><span class="glyphicon glyphicon-export"></span> 33. {{'utilisateur.listeAccesUo'|trans}}</a></li>
+              <li><a target="_blank" href="{{ path('evpos_export_uo_dir') }}"><span class="glyphicon glyphicon-export"></span> 34. {{'uo.directions'|trans}}</a></li>
               <li role="separator" class="divider"></li>
               <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 41. {{'poste.listeEquipement'|trans}}</a></li>
               <li><a target="_blank" href="{{ path('evpos_listeDirServicePosteSeulUtilXml') }}"><span class="glyphicon glyphicon-export"></span> 42. {{'poste.liste'|trans}}</a></li>
@@ -248,12 +251,6 @@
                 <a href="{{ path('evpos_ctrl_absent') }}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   {{'ctrl.absentService'|trans}}
-                </a>
-              </li>
-              <li>
-                <a href="{{ path('evpos_ctrl_uo_sans_utilisateur') }}">
-                  <span class="glyphicon glyphicon-list-alt"></span>
-                  {{ 'uo.sansUtil'|trans }}
                 </a>
               </li>
               <li class="divider"></li>

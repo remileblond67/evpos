@@ -16,7 +16,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     parent::configure();
     $this
       ->setName('evpos:update_silo_appli')
-      ->setDescription("Mise Ã  jour des silos et de l'affectation des UO dans ces derniers")
+      ->setDescription("Mise à jour des silos et de l'affectation des UO dans ces derniers")
     ;
   }
 
@@ -30,7 +30,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $env = "dev";
     }
 
-    $output->writeln("Mise Ã  jour des silos et de l''affectation des UO dans ces derniers (".$env.")");
+    $output->writeln("Mise à jour des silos et de l''affectation des UO dans ces derniers (".$env.")");
 
     $output->write("Marquage des silos existants...");
     $listeSilo = $em->getRepository("EVPOSaffectationBundle:Silo")->findAll();
@@ -53,9 +53,11 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
-    $output->write ("CrÃ©ation des silos Citrix... ");
-    $output->write ("appli ");
-    foreach ($xml->ListeSilos->Silos_Applicatif->silo as $nomSilo) {
+    $output->write ("Création des silos Citrix... ");
+    $output->write ("\n- appli : ");
+    foreach ($xml->ListeSilos->Silos_Applicatif->Silo as $xmlSilo) {
+      $nomSilo = $xmlSilo['nom'];
+      $output->write ($nomSilo . ' ');
       $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
       if ($silo === NULL) {
         $silo = new Silo;
@@ -66,8 +68,10 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $em->persist($silo);
       $em->flush();
     }
-    $output->write ("bureau ");
-    foreach ($xml->ListeSilos->Silos_Bureau->silo as $nomSilo) {
+    $output->write ("\n- bureau ");
+    foreach ($xml->ListeSilos->Silos_Bureau->Silo as $xmlSilo) {
+      $nomSilo = $xmlSilo['nom'];
+      $output->write ($nomSilo . ' ');
       $silo = $em->getRepository("EVPOSaffectationBundle:Silo")->getSilo((string)$nomSilo);
       if ($silo === NULL) {
         $silo = new Silo;
@@ -78,13 +82,14 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $em->persist($silo);
       $em->flush();
     }
-    $output->writeln("OK");
+    $output->writeln("\nOK");
 
-    $output->writeln ("Mise Ã  jour de l'affectation des applications... ");
+    $output->writeln ("Mise à jour de l'affectation des applications... ");
     $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
       $codeUO = preg_split("/\_/",$app['nom'])[0];
-      foreach ($app->silo as $nomSilo) {
+      foreach ($app->Silo as $xmlSilo) {
+        $nomSilo = $xmlSilo['nom'];
         $listeSiloUo[$codeUO][] = (string)$nomSilo;
       }
     }
