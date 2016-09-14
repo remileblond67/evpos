@@ -3,8 +3,6 @@
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use EVPOS\affectationBundle\Entity\Service;
 
 class OrganigrammeController extends Controller
 {

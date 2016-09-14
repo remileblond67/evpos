@@ -2,7 +2,6 @@
 
 namespace EVPOS\affectationBundle\Entity;
 
-use EVPOS\affectationBundle\Entity\Service;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 

@@ -2,59 +2,56 @@
 {% block title%}Suivi de la migration MOCA{% endblock%}
 {% block content %}
 <div class="row">
-    <div class="col-lg-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ 'app.etat'|trans }}</h3>
-            </div>
-            <div class="panel-body">
-              <h4>{{ 'app.version'|trans}}</h4>
-              <p>{{ 'app.version_n'|trans}}</p>
-              <h4>{{ 'app.legal'|trans}}</h4>
-              <p class="mension">Le service des Systèmes informatiques, télécommunication et Réseaux dispose de moyens informatiques destinés à gérer plus facilement les accès informatiques des utilisateurs de l'Eurométropole, notament pour organiser au mieux la migration des postes de travail dans le cadre du projet MOCA.</p>
-              <p class="mension">Les informations enregistrées sont réservées à l’usage des services concernés et ne peuvent être communiquées à l'extérieur de l'Eurométropole.</p>
-              <p class="mension">Conformément aux articles 39 et suivants de la loi n° 78-17 du 6 janvier 1978 modifiée en 2004 relative à l’informatique, aux fichiers et aux libertés, toute personne peut obtenir communication et, le cas échéant, rectification ou suppression des informations la concernant, en s’adressant au service des Systèmes informatiques, télécommunication et Réseaux.</p>
-            </div>
-        </div>
+  <div class="col-lg-2 col-md-3 hidden-sm">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ 'app.etat'|trans }}</h3>
+      </div>
+      <div class="panel-body">
+        <h4>{{ 'app.version'|trans}}</h4>
+        <p>{{ 'app.version_n'|trans}}</p>
+        <h4>{{ 'app.legal'|trans}}</h4>
+        <p class="mension">Le service des Systèmes informatiques, télécommunication et Réseaux dispose de moyens informatiques destinés à gérer plus facilement les accès informatiques des utilisateurs de l'Eurométropole, notament pour organiser au mieux la migration des postes de travail dans le cadre du projet MOCA.</p>
+        <p class="mension">Les informations enregistrées sont réservées à l’usage des services concernés et ne peuvent être communiquées à l'extérieur de l'Eurométropole.</p>
+        <p class="mension">Conformément aux articles 39 et suivants de la loi n° 78-17 du 6 janvier 1978 modifiée en 2004 relative à l’informatique, aux fichiers et aux libertés, toute personne peut obtenir communication et, le cas échéant, rectification ou suppression des informations la concernant, en s’adressant au service des Systèmes informatiques, télécommunication et Réseaux.</p>
+      </div>
     </div>
-    <div class="col-lg-6">
-        <article>
-        <h3>{{ 'app.slogan'|trans }}</h3>
-        <h4>Finalités de l'application</h4>
+  </div>
+  <div class="col-lg-8 col-md-9 col-sm-12">
+    <article>
+      <h3>{{ 'app.slogan'|trans }}</h3>
+      <h4>Finalités de l'application</h4>
 
-        <p>Cette application a pour but de faciliter la planification et le suivi de la migration MOCA au sein de l'Eurométropole de Strasbourg.</p>
+      <p>Cette application a pour but de faciliter la planification et le suivi de la migration MOCA au sein de l'Eurométropole de Strasbourg.</p>
 
-        <p>Elle doit permettre :</p>
+      <p>Elle doit permettre :</p>
+      <ul>
+        <li>de <strong>prioriser</strong> la migration des applications, en identifiant celles qui sont le plus utilisées.</li>
+        <li>d'aider à définir le planing de déploiement des différents services, en <strong>consitituant des groupes cohérents</strong> (utilisation de groupes d'applications communes).</li>
+        <li>de valider les <strong>besoins applicatifs des services</strong> avant migration</li>
+        <li>de prévoir les <strong>types de postes à migrer</strong> en fonction de l'usage réel constaté (import d'extractions Nexthink).</li>
+      </ul>
 
-        <ul>
-          <li>de <strong>prioriser</strong> la migration des applications, en identifiant celles qui sont le plus utilisées.</li>
-          <li>d'aider à définir le planing de déploiement des différents services, en <strong>consitituant des groupes cohérents</strong> (utilisation de groupes d'applications communes).</li>
-          <li>de valider les <strong>besoins applicatifs des services</strong> avant migration</li>
-          <li>de prévoir les <strong>types de postes à migrer</strong> en fonction de l'usage réel constaté (import d'extractions Nexthink).</li>
-        </ul>
+      <h4><a id="user-content-annuaire" class="anchor" href="#annuaire" aria-hidden="true"><span class="octicon octicon-link"></span></a>Annuaire</h4>
 
-        <h4><a id="user-content-annuaire" class="anchor" href="#annuaire" aria-hidden="true"><span class="octicon octicon-link"></span></a>Annuaire</h4>
+      <p>On regroupe ici les informations relatives aux directions, services et utilisateurs. </p>
+      <p>Ces informations relatives aux services, directions et utilisateurs sont récupérées de <strong>BAZA</strong>.</p>
 
-        <p>On regroupe ici les informations relatives aux directions, services et utilisateurs. </p>
+      <h4>Patrimoine applicatif</h4>
 
-        <p>Ces informations relatives aux services, directions et utilisateurs sont récupérées de <strong>BAZA</strong>.</p>
+      <p>Reprise des informations de <strong>SUAPP</strong> relatives aux applications et à leurs UO. Seules les applications contenant au moins une UO à migrer dans MOCA sont reprises. L'ensemble des UO est repris, même celles qui ne doivent pas être migrées dans MOCA (pour permettre leur identification dans Nexthink).</p>
 
-        <h4>Patrimoine applicatif</h4>
+      <h4>Usage</h4>
 
-        <p>Reprise des informations de <strong>SUAPP</strong> relatives aux applications et à leurs UO. Seules les applications contenant au moins une UO à migrer dans MOCA sont reprises. L'ensemble des UO est repris, même celles qui ne doivent pas être migrées dans MOCA (pour permettre leur identification dans Nexthink).</p>
+      <p>Les usages suivants sont récupérés des sources suivantes :</p>
+      <ul>
+        <li><strong>GAP</strong> : affectation des utilisateurs aux applications</li>
+        <li><strong>BAZA</strong> : affectation des utilisateurs aux UO</li>
+        <li><strong>Fichiers licences</strong> (sur T:\Licences) : affectation des applications aux postes de travail</li>
+      </ul>
 
-        <h4>Usage</h4>
-
-        <p>Les usages suivants sont récupérés des sources suivantes :</p>
-
-        <ul>
-          <li><strong>GAP</strong> : affectation des utilisateurs aux applications</li>
-          <li><strong>BAZA</strong> : affectation des utilisateurs aux UO</li>
-          <li><strong>Fichiers licences</strong> (sur T:\Licences) : affectation des applications aux postes de travail</li>
-        </ul>
-
-        <p>L'application permet également d'extraire les règles permettant d'identifier, dans Nexthink, les applications et leurs UO (export XML).</p>
-        </article>
-    </div>
+      <p>L'application permet également d'extraire les règles permettant d'identifier, dans Nexthink, les applications et leurs UO (export XML).</p>
+    </article>
+  </div>
 </div>
 {%endblock%}
