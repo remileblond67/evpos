@@ -192,6 +192,7 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteAvancement() {
       $query = $this->createQueryBuilder('p')
         ->select('p.avancementMigMoca, count(p.hostname) nb')
+        ->groupBy('p.avancementMigMoca')
         ->orderBy('p.avancementMigMoca')
         ->getQuery()
       ;
