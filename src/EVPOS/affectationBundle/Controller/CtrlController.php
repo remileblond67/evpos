@@ -55,6 +55,9 @@ class CtrlController extends Controller
     ->add('oldCodeUo', 'text')
     ->add('newUo', 'entity', array(
       'class'    => 'EVPOSaffectationBundle:UO',
+      'query_builder' => function (\Doctrine\ORM\EntityRepository $er) {
+        return $er->getListeCodeUo();
+      },
       'property' => 'codeUo',
       'multiple' => false ))
     ->add('save', 'submit', array('label' => 'app.add'))
