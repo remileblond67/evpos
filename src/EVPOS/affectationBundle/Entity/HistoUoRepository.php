@@ -22,8 +22,16 @@ class HistoUoRepository extends EntityRepository {
     ->getQuery()
     ;
 
+    $listeDate = [];
+
     foreach ($query->getResult() as $ligne) {
-      $etat[date_format($ligne["dateMesure"], "d/m/Y")][$ligne["avancement"]] = $ligne["nbUo"];
+      $date = date_format($ligne["dateMesure"], "d/m/Y");
+
+      if (in_array($date, $listeDate) !== true) {
+        $etat[$date]['4. En production'] = 0;
+        $listeDate[] = $date;
+      }
+      $etat[$date][$ligne["avancement"]] = $ligne["nbUo"];
     }
 
     return $etat;

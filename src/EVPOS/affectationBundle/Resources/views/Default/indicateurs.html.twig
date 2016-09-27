@@ -243,16 +243,16 @@ var couleur = {
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
-              ['Date',  'Validée', 'En cours', 'Pas initiée'],
+              ['Date',  'En production', 'Validée', 'En cours', 'Pas initiée'],
               {% for key, ligne in evolutionAiGen %}
-              ['{{ key }}', {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
+              ['{{ key }}', {{ligne['4. En production']}}, {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
               {% endfor %}
             ]);
 
             var options = {
               vAxis: {title: 'Nombre d\'UO en cours de migration'},
               isStacked: true,
-              colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: [couleur['4. En production'], couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAI'));
@@ -374,16 +374,16 @@ var couleur = {
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
-              ['Date',  'Validée', 'En cours', 'Pas initiée'],
+              ['Date',  'En production', 'Validée', 'En cours', 'Pas initiée'],
               {% for key, ligne in evolutionAsGen %}
-              ['{{ key }}', {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
+              ['{{ key }}', {{ligne['4. En production']}}, {{ligne['3. Validé']}}, {{ligne['2. En cours']}}, {{ligne['1. Pas initiée']}}],
               {% endfor %}
             ]);
 
             var options = {
               vAxis: {title: 'Nombre d\'UO en cours de migration'},
               isStacked: true,
-              colors: [couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
+              colors: [couleur['4. En production'], couleur['3. Validé'], couleur['2. En cours'], couleur['1. Pas initiée']],
             };
 
             var chart = new google.visualization.SteppedAreaChart(document.getElementById('chartAS'));
