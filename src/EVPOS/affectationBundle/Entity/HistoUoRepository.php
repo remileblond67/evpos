@@ -27,7 +27,7 @@ class HistoUoRepository extends EntityRepository {
     foreach ($query->getResult() as $ligne) {
       $date = date_format($ligne["dateMesure"], "d/m/Y");
 
-      if ! (in_array($date, $listeDate) {
+      if (in_array($date, $listeDate) !== true) {
         $etat[$date]['4. En production'] = 0;
         $listeDate[] = $date;
       }
