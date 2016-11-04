@@ -30,15 +30,18 @@ class HistoPosteRepository extends EntityRepository {
     ->orderBy('h.dateMesure', 'ASC')
     ->getQuery()
     ;
-    $resultSemaine = [];
+    $nbSemaine = [];
 
     foreach ($query->getResult() as $ligne) {
       $semaine = date_format($ligne["dateMesure"], "Y-W");
-      $resultSemaine[$semaine]["nb"] = $ligne["nbMoca"];
+      $nbSemaine[$semaine] = $ligne["nbMoca"];
     }
     $old = 0;
-    foreach (array_keys($resultSemaine) as $key) {
-      $nbPoste = intval($resultSemaine[$key]["nb"]);
+
+    $resultSemaine = [];
+    foreach (array_keys($nbSemaine) as $key) {
+      $nbPoste = intval($resultSemaine[$key]);
+      $resultSemaine[$semaine]["nb"] = $nbPoste;
       $resultSemaine[$semaine]["diff"] = $nbPoste - $old;
       $old = $nbPoste;
     }
