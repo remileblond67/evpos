@@ -13,13 +13,13 @@ use Doctrine\ORM\EntityRepository;
 class UORepository extends EntityRepository
 {
   /**
-   * Retourne la requête de sélection des codes UO
+   * Retourne la requÃªte de sÃ©lection des codes UO
    */
   public function getListeCodeUo() {
     $qb = $this->createQueryBuilder('uo')
           ->where("uo.migMoca = true")
           ->orderBy("uo.codeUo");
- 
+
     return $qb;
   }
 
@@ -236,6 +236,9 @@ class UORepository extends EntityRepository
     return $query->getResult();
   }
 
+  /**
+   * Retourne le nombre total d'UO
+   */
   public function getNbUo($nature) {
     $query = $this->createQueryBuilder('uo')
       ->select('count(uo.codeUo) nb')

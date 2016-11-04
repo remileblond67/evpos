@@ -17,7 +17,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     parent::configure();
     $this
       ->setName('evpos:update_silo_appli')
-      ->setDescription("Mise à jour des silos et de l'affectation des UO dans ces derniers")
+      ->setDescription("Mise Ã  jour des silos et de l'affectation des UO dans ces derniers")
     ;
   }
 
@@ -31,7 +31,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $env = "dev";
     }
 
-    $output->writeln("Mise à jour des silos et de l''affectation des UO dans ces derniers (".$env.")");
+    $output->writeln("Mise Ã  jour des silos et de l''affectation des UO dans ces derniers (".$env.")");
 
     $output->write("Marquage des silos existants...");
     $listeSilo = $em->getRepository("EVPOSaffectationBundle:Silo")->findAll();
@@ -54,7 +54,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
       $output->writeln("Impossible d'exploiter le fichier $fileName : ",  $e->getMessage(), "\n");
     }
 
-    $output->write ("Création des silos Citrix... ");
+    $output->write ("CrÃ©ation des silos Citrix... ");
     $output->write ("\n- appli : ");
     foreach ($xml->ListeSilos->Silos_Applicatif->Silo as $xmlSilo) {
       $nomSilo = $xmlSilo['nom'];
@@ -85,7 +85,7 @@ class UpdateSiloAppliCommand extends ContainerAwareCommand
     }
     $output->writeln("\nOK");
 
-    $output->writeln ("Mise à jour de l'affectation des applications... ");
+    $output->writeln ("Mise Ã  jour de l'affectation des applications... ");
     $listeSiloUo = [];
     foreach ($xml->Applis->Appli as $app) {
       $codeUO = preg_split("/\_/",$app['nom'])[0];
