@@ -93,7 +93,7 @@ var couleur = {
             {% for key, item in evolutionNbPosteSemaine %}
             ['{{key}}', {{item.diff}}],
             {% endfor %}
-          );
+          ]);
 
           var options = {
             title: 'Nombre de postes migrés par semaine',
