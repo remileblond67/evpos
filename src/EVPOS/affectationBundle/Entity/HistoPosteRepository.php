@@ -40,7 +40,7 @@ class HistoPosteRepository extends EntityRepository {
 
     $resultSemaine = [];
     foreach (array_keys($nbSemaine) as $key) {
-      $nbPoste = intval($resultSemaine[$key]);
+      $nbPoste = intval($nbSemaine[$key]);
       $resultSemaine[$semaine]["nb"] = $nbPoste;
       $resultSemaine[$semaine]["diff"] = $nbPoste - $old;
       $old = $nbPoste;
