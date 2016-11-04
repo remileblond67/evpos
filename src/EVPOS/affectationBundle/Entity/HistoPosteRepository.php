@@ -25,11 +25,16 @@ class HistoPosteRepository extends EntityRepository {
   // Retourne l'historique du nombre de poste migré par semaine
   public function getHistoPosteSemaine() {
     $query=$this->createQueryBuilder('h')
-    ->select('h.semaineMesure semaineMesure, avg(h.nbPosteMoca) nbMoca, avg(h.nbPosteTodo) nbTodo')
-    ->groupBy('h.semaineMesure')
-    ->orderBy('h.semaineMesure')
+    ->select('h.dateMesure dateMesure, avg(h.nbPosteMoca) nbMoca, avg(h.nbPosteTodo) nbTodo')
+    ->groupBy('h.dateMesure')
+    ->orderBy('h.dateMesure')
     ->getQuery()
     ;
-    return $query->getResult();
+    $resultJour = [];
+
+    foreach ($query->getResult() as $ligne) {
+      $resultJour[date_format($ligne["dateMesure"], "d/m/Y")] = $ligne["nbMoca"];
+    }
+    return $resultJour;
   }
 }
