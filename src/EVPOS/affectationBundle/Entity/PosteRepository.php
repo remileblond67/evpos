@@ -22,7 +22,6 @@ class PosteRepository extends EntityRepository {
             ->where('p.hostname = :hostname')
             ->getQuery()
         ;
-
         return $query->getOneOrNullResult();
 	}
 
@@ -34,7 +33,6 @@ class PosteRepository extends EntityRepository {
             ->orderBy('p.hostname')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -47,7 +45,6 @@ class PosteRepository extends EntityRepository {
             ->where('p.service is null')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -64,7 +61,6 @@ class PosteRepository extends EntityRepository {
             ->setFirstResult(($page-1) * $nbParPage)
             ->setMaxResults($nbParPage)
         ;
-
         return new Paginator($query, true);
     }
 
@@ -78,7 +74,6 @@ class PosteRepository extends EntityRepository {
             ->orderBy('p.hostname')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -94,7 +89,6 @@ class PosteRepository extends EntityRepository {
             ->where('uo.codeUo is not null and u.matUtil is not null')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -106,7 +100,6 @@ class PosteRepository extends EntityRepository {
             ->where('p.existeGparc = FALSE')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -119,7 +112,6 @@ class PosteRepository extends EntityRepository {
             ->select('count(p.hostname) nb')
             ->getQuery()
         ;
-
         return $query->getSingleScalarResult();
     }
 
@@ -130,10 +122,9 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteMoca() {
         $query = $this->createQueryBuilder('p')
             ->select('count(p.hostname) nb')
-            ->where("p.master in ('IGEL PC', 'IGEL TL', 'STATION W8.1 BURO', 'STATION W8.1 BURO', 'STATION W8.1 BURO OLD', 'MASTER WIN 8.1', 'MANUEL WINDOWS 8')")
+            ->where("p.avancementMigMoca = 'Migré'")
             ->getQuery()
         ;
-
         return $query->getSingleScalarResult();
     }
 
@@ -144,16 +135,9 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteAMigrer() {
         $query = $this->createQueryBuilder('p')
             ->select('count(p.hostname) nb')
-            ->where("p.master not in ('BICOM', 'BICOM MULTIMEDIA', 'POZOR')
-						     and p.master not like '%ECOLE%'
-								 and p.master not like '%MAC%'
-								 and p.hostname not like 'BMIC%'
-								 and (p.typeUsage is null or p.typeUsage not in ('HORS RESEAU', 'REFORME', 'SERVEUR'))
-								 and (p.statut is null or p.statut not in ('Parallèle moc@', 'Débranché moc@', 'Réformé en service', 'Réformé en prêt'))
-						  ")
+            ->where("p.avancementMigMoca != 'Hors scope' and p.avancementMigMoca is not null")
             ->getQuery()
         ;
-
         return $query->getSingleScalarResult();
     }
 
@@ -169,7 +153,6 @@ class PosteRepository extends EntityRepository {
             ->orderBy('nb', 'DESC')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 

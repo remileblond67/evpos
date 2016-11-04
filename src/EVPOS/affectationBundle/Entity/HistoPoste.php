@@ -121,4 +121,9 @@ class HistoPoste
     {
         return $this->dateMesure;
     }
+
+    public function getSemaineMesure()
+    {
+      return date("Y-W", $this->dateMesure);
+    }
 }
