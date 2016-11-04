@@ -36,7 +36,7 @@ class HistoPosteRepository extends EntityRepository {
     foreach ($query->getResult() as $ligne) {
       $semaine = date_format($ligne["dateMesure"], "Y-W");
       $resultSemaine[$semaine]["nb"] = $ligne["nbMoca"];
-      $resultSemaine[$semaine]["diff"] = $ligne["nbMoca"] - $old;
+      $resultSemaine[$semaine]["diff"] = intval($ligne["nbMoca"]) - $old;
       $old = $ligne["nbMoca"];
     }
     return $resultSemaine;
