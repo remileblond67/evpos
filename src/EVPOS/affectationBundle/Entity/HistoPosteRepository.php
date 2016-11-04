@@ -27,7 +27,7 @@ class HistoPosteRepository extends EntityRepository {
     $query=$this->createQueryBuilder('h')
     ->select('h.dateMesure dateMesure, avg(h.nbPosteMoca) nbMoca, avg(h.nbPosteTodo) nbTodo')
     ->groupBy('h.dateMesure')
-    ->orderBy('h.dateMesure')
+    ->orderBy('h.dateMesure ASC')
     ->getQuery()
     ;
     $resultSemaine = [];
