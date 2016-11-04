@@ -121,7 +121,7 @@ class DefaultController extends Controller
         $evolutionNbPosteSemaine = $this->getDoctrine()
         ->getManager()
         ->getRepository('EVPOSaffectationBundle:HistoPoste')
-        ->getHistoPoste()
+        ->getHistoPosteSemaine()
         ;
 
         $evolutionAiGen = $this->getDoctrine()
