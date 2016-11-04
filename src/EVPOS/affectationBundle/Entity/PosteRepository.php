@@ -144,7 +144,7 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteAMigrer() {
         $query = $this->createQueryBuilder('p')
             ->select('count(p.hostname) nb')
-            ->where("p.avancementMigMoca = 'Hors scope' or p.avancementMigMoca is null")
+            ->where("p.avancementMigMoca != 'Hors scope' and p.avancementMigMoca is not null")
             ->getQuery()
         ;
 
