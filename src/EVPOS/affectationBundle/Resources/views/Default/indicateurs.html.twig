@@ -102,6 +102,40 @@ var couleur = {
         <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
 
         <div id="histoNbPoste" style="width: 100%; height: 200px;"></div>
+
+
+
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['bar']});
+          google.charts.setOnLoadCallback(drawStuff);
+
+          function drawStuff() {
+            var dataMigre = google.visualization.arrayToDataTable([
+              ['Semaine', 'Nb postes migrés'],
+              {% for key, item in evolutionNbPosteSemaine %}
+              ['{{key}}', {{item.diff}}],
+              {% endfor %}
+            ]);
+            var options = {
+              title: 'Chess opening moves',
+              width: 900,
+              legend: { position: 'none' },
+              chart: { subtitle: 'popularity by percentage' },
+              axes: {
+                x: {
+                  0: { side: 'top', label: 'White to move'} // Top x-axis.
+                }
+              },
+              bar: { groupWidth: "90%" }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('histoNbPosteDiff'));
+            // Convert the Classic options to Material options.
+            chart.draw(dataMigre, google.charts.Bar.convertOptions(options));
+          };
+        </script>
+        <div id="histoNbPosteDiff" style="width: 100%; height: 200px;"></div>
+
       </div>
     </div>
 
