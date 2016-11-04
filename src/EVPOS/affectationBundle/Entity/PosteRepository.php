@@ -22,7 +22,6 @@ class PosteRepository extends EntityRepository {
             ->where('p.hostname = :hostname')
             ->getQuery()
         ;
-
         return $query->getOneOrNullResult();
 	}
 
@@ -34,7 +33,6 @@ class PosteRepository extends EntityRepository {
             ->orderBy('p.hostname')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -47,7 +45,6 @@ class PosteRepository extends EntityRepository {
             ->where('p.service is null')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -64,7 +61,6 @@ class PosteRepository extends EntityRepository {
             ->setFirstResult(($page-1) * $nbParPage)
             ->setMaxResults($nbParPage)
         ;
-
         return new Paginator($query, true);
     }
 
@@ -78,7 +74,6 @@ class PosteRepository extends EntityRepository {
             ->orderBy('p.hostname')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -94,7 +89,6 @@ class PosteRepository extends EntityRepository {
             ->where('uo.codeUo is not null and u.matUtil is not null')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -106,7 +100,6 @@ class PosteRepository extends EntityRepository {
             ->where('p.existeGparc = FALSE')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
@@ -119,7 +112,6 @@ class PosteRepository extends EntityRepository {
             ->select('count(p.hostname) nb')
             ->getQuery()
         ;
-
         return $query->getSingleScalarResult();
     }
 
@@ -133,7 +125,6 @@ class PosteRepository extends EntityRepository {
             ->where("p.avancementMigMoca = 'Migré'")
             ->getQuery()
         ;
-
         return $query->getSingleScalarResult();
     }
 
@@ -147,7 +138,6 @@ class PosteRepository extends EntityRepository {
             ->where("p.avancementMigMoca != 'Hors scope' and p.avancementMigMoca is not null")
             ->getQuery()
         ;
-
         return $query->getSingleScalarResult();
     }
 
@@ -163,7 +153,6 @@ class PosteRepository extends EntityRepository {
             ->orderBy('nb', 'DESC')
             ->getQuery()
         ;
-
         return $query->getResult();
     }
 
