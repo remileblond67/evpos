@@ -87,8 +87,35 @@ var couleur = {
 
           var chart = new google.visualization.LineChart(document.getElementById('histoNbPoste'));
           chart.draw(data, options);
+
+          var dataMigre = google.visualization.arrayToDataTable([
+            ['Date', 'MOCA', 'A migrer'],
+          ]);
         }
         </script>
+
+
+        <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Semaine', 'Nb postes migrés'],
+            {% for key, item in evolutionNbPosteSemaine %}
+              ['{{key}}', {{item.diff}}],
+            {% endfor %}
+            );
+
+          var options = {
+            title: 'Nombre de postes migrés par semaine',
+            legend: { position: 'none' },
+          };
+
+          var chart = new google.visualization.Histogram(document.getElementById('histoNbPosteMigre'));
+          chart.draw(data, options);
+        }
+      </script>
+
         <div id="piechart_etat_migration" style="width: 100%; height: 300px;"></div>
       </div>
     </div>
@@ -102,6 +129,7 @@ var couleur = {
         <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
 
         <div id="histoNbPoste" style="width: 100%; height: 200px;"></div>
+        <div id="histoNbPosteMigre" style="width: 100%; height: 200px;"></div>
       </div>
     </div>
 
