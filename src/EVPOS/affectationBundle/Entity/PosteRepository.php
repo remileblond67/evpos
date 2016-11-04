@@ -130,7 +130,7 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteMoca() {
         $query = $this->createQueryBuilder('p')
             ->select('count(p.hostname) nb')
-            ->where("p.master in ('IGEL PC', 'IGEL TL', 'STATION W8.1 BURO', 'STATION W8.1 BURO', 'STATION W8.1 BURO OLD', 'MASTER WIN 8.1', 'MANUEL WINDOWS 8')")
+            ->where("p.avancementMigMoca = 'Migré'")
             ->getQuery()
         ;
 
