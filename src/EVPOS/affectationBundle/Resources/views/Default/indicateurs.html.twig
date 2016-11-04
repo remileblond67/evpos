@@ -100,11 +100,9 @@ var couleur = {
       <div class="panel-body">
         <progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
         <p>{{nbPosteMoca}} postes migrés sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
-
         <div id="histoNbPoste" style="width: 100%; height: 200px;"></div>
 
-
-
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
           google.charts.load('current', {'packages':['bar']});
           google.charts.setOnLoadCallback(drawStuff);
