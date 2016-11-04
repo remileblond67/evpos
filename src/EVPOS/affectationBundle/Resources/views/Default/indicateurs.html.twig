@@ -93,15 +93,21 @@ var couleur = {
           ]);
 
           var options = {
-            title: "Nombre de postes migrés par semaine",
-            width: 600,
-            height: 400,
-            bar: {groupWidth: "95%"},
-            legend: { position: "none" },
+            title: 'Nombre de postes migrés par semaine',
+            width: 900,
+            legend: { position: 'none' },
+            chart: { subtitle: 'popularity by percentage' },
+            axes: {
+              x: {
+                0: { side: 'top', label: 'White to move'} // Top x-axis.
+              }
+            },
+            bar: { groupWidth: "90%" }
           };
-          var chart = new google.visualization.ColumnChart(document.getElementById("histoNbPoste"));
-          chart.draw(view, options);
 
+          var chart = new google.charts.Bar(document.getElementById('histoNbPoste'));
+          // Convert the Classic options to Material options.
+          chart.draw(dataMigre, google.charts.Bar.convertOptions(options));
         }
         </script>
 
