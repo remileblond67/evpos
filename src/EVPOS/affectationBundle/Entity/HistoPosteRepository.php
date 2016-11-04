@@ -45,6 +45,6 @@ class HistoPosteRepository extends EntityRepository {
       $resultSemaine[$semaine]["diff"] = $nbPoste - $old;
       $old = $nbPoste;
     }
-    return $resultSemaine;
+    return $nbSemaine;
   }
 }
