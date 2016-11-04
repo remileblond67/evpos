@@ -85,9 +85,6 @@ var couleur = {
             vAxis: {minValue: 0}
           };
 
-          var chart = new google.visualization.LineChart(document.getElementById('histoNbPoste'));
-          chart.draw(data, options);
-
           var dataMigre = google.visualization.arrayToDataTable([
             ['Semaine', 'Nb postes migrés'],
             {% for key, item in evolutionNbPosteSemaine %}
@@ -96,12 +93,15 @@ var couleur = {
           ]);
 
           var options = {
-            title: 'Nombre de postes migrés par semaine',
-            legend: { position: 'none' },
+            title: "Nombre de postes migrés par semaine",
+            width: 600,
+            height: 400,
+            bar: {groupWidth: "95%"},
+            legend: { position: "none" },
           };
+          var chart = new google.visualization.ColumnChart(document.getElementById("histoNbPoste"));
+          chart.draw(view, options);
 
-          var chart = new google.visualization.Histogram(document.getElementById('histoNbPosteMigre'));
-          chart.draw(dataMigre, options);
         }
         </script>
 
