@@ -54,41 +54,6 @@ var couleur = {
         <h3 class="panel-title">Avancement de la migration MOCA</h3>
       </div>
       <div class="panel-body">
-        <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawCharts);
-
-        function drawCharts() {
-
-          var data = google.visualization.arrayToDataTable([
-            ['Etat', 'Nombre de postes'],
-            {% for avancement in nbPosteAvancement %}
-            ['{{avancement.avancementMigMoca}}',     {{avancement.nb}}],
-            {% endfor %}
-          ]);
-
-          var options = {
-          };
-
-          var chart = new google.visualization.PieChart(document.getElementById('piechart_etat_migration'));
-
-          chart.draw(data, options);
-
-          var data = google.visualization.arrayToDataTable([
-            ['Date', 'MOCA', 'A migrer'],
-            {% for ligne in evolutionNbPoste %}
-            ['{{ligne.dateMesure|date("d/m/Y")}}',  {{ligne.nbMoca}},  {{ligne.nbTodo}}],
-            {% endfor %}
-          ]);
-
-          var options = {
-            vAxis: {minValue: 0}
-          };
-
-          var chart = new google.visualization.LineChart(document.getElementById('histoNbPoste'));
-          chart.draw(data, options);
-        }
-        </script>
         <div id="piechart_etat_migration" style="width: 100%; height: 300px;"></div>
       </div>
     </div>
