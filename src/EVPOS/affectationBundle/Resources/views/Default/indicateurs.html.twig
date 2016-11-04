@@ -56,7 +56,6 @@ var couleur = {
       <div class="panel-body">
         <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.load('current', {'packages':['bar']});
         google.charts.setOnLoadCallback(drawCharts);
 
         function drawCharts() {
@@ -93,24 +92,13 @@ var couleur = {
             {% endfor %}
           ]);
 
-          var options = {
-            title: 'Nombre de postes migrés par semaine',
-            width: 900,
-            legend: { position: 'none' },
-            chart: { subtitle: 'popularity by percentage' },
-            axes: {
-              x: {
-                0: { side: 'top', label: 'White to move'} // Top x-axis.
-              }
-            },
-            bar: { groupWidth: "90%" }
-          };
-
           var chart = new google.charts.Bar(document.getElementById('histoNbPoste'));
           // Convert the Classic options to Material options.
           chart.draw(dataMigre, google.charts.Bar.convertOptions(options));
         }
         </script>
+
+
 
         <div id="piechart_etat_migration" style="width: 100%; height: 300px;"></div>
       </div>
