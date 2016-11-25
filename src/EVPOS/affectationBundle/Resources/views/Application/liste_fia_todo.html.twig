@@ -10,6 +10,8 @@
             <td class="row sorting_asc" rowspan="2">{{ 'uo.code'|trans }}</td>
             <td class="row">{{ 'uo.nom'|trans }}</td>
             <td class="row">{{ 'uo.avancementMigMoca'|trans }}</td>
+            <td class="row">{{ 'uo.nbUtil'|trans}}</td>
+            <td class="row">FIA</td>
         </tr>
 
     </thead>
@@ -21,6 +23,14 @@
           <td>{{uo.codeUo}}</td>
           <td>{{uo.nomUo}}</td>
           <td>{{uo.avancementMocaDetail}}</td>
+          <td>{{uo.nbUtil}}</td>
+          <td>
+            {% if uo.enCours %}
+            <a href="{{uo.lienFia}}" title="{{'uo.openFia'|trans}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+            {% endif %}
+          </td>
         </tr>
         {% endfor %}
     </tbody>
