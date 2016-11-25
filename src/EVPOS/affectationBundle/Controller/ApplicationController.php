@@ -117,6 +117,6 @@ class ApplicationController extends Controller
         ->getRepository('EVPOSaffectationBundle:UO')
         ->getListeFiaTodo()
       ;
-      return $this->render('EVPOSaffectationBundle:Application:liste_fia_todo.html.twig', array('listeFiaTodo' => $listeFiaTodo);
+      return $this->render('EVPOSaffectationBundle:Application:liste_fia_todo.html.twig', array('listeFiaTodo' => $listeFiaTodo));
     }
 }
