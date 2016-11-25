@@ -15,7 +15,7 @@ evpos_cherche_appli:
     defaults: { _controller: EVPOSaffectationBundle:Application:chercheAppli }
 
 evpos_uo_todo:
-    patch: /uo_todo
+    path: /uo_todo
     defaults: { _controller: EVPOSaffectationBundle:Application:listeFiaTodo }
 
 evpos_cherche_uo:
