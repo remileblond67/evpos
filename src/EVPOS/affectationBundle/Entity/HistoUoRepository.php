@@ -33,7 +33,37 @@ class HistoUoRepository extends EntityRepository {
       }
       $etat[$date][$ligne["avancement"]] = $ligne["nbUo"];
     }
-
     return $etat;
+  }
+
+  // Retourne l'historique du nombre d'UO intégrées par semaine
+  public function getHistoUoSemaine() {
+    $query=$this->createQueryBuilder('h')
+    ->select('h.dateMesure dateMesure, max(h.nbUo) nbUo')
+    ->where("h.niveau = 'general' and h.avancement = '3. Validé'")
+    ->groupBy('h.dateMesure')
+    ->orderBy('h.dateMesure')
+    ->getQuery()
+    ;
+    $nbSemaine = [];
+
+    foreach ($query->getResult() as $ligne) {
+      $semaine = date_format($ligne["dateMesure"], "Y-W");
+      $nbSemaine[$semaine] = $ligne["nbUo"];
+    }
+    $old = 0;
+
+    $resultSemaine = [];
+    foreach (array_keys($nbSemaine) as $key) {
+      $nbPoste = intval($nbSemaine[$key]);
+      $resultSemaine[$key]["nb"] = $nbUo;
+      if ($old == 0) {
+        $resultSemaine[$key]["diff"] = 0;
+      } else {
+        $resultSemaine[$key]["diff"] = $nbUo - $old;
+      }
+      $old = $nbUo ;
+    }
+    return $resultSemaine;
   }
 }
