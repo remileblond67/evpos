@@ -7,11 +7,11 @@
         <tr>
             <td class="row">{{ 'application.code'|trans }}</td>
             <td class="row">{{ 'application.nom'|trans }}</td>
-            <td class="row sorting_asc" rowspan="2">{{ 'uo.code'|trans }}</td>
+            <td class="row">{{ 'uo.code'|trans }}</td>
             <td class="row">{{ 'uo.nom'|trans }}</td>
             <td class="row">{{ 'uo.avancementMigMoca'|trans }}</td>
             <td class="row">{{ 'uo.nbUtil'|trans}}</td>
-            <td class="row">FIA</td>
+            <td class="row">{{ 'service.numEnsemble'|trans}}</td>
         </tr>
 
     </thead>
@@ -22,7 +22,13 @@
           <td>{{uo.appli.nomAppli}}</td>
           <td>{{uo.codeUo}}</td>
           <td>{{uo.nomUo}}</td>
-          <td>{{uo.avancementMocaDetail}}</td>
+          <td>{{uo.avancementMocaDetail}}
+            {% if uo.enCours %}
+            <a href="{{uo.lienFia}}" title="{{'uo.openFia'|trans}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+            {% endif %}
+          </td>
           <td>{{uo.nbUtil}}</td>
           <td>
             {% if uo.enCours %}
@@ -30,6 +36,11 @@
               <span class="glyphicon glyphicon-file"></span>
             </a>
             {% endif %}
+          </td>
+          <td>
+            {% for service in uo.listeServiceAcces %}
+              {{service.serviceAcces.numEnsemble}}
+            {% endfor %}
           </td>
         </tr>
         {% endfor %}
