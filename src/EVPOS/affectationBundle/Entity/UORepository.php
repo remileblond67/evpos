@@ -281,4 +281,25 @@ class UORepository extends EntityRepository
     return $query->getResult();
   }
 
+  /**
+   * Liste des UO dont la FIA reste à préparer
+   *
+   * Etats :
+   * - 01. FIA en cours de rédaction
+   * - Pas initiée
+   */
+  public function getListeFiaTodo() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.listeServiceAcces', 's')
+      ->addSelect('s')
+      ->leftJoin('s.serviceAcces', 'sa')
+      ->addSelect('sa')
+      ->leftJoin('uo.appli', 'a')
+      ->addSelect('a')
+      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction')")
+      ->orderBy('uo.codeUo')
+      ->getQuery();
+    return $query->getResult();
+  }
+
 }
