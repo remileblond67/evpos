@@ -132,6 +132,7 @@ uo:
     calMigration: Calendrier de migration des UO
     listeAttenteEnsemble : UO en attente par ensemble
     listeSilo: Silo MOCA
+    listeTodo: Liste des FIA à faire
 
 secteur:
     nom: Nom du secteur
