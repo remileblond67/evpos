@@ -296,7 +296,7 @@ class UORepository extends EntityRepository
       ->addSelect('sa')
       ->leftJoin('uo.appli', 'a')
       ->addSelect('a')
-      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction') and uo.migMoca = true")
+      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction') and uo.migMoca = true and uo.avancementMoca != ' 4. En production'")
       ->orderBy('uo.codeUo, sa.numEnsemble')
       ->getQuery();
 
