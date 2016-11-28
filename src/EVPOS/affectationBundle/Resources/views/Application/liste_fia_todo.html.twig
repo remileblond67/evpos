@@ -15,6 +15,7 @@
         <tr>
             <td class="row">{{ 'application.code'|trans }}</td>
             <td class="row">{{ 'application.nom'|trans }}</td>
+            <td class="row">{{ 'application.nature'|trans }}</td>
             <td class="row">{{ 'uo.code'|trans }}</td>
             <td class="row">{{ 'uo.nom'|trans }}</td>
             <td class="row">{{ 'uo.avancementMigMoca'|trans }}</td>
@@ -33,6 +34,7 @@
             </a>
           </td>
           <td>{{uo.appli.nomAppli}}</td>
+          <td>{{uo.appli.natAppliLong}}</td>
           <td>
             <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
               {{uo.codeUo}}
