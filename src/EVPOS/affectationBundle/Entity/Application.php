@@ -119,7 +119,8 @@ class Application
       foreach ($this->listeServiceAcces as $service) {
         $listeEnsemble[] = $service->getServiceAcces()->getNumEnsemble();
       }
-      return sort(array_unique($listeEnsemble));
+      $newListe = sort(array_unique($listeEnsemble))
+      return $newListe;
     }
 
     /**
