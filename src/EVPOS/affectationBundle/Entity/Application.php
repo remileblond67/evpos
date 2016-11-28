@@ -112,6 +112,17 @@ class Application
     private $listeServiceAcces;
 
     /**
+     * Retourne la liste des numéros d'ensemble utilisant l'application
+     */
+    public function getListeEnsembles() {
+      $listeEnsemble = [] ;
+      foreach ($this->listeServiceAcces as $service) {
+        $listeEnsemble[] = $service->getServiceAcces()->getNumEnsemble();
+      }
+      return sort(array_unique($listeEnsemble));
+    }
+
+    /**
      * Retourne le nombre d'utilisateurs qui ont accès à l'application
      */
     public function getNbAcces() {
