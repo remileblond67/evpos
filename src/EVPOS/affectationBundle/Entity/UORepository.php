@@ -297,7 +297,7 @@ class UORepository extends EntityRepository
       ->leftJoin('uo.appli', 'a')
       ->addSelect('a')
       ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction')")
-      ->orderBy('uo.codeUo')
+      ->orderBy('uo.codeUo, sa.numEnsemble')
       ->getQuery();
     return $query->getResult();
   }
