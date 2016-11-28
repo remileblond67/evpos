@@ -14,6 +14,10 @@ evpos_cherche_appli:
     path: /application_cherche
     defaults: { _controller: EVPOSaffectationBundle:Application:chercheAppli }
 
+evpos_uo_todo:
+    path: /uo_todo
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeFiaTodo }
+
 evpos_cherche_uo:
     path: /uo_cherche
     defaults: { _controller: EVPOSaffectationBundle:Application:chercheUo }
@@ -296,4 +300,4 @@ evpos_tabSilo:
 
 evpos_export_uo_dir:
     path: /export_uo_dir
-    defaults: { _controller: EVPOSaffectationBundle:Silo:exportTabSilo }    
+    defaults: { _controller: EVPOSaffectationBundle:Silo:exportTabSilo }

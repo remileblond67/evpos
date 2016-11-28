@@ -107,4 +107,16 @@ class ApplicationController extends Controller
         ;
         return $this->render('EVPOSaffectationBundle:Application:liste_appli_service.html.twig', array('listeDirServAppli' => $listeDirServAppli));
     }
+
+    /**
+     * Liste des UO dont la FIA reste à préparer
+     */
+    public function listeFiaTodoAction() {
+      $listeFiaTodo = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:UO')
+        ->getListeFiaTodo()
+      ;
+      return $this->render('EVPOSaffectationBundle:Application:liste_fia_todo.html.twig', array('listeFiaTodo' => $listeFiaTodo));
+    }
 }
