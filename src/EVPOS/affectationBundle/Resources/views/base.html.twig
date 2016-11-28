@@ -150,6 +150,11 @@
                   {{ 'uo.listeAttenteEnsemble'|trans }}
                 </a>
               </li>
+              <li>
+                <a href="{{ path('evpos_uo_todo')}}">
+                  <span class="glyphicon glyphicon-th"> </span> {{ 'uo.listeTodo'|trans }}
+                </a>
+              </li>
               <li role="separator" class="divider"></li>
               <li>
                 <a href="{{ path('evpos_ctrl_corresp_uo') }}">
@@ -170,11 +175,6 @@
               <li>
                 <a href="{{ path('evpos_tabSilo') }}">
                   <span class="glyphicon glyphicon-th"></span> {{ 'uo.directions'|trans }}
-                </a>
-              </li>
-              <li>
-                <a href="{{ path('evpos_uo_todo')}}">
-                  <span class="glyphicon glyphicon-th"> </span> {{ 'uo.listeTodo'|trans }}
                 </a>
               </li>
             </ul>
