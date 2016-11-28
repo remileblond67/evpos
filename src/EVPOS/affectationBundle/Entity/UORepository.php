@@ -293,10 +293,10 @@ class UORepository extends EntityRepository
       ->leftJoin('uo.listeServiceAcces', 's')
       ->addSelect('s')
       ->leftJoin('s.serviceAcces', 'sa')
-      ->addSelect('unique sa.numEnsemble')
+      ->addSelect('sa')
       ->leftJoin('uo.appli', 'a')
       ->addSelect('a')
-      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction')")
+      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction') and uo.migMoca = true")
       ->orderBy('uo.codeUo, sa.numEnsemble')
       ->getQuery();
     return $query->getResult();
