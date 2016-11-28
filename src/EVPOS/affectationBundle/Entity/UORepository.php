@@ -293,7 +293,7 @@ class UORepository extends EntityRepository
       ->leftJoin('uo.listeServiceAcces', 's')
       ->addSelect('s')
       ->leftJoin('s.serviceAcces', 'sa')
-      ->addSelect('sa')
+      ->addSelect('unique sa.numEnsemble')
       ->leftJoin('uo.appli', 'a')
       ->addSelect('a')
       ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction')")
