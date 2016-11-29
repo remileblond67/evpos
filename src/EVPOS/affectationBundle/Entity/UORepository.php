@@ -290,14 +290,14 @@ class UORepository extends EntityRepository
    */
   public function getListeFiaTodo() {
     $query = $this->createQueryBuilder('uo')
-      ->leftJoin('uo.listeServiceAcces', 's')
-      ->addSelect('s')
-      ->leftJoin('s.serviceAcces', 'sa')
+      ->leftJoin('uo.listeServiceAcces', 'sa')
       ->addSelect('sa')
+      ->leftJoin('sa.serviceAcces', 's')
+      ->addSelect('s')
       ->leftJoin('uo.appli', 'a')
       ->addSelect('a')
-      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction') and uo.migMoca = true and uo.avancementMoca != ' 4. En production'")
-      ->orderBy('uo.codeUo, sa.numEnsemble')
+      ->where("uo.avancementMocaDetail in ('Pas initiée', '01. FIA en cours de rédaction') and uo.migMoca = true and uo.avancementMoca != '4. En production'")
+      ->orderBy('a.codeAppli, uo.codeUo, s.numEnsemble')
       ->getQuery();
 
     return $query->getResult();
