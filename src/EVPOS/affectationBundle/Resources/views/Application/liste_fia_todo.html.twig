@@ -50,7 +50,7 @@
           </td>
           <td>{{uo.nbUtil}}</td>
           <td>
-            {% for accesService in uo.appli.listeServiceAcces %}
+            {% for accesService in uo.appli.listeServiceAcces|sort %}
               {{ accesService.serviceAcces.numEnsemble }}
             {% endfor %}
           </td>
