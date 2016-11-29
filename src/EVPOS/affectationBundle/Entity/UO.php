@@ -393,6 +393,26 @@ class UO
     }
 
     /**
+     * Retourne la liste des ensembles qui utilisent l'UO, sous la forme de texte
+     */
+    public function getListeEnsembleTxt() {
+      $liste = [];
+      foreach ($this->getListeServiceAcces() as $serviceAcces) {
+        $numEnsemble = $serviceAcces->getServiceAcces()->getNumEnsemble() ;
+        $liste[] = $numEnsemble;
+      }
+
+      $listeTxt = "";
+
+      sort($liste);
+      foreach (array_unique($liste) as $num) {
+        $listeTxt = $listeTxt . " " . $num;
+      }
+
+      return $listeTxt;
+    }
+
+    /**
      * Get listeServiceAcces
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -621,6 +641,7 @@ class UO
       }
     $this->noteAvancementMoca = $note;
   }
+
 
     /**
      * Set nbUtil

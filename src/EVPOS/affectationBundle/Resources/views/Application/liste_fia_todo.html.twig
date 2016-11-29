@@ -50,9 +50,7 @@
           </td>
           <td>{{uo.nbUtil}}</td>
           <td>
-            {% for accesService in uo.appli.listeServiceAcces|sort %}
-              {{ accesService.serviceAcces.numEnsemble }}
-            {% endfor %}
+            {{ uo.listeEnsembleTxt }}
           </td>
           <td>
             {% if uo.ancienCitrix %}
