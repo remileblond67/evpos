@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 3.6.0
+    version_n: 3.6.1
     todo: A faire
     all: Tout
     ok: Prêt
@@ -46,6 +46,7 @@ poste:
     codeMateriel: Code matériel
     hostname: Hostname
     listeUsage: Postes utilisés
+    listeReprendre: Postes à reprendre
     modele: Modèle de poste
     ecran: Ecran
     statut: Statut
