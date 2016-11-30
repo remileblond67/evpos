@@ -2,79 +2,42 @@
 {% block title%}{{ 'poste.liste'|trans }}{% endblock%}
 
 {% block content %}
-<h4>{{ 'poste.listeReprendre'|trans }}</h4>
-<table class="table table-striped table-bordered table-hover dataTable no-footer">
+<h4>{{ 'poste.listeReprendre'|trans }} <div class="badge">{{ listePoste | length }}</div></h4>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
   <thead>
     <tr>
-      <td class="row">{{ 'poste.codeMateriel'|trans }}</td>
+      <td class="row">{{ 'poste.avancementMigMoca'|trans }}</td>
       <td class="row">{{ 'poste.hostname'|trans }}</td>
       <td class="row">{{ 'poste.categorie'|trans }}</td>
       <td class="row">{{ 'poste.modele'|trans }}</td>
-      <td class="row">{{ 'poste.ecran'|trans }}</td>
       <td class="row">{{ 'poste.statut'|trans }}</td>
       <td class="row">{{ 'poste.service'|trans }}</td>
       <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
-      <td class="row">{{ 'poste.uo'|trans }}</td>
       <td class="row">{{ 'poste.master'|trans }}</td>
       <td class="row">{{ 'poste.typeReseau'|trans }}</td>
-      <td class="row">{{ 'poste.licenceW8'|trans }}</td>
-      <td class="row">{{ 'poste.equipementLie'|trans }}</td>
       <td class="row">{{ 'poste.commentaire'|trans }}</td>
     </tr>
   </thead>
   <tbody>
     {% for poste in listePoste %}
-    <tr class="gradeA odd">
-      <td class="">{{ poste.codeMateriel }}</td>
+    <tr>
+      <td> {{poste.avancementMigMoca}} </td>
       <td class=""><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname }}</a></td>
-      <td class="">{{ poste.categorieCourt }}</td>
+      <td class="">{{ poste.categorie }}</td>
       <td class="">{{ poste.modele }}</td>
-      <td class="">
-        {% for ecran in poste.listeEcran %}
-        {{ecran}}
-        {% endfor %}
-      </td>
       <td class="">{{ poste.statut }}</td>
-      <td class=""></td>
+      <td class=""><a href="{{ path('evpos_ficheService', { 'codeService' : poste.service.codeService }) }}">{{ poste.service.codeService }}</a> : {{ poste.service.libService }}</td>
       <td class="">
-        <ul>
           {% for util in poste.listeUtilisateurs %}
-          <li>
-            <a href="{{path('evpos_ficheUtil', {'matUtil': util.matUtil})}}">{{util.matUtil}}</a> : {{util.nomUtil}}
-          </li>
+              <a href="{{ path('evpos_ficheUtil', {'matUtil' : util.matUtil }) }}">{{ util.matUtil }}</a> : {{util.nomUtil}}</li>
+              <br/>
           {% endfor %}
-        </ul>
       </td>
-      <td>
-        <ul>
-          {% for uo in poste.listeUo %}
-          <li>
-            <a href="{{ path('evpos_ficheAppli', { 'codeAppli': uo.appli.codeAppli }) }}">
-              {{ uo.appli.codeAppli }}
-            </a>
-            :
-            <a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">
-              {{ uo.codeUo }}
-            </a>- {{ uo.nomUo }}</li>
-            {% endfor %}
-          </ul>
-        </td>
-        <td>{{poste.master}}</td>
-        <td>{{poste.typeReseau}}</td>
-        <td><span class="{{poste.licenceW8Icon}}"></span> {{ poste.licenceW8Long}}</td>
-        <td>{{poste.listeEquipement|length}}</td>
-        <td>{{ poste.commentaire|raw }}</td>
+      <td>{{poste.master}}</td>
+      <td>{{poste.typeReseau}}</td>
+      <td>{{ poste.commentaire|raw }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-  {% if nbPages > 1 %}
-  <nav>
-    <ul class="pagination">
-      {% for p in range(1, nbPages) %}
-      <li {% if p == page %}class="active"{% endif %}><a href="{{ path('evpos_listePoste', {'page': p}) }}">{{p}}</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
-  {% endif %}
   {%endblock%}
