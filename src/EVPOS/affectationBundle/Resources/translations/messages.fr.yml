@@ -46,6 +46,7 @@ poste:
     codeMateriel: Code matériel
     hostname: Hostname
     listeUsage: Postes utilisés
+    listeReprendre: Postes à reprendre
     modele: Modèle de poste
     ecran: Ecran
     statut: Statut

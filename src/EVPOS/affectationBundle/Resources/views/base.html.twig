@@ -190,7 +190,16 @@
                 {% render(controller('EVPOSaffectationBundle:Poste:cherchePoste')) %}
               </li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ path('evpos_listePoste') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}</a></li>
+              <li>
+                <a href="{{ path('evpos_listePoste') }}">
+                  <span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.liste'|trans }}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('evpos_listePosteAReprendre')}}">
+                  <span class="glyphicon glyphicon-list-alt"></span> {{ 'poste.listeReprendre'}}
+                </a>
+              </li>
               <li role="separator" class="divider"></li>
             </ul>
           </li>

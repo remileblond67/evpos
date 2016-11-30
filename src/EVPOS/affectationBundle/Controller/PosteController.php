@@ -75,4 +75,19 @@ class PosteController extends Controller
 		'nbPages' => $nbPages,
 		'page' => $page));
 	}
+
+	/**
+	 * Liste des postes à reprendre
+	 */
+	public function listePosteAReprendreAction() {
+		$listePoste = $this->getDoctrine()
+			->getManager()
+			->getRepository('EVPOSaffectationBundle:Poste')
+			->getPosteAReprendre()
+		;
+
+		return $this->render('EVPOSaffectationBundle:Poste:liste_poste_a_reprendre.html.twig',
+			array('listePoste' => $listePoste))
+		;
+	}
 }
