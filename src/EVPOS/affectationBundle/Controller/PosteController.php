@@ -83,7 +83,7 @@ class PosteController extends Controller
 		$listePoste = $this->getDoctrine()
 			->getManager()
 			->getRepository('EVPOSaffectationBundle:Poste')
-			->getPosteAReprendre()
+			->listePosteAReprendre()
 		;
 
 		return $this->render('EVPOSaffectationBundle:Poste:liste_poste_a_reprendre.html.twig',
