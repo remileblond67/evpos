@@ -94,6 +94,10 @@ evpos_listePoste:
     path: /poste
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePoste }
 
+evpos_listePosteAReprendre:
+    path: /poste_a_reprendre
+    defaults: { _controller: EVPOSaffectationBundle:Poste:listePosteAReprendre }
+
 evpos_fichePoste:
     path: /poste/{hostname}
     defaults: { _controller: EVPOSaffectationBundle:Poste:fichePoste }

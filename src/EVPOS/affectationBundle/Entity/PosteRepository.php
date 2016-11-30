@@ -199,4 +199,26 @@ class PosteRepository extends EntityRepository {
       $listePoste = $query->getArrayResult();
       return $listePoste;
     }
+
+  /**
+   * Retourne la liste des postes à reprendre
+   * Etats :
+   * - A reprendre (fin de projet)
+   * - A replanifier
+   * - Restriction XP
+   */
+  public function listePosteAReprendre() {
+    $query = $this->createQueryBuilder('p')
+      ->select('p')
+      ->leftJoin('p.service', 's')
+      ->addSelect('s')
+      ->leftJoin('p.listeUtilisateurs', 'u')
+      ->addSelect('u')
+      ->where("p.avancementMigMoca in ('A reprendre (fin de projet)', 'A replanifier', 'Restriction XP')")
+      ->orderBy('p.avancementMigMoca, p.hostname')
+      ->getQuery()
+    ;
+    $listePoste = $query->getArrayResult();
+    return $listePoste;
+  }
 }
