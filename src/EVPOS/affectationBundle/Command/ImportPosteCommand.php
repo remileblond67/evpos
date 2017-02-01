@@ -48,6 +48,7 @@ class ImportPosteCommand extends ContainerAwareCommand
     // Lecture du fichier CSV extrait de GPARC
     $output->write("Lecture du fichier des postes (".$env.")... ");
     $fileName = "/home/data/evpos/".$env."/gparc/gparc_prod_moca_01_materiel.csv";
+    $output->write("  fichier ".$fileName."\n");
     $csvFile = fopen($fileName, 'r');
     $nbLine = 0;
     $nbDoublon = 0;
@@ -66,7 +67,7 @@ class ImportPosteCommand extends ContainerAwareCommand
     while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
       if ($nbLine>0) {
         $hostname = trim(strtoupper($data[3]));
-
+      
         if ($hostname != "-" && (in_array($hostname, $listeHostname) !== TRUE) ) {
           $listeHostname[] = $hostname;
           $codeService = $data[1];
