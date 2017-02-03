@@ -138,7 +138,7 @@ class UORepository extends EntityRepository
     $nbUo = $this->createQueryBuilder('u')
       ->leftJoin('u.appli', 'a')
       ->select('count(u.codeUo)')
-      ->setParameter('nat' => $natAppli)
+      ->setParameter('nat', $natAppli)
       ->where("a.nat = :nat and u.avancementMocaDetail = '03. Intégration planifiée'")
       ->getQuery()
       ->getSingleScalarResult()
