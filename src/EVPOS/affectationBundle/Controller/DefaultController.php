@@ -82,6 +82,9 @@ class DefaultController extends Controller
           ->getAvancementGeneral('AI')
         ;
 
+        $nbPipeAS = getNbPipeUo("AS");
+        $nbPipeAI = getNbPipeUo("AI");
+
         $avancementUoAS = $this->getDoctrine()
           ->getManager()
           ->getRepository('EVPOSaffectationBundle:UO')
@@ -171,6 +174,8 @@ class DefaultController extends Controller
           'evolutionAsGen' => $evolutionAsGen,
           'evolutionAiDet' => $evolutionAiDet,
           'evolutionAsDet' => $evolutionAsDet,
+          'nbPipeAI' => $nbPipeAI,
+          'nbPipeAS' => $nbPipeAS,
         )
         );
     }

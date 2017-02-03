@@ -132,6 +132,21 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Nombre d'UO dans la file d'attente d'intégration
+   */
+  public function getNbPipeUo($natAppli) {
+    $nbUo = $this->createQueryBuilder('u')
+      ->leftJoin('u.appli', 'a')
+      ->select('count(u.codeUo)')
+      ->setParameter('nat' => $natAppli)
+      ->where("a.nat = :nat and u.avancementMocaDetail = '03. Intégration planifiée'")
+      ->getQuery()
+      ->getSingleScalarResult()
+    ;
+    return $nbUo;
+  }
+
+  /**
    * Retourne la liste des UO avec leur affectation dans les silos de prod
    */
   public function getUoSilo() {
