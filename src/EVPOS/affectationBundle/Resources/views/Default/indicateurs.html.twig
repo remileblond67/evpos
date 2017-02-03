@@ -264,8 +264,8 @@ var couleur = {
               {% endfor %}
             </table>
           </div>
-          <div class="col-lg-4">
-            {{nbPipeAI}}
+          <div class="col-lg-4" style="font-size: 18pt;text-align: center;">
+            {{nbPipeAI}} UO informatiques prêtes à être intégrées
           </div>
       </div>
 
@@ -363,43 +363,50 @@ var couleur = {
         ctx.strokeStyle = "Black";
         ctx.globalAlpha = 0.75;
         </script>
-        <table class="sortable" width="100%">
-          <tr>
-            <th colspan="2">Avancement</th>
-            <th>Nb UO</th>
-            <th>%</th>
-          </tr>
-          {% for ligne in avancementUoAS%}
-          <tr>
-            <td style="background-color: {{couleurs[ligne.avancementMoca]}}" width="2em">
-              &nbsp;&nbsp;&nbsp;
-            </td>
-            <td>
-              &nbsp;
-              {{ligne.avancementMoca}}
-            </td>
-            <td>{{ligne.nb}}</td>
-            <td>
-              <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}"
-                        title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">
-                {{ligne.nb}}
-              </progress>
-            </td>
-          </tr>
-          <script>
-          ctx.beginPath();
-          ctx.moveTo(start,0);
-          ctx.lineTo(start+{{ligne.nb}},0);
-          ctx.lineTo(start+{{ligne.nb}},40);
-          ctx.lineTo(start,40);
-          ctx.closePath();
-          ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
-          ctx.fill();
-          ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
-          start += {{ligne.nb}};
-          </script>
-          {% endfor %}
-        </table>
+        <div class="row">
+          <div class="col-lg-8">
+            <table class="sortable" width="100%">
+              <tr>
+                <th colspan="2">Avancement</th>
+                <th>Nb UO</th>
+                <th>%</th>
+              </tr>
+              {% for ligne in avancementUoAS%}
+              <tr>
+                <td style="background-color: {{couleurs[ligne.avancementMoca]}}" width="2em">
+                  &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                  {{ligne.avancementMoca}}
+                </td>
+                <td>{{ligne.nb}}</td>
+                <td>
+                  <progress value="{{ligne.nb}}" max="{{nbUoAS.nb}}"
+                  title="{{(ligne.nb/nbUoAS.nb*100)|round}}%">
+                  {{ligne.nb}}
+                </progress>
+              </td>
+            </tr>
+            <script>
+            ctx.beginPath();
+            ctx.moveTo(start,0);
+            ctx.lineTo(start+{{ligne.nb}},0);
+            ctx.lineTo(start+{{ligne.nb}},40);
+            ctx.lineTo(start,40);
+            ctx.closePath();
+            ctx.fillStyle = couleur["{{ligne.avancementMoca}}"];
+            ctx.fill();
+            ctx.strokeText('{{ligne.avancementMoca}}', (2*start+{{ligne.nb}})/2, 20);
+            start += {{ligne.nb}};
+            </script>
+            {% endfor %}
+          </table>
+          </div>
+          <div class="col-lg-4" style="font-size: 18pt;text-align: center;">
+            {{nbPipeAI}} UO service prêtes à être intégrées
+          </div>
+        </div>
         <script type="text/javascript">
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
