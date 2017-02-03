@@ -140,7 +140,7 @@ class UORepository extends EntityRepository
       ->select('count(u.codeUo)')
       ->setParameter('nat', $natAppli)
       ->setParameter('avct', '03. Intégration planifiée')
-      ->where("a.nat = :nat and u.avancementMocaDetail = :avct")
+      ->where("a.natAppli = :nat and u.avancementMocaDetail = :avct")
       ->getQuery()
       ->getSingleScalarResult()
     ;
