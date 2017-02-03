@@ -134,6 +134,7 @@ uo:
     listeAttenteEnsemble : UO en attente par ensemble
     listeSilo: Silo MOCA
     listeTodo: Liste des FIA à faire
+    listeOldCitrix: Liste des UO migrées restant sur l'ancienne ferme Citrix
 
 secteur:
     nom: Nom du secteur
