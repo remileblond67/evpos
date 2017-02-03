@@ -28,8 +28,8 @@
     <tbody>
       {% for uo in listeUO %}
       <tr>
-        <td>{{application.codeAppli}}</td>
-        <td>{{application.nomAppli}}</td>
+        <td>{{appli.codeAppli}}</td>
+        <td>{{appli.nomAppli}}</td>
         <td><a href="{{path('evpos_ficheUo', {'codeUo': uo.codeUo})}}">{{uo.codeUo}}</a></td>
         <td>{{uo.nomUo}}</td>
       </tr>
