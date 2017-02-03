@@ -139,7 +139,8 @@ class UORepository extends EntityRepository
       ->leftJoin('u.appli', 'a')
       ->select('count(u.codeUo)')
       ->setParameter('nat', $natAppli)
-      ->where("a.nat = :nat and u.avancementMocaDetail = '03. Intégration planifiée'")
+      ->setParameter('avct', '03. Intégration planifiée')
+      ->where("a.nat = :nat and u.avancementMocaDetail = :avct")
       ->getQuery()
       ->getSingleScalarResult()
     ;
