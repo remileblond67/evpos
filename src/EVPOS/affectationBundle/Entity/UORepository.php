@@ -122,6 +122,8 @@ class UORepository extends EntityRepository
    */
   public function getListeOldCitrix() {
     $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.appli', 'appli')
+      ->addSelect('appli')
       ->where('uo.ancienCitrix = TRUE and uo.noteAvancementMoca = 100')
       ->getQuery()
     ;
