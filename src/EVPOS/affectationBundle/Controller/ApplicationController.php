@@ -1,5 +1,4 @@
 <?php
-
 namespace EVPOS\affectationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -118,5 +117,17 @@ class ApplicationController extends Controller
         ->getListeFiaTodo()
       ;
       return $this->render('EVPOSaffectationBundle:Application:liste_fia_todo.html.twig', array('listeFiaTodo' => $listeFiaTodo));
+    }
+
+    /**
+     * Liste des UO migrèes et encore disponibles dans l'ancienne ferme Citrix
+     */
+    public function listeUoOldCitrixAction() {
+      $listeUO = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:UO')
+        ->getListeOldCitrix()
+      ;
+      return $this->render('EVPOSaffectationBundle:Application:liste_appli_old_citrix.html.twig', array('listeUO' => $listeUO));
     }
 }

@@ -230,6 +230,11 @@ evpos_planif_uo:
     path: /planif_uo
     defaults: { _controller: EVPOSaffectationBundle:Etat:planifUo }
 
+evpos_ctrl_old_citrix:
+    path: /uo_old_citrix
+    defaults: { _controller: EVPOSaffectationBundle:Application:listeUoOldCitrix }
+
+
 # Pages de contrôle
 evpos_ctrl_service_inconnu:
     path: /ctrl_service_inconnu
@@ -258,6 +263,7 @@ evpos_ctrl_util:
 evpos_ctrl_absent:
     path: /ctrl_absent
     defaults: { _controller: EVPOSaffectationBundle:Ctrl:listeAbsentService }
+
 
 # Fonctions de mise à jour
 evpos_update_service:

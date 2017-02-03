@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 3.6.1
+    version_n: 3.7.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -134,6 +134,7 @@ uo:
     listeAttenteEnsemble : UO en attente par ensemble
     listeSilo: Silo MOCA
     listeTodo: Liste des FIA à faire
+    listeOldCitrix: Liste des UO migrées restant sur l'ancienne ferme Citrix
 
 secteur:
     nom: Nom du secteur

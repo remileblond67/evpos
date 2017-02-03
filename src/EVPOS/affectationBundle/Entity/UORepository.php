@@ -118,6 +118,36 @@ class UORepository extends EntityRepository
   }
 
   /**
+   * Liste des UO migrées sous MOCA et disponibles dans l'ancienne ferme Citrix
+   */
+  public function getListeOldCitrix() {
+    $query = $this->createQueryBuilder('uo')
+      ->leftJoin('uo.appli', 'appli')
+      ->addSelect('appli')
+      ->where('uo.ancienCitrix = TRUE and uo.noteAvancementMoca = 100')
+      ->getQuery()
+    ;
+
+    return $query->getResult();
+  }
+
+  /**
+   * Nombre d'UO dans la file d'attente d'intégration
+   */
+  public function getNbPipeUo($natAppli) {
+    $nbUo = $this->createQueryBuilder('u')
+      ->leftJoin('u.appli', 'a')
+      ->select('count(u.codeUo)')
+      ->setParameter('nat', $natAppli)
+      ->setParameter('avct', '03. Intégration planifiée')
+      ->where("a.natAppli = :nat and u.avancementMocaDetail = :avct")
+      ->getQuery()
+      ->getSingleScalarResult()
+    ;
+    return $nbUo;
+  }
+
+  /**
    * Retourne la liste des UO avec leur affectation dans les silos de prod
    */
   public function getUoSilo() {
