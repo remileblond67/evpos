@@ -67,7 +67,7 @@ class ImportPosteCommand extends ContainerAwareCommand
     while (($data = fgetcsv($csvFile, 0, ';')) !== FALSE) {
       if ($nbLine>0) {
         $hostname = trim(strtoupper($data[3]));
-      
+
         if ($hostname != "-" && (in_array($hostname, $listeHostname) !== TRUE) ) {
           $listeHostname[] = $hostname;
           $codeService = $data[1];
@@ -269,12 +269,14 @@ class ImportPosteCommand extends ContainerAwareCommand
                 $listeCodeMateriel[] = $codeMateriel;
 
                 $categorie = trim($data[2]);
-                $modele = trim($data[3]);
+                $modele = trim($data[4]);
+                $marque = trim($data[3]);
 
                 $equipement = new Equipement();
                 $equipement->setCodeMateriel($codeMateriel);
                 $equipement->setCategorie($categorie);
                 $equipement->setModele($modele);
+                $equipement->setMarque($marque);
 
                 // recherche du poste lié
                 $poste = $em->getRepository('EVPOS\affectationBundle\Entity\Poste')->find($hostname);

@@ -90,9 +90,10 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer">
           <thead>
             <tr>
-              <td class="row" >{{ 'equipement.codeMateriel'|trans }}</td>
-              <td class="row" >{{ 'equipement.categorie'|trans }}</td>
-              <td class="row" >{{ 'equipement.modele'|trans }}</td>
+              <td class="row">{{ 'equipement.codeMateriel'|trans }}</td>
+              <td class="row">{{ 'equipement.categorie'|trans }}</td>
+              <td class="row">{{ 'equipement.marque'|trans}}</td>
+              <td class="row">{{ 'equipement.modele'|trans }}</td>
             </tr>
           </thead>
           <tbody>
@@ -100,6 +101,7 @@
             <tr class="">
               <td class="gradeA odd">{{ equipement.codeMateriel }}</td>
               <td class="gradeA odd">{{ equipement.categorie }}</td>
+              <td class="gradeA odd">{{ equipement.marque }}</td>
               <td class="gradeA odd">{{ equipement.modele }}</td>
             </tr>
             {% endfor %}

@@ -35,6 +35,14 @@ class Equipement
     private $modele;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="marque", type="string", length=255, nullable=true)
+     */
+    private $marque;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="Poste", inversedBy="listeEquipement")
      * @ORM\JoinColumn(name="hostname", referencedColumnName="hostname", nullable=false)
      */
@@ -117,6 +125,29 @@ class Equipement
     public function getModele()
     {
         return $this->modele;
+    }
+
+    /**
+     * Set marque
+     *
+     * @param string $marque
+     * @return MaterielLie
+     */
+    public function setMarque($marque)
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    /**
+     * Get marque
+     *
+     * @return string
+     */
+    public function getMarque()
+    {
+        return $this->marque;
     }
 
     /**

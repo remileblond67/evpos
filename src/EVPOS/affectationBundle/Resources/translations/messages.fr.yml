@@ -11,7 +11,7 @@ app:
     source: Source de l'info
     add: Ajouter une nouvelle entrée
     version: Version actuelle
-    version_n: 3.7.0
+    version_n: 3.8.0
     todo: A faire
     all: Tout
     ok: Prêt
@@ -196,6 +196,7 @@ poste:
 equipement:
     codeMateriel: Code matériel
     categorie: Catégorie
+    marque: Marque
     modele: Modèle
 
 imprimante:
