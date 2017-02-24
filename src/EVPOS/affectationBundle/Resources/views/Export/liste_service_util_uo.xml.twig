@@ -48,7 +48,11 @@
                               <licenceW8>{{poste.licenceW8Long}}</licenceW8>
               								<equipements>
               								{% for equipement in poste.listeEquipement %}
-              									<equipement>{{equipement}}</equipement>
+              									<equipement>
+                                    <categorie>{{equipement.categorie}}</categorie>
+                                    <marque>{{equipement.marque}}</marque>
+                                    <modele>{{equipement.modele}}</modele>
+                                </equipement>
               								{% endfor %}
                             </equipements>
                               <commentaire>{{poste.commentaire}}</commentaire>
