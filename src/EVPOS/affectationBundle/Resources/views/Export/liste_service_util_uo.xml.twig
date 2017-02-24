@@ -46,11 +46,15 @@
               								<statut>{{poste.statut}}</statut>
               								<typeUsage>{{poste.typeUsage}}</typeUsage>
                               <licenceW8>{{poste.licenceW8Long}}</licenceW8>
-              								<ecrans>
-              								{% for ecran in poste.listeEcran %}
-              									<ecran>{{ecran}}</ecran>
+              								<equipements>
+              								{% for equipement in poste.listeEquipement %}
+              									<equipement>
+                                    <categorie>{{equipement.categorie}}</categorie>
+                                    <marque>{{equipement.marque}}</marque>
+                                    <modele>{{equipement.modele}}</modele>
+                                </equipement>
               								{% endfor %}
-              								</ecrans>
+                            </equipements>
                               <commentaire>{{poste.commentaire}}</commentaire>
                             </poste>
                             {% endfor %}

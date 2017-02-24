@@ -196,6 +196,7 @@ poste:
 equipement:
     codeMateriel: Code matériel
     categorie: Catégorie
+    marque: Marque
     modele: Modèle
 
 imprimante:
