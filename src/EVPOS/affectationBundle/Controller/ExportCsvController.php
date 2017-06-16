@@ -91,4 +91,29 @@ class ExportCsvController extends Controller
       ;
       return $this->render('EVPOSaffectationBundle:Export:liste_util_poste.csv.twig', array('listePoste' => $listePoste));
     }
+
+    /**
+     * Export CSV des silos
+     */
+    public function exportCsvSiloAction() {
+      $listeSilo = $this->getDoctrine()
+           ->getManager()
+           ->getRepository('EVPOSaffectationBundle:Silo')
+           ->findAll()
+      ;
+      return $this->render('EVPOSaffectationBundle:Export:liste_silo.csv.twig', array('listeSilo' => $listeSilo));
+    }
+
+    /**
+     * Export CSV des UO des silos
+     */
+    public function exportCsvUoSiloAction() {
+      $listeUoSilo = $this->getDoctrine()
+           ->getManager()
+           ->getRepository('EVPOSaffectationBundle:Silo')
+           ->listeUoSilo()
+      ;
+
+      return $this->render('EVPOSaffectationBundle:Export:liste_uo_silo.csv.twig', array('listeUoSilo' => $listeUoSilo));
+    }
 }

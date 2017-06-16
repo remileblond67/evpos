@@ -77,4 +77,16 @@ class SiloRepository extends EntityRepository
     return $query->getResult();
   }
 
+  /**
+   * Retourne la liste des UO de chaque silo
+   */
+  public function listeUoSilo() {
+    $query = $this->createQueryBuilder('silo')
+      ->leftJoin('silo.listeUO', 'uo')
+      ->addSelect('uo')
+      ->orderBy('uo.codeUo')
+      ->getQuery()
+    ;
+    return $query->getResult();
+  }
 }

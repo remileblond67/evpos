@@ -1,0 +1,6 @@
+code_uo;nom_silo
+{% for silo in listeUoSilo %}
+{% for uo in silo.listeUo %}
+{{uo.codeUo }};{{ silo.nomSilo }}
+{% endfor %}
+{% endfor %}
