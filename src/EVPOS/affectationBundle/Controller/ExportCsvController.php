@@ -92,7 +92,19 @@ class ExportCsvController extends Controller
       return $this->render('EVPOSaffectationBundle:Export:liste_util_poste.csv.twig', array('listePoste' => $listePoste));
     }
 
-    /**
+   /**
+     * Export CSV des applications
+     */
+    public function exportCsvApplicationAction() {
+      $listeApplication = $this->getDoctrine()
+           ->getManager()
+           ->getRepository('EVPOSaffectationBundle:Application')
+           ->findAll()
+      ;
+      return $this->render('EVPOSaffectationBundle:Export:liste_application.csv.twig', array('listeApplication' => $listeApplication));
+    }
+
+  /**
      * Export CSV des silos
      */
     public function exportCsvSiloAction() {

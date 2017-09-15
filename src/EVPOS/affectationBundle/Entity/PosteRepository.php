@@ -122,7 +122,7 @@ class PosteRepository extends EntityRepository {
     public function getNbPosteMoca() {
         $query = $this->createQueryBuilder('p')
             ->select('count(p.hostname) nb')
-            ->where("p.avancementMigMoca = 'Migré' or p.avancementMigMoca = 'Non migré'")
+            ->where("p.avancementMigMoca like 'Migré%' or p.avancementMigMoca = 'Non migré'")
             ->getQuery()
         ;
         return $query->getSingleScalarResult();
