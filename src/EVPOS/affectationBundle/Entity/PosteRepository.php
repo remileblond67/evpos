@@ -221,4 +221,22 @@ class PosteRepository extends EntityRepository {
     $listePoste = $query->getArrayResult();
     return $listePoste;
   }
+  
+  /**
+   * Retourne la liste des postes encore sous Windows XP
+   */
+  public function listePosteXp() {
+    $query = $this->createQueryBuilder('p')
+      ->select('p')
+      ->leftJoin('p.service', 's')
+      ->addSelect('s')
+      ->leftJoin('p.listeUtilisateurs', 'u')
+      ->addSelect('u')
+      ->where("upper(p.master) like 'MASTER XP%'")
+      ->orderBy('p.avancementMigMoca, p.hostname')
+      ->getQuery()
+    ;
+    $listePoste = $query->getArrayResult();
+    return $listePoste;
+  }
 }

@@ -1,0 +1,41 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'poste.listeXp'|trans }}{% endblock%}
+
+{% block content %}
+<h4>{{ 'poste.listeXp'|trans }} <div class="badge">{{ listePoste | length }}</div></h4>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+  <thead>
+    <tr>
+      <td class="row">{{ 'poste.avancementMigMoca'|trans }}</td>
+      <td class="row">{{ 'poste.hostname'|trans }}</td>
+      <td class="row">{{ 'poste.categorie'|trans }} <br/> <i>{{ 'poste.modele'|trans }}</i></td>
+	  <td class="row">{{ 'poste.typeUsage'|trans }}</td>
+      <td class="row">{{ 'poste.typeReseau'|trans }}</td>
+      <td class="row">{{ 'poste.statut'|trans }}</td>
+      <td class="row">{{ 'poste.service'|trans }}</td>
+      <td class="row">{{ 'poste.utilisateurs'|trans }}</td>
+      <td class="row">{{ 'poste.commentaire'|trans }}</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for poste in listePoste %}
+    <tr>
+      <td> {{poste.avancementMigMoca}} </td>
+      <td><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname }}</a></td>
+      <td>{{ poste.categorie }}<br/><i>{{ poste.modele }}</i></td>
+	  <td>{{ poste.typeUsage }}</td>
+      <td>{{poste.typeReseau}}</td>
+      <td>{{ poste.statut }}</td>
+      <td><a href="{{ path('evpos_ficheService', { 'codeService' : poste.service.codeService }) }}">{{ poste.service.codeService }}</a> : {{ poste.service.libService }}</td>
+      <td>
+          {% for util in poste.listeUtilisateurs %}
+              <a href="{{ path('evpos_ficheUtil', {'matUtil' : util.matUtil }) }}">{{ util.matUtil }}</a> : {{util.nomUtil}}</li>
+              <br/>
+          {% endfor %}
+      </td>
+      <td>{{ poste.commentaire|raw }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {%endblock%}

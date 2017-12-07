@@ -90,4 +90,19 @@ class PosteController extends Controller
 			array('listePoste' => $listePoste))
 		;
 	}
+	
+	/**
+	 * Liste des postes sous Windows XP
+	 */
+	public function listePosteXpAction() {
+		$listePoste = $this->getDoctrine()
+			->getManager()
+			->getRepository('EVPOSaffectationBundle:Poste')
+			->listePosteXp()
+		;
+
+		return $this->render('EVPOSaffectationBundle:Poste:liste_poste_xp.html.twig',
+			array('listePoste' => $listePoste))
+		;
+	}
 }

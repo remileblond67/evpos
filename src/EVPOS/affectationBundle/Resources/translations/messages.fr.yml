@@ -40,6 +40,7 @@ ctrl:
 poste:
     titre: Postes
     liste: Postes
+    listeXp: Postes sous XP
     listeEquipement: Postes et équipements
     listeReseau: Postes par type de réseau
     categorie: Catégorie de poste
