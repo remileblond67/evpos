@@ -49,7 +49,11 @@ google.charts.load('current', {'packages':['corechart']});
           </tr>
           <tr>
             <td>Postes encore sous Windows XP</td>
-            <td>{{nbPosteXp}}</td>
+            <td>
+              <a href="{{ path('evpos_listePosteXp')}}">
+              {{nbPosteXp}}
+              </a>
+            </td>
           </tr>
         </table>
       </div>
@@ -121,7 +125,8 @@ google.charts.load('current', {'packages':['corechart']});
           ]);
 
           var options = {
-            vAxis: {minValue: 0}
+            vAxis: {minValue: 0},
+            title: "Evolution du nombre de postes XP"
           };
 
           var chart = new google.visualization.LineChart(document.getElementById('histoNbPosteXp'));
@@ -130,14 +135,6 @@ google.charts.load('current', {'packages':['corechart']});
         </script>
         <div id="piechart_poste_xp_service" style="width: 100%; height: 300px;"></div>
         <div id="histoNbPosteXp" style="width: 100%; height: 200px;"></div>
-        
-        <table>
-        {% for ligne in evolutionNbPosteXp %}
-          <td>{{ligne.dateMesure|date("d/m/Y")}}</td>
-          <td>{{ligne.nbPosteXp}}</td>
-        {% endfor %}
-        <tr>
-        </table>
       </div>
     </div>
 
