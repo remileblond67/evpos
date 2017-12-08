@@ -102,6 +102,10 @@ evpos_listePosteXp:
     path: /poste_xp
     defaults: { _controller: EVPOSaffectationBundle:Poste:listePosteXp }
 
+evpos_listePosteXpService:
+    path: /poste_xp_service
+    defaults: { _controller: EVPOSaffectationBundle:Poste:listePosteXpService }
+
 evpos_fichePoste:
     path: /poste/{hostname}
     defaults: { _controller: EVPOSaffectationBundle:Poste:fichePoste }

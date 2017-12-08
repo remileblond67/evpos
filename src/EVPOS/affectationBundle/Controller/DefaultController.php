@@ -55,6 +55,20 @@ class DefaultController extends Controller
             ->getNbPosteAMigrer()
         ;
 
+        // Récupération du nombre de postes sous Windows XP
+        $nbPosteXp = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('EVPOSaffectationBundle:Poste')
+            ->getNbPosteXp()
+        ;
+
+        // R�partition du nombre de poste XP par service
+        $nbPosteXpService = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Poste')
+          ->getNbPosteXpService()
+        ;
+
         // Réparition des postes par type d'usage
         $nbPosteUsage = $this->getDoctrine()
             ->getManager()
@@ -164,6 +178,8 @@ class DefaultController extends Controller
           'nbService' => $nbServices,
           'nbDirection' => $nbDirections,
           'nbPoste' => $nbPoste,
+          'nbPosteXp' => $nbPosteXp,
+          'nbPosteXpService' => $nbPosteXpService,
           'nbPosteAMigrer' => $nbPosteAMigrer,
           'nbPosteMoca' => $nbPosteMoca,
           'nbPosteUsage' => $nbPosteUsage,

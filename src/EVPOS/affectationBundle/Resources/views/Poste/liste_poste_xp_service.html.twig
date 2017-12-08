@@ -1,0 +1,25 @@
+{% extends "EVPOSaffectationBundle::layout.html.twig" %}
+{% block title%}{{ 'poste.listeXpService'|trans }}{% endblock%}
+
+{% block content %}
+<h4>{{ 'poste.listeXpService'|trans }} <div class="badge">{{ listeService | length }}</div></h4>
+<table class="table table-striped table-bordered table-hover dataTable no-footer sortable">
+  <thead>
+    <tr>
+      <td class="row">{{ 'poste.service'|trans }}</td>
+      <td class="row">{{ 'poste.listeXp'|trans }}</td>
+    </tr>
+  </thead>
+    <tbody>
+    {% for service in listeService %}
+      <tr>
+        <td>
+          <a href="{{ path('evpos_ficheService', { 'codeService' : service.codeService }) }}">
+            {{service.codeService}}
+          </a>
+        <td>{{service.nb}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {%endblock%}

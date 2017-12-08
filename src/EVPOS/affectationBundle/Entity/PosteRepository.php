@@ -239,4 +239,32 @@ class PosteRepository extends EntityRepository {
     $listePoste = $query->getArrayResult();
     return $listePoste;
   }
+
+  /**
+   * Nombre de postes encore sous Windows XP
+   */
+  public function GetNbPosteXp() {
+    $query = $this->createQueryBuilder('p')
+      ->select('count(p.hostname) nb')
+      ->where("upper(p.master) like 'MASTER XP%'")
+      ->getQuery()
+    ;
+    return $query->getSingleScalarResult();
+  }
+
+  /**
+   * Répartition du nombre de poste XP par service
+   */
+  public function getNbPosteXpService() {
+    $query = $this->createQueryBuilder('p')
+      ->leftJoin('p.service', 's')
+      ->select('s.codeService codeService, count(p.hostname) nb')
+      ->where("upper(p.master) like 'MASTER XP%'")
+      ->groupBy('s.codeService')
+      ->orderBy('nb', 'DESC')
+      ->getQuery()
+    ;
+    $listePosteService = $query->getArrayResult();
+    return $listePosteService;
+  }
 }
