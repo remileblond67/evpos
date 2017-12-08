@@ -141,6 +141,12 @@ class DefaultController extends Controller
         ->getRepository('EVPOSaffectationBundle:HistoPoste')
         ->getHistoPoste()
         ;
+        
+        $evolutionNbPosteXp = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:HistoPosteXp')
+        ->getHistoPosteXp()
+        ;
 
         $evolutionNbPosteSemaine = $this->getDoctrine()
         ->getManager()
@@ -193,6 +199,7 @@ class DefaultController extends Controller
           'nbUoAS' => $nbUoAS,
           'evolutionNbPoste' => $evolutionNbPoste,
           'evolutionNbPosteSemaine' => $evolutionNbPosteSemaine,
+          'evolutionNbPosteXp' => $evolutionNbPosteXp,
           'evolutionAiGen' => $evolutionAiGen,
           'evolutionAsGen' => $evolutionAsGen,
           'evolutionAiDet' => $evolutionAiDet,

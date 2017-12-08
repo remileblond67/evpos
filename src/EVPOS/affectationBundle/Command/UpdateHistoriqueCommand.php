@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use EVPOS\affectationBundle\Entity\HistoPoste;
+use EVPOS\affectationBundle\Entity\HistoPosteXp;
 use EVPOS\affectationBundle\Entity\HistoUo;
 
 /**
@@ -46,6 +47,21 @@ class UpdateHistoriqueCommand extends ContainerAwareCommand
 
     $histoPoste->setDateMesure(new \DateTime());
     $em->persist($histoPoste);
+    $em->flush();
+    $output->writeln("OK");
+    
+    // Mémorisation du nombre de poste XP restants
+    $output->write("Historisation du nombre de PC XP restant... ");
+    $histoPosteXp = new HistoPosteXp;
+    $histoPosteXp->setDateMesure(new \DateTime());
+    
+    $nbPosteXp = $this->getContainer()->get('doctrine')
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:Poste')
+        ->getNbPosteXp()
+    ;
+    $histoPosteXp->setNbPosteXp($nbPosteXp);
+    $em->persist($histoPosteXp);
     $em->flush();
     $output->writeln("OK");
 
