@@ -108,71 +108,65 @@ google.charts.load('current', {'packages':['corechart']});
         <h3 class="panel-title">Avancement de la migration MOCA</h3>
       </div>
       <div class="panel-body">
-		<div class="col-lg-6">
-			<div id="piechart_etat_migration" style="width: 100%; height: 200px;"></div>
+		<div class="row">
+			<div class="col-lg-6">
+				<div id="piechart_etat_migration" style="width: 100%; height: 200px;"></div>
+			</div>
+			<div class="col-lg-6">
+				<progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
+				<p>{{nbPosteMoca}} postes traités sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
+						<table width="100%">
+			  <tr>
+				<th>Type</th>
+				<th>Nombre</th>
+			  </tr>
+			  <tr>
+				<td>Nombre total de postes</td>
+				<td>{{nbPoste}}</td>
+			  </tr>
+			  <tr>
+				<td>Postes à migrer (sauf hors scope)</td>
+				<td>{{nbPosteAMigrer}}</td>
+			  </tr>
+			  <tr>
+				<td>Postes migrés sous MOCA</td>
+				<td>{{nbPosteMoca}}</td>
+			  </tr>
+			  <tr>
+				<td>Postes encore sous Windows XP</td>
+				<td>
+				  <a href="{{ path('evpos_listePosteXp')}}">
+				  {{nbPosteXp}}
+				  </a>
+				</td>
+			  </tr>
+			</table>
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<progress value="{{nbPosteMoca}}" max="{{nbPosteAMigrer}}" title="{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%" width="100%">{{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</progress>
-			<p>{{nbPosteMoca}} postes traités sur {{nbPosteAMigrer}}, soit {{(nbPosteMoca/nbPosteAMigrer*100)|round}}%</p>
-			        <table width="100%">
-          <tr>
-            <th>Type</th>
-            <th>Nombre</th>
-          </tr>
-          <tr>
-            <td>Nombre total de postes</td>
-            <td>{{nbPoste}}</td>
-          </tr>
-          <tr>
-            <td>Postes à migrer (sauf hors scope)</td>
-            <td>{{nbPosteAMigrer}}</td>
-          </tr>
-          <tr>
-            <td>Postes migrés sous MOCA</td>
-            <td>{{nbPosteMoca}}</td>
-          </tr>
-          <tr>
-            <td>Postes encore sous Windows XP</td>
-            <td>
-              <a href="{{ path('evpos_listePosteXp')}}">
-              {{nbPosteXp}}
-              </a>
-            </td>
-          </tr>
-        </table>
+		<div class="row">
+			<div id="histoNbPoste" style="width: 100%; height: 150px;"></div>
+			<script type="text/javascript">
+			google.charts.setOnLoadCallback(drawChart);
+			function drawChart() {
+			  var dataDiff = google.visualization.arrayToDataTable([
+				['Semaine', 'Nb postes migrés'],
+				{% for key, item in evolutionNbPosteSemaine %}
+				['{{key}}', {{item.diff}}],
+				{% endfor %}
+			  ]);
+
+			  var options = {
+				title: 'Evolution du rythme de migration',
+				vAxis: {title: 'Nombre de postes migrés'},
+				hAxis: {title: 'Numéro de semaine'},
+				isStacked: true
+			  };
+			  var chart = new google.visualization.SteppedAreaChart(document.getElementById('histoNbPosteDiff'));
+			  chart.draw(dataDiff, options);
+			}
+			</script>
+			<div id="histoNbPosteDiff" style="width: 100%; height: 150px;"></div>
 		</div>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Avancement migration des postes</h3>
-      </div>
-      <div class="panel-body">
-        <div id="histoNbPoste" style="width: 100%; height: 200px;"></div>
-
-        <script type="text/javascript">
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-          var dataDiff = google.visualization.arrayToDataTable([
-            ['Semaine', 'Nb postes migrés'],
-            {% for key, item in evolutionNbPosteSemaine %}
-            ['{{key}}', {{item.diff}}],
-            {% endfor %}
-          ]);
-
-          var options = {
-            title: 'Evolution du rythme de migration',
-            vAxis: {title: 'Nombre de postes migrés'},
-            hAxis: {title: 'Numéro de semaine'},
-            isStacked: true
-          };
-          var chart = new google.visualization.SteppedAreaChart(document.getElementById('histoNbPosteDiff'));
-          chart.draw(dataDiff, options);
-        }
-        </script>
-        <div id="histoNbPosteDiff" style="width: 100%; height: 200px;"></div>
-
       </div>
     </div>
 
@@ -240,10 +234,9 @@ google.charts.load('current', {'packages':['corechart']});
   </div>
 
   <div class="col-lg-7">
-    <h3>Applications informatiques <div class="badge">{{nbUoAI.nb}}</div></h3>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">Avancement général</h4>
+        <h4 class="panel-title">Avancement général applications informatiques <div class="badge">{{nbUoAI.nb}}</div></h4>
       </div>
       <div class="panel-body">
         <canvas id="avancementAI" width="410" height="60">
@@ -340,46 +333,10 @@ google.charts.load('current', {'packages':['corechart']});
         <div id="chartAI" style="width: 100%; height: 200px;"></div>
       </div>
     </div>
-    <div class="panel panel-group panel-default" id="accordionAI" role="tablist" aria-multiselectable="true">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#accordionAI" href="#collapseAI" aria-expanded="false" aria-controls="collapseOne">
-            Avancement détaillé
-          </a>
-        </h3>
-      </div>
-      <div id="collapseAI" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-        <div class="panel-body">
-          <table class="sortable" width="100%">
-            <thead>
-              <tr>
-                <th>Etat</th>
-                <th>Nb</th>
-                <th>%</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for etat in avancementUoAIDetail %}
-              <tr>
-                <td>{{etat.avancementMocaDetail}}</td>
-                <td>{{etat.nb}}</td>
-                <td>
-                  <progress value="{{etat.nb}}" max="{{nbUoAI.nb}}" title="{{(etat.nb / nbUoAI.nb * 100)|round}}%">
-                    {{etat.nb / nbUoAI.nb}}
-                  </progress>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <h3>Applications service <div class="badge">{{nbUoAS.nb}}</div></h3>
+	
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Avancement général</h3>
+        <h3 class="panel-title">Avancement général applications service <div class="badge">{{nbUoAS.nb}}</div></h3>
       </div>
       <div class="panel-body">
         <canvas id="avancementAS" width="410" height="60">
@@ -478,11 +435,50 @@ google.charts.load('current', {'packages':['corechart']});
         <div id="chartAS" style="width: 100%; height: 200px;"></div>
       </div>
     </div>
+	
+	
+	<div class="panel panel-group panel-default" id="accordionAI" role="tablist" aria-multiselectable="true">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordionAI" href="#collapseAI" aria-expanded="false" aria-controls="collapseOne">
+            Avancement détaillé "applications informatiques"
+          </a>
+        </h3>
+      </div>
+      <div id="collapseAI" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <table class="sortable" width="100%">
+            <thead>
+              <tr>
+                <th>Etat</th>
+                <th>Nb</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for etat in avancementUoAIDetail %}
+              <tr>
+                <td>{{etat.avancementMocaDetail}}</td>
+                <td>{{etat.nb}}</td>
+                <td>
+                  <progress value="{{etat.nb}}" max="{{nbUoAI.nb}}" title="{{(etat.nb / nbUoAI.nb * 100)|round}}%">
+                    {{etat.nb / nbUoAI.nb}}
+                  </progress>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
           <a role="button" data-toggle="collapse" data-parent="#accordionAS" href="#collapseAS" aria-expanded="false" aria-controls="collapseOne">
-            Avancement détaillé
+            Avancement détaillé "applications service"
           </a>
         </h3>
       </div>
