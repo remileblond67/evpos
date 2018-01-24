@@ -246,10 +246,26 @@ class PosteRepository extends EntityRepository {
   public function GetNbPosteXp() {
     $query = $this->createQueryBuilder('p')
       ->select('count(p.hostname) nb')
-      ->where("upper(p.master) like 'MASTER XP%'")
+      ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
       ->getQuery()
     ;
     return $query->getSingleScalarResult();
+  }
+
+  /**
+   * RÃpartition du nombre de poxtes XP par master
+   */
+  public function getNbPosteXpMaster() {
+    $query = $this->createQueryBuilder('p')
+      ->leftJoin('p.service', 's')
+      ->select('p.master, count(p.hostname) nb')
+      ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
+      ->groupBy('p.master')
+      ->orderBy('nb', 'DESC')
+      ->getQuery()
+    ;
+    $listePosteService = $query->getArrayResult();
+    return $listePosteService;
   }
 
   /**
@@ -258,9 +274,9 @@ class PosteRepository extends EntityRepository {
   public function getNbPosteXpService() {
     $query = $this->createQueryBuilder('p')
       ->leftJoin('p.service', 's')
-      ->select('s.codeService codeService, count(p.hostname) nb')
-      ->where("upper(p.master) like 'MASTER XP%'")
-      ->groupBy('s.codeService')
+      ->select('s.libService codeService, count(p.hostname) nb')
+      ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
+      ->groupBy('s.libService')
       ->orderBy('nb', 'DESC')
       ->getQuery()
     ;
