@@ -69,6 +69,13 @@ class DefaultController extends Controller
           ->getNbPosteXpService()
         ;
 
+        // Répartition du nombre de poste XP par master
+        $nbPosteXpMaster = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('EVPOSaffectationBundle:Poste')
+          ->getNbPosteXpMaster()
+        ;
+
         // RÃ©parition des postes par type d'usage
         $nbPosteUsage = $this->getDoctrine()
             ->getManager()
@@ -186,6 +193,7 @@ class DefaultController extends Controller
           'nbPoste' => $nbPoste,
           'nbPosteXp' => $nbPosteXp,
           'nbPosteXpService' => $nbPosteXpService,
+          'nbPosteXpMaster' => $nbPosteXpMaster,
           'nbPosteAMigrer' => $nbPosteAMigrer,
           'nbPosteMoca' => $nbPosteMoca,
           'nbPosteUsage' => $nbPosteUsage,

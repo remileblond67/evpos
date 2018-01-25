@@ -13,7 +13,7 @@ class HistoPosteXpRepository extends \Doctrine\ORM\EntityRepository
   // Retourne l'historique du nombre de poste par jour
   public function getHistoPosteXp() {
     $query=$this->createQueryBuilder('h')
-    ->select('h.dateMesure dateMesure, avg(h.nbPosteXp) nbPosteXp')
+    ->select('h.dateMesure dateMesure, avg(h.nbPosteXp) nbPosteXp, avg(h.nbPosteXpHr) nbPosteXpHr, avg(h.nbPosteBorne) nbPosteBorne')
     ->groupBy('h.dateMesure')
     ->orderBy('h.dateMesure')
     ->getQuery()

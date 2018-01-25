@@ -55,12 +55,31 @@ class UpdateHistoriqueCommand extends ContainerAwareCommand
     $histoPosteXp = new HistoPosteXp;
     $histoPosteXp->setDateMesure(new \DateTime());
     
+    // Postes XP
     $nbPosteXp = $this->getContainer()->get('doctrine')
         ->getManager()
         ->getRepository('EVPOSaffectationBundle:Poste')
         ->getNbPosteXp()
     ;
     $histoPosteXp->setNbPosteXp($nbPosteXp);
+
+    // Postes XP hors reseau
+    $nbPosteXpHr = $this->getContainer()->get('doctrine')
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:Poste')
+        ->getNbPosteXpHr()
+    ;
+    $histoPosteXp->setNbPosteXpHr($nbPosteXpHr);
+
+    // Postes bornes sous XP
+    $nbPosteBorne = $this->getContainer()->get('doctrine')
+        ->getManager()
+        ->getRepository('EVPOSaffectationBundle:Poste')
+        ->getNbPosteBorne()
+    ;
+    $histoPosteXp->setNbPosteBorne($nbPosteBorne);
+
+
     $em->persist($histoPosteXp);
     $em->flush();
     $output->writeln("OK");

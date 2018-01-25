@@ -243,10 +243,34 @@ class PosteRepository extends EntityRepository {
   /**
    * Nombre de postes encore sous Windows XP
    */
-  public function GetNbPosteXp() {
+  public function getNbPosteXp() {
     $query = $this->createQueryBuilder('p')
       ->select('count(p.hostname) nb')
       ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
+      ->getQuery()
+    ;
+    return $query->getSingleScalarResult();
+  }
+
+  /**
+   * Nombre de postes encore sous Windows XP hors reseau
+   */
+  public function getNbPosteXpHr() {
+    $query = $this->createQueryBuilder('p')
+      ->select('count(p.hostname) nb')
+      ->where("upper(p.master) like 'MASTER GHRES'")
+      ->getQuery()
+    ;
+    return $query->getSingleScalarResult();
+  }
+
+  /**
+   * Nombre de bornes encore sous Windows XP
+   */
+  public function getNbPosteBorne() {
+    $query = $this->createQueryBuilder('p')
+      ->select('count(p.hostname) nb')
+      ->where("upper(p.master) like 'MASTER BORNE'")
       ->getQuery()
     ;
     return $query->getSingleScalarResult();
@@ -257,15 +281,14 @@ class PosteRepository extends EntityRepository {
    */
   public function getNbPosteXpMaster() {
     $query = $this->createQueryBuilder('p')
-      ->leftJoin('p.service', 's')
       ->select('p.master, count(p.hostname) nb')
       ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
       ->groupBy('p.master')
       ->orderBy('nb', 'DESC')
       ->getQuery()
     ;
-    $listePosteService = $query->getArrayResult();
-    return $listePosteService;
+    $listePosteMaster = $query->getArrayResult();
+    return $listePosteMaster;
   }
 
   /**
@@ -274,9 +297,9 @@ class PosteRepository extends EntityRepository {
   public function getNbPosteXpService() {
     $query = $this->createQueryBuilder('p')
       ->leftJoin('p.service', 's')
-      ->select('s.libService codeService, count(p.hostname) nb')
+      ->select('s.codeService, s.libService, count(p.hostname) nb')
       ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
-      ->groupBy('s.libService')
+      ->groupBy('s.codeService, s.libService')
       ->orderBy('nb', 'DESC')
       ->getQuery()
     ;
