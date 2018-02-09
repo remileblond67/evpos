@@ -232,8 +232,8 @@ class PosteRepository extends EntityRepository {
       ->addSelect('s')
       ->leftJoin('p.listeUtilisateurs', 'u')
       ->addSelect('u')
-      ->where("upper(p.master) like 'MASTER XP%'")
-      ->orderBy('p.avancementMigMoca, p.hostname')
+      ->where("upper(p.master) like 'MASTER XP%' or upper(p.master) like 'MASTER BORNE' or upper(p.master) like 'MASTER GHRES'")
+      ->orderBy('p.master, p.avancementMigMoca, p.hostname')
       ->getQuery()
     ;
     $listePoste = $query->getArrayResult();

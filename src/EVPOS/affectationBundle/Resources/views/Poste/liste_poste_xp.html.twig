@@ -8,6 +8,7 @@
     <tr>
       <td class="row">{{ 'poste.avancementMigMoca'|trans }}</td>
       <td class="row">{{ 'poste.hostname'|trans }}</td>
+      <td class="row">{{ 'poste.master'|trans }}</td>
       <td class="row">{{ 'poste.categorie'|trans }} <br/> <i>{{ 'poste.modele'|trans }}</i></td>
 	  <td class="row">{{ 'poste.typeUsage'|trans }}</td>
       <td class="row">{{ 'poste.typeReseau'|trans }}</td>
@@ -22,6 +23,7 @@
     <tr>
       <td> {{poste.avancementMigMoca}} </td>
       <td><a href="{{path('evpos_fichePoste', {'hostname': poste.hostname})}}">{{poste.hostname }}</a></td>
+      <td>{{ poste.master }}</td>
       <td>{{ poste.categorie }}<br/><i>{{ poste.modele }}</i></td>
 	  <td>{{ poste.typeUsage }}</td>
       <td>{{poste.typeReseau}}</td>
